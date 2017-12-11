@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.6",
+    "bootstrap": "^3.3.7",
     "electrode-archetype-react-app": "^4.0.0",
     "electrode-auto-ssr": "^1.0.0",
     "electrode-confippet": "^1.0.0",
@@ -46,6 +47,7 @@
     "electrode-static-paths": "^1.0.0",
     "lodash": "^4.10.1",
     "react": "^15.0.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.0.0",
     "react-intl": "^2.4.0",
     "react-notify-toast": "^0.4.0",
