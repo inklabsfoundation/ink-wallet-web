@@ -1,0 +1,8 @@
+{
+  "electrode": {
+    "registerPluginsTimeout": 500000
+  },
+  "settings": {
+    "defaultLocale": "en"
+  }
+}

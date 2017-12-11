@@ -4255,7 +4255,7 @@ intl-relativeformat@^2.0.0:
   dependencies:
     intl-messageformat "^2.0.0"
 
-intl@^1.0.1:
+intl@^1.0.1, intl@^1.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/intl/-/intl-1.2.5.tgz#82244a2190c4e419f8371f5aa34daa3420e2abde"
 
@@ -5403,6 +5403,10 @@ mocha@^4.0.0:
     he "1.1.1"
     mkdirp "0.5.1"
     supports-color "4.4.0"
+
+moment@^2.18.1:
+  version "2.19.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.4.tgz#17e5e2c6ead8819c8ecfad83a0acccb312e94682"
 
 ms@0.7.1:
   version "0.7.1"
@@ -6889,6 +6893,15 @@ react-hot-loader@^1.2.8:
     react-hot-api "^0.4.5"
     source-map "^0.4.4"
 
+react-i18nify@^1.8.8:
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/react-i18nify/-/react-i18nify-1.8.8.tgz#af410b6fa120cbf95f5a2608f581406f57d3f0fc"
+  dependencies:
+    intl "^1.2"
+    moment "^2.18.1"
+    prop-types "^15.5.8"
+    react "^15.5.4"
+
 react-intl@^2.1.0, react-intl@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.4.0.tgz#66c14dc9df9a73b2fbbfbd6021726e80a613eb15"
@@ -6916,6 +6929,12 @@ react-overlays@^0.7.4:
     prop-types "^15.5.10"
     prop-types-extra "^1.0.1"
     warning "^3.0.0"
+
+react-redux-i18n@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/react-redux-i18n/-/react-redux-i18n-1.9.1.tgz#3a0081928eb8ca0668518d37b1c36bd01250a5f9"
+  dependencies:
+    react-i18nify "^1.8.8"
 
 "react-redux@^4.4.5 || ^5.x.x":
   version "5.0.6"
@@ -6947,7 +6966,7 @@ react-test-renderer@^15.5.4:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-"react@^0.14.7 || ^15.0.0", react@^15.0.0:
+"react@^0.14.7 || ^15.0.0", react@^15.0.0, react@^15.5.4:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:

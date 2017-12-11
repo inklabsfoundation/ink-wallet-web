@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../../styles/fonts.css"
-import "../../styles/main.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/fonts.css";
+import "../../styles/main.css";
 
 
-class Page extends React.Component {
+export default class Page extends React.Component {
   render() {
     return (
       <div>
@@ -14,9 +13,4 @@ class Page extends React.Component {
     );
   }
 }
-
-Page.propTypes = {
-  children: PropTypes.element,
-  location: PropTypes.object
-};
 
