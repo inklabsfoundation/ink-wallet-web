@@ -1,0 +1,55 @@
+{
+  "name": "qtum-web",
+  "version": "0.0.1",
+  "description": "qtum wallet web-app",
+  "homepage": "",
+  "author": {
+    "name": "Alex Kalina",
+    "email": "alexey.k@evercodelab.com",
+    "url": ""
+  },
+  "contributors": [],
+  "files": [
+    "server",
+    "src",
+    "lib",
+    "dist"
+  ],
+  "main": "lib/server/index.js",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "EvercodeLab/qtum-web"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 4 <= 8",
+    "npm": ">= 3 <= 5"
+  },
+  "scripts": {
+    "build": "clap build",
+    "prod-start": "NODE_ENV=production clap -n -x electrode/build prod",
+    "start": "if test \"$NODE_ENV\" = \"production\"; then npm run prod-start; else clap dev; fi",
+    "test": "clap check",
+    "coverage": "clap check",
+    "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
+    "heroku-postbuild": "clap build"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "electrode-archetype-react-app": "^4.0.0",
+    "electrode-auto-ssr": "^1.0.0",
+    "electrode-confippet": "^1.0.0",
+    "electrode-react-webapp": "^2.1.0",
+    "electrode-redux-router-engine": "^1.5.0",
+    "electrode-server": "^1.0.0",
+    "electrode-static-paths": "^1.0.0",
+    "lodash": "^4.10.1",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-notify-toast": "^0.4.0"
+  },
+  "devDependencies": {
+    "electrode-archetype-react-app-dev": "^4.0.0"
+  }
+}
