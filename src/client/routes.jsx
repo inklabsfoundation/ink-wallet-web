@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, IndexRoute} from "react-router";
-import Home from "./components/home";
+import Home from "./components/home/home";
 import Page from "./components/common/page";
 
 export const ROUTE_URLS = {
