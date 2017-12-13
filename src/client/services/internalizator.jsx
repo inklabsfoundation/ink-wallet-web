@@ -1,10 +1,11 @@
+/* eslint-disable max-len,no-undef */
 //@flow
 import {loadTranslations, setLocale, syncTranslationWithStore} from "react-redux-i18n";
-import {dictionary} from "../locale/dictionary";
-import _ from "lodash";
+import {dictionary, LANG_LABELS} from "../locale/dictionary";
 import type {Store} from "redux";
 import type {State} from "../initial-state";
 import type {Action, Dispatch} from "../types/redux";
+import * as _ from "lodash";
 
 export default class Internalizator {
 
@@ -14,7 +15,7 @@ export default class Internalizator {
     store.dispatch(setLocale(Internalizator.getBrowserLanguage(defaultLocale)));
 
     return store;
-  };
+  }
 
   static getBrowserLanguage(defaultLocale: string): string {
     if (typeof window !== "undefined") {
@@ -24,10 +25,20 @@ export default class Internalizator {
         const languageWithoutRegionCode = language ? language.toLowerCase().split(/[_-]+/)[0] : "";
         return _.has(dictionary, languageWithoutRegionCode) ? languageWithoutRegionCode : defaultLocale;
       } else {
-        return defaultLocale;
+        return locale;
       }
     } else {
       return defaultLocale;
     }
+  }
+
+  static getLangLabel(lang: string): string {
+    let label: string = "";
+    Object.keys(LANG_LABELS).forEach((key: string) => {
+      if (key === lang) {
+        label = LANG_LABELS[key];
+      }
+    });
+    return label;
   }
 }

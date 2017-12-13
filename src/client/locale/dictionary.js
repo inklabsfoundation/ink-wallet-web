@@ -30,3 +30,9 @@ export const dictionary = {
     }
   }
 };
+
+export const LANG_LABELS = {
+  en: "EN",
+  zh: "日本語",
+  ko: "한국어"
+};

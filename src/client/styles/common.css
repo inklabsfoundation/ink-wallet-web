@@ -1,0 +1,36 @@
+.primary-red-btn {
+  color: #FFF;
+  background-color: #DF1514;
+  border: 1px solid #DF1514;
+}
+
+.primary-white-btn {
+  background-color: #FFF;
+  border: 1px solid #FFF;
+  color: #DF1514;
+}
+
+.primary-white-btn,
+.primary-red-btn {
+  text-align: center;
+  width: 170px;
+  height: 30px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+}
+
+.primary-white-btn:hover,
+.primary-red-btn:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.primary-white-btn:hover {
+  color: #DF1514;
+}
+
+.primary-red-btn:hover {
+  color: #FFF;
+}

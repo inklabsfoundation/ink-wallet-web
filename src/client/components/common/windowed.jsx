@@ -2,8 +2,8 @@
 import * as React from "react";
 import {Col, Grid, Row} from "react-bootstrap";
 
-export const wrapWithWindow = (Component: any): void =>
-  class Enhance extends React.Component {
+export const wrapWithWindow = (Component: any): any =>
+  class Enhance extends React.Component<{}> {
     render() {
       return (
         <div className="main-page-container">
@@ -31,7 +31,7 @@ export const wrapWithWindow = (Component: any): void =>
               </Row>
           </div>
         </div>
-      )
+      );
     }
   };
 

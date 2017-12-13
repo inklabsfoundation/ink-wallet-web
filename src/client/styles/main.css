@@ -4,11 +4,11 @@ body {
 
 .main-page-container {
   background-color: #EEE;
-  height: 100vh;
+  height: calc(100vh - 50px);
 }
 
 .window-wrapper {
-  padding-top: 20vh;
+  padding-top: 15vh;
   display: flex;
   justify-content: center;
 }
@@ -51,4 +51,16 @@ body {
 .main-page-logo {
   display: block;
   margin: auto;
+}
+
+.main-page-button-container {
+  display: grid;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+@media (max-height: 650px) {
+  .footer {
+    display: none;
+  }
 }
