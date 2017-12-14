@@ -14,7 +14,7 @@ module.exports = function (shipit) {
     },
     staging: {
       deployTo: "/var/www/qtum",
-      branch: "create-wallet",
+      branch: "feature/create-wallet",
       env: "prod"
     }
   });
