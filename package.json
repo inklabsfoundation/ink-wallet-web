@@ -40,6 +40,7 @@
     "bitcore-mnemonic": "^1.5.0",
     "bluebird": "^3.4.6",
     "bootstrap": "^3.3.7",
+    "crypto-js": "^3.1.9-1",
     "electrode-archetype-react-app": "^4.0.0",
     "electrode-auto-ssr": "^1.0.0",
     "electrode-confippet": "^1.0.0",
