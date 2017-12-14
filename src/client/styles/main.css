@@ -8,7 +8,7 @@ body {
 }
 
 .window-wrapper {
-  padding-top: 15vh;
+  padding-top: 10vh;
   display: flex;
   justify-content: center;
 }

@@ -8,6 +8,7 @@ import mainLogo from "../../images/logo-md.png";
 import {Translate} from "react-redux-i18n";
 // $FlowFixMe
 import {Link} from "react-router";
+import {ROUTE_URLS} from "../../routes";
 
 class HomePanel extends React.Component<{}> {
   render() {
@@ -17,7 +18,7 @@ class HomePanel extends React.Component<{}> {
           <img className="main-page-logo" src={mainLogo}/>
         </div>
         <div className="main-page-button-container">
-          <Link className="primary-red-btn">
+          <Link to={ROUTE_URLS.CREATE_WALLET_PAGE} className="primary-red-btn">
             <Translate value="main.createWalletBtnLabel"/>
           </Link>
           <Link className="primary-white-btn">

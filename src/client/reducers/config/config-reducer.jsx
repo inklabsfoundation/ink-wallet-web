@@ -2,6 +2,6 @@ const initialState = {
   defaultLocate: ""
 };
 
-export const config = function (store = initialState) {
+export const config = (store = initialState) => {
   return store;
 };
