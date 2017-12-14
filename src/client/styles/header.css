@@ -40,6 +40,10 @@ a.navbar-brand {
   color: #999;
 }
 
+.navbar.navbar-default .container {
+  width: calc(100% - 100px);
+}
+
 .lang-dropdown .dropdown-menu > li > a {
   font-size: 14px;
   color: #999;

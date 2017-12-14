@@ -32,7 +32,7 @@ class ShowMnemonics extends React.Component<Props> {
         <div className="progress-panel">
           <div className="progress-bar-first-step"/>
           <div className="progress-bar-second-step"/>
-          <div className="progress-bar-undone"/>
+          <div className="progress-bar-third-step"/>
         </div>
         <div className="create-title-panel">
           <div className="create-title">

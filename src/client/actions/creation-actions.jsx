@@ -78,7 +78,7 @@ export const setInputRepeatPassword = (password: string): SetInputRepeatPassword
 
 const commitPasswordCreation = (): CommitPasswordCreationAction => {
   const mnemonic: Mnemonic = new Mnemonic();
-  const hdPrivateKey: HDPrivateKey = mnemonic.toHDPrivateKey();
+  const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
   const privateKey: PrivateKey = hdPrivateKey.derive("m/88'/0'/1").privateKey;
   const address: Address = (privateKey.toPublicKey()).toAddress(Networks.livenet);
   return {
