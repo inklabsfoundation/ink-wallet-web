@@ -33,6 +33,7 @@
     "test": "clap check",
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
+    "deploy:stage": "shipit staging deploy",
     "heroku-postbuild": "clap build"
   },
   "dependencies": {
@@ -60,6 +61,9 @@
   },
   "devDependencies": {
     "electrode-archetype-react-app-dev": "^4.0.0",
-    "flow-bin": "^0.61.0"
+    "flow-bin": "^0.61.0",
+    "shipit-cli": "^3.0.0",
+    "shipit-deploy": "^2.5.1",
+    "xclap-cli": "^0.1.3"
   }
 }
