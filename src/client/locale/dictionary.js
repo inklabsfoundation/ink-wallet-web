@@ -39,6 +39,27 @@ export const dictionary = {
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
       showMnemonicNextBtn: "Understand and get start",
       showMnemonicDownloadBtn: "Download your Wallet File"
+    },
+    restoreWallet: {
+      title: "Restore",
+      inputYourMnemonics: "Please input your mnemonics",
+      errors: {
+        invalid: "Invalid mnemonic",
+        notEntered: "No mnemonics entered"
+      },
+      passwordInfo: "This password is for your NEW wallet file only." +
+      " You can just use it once or download it for later." +
+      "You old wallet file is still valid and its password is NOT be changed.",
+      resetPassword: "Reset your password:",
+      resetPassword2: "Confirm your password:",
+      restoreSuccessTitle: "Successed!",
+      restoreInfo: {
+        info1: "If you only use this wallet file & password one-off, please DO NOT\n" +
+        "download it. If so, your new password will not be saved after you loging out.",
+        info2: "Aware the old wallet file is still valid and its password is not changed.",
+        info3: "OLD password for OLD waller file, NEW password for the new one.\n" +
+        "You can delete the old wallet file to aviod confusion"
+      }
     }
   },
   zh: {
@@ -82,6 +103,27 @@ export const dictionary = {
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
       showMnemonicNextBtn: "Understand and get start1",
       showMnemonicDownloadBtn: "Download your Wallet File1"
+    },
+    restoreWallet: {
+      title: "Restore1",
+      inputYourMnemonics: "Please input your mnemonics1",
+      errors: {
+        invalid: "Invalid mnemonic1",
+        notEntered: "No mnemonics entered1"
+      },
+      passwordInfo: "11This password is for your NEW wallet file only." +
+      " You can just use it once or download it for later." +
+      "You old wallet file is still valid and its password is NOT be changed.",
+      resetPassword: "1Reset your password:",
+      resetPassword2: "1Confirm your password:",
+      restoreSuccessTitle: "1Successed!",
+      restoreInfo: {
+        info1: "1If you only use this wallet file & password one-off, please DO NOT\n" +
+        "download it. If so, your new password will not be saved after you loging out.",
+        info2: "1Aware the old wallet file is still valid and its password is not changed.",
+        info3: "1OLD password for OLD waller file, NEW password for the new one.\n" +
+        "You can delete the old wallet file to aviod confusion"
+      }
     }
   },
   ko: {
@@ -127,6 +169,27 @@ export const dictionary = {
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
       showMnemonicNextBtn: "Understand and get start1",
       showMnemonicDownloadBtn: "Download your Wallet File1"
+    },
+    restoreWallet: {
+      title: "2Restore",
+      inputYourMnemonics: "2Please input your mnemonics",
+      errors: {
+        invalid: "2Invalid mnemonic",
+        notEntered: "2No mnemonics entered"
+      },
+      passwordInfo: "2This password is for your NEW wallet file only." +
+      " You can just use it once or download it for later." +
+      "You old wallet file is still valid and its password is NOT be changed.",
+      resetPassword: "2Reset your password:",
+      resetPassword2: "2Confirm your password:",
+      restoreSuccessTitle: "2Successed!",
+      restoreInfo: {
+        info1: "2If you only use this wallet file & password one-off, please DO NOT\n" +
+        "download it. If so, your new password will not be saved after you loging out.",
+        info2: "2Aware the old wallet file is still valid and its password is not changed.",
+        info3: "2OLD password for OLD waller file, NEW password for the new one.\n" +
+        "You can delete the old wallet file to aviod confusion"
+      }
     }
   }
 };

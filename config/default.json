@@ -3,6 +3,7 @@
     "registerPluginsTimeout": 500000
   },
   "settings": {
-    "defaultLocale": "en"
+    "defaultLocale": "en",
+    "derivePath": "m/88'/0'/1"
   }
 }

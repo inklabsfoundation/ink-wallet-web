@@ -16,7 +16,7 @@ module.exports = {
     stage: {
       user: "deployer",
       host: "92.53.66.193",
-      ref: "origin/feature/create-wallet",
+      ref: "origin/feature/restore-wallet",
       repo: "git@github.com:EvercodeLab/qtum-web.git",
       path: "/var/www/qtum",
       "post-deploy": "yarn install && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",

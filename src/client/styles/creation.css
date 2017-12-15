@@ -124,6 +124,7 @@
 
 .error-message-block {
   width: calc(100% - 35px);
+  min-height: 17px;
 }
 
 .error-message {

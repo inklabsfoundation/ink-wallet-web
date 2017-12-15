@@ -33,7 +33,7 @@
     "test": "clap check",
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
-    "deploy:stage": "shipit staging deploy",
+    "deploy:stage": "pm2 deploy stage",
     "heroku-postbuild": "clap build"
   },
   "dependencies": {

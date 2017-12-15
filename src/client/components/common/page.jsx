@@ -7,6 +7,7 @@ import "../../styles/main.css";
 import "../../styles/common.css";
 import "../../styles/header.css";
 import "../../styles/creation.css";
+import "../../styles/restore.css";
 import type {Location} from "react-router";
 import Header from "./header";
 
