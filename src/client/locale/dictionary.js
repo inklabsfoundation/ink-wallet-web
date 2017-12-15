@@ -29,7 +29,7 @@ export const dictionary = {
       "devices.So you should hold both of them. Stressly, Ink will not save mnenonics or" +
       "wallet file.Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
       showAddressNextBtn: "Understand,\n get my Mnemonics and Wallet Files",
-      showMnemonicTitle: "You Mnemonics",
+      showMnemonicTitle: "Your Mnemonics",
       showMnemonicDescr: "Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
       "Anyone who get the mnenonics or wallet file can get in your wallet." +
@@ -93,7 +93,7 @@ export const dictionary = {
       "Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
       showAddressNextBtn: "Understand1,\n" +
       "get my Mnemonics and Wallet Files1",
-      showMnemonicTitle: "You Mnemonics1",
+      showMnemonicTitle: "Your Mnemonics1",
       showMnemonicDescr: "1Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
       "Anyone who get the mnenonics or wallet file can get in your wallet." +
@@ -159,7 +159,7 @@ export const dictionary = {
       "Your Mnenonics and Wallet Files and don't share them with anyone",
       showAddressNextBtn: "Understand1,\n" +
       "get my Mnemonics and Wallet 222",
-      showMnemonicTitle: "You Mnemonics1",
+      showMnemonicTitle: "Your Mnemonics1",
       showMnemonicDescr: "Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
       "Anyone who get the mnenonics or wallet file can get in your wallet." +
