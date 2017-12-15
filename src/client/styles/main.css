@@ -1,0 +1,66 @@
+body {
+  font-family: 'PingFang SC', sans-serif;
+}
+
+.main-page-container {
+  background-color: #EEE;
+  height: calc(100vh - 50px);
+}
+
+.window-wrapper {
+  padding-top: 10vh;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+}
+
+.footer .copyright-wrapper {
+  text-align: center;
+}
+
+.footer .version-wrapper {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.footer-label {
+  font-size: 12px;
+  color: #999;
+}
+
+.main-page-form {
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  min-width: 440px;
+  min-height: 460px;
+}
+
+.main-page-logo-wrapper {
+  min-width: 100%;
+  display: flex;
+  padding-top: 120px;
+}
+
+.main-page-logo {
+  display: block;
+  margin: auto;
+}
+
+.main-page-button-container {
+  display: grid;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+@media (max-height: 650px) {
+  .footer {
+    display: none;
+  }
+}

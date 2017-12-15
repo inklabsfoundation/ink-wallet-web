@@ -33,10 +33,14 @@
     "test": "clap check",
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
+    "deploy:stage": "shipit staging deploy",
     "heroku-postbuild": "clap build"
   },
   "dependencies": {
+    "bitcore-mnemonic": "^1.5.0",
     "bluebird": "^3.4.6",
+    "bootstrap": "^3.3.7",
+    "crypto-js": "^3.1.9-1",
     "electrode-archetype-react-app": "^4.0.0",
     "electrode-auto-ssr": "^1.0.0",
     "electrode-confippet": "^1.0.0",
@@ -45,11 +49,19 @@
     "electrode-server": "^1.0.0",
     "electrode-static-paths": "^1.0.0",
     "lodash": "^4.10.1",
+    "qtumcore-lib": "^0.0.1",
     "react": "^15.0.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.0.0",
-    "react-notify-toast": "^0.4.0"
+    "react-intl": "^2.4.0",
+    "react-notify-toast": "^0.4.0",
+    "react-redux-i18n": "^1.9.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "electrode-archetype-react-app-dev": "^4.0.0"
+    "electrode-archetype-react-app-dev": "^4.0.0",
+    "flow-bin": "^0.61.0",
+    "pm2": "^2.9.0"
   }
 }

@@ -1,0 +1,254 @@
+.main-page-form.creation-form {
+  min-height: 520px;
+  max-width: 440px;
+}
+
+.creation-heading {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.creation-heading > .heading {
+  font-size: 20px;
+}
+
+.creation-heading > .divider {
+  min-height: 1px;
+  background-color: #e7e7e7;
+  margin: 15px 30px 0 30px;
+  width: calc(100% - 60px);
+}
+
+.creation-heading > .step-block {
+  margin-top: 15px;
+}
+
+.creation-heading > .step-block > .step-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.progress-panel {
+  width: calc(100% - 20px);
+  margin: 20px 10px 15px 10px;
+  display: flex;
+}
+
+.create-btn-panel {
+  display: grid;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.show-mnemonics-btn-panel {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 0 25px;
+}
+
+.create-btn-panel .primary-white-btn,
+.create-btn-panel .primary-red-btn {
+  margin-bottom: 5px;
+}
+
+.progress-bar-undone,
+.progress-bar-first-step,
+.progress-bar-second-step,
+.progress-bar-third-step {
+  width: 33.333%;
+  height: 10px;
+}
+
+.progress-bar-undone {
+  background-color: #e7e7e7;
+}
+
+.progress-bar-first-step {
+  background-color: #dfbdc1;
+}
+
+.progress-bar-second-step {
+  background-color: #df8489;
+}
+
+.progress-bar-third-step {
+  background-color: #DF1514;
+}
+
+.password-panel {
+  padding: 5px 25px;
+}
+
+.password-label {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.password-input-block {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.password-input-block .input {
+  width: 100%;
+  height: 40px;
+  background-color: #EEEEEE;
+  border: 0;
+  font-size: 20px;
+  color: #333;
+  padding: 0 20px;
+  letter-spacing: 0.3em;
+}
+
+.password-input-block .input:focus {
+  outline: 0;
+}
+
+.password-input-block .input.error {
+  border: 1px solid #A10218;
+}
+
+.info-block-panel {
+  width: 100%;
+  padding: 5px 25px;
+  min-height: 50px;
+  display: flex;
+}
+
+.alert-info-pic-block {
+  width: 35px;
+}
+
+.error-message-block {
+  width: calc(100% - 35px);
+}
+
+.error-message {
+  color: #A10218;
+  font-size: 12px;
+}
+
+.info-block {
+  width: calc(100% - 35px);
+  font-size: 12px;
+  font-weight: bold;
+  color: #A10218;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.agree-panel {
+  padding: 15px 25px 0 25px;
+  text-align: left;
+}
+
+.create-title-panel {
+  margin: 30px;
+  text-align: center;
+}
+
+.create-title {
+  font-size: 16px;
+}
+
+.create-data-panel {
+  padding: 0 25px;
+}
+
+.create-data {
+  min-height: 40px;
+  background-color: #EBEBEB;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 25px;
+}
+
+.create-desc-panel {
+  text-align: left;
+  padding: 20px 25px;
+  width: 100%;
+}
+
+.create-desc {
+  font-size: 12px;
+  color: #999999
+}
+
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 5px;
+  padding-top: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.control_indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #FFFFFF;
+  border: 2px solid #CACACA;
+}
+
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+  background: #FFFFFF;
+}
+
+.control input:checked ~ .control_indicator {
+  background: #FFFFFF;
+}
+
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+  background: #FFFFFF;
+}
+
+.control input:disabled ~ .control_indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.control_indicator:after {
+  box-sizing: unset;
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.control input:checked ~ .control_indicator:after {
+  display: block;
+}
+
+.control-checkbox .control_indicator:after {
+  left: 5px;
+  top: 0;
+  width: 4px;
+  height: 9px;
+  border: solid #DF1413;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.control-checkbox input:disabled ~ .control_indicator:after {
+  border-color: #7b7b7b;
+}
+
+.primary-red-btn.btn-flex {
+  height: inherit;
+  padding-bottom: 5px;
+}

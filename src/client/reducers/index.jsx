@@ -1,30 +1,10 @@
 import {combineReducers} from "redux";
-
-const checkBox = (store, action) => {
-  if (action.type === "TOGGLE_CHECK") {
-    return {
-      checked: !store.checked
-    };
-  }
-
-  return store || {checked: false};
-};
-
-const number = (store, action) => {
-  if (action.type === "INC_NUMBER") {
-    return {
-      value: store.value + 1
-    };
-  } else if (action.type === "DEC_NUMBER") {
-    return {
-      value: store.value - 1
-    };
-  }
-
-  return store || {value: 0};
-};
+import { i18nReducer } from "react-redux-i18n";
+import {config} from "./config/config-reducer";
+import {creationState} from "./creation/creation-reducer";
 
 export default combineReducers({
-  checkBox,
-  number
+  i18n: i18nReducer,
+  creationState,
+  config
 });
