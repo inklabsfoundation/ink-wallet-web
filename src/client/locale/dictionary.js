@@ -21,7 +21,7 @@ export const dictionary = {
       agree: "I have read and agree Term of usage for INK wallet",
       passwordNextBtn: "Next",
       goToMainPageBtn: "Go to main page",
-      showAddressTitle: "You wallet address",
+      showAddressTitle: "Your wallet address",
       showAddressDescr: "Wallet address is the identity of your wallet." +
       "You can tell it to others.  For yourself, Mnenonics and Wallet" +
       "File are the keys to your wallet. Wallet File is used to log in" +
@@ -84,7 +84,7 @@ export const dictionary = {
       agree: "I have read and agree Term of usage for INK wallet1",
       passwordNextBtn: "Next1",
       goToMainPageBtn: "Go to main page1",
-      showAddressTitle: "You wallet address1",
+      showAddressTitle: "Your wallet address1",
       showAddressDescr: "Wallet 1111 address is the identity of your wallet. " +
       "You can tell it to others.  For yourself, Mnenonics and Wallet File are" +
       " the keys to your wallet. Wallet File is used to log in your wallet, and " +
@@ -93,7 +93,7 @@ export const dictionary = {
       "Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
       showAddressNextBtn: "Understand1,\n" +
       "get my Mnemonics and Wallet Files1",
-      showMnemonicTitle: "Your Mnemonics1",
+      showMnemonicTitle: "You Mnemonics1",
       showMnemonicDescr: "1Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
       "Anyone who get the mnenonics or wallet file can get in your wallet." +
@@ -148,7 +148,7 @@ export const dictionary = {
       agree: "I have read and agree Term of usage for INK wallet2",
       passwordNextBtn: "Next2",
       goToMainPageBtn: "Go to main page2",
-      showAddressTitle: "You wallet address2",
+      showAddressTitle: "Your wallet address2",
       showAddressDescr: "Wallet 222 address is the identity of " +
       "your wallet. You can tell it to others.  For yourself, Mnenonics and Wallet File are" +
       " the keys to your wallet. " +
