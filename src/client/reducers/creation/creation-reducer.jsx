@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len,complexity */
 // @flow
 import type {CreationState} from "../../initial-state";
 import {initialState} from "../../initial-state";

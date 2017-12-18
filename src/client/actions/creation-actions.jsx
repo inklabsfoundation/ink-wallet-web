@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @flow
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import * as _ from "lodash";
@@ -109,13 +110,9 @@ const setMnemonicRestoreError = (isInputMnemonicEmpty: boolean,
 
 const commitCreation = (derivePath: string, inputMnemonic: ?string): CommitCreationAction => {
   const mnemonic: Mnemonic = (inputMnemonic) ? new Mnemonic(inputMnemonic) : new Mnemonic();
-  // TODO This is for demonstration only. Remove console.log during implementing next task.
-  console.log(`Mnemonic: ${  mnemonic.toString()}`);
   const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
   const privateKey: PrivateKey = hdPrivateKey.derive(derivePath).privateKey;
-  console.log(`Private key: ${  privateKey.toString()}`);
   const address: Address = (privateKey.toPublicKey()).toAddress(Networks.livenet);
-  console.log(`Address: ${  address.toString()}`);
   return {
     type: "COMMIT_CREATION_ACTION",
     mnemonic,

@@ -4,7 +4,6 @@ import * as React from "react";
 import {Translate} from "react-redux-i18n";
 import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
-import alertNoticeIcon from "../../../images/alert-notice.png";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {
@@ -17,7 +16,7 @@ type Props = {
   repeatInputPassword: string,
   inputPassword: string,
   arePasswordsValid: boolean,
-  areInputPasswordsEqual: boolean,
+  areInputPasswordsEqual: boolean
 }
 
 class ResetPassword extends React.Component<Props> {

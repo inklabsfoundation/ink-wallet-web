@@ -4,11 +4,10 @@ import * as React from "react";
 import {Translate} from "react-redux-i18n";
 import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
-import alertNoticeIcon from "../../../images/alert-notice.png";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {
-  setInputMnemonic, tryToCommitMnemonic,
+  setInputMnemonic, tryToCommitMnemonic
 } from "../../../actions/creation-actions";
 import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
@@ -70,7 +69,7 @@ class SetMnemonics extends React.Component<Props> {
              className="primary-red-btn">
             <Translate value="createWallet.passwordNextBtn"/>
           </a>
-          <Link to={ROUTE_URLS.MAIN_PAGE} className="primary-white-btn">
+          <Link to={ROUTE_URLS.HOME_PAGE} className="primary-white-btn">
             <Translate value="createWallet.goToMainPageBtn"/>
           </Link>
         </div>

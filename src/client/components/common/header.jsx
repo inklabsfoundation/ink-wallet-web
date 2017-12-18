@@ -44,7 +44,7 @@ class Header extends React.Component<Props> {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={ROUTE_URLS.MAIN_PAGE}>
+            <Link to={ROUTE_URLS.HOME_PAGE}>
               <img width={100} src={logo}/>
             </Link>
           </Navbar.Brand>

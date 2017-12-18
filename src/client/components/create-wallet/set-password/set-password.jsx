@@ -116,7 +116,7 @@ class SetPassword extends React.Component<Props> {
              className={`primary-red-btn ${  !this.props.isAgreed ? "disabled" : ""}`}>
             <Translate value="createWallet.passwordNextBtn"/>
           </a>
-          <Link to={ROUTE_URLS.MAIN_PAGE} className="primary-white-btn">
+          <Link to={ROUTE_URLS.HOME_PAGE} className="primary-white-btn">
             <Translate value="createWallet.goToMainPageBtn"/>
           </Link>
         </div>
