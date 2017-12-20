@@ -48,7 +48,7 @@ class CreateWalletPanel extends React.Component<Props> {
       <div className="main-page-form creation-form">
         <div className="creation-heading">
           <span className="heading">
-            <Translate value="createWallet.importMoreBtn"/>
+            <Translate value="createWallet.title"/>
           </span>
           <div className="divider"/>
           <div className="step-block">
