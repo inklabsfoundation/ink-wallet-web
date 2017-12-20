@@ -43,7 +43,7 @@ export const dictionary = {
       "download your wallet file and save them carefully and safely." +
       "You CAN NOT re-get your wallet if you lose both of them." +
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
-      showMnemonicNextBtn: "Understand and get start",
+      showMnemonicNextBtn: "Understand and get started",
       showMnemonicDownloadBtn: "Download your Wallet File"
     },
     restoreWallet: {
@@ -113,7 +113,7 @@ export const dictionary = {
       "download your wallet file and save them carefully and safely." +
       "You CAN NOT re-get your wallet if you lose both of them." +
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
-      showMnemonicNextBtn: "Understand and get start1",
+      showMnemonicNextBtn: "Understand and get started1",
       showMnemonicDownloadBtn: "Download your Wallet File1"
     },
     restoreWallet: {
@@ -185,7 +185,7 @@ export const dictionary = {
       "download your wallet file and save them carefully and safely." +
       "You CAN NOT re-get your wallet if you lose both of them." +
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
-      showMnemonicNextBtn: "Understand and get start1",
+      showMnemonicNextBtn: "Understand and get started2",
       showMnemonicDownloadBtn: "Download your Wallet File1"
     },
     restoreWallet: {
@@ -257,7 +257,7 @@ export const dictionary = {
       "download your wallet file and save them carefully and safely." +
       "You CAN NOT re-get your wallet if you lose both of them." +
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
-      showMnemonicNextBtn: "Understand and get start33",
+      showMnemonicNextBtn: "Understand and get started33",
       showMnemonicDownloadBtn: "Download your Wallet File33"
     },
     restoreWallet: {
