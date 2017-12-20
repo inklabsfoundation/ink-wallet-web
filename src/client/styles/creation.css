@@ -65,15 +65,15 @@
 }
 
 .progress-bar-first-step {
-  background-color: #dfbdc1;
+  background-color: #b6cff3;
 }
 
 .progress-bar-second-step {
-  background-color: #df8489;
+  background-color: #5e92f3;
 }
 
 .progress-bar-third-step {
-  background-color: #DF1514;
+  background-color: #202647;
 }
 
 .password-panel {
@@ -136,7 +136,7 @@
   width: calc(100% - 35px);
   font-size: 12px;
   font-weight: bold;
-  color: #A10218;
+  color: #202647;
   text-align: left;
   padding-left: 10px;
 }
@@ -240,7 +240,7 @@
   top: 0;
   width: 4px;
   height: 9px;
-  border: solid #DF1413;
+  border: solid #202647;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }

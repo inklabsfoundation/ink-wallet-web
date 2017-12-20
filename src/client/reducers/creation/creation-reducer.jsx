@@ -20,7 +20,8 @@ export const creationState = (store: CreationState = initialState.creationState,
         isAgreed: false,
         hdPrivateKey: {},
         privateKey: {},
-        address: {}
+        address: {},
+        seed: null
       };
     case "SET_INPUT_PASSWORD_ACTION":
       return {
@@ -68,7 +69,8 @@ export const creationState = (store: CreationState = initialState.creationState,
         mnemonic: action.mnemonic,
         hdPrivateKey: action.hdPrivateKey,
         privateKey: action.privateKey,
-        address: action.address
+        address: action.address,
+        seed: action.seed
       };
     case "COMMIT_ADDRESS_ACTION": {
       return {

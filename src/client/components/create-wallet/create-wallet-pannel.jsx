@@ -1,9 +1,6 @@
 // @flow
 import * as React from "react";
 import {wrapWithWindow} from "../common/windowed";
-//import Mnemonic from "bitcore-mnemonic";
-//import qtumcore from "qtumcore-lib";
-//import CryptoJS from "crypto-js";
 import {Translate} from "react-redux-i18n";
 import type {State} from "../../initial-state";
 import type {Dispatch} from "../../types/redux";
@@ -20,6 +17,9 @@ type Props = {
 }
 
 class CreateWalletPanel extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
 
   componentDidMount(): void {
     this.props.dispatch(resetCreation());
@@ -48,7 +48,7 @@ class CreateWalletPanel extends React.Component<Props> {
       <div className="main-page-form creation-form">
         <div className="creation-heading">
           <span className="heading">
-            <Translate value="createWallet.title"/>
+            <Translate value="createWallet.importMoreBtn"/>
           </span>
           <div className="divider"/>
           <div className="step-block">

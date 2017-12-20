@@ -1,0 +1,56 @@
+.amount-panel {
+  padding: 20px 0 30px 0;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.amount-panel .amount-title-block {
+  padding-bottom: 15px;
+  padding-left: 26px;
+  display: flex;
+}
+
+.amount-panel .amount-title-block .currency-name {
+  padding-top: 1px;
+  padding-right: 15px;
+  font-size: 18px;
+}
+
+.amount-panel .amount-value {
+  min-height: 70px;
+  font-size: 48px;
+  font-weight: bold;
+  padding-left: 26px;
+  color: #666666;
+  background-color: #F6F5F5;
+}
+
+.amount-panel .amount-address {
+  padding-left: 26px;
+  display: flex;
+  margin-top: 15px;
+}
+
+.amount-panel .amount-address-icon {
+  padding-right: 5px;
+}
+
+.amount-panel .amount-address-icon:hover {
+  cursor: pointer;
+}
+
+.amount-panel .amount-address-value {
+  font-size: 12px;
+  padding-top: 2px;
+  color: #666666;
+}
+
+.amount-btn-panel {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 0 26px;
+}
+
+.amount-btn-panel .amount-btn {
+  margin-bottom: 0;
+}

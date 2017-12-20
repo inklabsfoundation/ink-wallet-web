@@ -4,6 +4,8 @@
   },
   "settings": {
     "defaultLocale": "en",
-    "derivePath": "m/88'/0'/1"
+    "derivePath": "m/88'/0'/1",
+    "qtumExplorerPath": "https://explorer.qtum.org/insight-api",
+    "encryptSolt": "qtum-wallet"
   }
 }

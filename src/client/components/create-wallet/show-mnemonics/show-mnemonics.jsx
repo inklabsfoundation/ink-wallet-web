@@ -7,13 +7,16 @@ import type {Dispatch} from "../../../types/redux";
 import Mnemonic from "bitcore-mnemonic";
 // $FlowFixMe
 import {connect} from "react-redux";
-import {
-  commitAddress
-} from "../../../actions/creation-actions";
+import {ROUTE_URLS} from "../../../routes";
+// $FlowFixMe
+import {Link} from "react-router";
+import {tryToLogin} from "../../../actions/login-actions";
 
 type Props = {
   dispatch: Dispatch,
-  mnemonic: Mnemonic
+  mnemonic: Mnemonic,
+  seed: Uint8Array,
+  password: string
 }
 
 class ShowMnemonics extends React.Component<Props> {
@@ -23,7 +26,10 @@ class ShowMnemonics extends React.Component<Props> {
   }
 
   handleClickNext(): void {
-    this.props.dispatch(commitAddress());
+    this.props.dispatch(tryToLogin(
+      this.props.seed,
+      this.props.password
+    ));
   }
 
   render() {
@@ -53,9 +59,10 @@ class ShowMnemonics extends React.Component<Props> {
           <a className="primary-red-btn">
             <Translate value="createWallet.showMnemonicDownloadBtn"/>
           </a>
-          <a className="primary-white-btn bordered">
+          <Link to={ROUTE_URLS.MAIN_PAGE}
+                onClick={this.handleClickNext} className="primary-white-btn bordered">
             <Translate value="createWallet.showMnemonicNextBtn"/>
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -64,7 +71,9 @@ class ShowMnemonics extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    mnemonic: state.creationState.mnemonic
+    mnemonic: state.creationState.mnemonic,
+    password: state.creationState.password,
+    seed: state.creationState.seed
   };
 };
 

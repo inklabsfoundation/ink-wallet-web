@@ -35,7 +35,8 @@ type CommitCreationAction = {
   mnemonic: Mnemonic,
   address: Address,
   hdPrivateKey: HDPrivateKey,
-  privateKey: PrivateKey
+  privateKey: PrivateKey,
+  seed: any
 }
 
 type CommitAddressAction = {
@@ -118,7 +119,8 @@ const commitCreation = (derivePath: string, inputMnemonic: ?string): CommitCreat
     mnemonic,
     hdPrivateKey,
     privateKey,
-    address
+    address,
+    seed: mnemonic.toSeed()
   };
 };
 

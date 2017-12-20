@@ -2,6 +2,10 @@ body {
   font-family: 'PingFang SC', sans-serif;
 }
 
+html, body {
+  height:100%;
+}
+
 .main-page-container {
   background-color: #EEE;
   height: calc(100vh - 50px);

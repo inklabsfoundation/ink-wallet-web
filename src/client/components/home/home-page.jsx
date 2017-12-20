@@ -2,9 +2,6 @@
 import * as React from "react";
 import {wrapWithWindow} from "../common/windowed";
 import mainLogo from "../../images/logo-md.png";
-//import Mnemonic from "bitcore-mnemonic";
-//import qtumcore from "qtumcore-lib";
-//import CryptoJS from "crypto-js";
 import {Translate} from "react-redux-i18n";
 // $FlowFixMe
 import {Link} from "react-router";

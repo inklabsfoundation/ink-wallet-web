@@ -1,0 +1,19 @@
+.balance-panel {
+  min-height: calc(100vh - 50px - 45px - 65px);
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  padding: 0;
+}
+.balance-panel-wrapper {
+  padding: 45px 10px 65px 40px;
+}
+
+.balance-panel-btn-panel {
+  display: flex;
+  justify-content: right;
+  margin-top: 25px;
+  padding: 0 26px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

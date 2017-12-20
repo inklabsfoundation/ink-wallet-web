@@ -1,0 +1,28 @@
+.currencies-panel {
+  padding: 0 26px;
+  color: #666;
+}
+.currencies-panel .currency-item {
+  min-height: 50px;
+  border-bottom: 1px solid #EEEEEE;
+  padding-top: 10px;
+  display: flex;
+}
+
+.currencies-panel .currency-item:last-child {
+  border-bottom: 0;
+}
+
+.currencies-panel .currency-item .currency-data {
+  display: flex;
+  padding-top: 6px;
+  padding-left: 10px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.currencies-panel .currency-item .currency-data .currency-balance {
+  text-align: right;
+}
+
+

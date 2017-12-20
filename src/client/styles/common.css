@@ -1,17 +1,17 @@
 .primary-red-btn {
   color: #FFF;
-  background-color: #DF1514;
-  border: 1px solid #DF1514;
+  background-color: #202647;
+  border: 1px solid #202647;
 }
 
 .primary-white-btn {
   background-color: #FFF;
   border: 1px solid #FFF;
-  color: #DF1514;
+  color: #202647;
 }
 
 .primary-white-btn.bordered {
-  border: 1px solid #DF1514;
+  border: 1px solid #202647;
 }
 
 .primary-white-btn,
@@ -25,19 +25,19 @@
 }
 
 .primary-red-btn.disabled {
-  background-color: #dfacb2;
-  border: 1px solid #dfacb2;
+  background-color: #7793ba;
+  border: 1px solid #7793ba;
 }
 
 .primary-white-btn:hover,
 .primary-red-btn:hover {
   cursor: pointer;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 1.2;
 }
 
 .primary-white-btn:hover {
-  color: #DF1514;
+  color: #1d1d3b;
 }
 
 .primary-red-btn:hover {

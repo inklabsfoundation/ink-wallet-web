@@ -1,5 +1,5 @@
-// flow-typed signature: fcbc2c8209ca21df4e50468c1f1cf2cf
-// flow-typed version: 9dc62314fe/lodash_v4.x.x/flow_>=v0.55.x
+// flow-typed signature: 7cc486a69468115094aea1ca8ec59093
+// flow-typed version: da30fe6876/lodash_v4.x.x/flow_>=v0.55.x
 
 declare module "lodash" {
   declare type __CurriedFunction1<A, R, AA: A> = (...r: [AA]) => R;
@@ -1176,7 +1176,7 @@ declare module "lodash" {
     templateSettings: TemplateSettings;
   }
 
-  declare var exports: Lodash;
+  declare module.exports: Lodash;
 }
 
 declare module "lodash/fp" {
@@ -2974,7 +2974,7 @@ declare module "lodash/fp" {
     templateSettings: TemplateSettings;
   }
 
-  declare var exports: Lodash;
+  declare module.exports: Lodash;
 }
 
 declare module "lodash/chunk" {
