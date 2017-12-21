@@ -113,7 +113,7 @@ const commitCreation = (derivePath: string, inputMnemonic: ?string): CommitCreat
   const mnemonic: Mnemonic = (inputMnemonic) ? new Mnemonic(inputMnemonic) : new Mnemonic();
   const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
   const privateKey: PrivateKey = hdPrivateKey.derive(derivePath).privateKey;
-  const address: Address = (privateKey.toPublicKey()).toAddress(Networks.livenet);
+  const address: Address = privateKey.toAddress(Networks.livenet);
   return {
     type: "COMMIT_CREATION_ACTION",
     mnemonic,

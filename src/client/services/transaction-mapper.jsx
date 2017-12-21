@@ -1,6 +1,13 @@
 /* eslint-disable max-params */
 // @flow
 import * as _ from "lodash";
+import math from "mathjs";
+import type {Decimal} from "mathjs";
+
+math.config({
+  number: "BigNumber",
+  precision: 64
+});
 
 export type LastTransaction = {
   value: number,
@@ -10,18 +17,6 @@ export type LastTransaction = {
 }
 
 const TRANSACTIONS_COUNT: number = 4;
-
-const findFormOutsAndOperate = (value: number, transaction, address, isSumm: boolean): number => {
-  transaction.vout.forEach((outTransaction: Object): void => {
-    if (outTransaction.scriptPubKey.addresses &&
-      _.find(outTransaction.scriptPubKey.addresses,
-        (outAddress: string): boolean => outAddress === address)
-    ) {
-      value = isSumm ? value + (+outTransaction.value) : value - (+outTransaction.value);
-    }
-  });
-  return value;
-};
 
 export const mapLastTransactions = (currencyName: string,
                                     address: string,
@@ -33,32 +28,31 @@ export const mapLastTransactions = (currencyName: string,
     txs = txs.slice(0, TRANSACTIONS_COUNT);
   }
   return txs.map((transaction: Object): LastTransaction => {
-    let isIn: boolean = false;
-    let value: number = 0;
-    if (transaction.vin.length === 0) {
-      isIn = true;
-      value = findFormOutsAndOperate(value, transaction, address, true);
-    } else {
-      let isAdressFoundInInput: boolean = false;
+      let value: number = 0;
+      let inputValue: Decimal = math.bignumber(0);
+      let outputValue: Decimal = math.bignumber(0);
       transaction.vin.forEach((inTransaction: Object): void => {
         if (inTransaction.addr === address) {
-          isAdressFoundInInput = true;
-          value += inTransaction.value;
+          inputValue = math.add(math.bignumber(inputValue), math.bignumber(inTransaction.value));
         }
       });
-      if (isAdressFoundInInput) {
-        isIn = false;
-        value = findFormOutsAndOperate(value, transaction, address, false);
-      } else {
-        isIn = true;
-        value = findFormOutsAndOperate(value, transaction, address, true);
-      }
+
+      transaction.vout.forEach((outTransaction: Object): void => {
+        if (outTransaction.scriptPubKey.addresses &&
+          _.find(outTransaction.scriptPubKey.addresses,
+            (outAddress: string): boolean => outAddress === address)
+        ) {
+          outputValue = math.chain(outputValue).add(outTransaction.value).done();
+        }
+      });
+      value = math.subtract(math.bignumber(outputValue), math.bignumber(inputValue));
+      const isIn: boolean = (value >= 0);
+      return {
+        value,
+        isIn,
+        currencyName,
+        timestamp: transaction.time
+      };
     }
-    return {
-      value,
-      isIn,
-      currencyName,
-      timestamp: transaction.time
-    };
-  });
+  );
 };
