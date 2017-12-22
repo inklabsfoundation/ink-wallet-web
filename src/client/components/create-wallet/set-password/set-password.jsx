@@ -12,6 +12,8 @@ import {
   tryToCommitPasswords
 } from "../../../actions/creation-actions";
 import {ROUTE_URLS} from "../../../routes";
+// $FlowFixMe
+import {Link} from "react-router";
 
 type Props = {
   dispatch: Dispatch,
@@ -114,9 +116,9 @@ class SetPassword extends React.Component<Props> {
              className={`primary-red-btn ${  !this.props.isAgreed ? "disabled" : ""}`}>
             <Translate value="createWallet.passwordNextBtn"/>
           </a>
-          <a href={ROUTE_URLS.MAIN_PAGE} className="primary-white-btn">
+          <Link to={ROUTE_URLS.HOME_PAGE} className="primary-white-btn">
             <Translate value="createWallet.goToMainPageBtn"/>
-          </a>
+          </Link>
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 // @flow
-import type {ThunkAction} from "../types/redux";
+import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import * as _ from "lodash";
 import Mnemonic from "bitcore-mnemonic";
 import {HDPrivateKey, PrivateKey, Networks, Address} from "qtumcore-lib";
@@ -19,17 +20,23 @@ type SetInputPasswordAction = {
   inputPassword: string,
 }
 
+type SetInputMnemonicAction = {
+  type: "SET_INPUT_MNEMONIC",
+  inputMnemonic: string,
+}
+
 type SetInputRepeatPasswordAction = {
   type: "SET_INPUT_REPEAT_PASSWORD_ACTION",
   inputRepeatPassword: string
 }
 
-type CommitPasswordCreationAction = {
-  type: "COMMIT_PASSWORD_CREATION_ACTION",
+type CommitCreationAction = {
+  type: "COMMIT_CREATION_ACTION",
   mnemonic: Mnemonic,
   address: Address,
   hdPrivateKey: HDPrivateKey,
-  privateKey: PrivateKey
+  privateKey: PrivateKey,
+  seed: any
 }
 
 type CommitAddressAction = {
@@ -47,9 +54,20 @@ type SetAgreedAction = {
   isAgreed: boolean
 }
 
+type SetMnemonicRestoreErrorAction = {
+  type: "SET_MNEMONIC_RESTORE_ERROR",
+  isInputMnemonicEmpty: boolean,
+  isInputMnemonicValid: boolean
+}
+
+type CommitResetPasswordAction = {
+  type: "COMMIT_RESET_PASSWORD_ACTION"
+}
+
 export type CreateWalletAction = ResetCreationAction | SetPasswordCreationErrorAction |
   SetAgreedAction | SetInputPasswordAction | SetInputRepeatPasswordAction |
-  CommitPasswordCreationAction | CommitAddressAction;
+  CommitCreationAction | CommitAddressAction | SetInputMnemonicAction |
+  SetMnemonicRestoreErrorAction | CommitResetPasswordAction;
 
 const arePasswordsEqual = (password: string, repeatPassword: string): boolean => {
   return password === repeatPassword;
@@ -59,9 +77,8 @@ const arePasswordsEmpty = (password: string, repeatPassword: string): boolean =>
   return (_.isEmpty(password) && _.isEmpty(repeatPassword));
 };
 
-const setPasswordCreationError = (
-  areInputPasswordsEqual: boolean,
-  arePasswordsValid: boolean): SetPasswordCreationErrorAction => {
+const setPasswordCreationError = (areInputPasswordsEqual: boolean,
+                                  arePasswordsValid: boolean): SetPasswordCreationErrorAction => {
   return {
     type: "SET_PASSWORD_CREATION_ERROR_ACTION",
     areInputPasswordsEqual,
@@ -76,17 +93,53 @@ export const setInputRepeatPassword = (password: string): SetInputRepeatPassword
   };
 };
 
-const commitPasswordCreation = (): CommitPasswordCreationAction => {
-  const mnemonic: Mnemonic = new Mnemonic();
-  const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
-  const privateKey: PrivateKey = hdPrivateKey.derive("m/88'/0'/1").privateKey;
-  const address: Address = (privateKey.toPublicKey()).toAddress(Networks.livenet);
+export const setInputMnemonic = (inputMnemonic: string): SetInputMnemonicAction => {
   return {
-    type: "COMMIT_PASSWORD_CREATION_ACTION",
+    type: "SET_INPUT_MNEMONIC",
+    inputMnemonic
+  };
+};
+
+const setMnemonicRestoreError = (isInputMnemonicEmpty: boolean,
+                                 isInputMnemonicValid: boolean): SetMnemonicRestoreErrorAction => {
+  return {
+    type: "SET_MNEMONIC_RESTORE_ERROR",
+    isInputMnemonicEmpty,
+    isInputMnemonicValid
+  };
+};
+
+const commitCreation = (derivePath: string, inputMnemonic: ?string): CommitCreationAction => {
+  const mnemonic: Mnemonic = (inputMnemonic) ? new Mnemonic(inputMnemonic) : new Mnemonic();
+  const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
+  const privateKey: PrivateKey = hdPrivateKey.derive(derivePath).privateKey;
+  const address: Address = privateKey.toAddress(Networks.livenet);
+  return {
+    type: "COMMIT_CREATION_ACTION",
     mnemonic,
     hdPrivateKey,
     privateKey,
-    address
+    address,
+    seed: mnemonic.toSeed()
+  };
+};
+
+const commitReset = (): CommitResetPasswordAction => {
+  return {
+    type: "COMMIT_RESET_PASSWORD_ACTION"
+  };
+};
+
+export const tryToCommitMnemonic = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const inputMnemonic = getState().creationState.inputMnemonic;
+    const isValid: boolean = Mnemonic.isValid(inputMnemonic);
+    const isEmpty: boolean = inputMnemonic.length === 0;
+    if (!isValid || isEmpty) {
+      dispatch(setMnemonicRestoreError(isEmpty, isValid));
+    } else {
+      dispatch(commitCreation(getState().config.derivePath, inputMnemonic));
+    }
   };
 };
 
@@ -102,7 +155,7 @@ export const resetCreation = (): ResetCreationAction => {
   };
 };
 
-export const setAgreed = (isAgreed: any): SetAgreedAction => {
+export const setAgreed = (isAgreed: boolean): SetAgreedAction => {
   return {
     type: "SET_AGREED_ACTION",
     isAgreed
@@ -116,8 +169,8 @@ export const setInputPassword = (password: string): SetInputPasswordAction => {
   };
 };
 
-export const tryToCommitPasswords = (): ThunkAction => {
-  return (dispatch, getState) => {
+export const tryToCommitResetPasswords = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
     const isValid: boolean = !arePasswordsEmpty(
       getState().creationState.inputPassword,
       getState().creationState.inputRepeatPassword
@@ -129,7 +182,25 @@ export const tryToCommitPasswords = (): ThunkAction => {
     if (!isValid || !areEqual) {
       dispatch(setPasswordCreationError(areEqual, isValid));
     } else {
-      dispatch(commitPasswordCreation());
+      dispatch(commitReset());
+    }
+  };
+};
+//TODO Unite with function above
+export const tryToCommitPasswords = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const isValid: boolean = !arePasswordsEmpty(
+      getState().creationState.inputPassword,
+      getState().creationState.inputRepeatPassword
+    );
+    const areEqual: boolean = arePasswordsEqual(
+      getState().creationState.inputPassword,
+      getState().creationState.inputRepeatPassword
+    );
+    if (!isValid || !areEqual) {
+      dispatch(setPasswordCreationError(areEqual, isValid));
+    } else {
+      dispatch(commitCreation(getState().config.derivePath));
     }
   };
 };

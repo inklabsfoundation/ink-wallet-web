@@ -1,0 +1,37 @@
+.send-transition-modal .modal-dialog {
+  width: 670px;
+}
+
+.send-transition-modal .modal-footer {
+  border-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.send-transition-modal .input-section {
+  padding-bottom: 20px;
+  float: left;
+}
+.send-transition-modal .input-section label,
+.send-transition-modal .input-section input {
+  display: block;
+}
+
+.send-transition-modal .input-section label {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.send-transition-modal .input-section input {
+  background-color: #FFF;
+  color: #666;
+  border: 1px solid #9999;
+  min-height: 40px;
+  min-width: 370px;
+}
+
+.send-transition-modal .container {
+  padding: 0;
+}
+

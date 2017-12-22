@@ -1,8 +1,54 @@
 // @flow
 import Mnemonic from "bitcore-mnemonic";
-import {HDPrivateKey, PrivateKey, Address} from "qtumcore-lib";
+import {HDPrivateKey, PrivateKey, Address, PublicKey, Transaction} from "qtumcore-lib";
 
-export type LoginState = {};
+export type LoginState = {
+  isLoggedIn: boolean;
+  seed: ?Uint8Array,
+  passwordHash: ?string,
+  pubKey: ?PublicKey,
+  prKey: ?PrivateKey,
+  address: Address
+};
+
+export type ConfigState = {
+  defaultLocale: string,
+  derivePath: string,
+  qtumExplorerPath: string,
+  encryptSolt: string
+}
+
+export type SentTransactionState = {
+  tokenType: string,
+  toAddress: string,
+  amount: number,
+  description: string,
+  fee: number,
+  isModalOpen: boolean,
+  conformationalPassword: string,
+  rawUtxos: ?Array<Transaction.UnspentOutput>,
+  areRawUtxosFetching: boolean,
+  isSucceed: boolean,
+  isTransactionIsSending: boolean,
+  step: number
+}
+
+export const SUPPORTED_CURRENCIES = {
+  QTUM: "QTUM"
+};
+
+export type WalletAmount = {
+  balance: number,
+  label: "Qtum",
+  isAmountFetching: boolean,
+  areTxsFetching: boolean,
+  txs: Array<Object>
+}
+
+export type AmountState = {
+  QTUM: WalletAmount
+}
+
 export type CreationState = {
   step: number,
   password: string,
@@ -14,9 +60,12 @@ export type CreationState = {
   mnemonic: ?Mnemonic,
   hdPrivateKey: ?HDPrivateKey,
   privateKey: ?PrivateKey,
-  address: ?Address
+  seed: ?Uint8Array,
+  address: ?Address,
+  inputMnemonic: string,
+  isInputMnemonicEmpty: boolean,
+  isInputMnemonicValid: boolean,
 };
-export type RestoreState = {};
 export type I18n = {
   locale: string,
   translations: Object
@@ -25,12 +74,21 @@ export type I18n = {
 export type State = {
   +loginState: LoginState,
   +creationState: CreationState,
-  +restoreState: RestoreState,
   i18n: I18n,
+  +amountState: AmountState,
+  +config: ConfigState,
+  +sendTransactionState: SentTransactionState
 }
 
 export const initialState: State = {
-  loginState: {},
+  loginState: {
+    isLoggedIn: false,
+    seed: null,
+    passwordHash: "",
+    pubKey: {},
+    prKey: {},
+    address: {}
+  },
   creationState: {
     step: 1,
     password: "",
@@ -38,15 +96,47 @@ export const initialState: State = {
     inputRepeatPassword: "",
     areInputPasswordsEqual: true,
     arePasswordsValid: true,
+    inputMnemonic: "",
+    isInputMnemonicEmpty: false,
+    isInputMnemonicValid: true,
     isAgreed: false,
     mnemonic: {},
+    seed: null,
     hdPrivateKey: {},
     privateKey: {},
     address: {}
   },
-  restoreState: {},
   i18n: {
     locale: "en",
     translations: {}
+  },
+  amountState: {
+    QTUM: {
+      balance: 0,
+      label: "Qtum",
+      isAmountFetching: false,
+      areTxsFetching: false,
+      txs: []
+    }
+  },
+  sendTransactionState: {
+    tokenType: "",
+    toAddress: "",
+    amount: 0,
+    description: "",
+    fee: 0,
+    isModalOpen: false,
+    conformationalPassword: "",
+    rawUtxos: [],
+    areRawUtxosFetching: false,
+    isSucceed: false,
+    isTransactionIsSending: false,
+    step: 0
+  },
+  config: {
+    derivePath: "",
+    defaultLocale: "",
+    qtumExplorerPath: "",
+    encryptSolt: ""
   }
 };

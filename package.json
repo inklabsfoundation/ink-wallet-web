@@ -33,12 +33,17 @@
     "test": "clap check",
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
-    "deploy:stage": "shipit staging deploy",
+    "deploy:stage": "pm2 deploy stage && node src/middleware/slack-notify.js staging",
     "heroku-postbuild": "clap build"
   },
+  "resolutions": {
+    "qtumcore-lib/**/bn.js": "=2.0.4"
+  },
   "dependencies": {
+    "axios": "^0.17.1",
     "bitcore-mnemonic": "^1.5.0",
     "bluebird": "^3.4.6",
+    "bn.js": "2.0.4",
     "bootstrap": "^3.3.7",
     "crypto-js": "^3.1.9-1",
     "electrode-archetype-react-app": "^4.0.0",
@@ -49,19 +54,26 @@
     "electrode-server": "^1.0.0",
     "electrode-static-paths": "^1.0.0",
     "lodash": "^4.10.1",
-    "qtumcore-lib": "^0.0.1",
+    "mathjs": "^3.18.0",
+    "moment": "^2.20.1",
+    "qtumcore-lib": "0.0.1",
     "react": "^15.0.0",
     "react-bootstrap": "^0.31.5",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^15.0.0",
     "react-intl": "^2.4.0",
     "react-notify-toast": "^0.4.0",
     "react-redux-i18n": "^1.9.1",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "electrode-archetype-react-app-dev": "^4.0.0",
     "flow-bin": "^0.61.0",
-    "pm2": "^2.9.0"
+    "pm2": "^2.9.0",
+    "slack-node": "^0.1.8",
+    "xclap": "^0.2.17",
+    "xclap-cli": "^0.1.3"
   }
 }

@@ -11,15 +11,14 @@ module.exports = {
       }
     }
   ],
-
   deploy: {
     stage: {
       user: "deployer",
       host: "92.53.66.193",
-      ref: "origin/feature/create-wallet",
+      ref: "origin/feature/send-transaction-wip",
       repo: "git@github.com:EvercodeLab/qtum-web.git",
       path: "/var/www/qtum",
-      "post-deploy": "yarn install && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
+      "post-deploy": "yarn install --production=false && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
       env: {
         "NODE_ENV": "production"
       }

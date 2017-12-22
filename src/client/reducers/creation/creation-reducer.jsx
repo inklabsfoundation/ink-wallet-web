@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len,complexity */
 // @flow
 import type {CreationState} from "../../initial-state";
 import {initialState} from "../../initial-state";
@@ -15,9 +15,13 @@ export const creationState = (store: CreationState = initialState.creationState,
         inputPassword: "",
         mnemonic: {},
         password: "",
-        areInputPasswordsEqual: false,
+        areInputPasswordsEqual: true,
         arePasswordsValid: true,
-        isAgreed: false
+        isAgreed: false,
+        hdPrivateKey: {},
+        privateKey: {},
+        address: {},
+        seed: null
       };
     case "SET_INPUT_PASSWORD_ACTION":
       return {
@@ -40,7 +44,24 @@ export const creationState = (store: CreationState = initialState.creationState,
         areInputPasswordsEqual: action.areInputPasswordsEqual,
         arePasswordsValid: action.arePasswordsValid
       };
-    case "COMMIT_PASSWORD_CREATION_ACTION":
+    case "SET_INPUT_MNEMONIC":
+      return {
+        ...store,
+        inputMnemonic: action.inputMnemonic
+      };
+    case "SET_MNEMONIC_RESTORE_ERROR":
+      return {
+        ...store,
+        isInputMnemonicEmpty: action.isInputMnemonicEmpty,
+        isInputMnemonicValid: (action.isInputMnemonicEmpty) ? true : action.isInputMnemonicValid
+      };
+    case "COMMIT_RESET_PASSWORD_ACTION":
+      return {
+        ...store,
+        password: store.inputPassword,
+        step: STEPS.THIRD
+      };
+    case "COMMIT_CREATION_ACTION":
       return {
         ...store,
         password: store.inputPassword,
@@ -48,7 +69,8 @@ export const creationState = (store: CreationState = initialState.creationState,
         mnemonic: action.mnemonic,
         hdPrivateKey: action.hdPrivateKey,
         privateKey: action.privateKey,
-        address: action.address
+        address: action.address,
+        seed: action.seed
       };
     case "COMMIT_ADDRESS_ACTION": {
       return {
