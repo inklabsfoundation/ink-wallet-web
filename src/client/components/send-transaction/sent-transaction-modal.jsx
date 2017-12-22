@@ -7,7 +7,7 @@ import type {Dispatch} from "../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {
-  closeModal, confirmPrepareModalAction, openModal, requestUtxos, resetModal, sentTransaction,
+  closeModal, openModal, requestUtxos, resetModal, sentTransaction,
   STEPS
 } from "../../actions/sent-transaction-action";
 import {Modal} from "react-bootstrap";
