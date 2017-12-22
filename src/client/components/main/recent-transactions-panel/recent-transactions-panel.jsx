@@ -43,7 +43,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
             </div>
             <div className={`amount-label ${transaction.isIn ? "in" : "out"}`}>
               {`${(transaction.value > 0 ? transaction.value : -transaction.value)}
-                ${  transaction.currencyName}`}
+                ${transaction.currencyName}`}
             </div>
           </div>
         </div>

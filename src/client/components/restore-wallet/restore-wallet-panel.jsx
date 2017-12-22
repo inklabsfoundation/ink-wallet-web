@@ -17,7 +17,6 @@ type Props = {
 }
 
 class RestoreWalletPanel extends React.Component<Props> {
-
   componentDidMount(): void {
     this.props.dispatch(resetCreation());
   }
@@ -38,7 +37,6 @@ class RestoreWalletPanel extends React.Component<Props> {
       case STEPS.THIRD:
         stepPanel = (<RestoreSuccess/>);
         break;
-      default:
     }
 
     return (

@@ -1,5 +1,5 @@
 .balance-panel {
-  min-height: calc(100vh - 50px - 45px - 65px);
+  min-height: calc(100vh - 160px);
   border: 1px solid #DFDFDF;
   border-radius: 4px;
   padding: 0;

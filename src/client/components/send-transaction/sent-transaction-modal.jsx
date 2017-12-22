@@ -59,7 +59,6 @@ class SendTransactionModal extends React.Component<Props> {
       case STEPS.THIRD:
         stepPanel = (<SuccessSendTransactionPanel onClose={this.handleClose}/>);
         break;
-      default:
     }
 
     return (

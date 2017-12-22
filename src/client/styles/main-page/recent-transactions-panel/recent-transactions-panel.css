@@ -35,7 +35,7 @@
 }
 
 .recent-transactions-panel .transactions-block {
-  padding: 0 0 20px 0;
+  padding: 0 0 20px;
 }
 
 .recent-transactions-panel .transactions-block .transaction-block {
@@ -76,11 +76,7 @@
   border-bottom: 0;
 }
 
-.transaction-block .transaction-info .currency-label {
-  width: 30%;
-  text-align: left;
-}
-
+.transaction-block .transaction-info .currency-label,
 .transaction-block .transaction-info .time-label {
   width: 30%;
   text-align: left;

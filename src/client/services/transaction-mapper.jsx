@@ -22,6 +22,7 @@ export const mapLastTransactions = (currencyName: string,
   if (txs.length > TRANSACTIONS_COUNT) {
     txs = txs.slice(0, TRANSACTIONS_COUNT);
   }
+
   return txs.map((transaction: Object): LastTransaction => {
       let value: number = 0;
       let inputValue: Decimal = math.bignumber(0);
@@ -31,7 +32,6 @@ export const mapLastTransactions = (currencyName: string,
           inputValue = math.add(math.bignumber(inputValue), math.bignumber(inTransaction.value));
         }
       });
-
       transaction.vout.forEach((outTransaction: Object): void => {
         if (outTransaction.scriptPubKey.addresses &&
           _.find(outTransaction.scriptPubKey.addresses,
@@ -42,6 +42,7 @@ export const mapLastTransactions = (currencyName: string,
       });
       value = math.subtract(outputValue, inputValue);
       const isIn: boolean = (value >= 0);
+
       return {
         value,
         isIn,

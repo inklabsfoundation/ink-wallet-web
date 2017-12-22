@@ -12,7 +12,6 @@ import qtumIcon21 from "../../images/qtum-icon-21.png";
 
 class NavPanel extends React.Component<{}> {
   render() {
-
     const walletPanel = (
       <div className="default-panel-item">
         <div><img src={walletIcon}/></div>

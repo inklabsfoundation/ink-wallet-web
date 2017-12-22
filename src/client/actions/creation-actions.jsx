@@ -186,7 +186,7 @@ export const tryToCommitResetPasswords = (): ThunkAction => {
     }
   };
 };
-//TODO Fix it
+//TODO Unite with function above
 export const tryToCommitPasswords = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     const isValid: boolean = !arePasswordsEmpty(

@@ -70,7 +70,6 @@ export const requestQtumBalance = (): ThunkAction => {
   };
 };
 
-
 const requestQtumTransactionsError = (): RequestQtumTransactionsFailAction => {
   return {
     type: "REQUEST_QTUM_TRANSACTIONS_FAIL_ACTION"
