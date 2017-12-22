@@ -18,7 +18,7 @@ module.exports = {
       ref: "origin/feature/send-transaction-wip",
       repo: "git@github.com:EvercodeLab/qtum-web.git",
       path: "/var/www/qtum",
-      "post-deploy": "npm install && npm install --only=dev && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
+      "post-deploy": "yarn install && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
       env: {
         "NODE_ENV": "production"
       }

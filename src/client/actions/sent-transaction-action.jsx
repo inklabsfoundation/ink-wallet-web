@@ -133,7 +133,7 @@ export const sentTransaction = (toAddress: string, value: number, data: string):
       .to(toAddress, value * SATOSHI_COUNT)
       .change(address)
       .addData(data)
-      .fee(0.003 * SATOSHI_COUNT)
+      .fee(0.005 * SATOSHI_COUNT)
       .sign(getState().loginState.prKey);
     const rawTransaction: string = transaction.serialize(true);
     axios.post(`${getState().config.qtumExplorerPath}/tx/send`, {

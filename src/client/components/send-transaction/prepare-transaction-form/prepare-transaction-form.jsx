@@ -38,7 +38,7 @@ let PrepareTransactionForm = (props: Props) => {
           </Row>
           <Row>
             <Col className="input-section" xs={12}>
-              <label htmlFor="fee">Fees: 0.003</label>
+              <label htmlFor="fee">Fees: 0.005</label>
             </Col>
           </Row>
         </Grid>
