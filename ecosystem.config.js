@@ -11,7 +11,6 @@ module.exports = {
       }
     }
   ],
-
   deploy: {
     stage: {
       user: "deployer",
