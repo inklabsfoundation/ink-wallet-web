@@ -33,7 +33,7 @@
     "test": "clap check",
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
-    "deploy:stage": "pm2 deploy stage",
+    "deploy:stage": "pm2 deploy stage && node src/middleware/slack-notify.js staging",
     "heroku-postbuild": "clap build"
   },
   "resolutions": {
@@ -66,13 +66,14 @@
     "react-redux-i18n": "^1.9.1",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
-    "redux-thunk": "^2.2.0",
-    "xclap": "^0.2.17"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "electrode-archetype-react-app-dev": "^4.0.0",
     "flow-bin": "^0.61.0",
     "pm2": "^2.9.0",
+    "slack-node": "^0.1.8",
+    "xclap": "^0.2.17",
     "xclap-cli": "^0.1.3"
   }
 }
