@@ -1,17 +1,17 @@
 .primary-red-btn {
   color: #FFF;
-  background-color: #202647;
-  border: 1px solid #202647;
+  background-color: #394CB0;
+  border: 1px solid #394CB0;
 }
 
 .primary-white-btn {
   background-color: #FFF;
   border: 1px solid #FFF;
-  color: #202647;
+  color: #394CB0;
 }
 
 .primary-white-btn.bordered {
-  border: 1px solid #202647;
+  border: 1px solid #394CB0;
 }
 
 .primary-white-btn,
@@ -36,7 +36,7 @@
 }
 
 .primary-white-btn:hover {
-  color: #1d1d3b;
+  color: #4a5ddd;
 }
 
 .primary-red-btn:hover {
