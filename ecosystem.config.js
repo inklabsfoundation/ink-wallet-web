@@ -16,10 +16,10 @@ module.exports = {
     stage: {
       user: "deployer",
       host: "92.53.66.193",
-      ref: "origin/feature/home-page-wip",
+      ref: "origin/feature/send-transaction-wip",
       repo: "git@github.com:EvercodeLab/qtum-web.git",
       path: "/var/www/qtum",
-      "post-deploy": "yarn install && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
+      "post-deploy": "npm install && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
       env: {
         "NODE_ENV": "production"
       }

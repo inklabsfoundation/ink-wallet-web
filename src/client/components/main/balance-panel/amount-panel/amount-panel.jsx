@@ -11,13 +11,25 @@ import copyIcon from "../../../../images/copy-icon.png";
 // $FlowFixMe
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Translate} from "react-redux-i18n";
+import {openModal} from "../../../../actions/sent-transaction-action";
+import SendTransactionModal from "../../../send-transaction/sent-transaction-modal";
 
 type Props = {
   qtumAmount: WalletAmount;
-  address: Address
+  address: Address,
+  dispatch: Dispatch
 }
 
 class AmountPanel extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    (this: any).handleClickSendTransaction = this.handleClickSendTransaction.bind(this);
+  }
+
+  handleClickSendTransaction() {
+    this.props.dispatch(openModal());
+  }
+
   render() {
     return (
       <Col className="amount-panel" xs={12}>
@@ -36,16 +48,17 @@ class AmountPanel extends React.Component<Props> {
               <img src={copyIcon}/>
             </CopyToClipboard>
           </div>
-          <div className="amount-address-value">QPssAYA8MjQSdeKSYfbqsYAafx5nXAmXgQ</div>
+          <div className="amount-address-value">{this.props.address.toString()}</div>
         </div>
         <div className="amount-btn-panel">
-          <a className="primary-red-btn amount-btn">
+          <a onClick={this.handleClickSendTransaction} className="primary-red-btn amount-btn">
             <Translate value="mainPage.sendBtn"/>
           </a>
           <a className="primary-white-btn bordered amount-btn">
             <Translate value="mainPage.receiveBtn"/>
           </a>
         </div>
+        <SendTransactionModal/>
       </Col>
     );
   }

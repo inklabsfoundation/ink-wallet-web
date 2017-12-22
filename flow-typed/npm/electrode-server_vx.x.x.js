@@ -1,4 +1,4 @@
-// flow-typed signature: b41d3e53ff27f555c3587be1570bcfdd
+// flow-typed signature: 0af27427cdfdafa32ee03686f321d098
 // flow-typed version: <<STUB>>/electrode-server_v^1.0.0/flow_v0.61.0
 
 /**
@@ -22,10 +22,6 @@ declare module 'electrode-server' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'electrode-server/gulpfile' {
-  declare module.exports: any;
-}
-
 declare module 'electrode-server/lib/check-node-env' {
   declare module.exports: any;
 }
@@ -50,70 +46,7 @@ declare module 'electrode-server/lib/start-failed' {
   declare module.exports: any;
 }
 
-declare module 'electrode-server/test/data/bad-plugin' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/data/dup-plugin' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/data/plugin-err' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/data/server' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/decor/decor-static-paths' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/decor/decor1' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/decor/decor2' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/decor/decor3' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/plugins/app-config' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/plugins/err-plugin' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/plugins/es6-style-plugin' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/plugins/static-paths' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/plugins/test-plugin' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/spec/check-node-env.spec' {
-  declare module.exports: any;
-}
-
-declare module 'electrode-server/test/spec/electrode.spec' {
-  declare module.exports: any;
-}
-
 // Filename aliases
-declare module 'electrode-server/gulpfile.js' {
-  declare module.exports: $Exports<'electrode-server/gulpfile'>;
-}
 declare module 'electrode-server/lib/check-node-env.js' {
   declare module.exports: $Exports<'electrode-server/lib/check-node-env'>;
 }
@@ -131,49 +64,4 @@ declare module 'electrode-server/lib/error-common.js' {
 }
 declare module 'electrode-server/lib/start-failed.js' {
   declare module.exports: $Exports<'electrode-server/lib/start-failed'>;
-}
-declare module 'electrode-server/test/data/bad-plugin.js' {
-  declare module.exports: $Exports<'electrode-server/test/data/bad-plugin'>;
-}
-declare module 'electrode-server/test/data/dup-plugin.js' {
-  declare module.exports: $Exports<'electrode-server/test/data/dup-plugin'>;
-}
-declare module 'electrode-server/test/data/plugin-err.js' {
-  declare module.exports: $Exports<'electrode-server/test/data/plugin-err'>;
-}
-declare module 'electrode-server/test/data/server.js' {
-  declare module.exports: $Exports<'electrode-server/test/data/server'>;
-}
-declare module 'electrode-server/test/decor/decor-static-paths.js' {
-  declare module.exports: $Exports<'electrode-server/test/decor/decor-static-paths'>;
-}
-declare module 'electrode-server/test/decor/decor1.js' {
-  declare module.exports: $Exports<'electrode-server/test/decor/decor1'>;
-}
-declare module 'electrode-server/test/decor/decor2.js' {
-  declare module.exports: $Exports<'electrode-server/test/decor/decor2'>;
-}
-declare module 'electrode-server/test/decor/decor3.js' {
-  declare module.exports: $Exports<'electrode-server/test/decor/decor3'>;
-}
-declare module 'electrode-server/test/plugins/app-config.js' {
-  declare module.exports: $Exports<'electrode-server/test/plugins/app-config'>;
-}
-declare module 'electrode-server/test/plugins/err-plugin.js' {
-  declare module.exports: $Exports<'electrode-server/test/plugins/err-plugin'>;
-}
-declare module 'electrode-server/test/plugins/es6-style-plugin.js' {
-  declare module.exports: $Exports<'electrode-server/test/plugins/es6-style-plugin'>;
-}
-declare module 'electrode-server/test/plugins/static-paths.js' {
-  declare module.exports: $Exports<'electrode-server/test/plugins/static-paths'>;
-}
-declare module 'electrode-server/test/plugins/test-plugin.js' {
-  declare module.exports: $Exports<'electrode-server/test/plugins/test-plugin'>;
-}
-declare module 'electrode-server/test/spec/check-node-env.spec.js' {
-  declare module.exports: $Exports<'electrode-server/test/spec/check-node-env.spec'>;
-}
-declare module 'electrode-server/test/spec/electrode.spec.js' {
-  declare module.exports: $Exports<'electrode-server/test/spec/electrode.spec'>;
 }

@@ -14,7 +14,7 @@ export const authRequired = (Component: any): any => {
     }
 
     render() {
-      return <Component {...this.props} />;
+      return <div>{this.props.isLoggedIn ? <Component {...this.props} /> : ""}</div>;
     }
   };
 };

@@ -23,7 +23,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
   render() {
     const lastestRawTransactions: Array<LastTransaction> = mapLastTransactions(
       this.props.amountState.QTUM.label,
-      "QPssAYA8MjQSdeKSYfbqsYAafx5nXAmXgQ",
+      this.props.address.toString(),
       this.props.amountState.QTUM.txs);
     const lastestTransactions = lastestRawTransactions.map((transaction: LastTransaction,
                                                             indx: number) => {

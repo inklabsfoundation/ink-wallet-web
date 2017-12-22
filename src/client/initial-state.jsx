@@ -1,6 +1,6 @@
 // @flow
 import Mnemonic from "bitcore-mnemonic";
-import {HDPrivateKey, PrivateKey, Address, PublicKey} from "qtumcore-lib";
+import {HDPrivateKey, PrivateKey, Address, PublicKey, Transaction} from "qtumcore-lib";
 
 export type LoginState = {
   isLoggedIn: boolean;
@@ -16,6 +16,21 @@ export type ConfigState = {
   derivePath: string,
   qtumExplorerPath: string,
   encryptSolt: string
+}
+
+export type SentTransactionState = {
+  tokenType: string,
+  toAddress: string,
+  amount: number,
+  description: string,
+  fee: number,
+  isModalOpen: boolean,
+  conformationalPassword: string,
+  rawUtxos: ?Array<Transaction.UnspentOutput>,
+  areRawUtxosFetching: boolean,
+  isSucceed: boolean,
+  isTransactionIsSending: boolean,
+  step: number
 }
 
 export const SUPPORTED_CURRENCIES = {
@@ -61,7 +76,8 @@ export type State = {
   +creationState: CreationState,
   i18n: I18n,
   +amountState: AmountState,
-  +config: ConfigState
+  +config: ConfigState,
+  +sendTransactionState: SentTransactionState
 }
 
 export const initialState: State = {
@@ -102,6 +118,20 @@ export const initialState: State = {
       areTxsFetching: false,
       txs: []
     }
+  },
+  sendTransactionState: {
+    tokenType: "",
+    toAddress: "",
+    amount: 0,
+    description: "",
+    fee: 0,
+    isModalOpen: false,
+    conformationalPassword: "",
+    rawUtxos: [],
+    areRawUtxosFetching: false,
+    isSucceed: false,
+    isTransactionIsSending: false,
+    step: 0
   },
   config: {
     derivePath: "",

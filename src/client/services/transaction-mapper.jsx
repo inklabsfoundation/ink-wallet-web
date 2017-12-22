@@ -4,11 +4,6 @@ import * as _ from "lodash";
 import math from "mathjs";
 import type {Decimal} from "mathjs";
 
-math.config({
-  number: "BigNumber",
-  precision: 64
-});
-
 export type LastTransaction = {
   value: number,
   isIn: boolean,
@@ -42,10 +37,10 @@ export const mapLastTransactions = (currencyName: string,
           _.find(outTransaction.scriptPubKey.addresses,
             (outAddress: string): boolean => outAddress === address)
         ) {
-          outputValue = math.chain(outputValue).add(outTransaction.value).done();
+          outputValue = math.add(math.bignumber(outputValue), math.bignumber(outTransaction.value));
         }
       });
-      value = math.subtract(math.bignumber(outputValue), math.bignumber(inputValue));
+      value = math.subtract(outputValue, inputValue);
       const isIn: boolean = (value >= 0);
       return {
         value,

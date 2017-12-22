@@ -58,8 +58,7 @@ const requestQtumFetchingSuccess = (balance: number): RequestQtumBalanceSuccessA
 export const requestQtumBalance = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumBalanceFetching());
-    const address = "QPssAYA8MjQSdeKSYfbqsYAafx5nXAmXgQ";
-    //const address = getState().loginState.address.toString();
+    const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addr/${address}/balance`)
       .then((response: $AxiosXHR<number>) => {
         const amount: number = response.data;
@@ -89,8 +88,7 @@ const requestQtumTransactionsSuccess = (txs: Array<Object>): RequestQtumTransact
 export const requestQtumTransactions = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumBalanceFetching());
-    const address = "QPssAYA8MjQSdeKSYfbqsYAafx5nXAmXgQ";
-    //const address = getState().loginState.address.toString();
+    const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/txs?address=${address}&pageNum=0`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.txs;

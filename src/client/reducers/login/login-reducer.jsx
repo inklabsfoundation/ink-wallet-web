@@ -23,6 +23,9 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         address: action.address
       };
     case "LOGOUT_ACTION":
+      if (typeof window !== "undefined") {
+        browserHistory.push(ROUTE_URLS.HOME_PAGE);
+      }
       return {
         ...store,
         isLoggedIn: false,

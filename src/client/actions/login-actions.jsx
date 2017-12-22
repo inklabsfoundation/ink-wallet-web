@@ -46,7 +46,7 @@ export const tryToLogin = (seed: Uint8Array, password: string): ThunkAction => {
     const privateKey = (HDPrivateKey.fromSeed(seed, Networks.livenet))
       .derive(getState().config.derivePath).privateKey;
     const publicKey = privateKey.toPublicKey();
-    const address = publicKey.toAddress(Networks.livenet);
+    const address = privateKey.toAddress();
     dispatch(executeLogin(seed, passwordHash, publicKey, privateKey, address));
   };
 };
