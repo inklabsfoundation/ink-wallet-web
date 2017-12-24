@@ -42,3 +42,7 @@
 .primary-red-btn:hover {
   color: #FFF;
 }
+
+.nav>li.lang-dropdown>a {
+  padding-left: 40px;
+}
