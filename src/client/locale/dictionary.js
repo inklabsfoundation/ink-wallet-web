@@ -46,6 +46,49 @@ export const dictionary = {
       showMnemonicNextBtn: "Understand and get started",
       showMnemonicDownloadBtn: "Download your Wallet File"
     },
+    sendTransaction: {
+      modalTitle: "Send",
+      prepareForm: {
+        token: "Token",
+        availableAmount: "Available amount:",
+        amountPlaceholder: "Input address",
+        to: "To",
+        amount: "Amount",
+        description: "Description",
+        fee: {
+          label: "Fees",
+          custom: "Custom",
+          standart: "Standart",
+          slow: "Slow",
+          quick: "quick"
+        },
+        confirmBtn: "Confirm",
+        errors: {
+          emptyAddress: "Address field is empty",
+          emptyAmount: "Amount field is empty",
+          invalidAmount: "Amount is invalid",
+          invalidAddress: "Address is invalid",
+          amountLow: "Amount to send more than your balance"
+        }
+      },
+      confirmForm: {
+        token: "Token:",
+        to: "To:",
+        amount: "Amount:",
+        description: "Description:",
+        fees: "Fees",
+        inputPassword: "Input password",
+        errors: {
+          passwordIsIncorrect: "Incorrect password",
+          passwordIsEmpty: "Password field is empty"
+        },
+        confirmBtn: "Confirm"
+      },
+      successForm: {
+        succeed: "Succeed",
+        doneBtn: "Done"
+      }
+    },
     restoreWallet: {
       title: "Restore",
       inputYourMnemonics: "Please input your mnemonics",

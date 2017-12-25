@@ -57,6 +57,7 @@
     "mathjs": "^3.18.0",
     "moment": "^2.20.1",
     "qtumcore-lib": "0.0.1",
+    "rc-slider": "^8.5.0",
     "react": "^15.0.0",
     "react-bootstrap": "^0.31.5",
     "react-copy-to-clipboard": "^5.0.1",

@@ -42,7 +42,7 @@ export const tryToLogout = (): LogoutAction => {
 
 export const tryToLogin = (seed: Uint8Array, password: string): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
-    const passwordHash = SHA256(password + getState().config.encryptSolt);
+    const passwordHash = (SHA256(password + getState().config.encryptSolt).toString());
     const privateKey = (HDPrivateKey.fromSeed(seed, Networks.livenet))
       .derive(getState().config.derivePath).privateKey;
     const publicKey = privateKey.toPublicKey();

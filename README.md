@@ -28,7 +28,7 @@ $ clap dev
 $ yarn install
 $ clap build
 $ clap wds.hot //in the another terminal
-$ npm run server
+$ clap server
 
 
 ```

@@ -6,6 +6,7 @@ import type {Dispatch} from "../../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
+import successLogo from "../../../images/success.png";
 
 type Props = {
   dispatch: Dispatch,
@@ -21,10 +22,20 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
     return (
       <div>
         <Modal.Body>
-          123
+          <div className="create-title-panel reset">
+            <div className="success-logo">
+              <img src={successLogo}/>
+            </div>
+            <div className="create-title">
+              <Translate value="sendTransaction.successForm.succeed"/>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => this.props.onClose()}>Done</Button>
+          <Button className="confirm-button primary-red-btn"
+                  onClick={() => this.props.onClose()}>
+            <Translate value="sendTransaction.successForm.doneBtn"/>
+          </Button>
         </Modal.Footer>
       </div>
     );
