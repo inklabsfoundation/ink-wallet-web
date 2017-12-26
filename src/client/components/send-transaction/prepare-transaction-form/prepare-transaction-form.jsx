@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-handler-names */
+/* eslint-disable react/jsx-handler-names,react/prop-types */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -29,11 +29,13 @@ type Props = {
   recommendedFee: number
 }
 
+const FEE_ORDER_OFFSET = 6;
+
 export const selectFeeValue = (feeConst: number, feeCoef: number): number => {
   // eslint-disable-next-line no-magic-numbers
   const feeDifference = ((1 - feeConst) / 100);
   feeCoef = (feeCoef ? feeCoef : 0);
-  return +(feeConst + (feeDifference * feeCoef)).toFixed(6);
+  return +(feeConst + (feeDifference * feeCoef)).toFixed(FEE_ORDER_OFFSET);
 };
 
 export const STANDART_FEE: number = 0.1;

@@ -1,7 +1,6 @@
 // @flow
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import {Transaction} from "qtumcore-lib";
-import {SHA256} from "crypto-js";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
@@ -13,6 +12,8 @@ export const STEPS = {
   SECOND: 1,
   THIRD: 2
 };
+
+const REFRESH_OFFSET = 3000;
 
 type OpenModalAction = {
   type: "OPEN_MODAL",
@@ -130,10 +131,11 @@ export const confirmSuccessModa = (): void => {
 const sentTransactionSuccess = (): ThunkAction => {
   return (dispatch: Dispatch) => {
     dispatch(confirmConfirmModal());
+    // eslint-disable-next-line no-undef
     setTimeout(() => {
       dispatch(requestQtumBalance());
       dispatch(requestQtumTransactions());
-    }, 3000);
+    }, REFRESH_OFFSET);
     return {
       type: "SENT_TRANSACTION_SUCCESS"
     };
@@ -172,7 +174,7 @@ export const sentTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch((error) => {
+    }).catch(() => {
       dispatch(sentTransactionFail());
     });
   };

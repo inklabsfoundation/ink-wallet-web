@@ -1,8 +1,7 @@
-/* eslint-disable new-cap */
+/* eslint-disable new-cap,react/prop-types */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
-import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
 // $FlowFixMe
 import {Button, Col, Modal, Row} from "react-bootstrap";
@@ -36,7 +35,7 @@ const submit = (values: Object, dispatch: Dispatch, props: Props) => {
     });
   }
   props.onSubmit(values);
-};``
+};
 
 const renderPassword = ({input, meta: {touched, error}}) => (
   <div>

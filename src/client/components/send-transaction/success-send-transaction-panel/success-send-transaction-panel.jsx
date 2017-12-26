@@ -7,6 +7,8 @@ import type {Dispatch} from "../../../types/redux";
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 import successLogo from "../../../images/success.png";
+// $FlowFixMe
+import ImageLoader from "react-load-image";
 
 type Props = {
   dispatch: Dispatch,
@@ -24,7 +26,9 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
         <Modal.Body>
           <div className="create-title-panel reset">
             <div className="success-logo">
-              <img src={successLogo}/>
+              <ImageLoader
+                src={successLogo}
+              />
             </div>
             <div className="create-title">
               <Translate value="sendTransaction.successForm.succeed"/>
@@ -42,6 +46,7 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const mapStateToProps = (state: State): Object => {
   return {};
 };
