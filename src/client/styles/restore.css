@@ -51,6 +51,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  min-height: 125px;
 }
 
 .create-title-panel.reset {

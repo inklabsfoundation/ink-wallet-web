@@ -1,11 +1,11 @@
 /* eslint-disable max-len,complexity */
 // @flow
-import type {SentTransactionState} from "../../initial-state";
+import type {SendTransactionState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {SendTransactionAction} from "../../actions/sent-transaction-action";
 
-export const sendTransactionState = (store: SentTransactionState = initialState.sendTransactionState,
-                                     action: SendTransactionAction): SentTransactionState => {
+export const sendTransactionState = (store: SendTransactionState = initialState.sendTransactionState,
+                                     action: SendTransactionAction): SendTransactionState => {
   switch (action.type) {
     case "OPEN_MODAL":
       return {

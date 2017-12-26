@@ -32,7 +32,7 @@ type Props = {
   fee: number,
   description: string,
   passwordHash: string,
-  solt: string
+  salt: string
 }
 
 class SendTransactionModal extends React.Component<Props> {
@@ -101,7 +101,7 @@ class SendTransactionModal extends React.Component<Props> {
             amount={this.props.amount}
             fee={this.props.fee}
             description={this.props.description}
-            solt={this.props.solt}
+            salt={this.props.salt}
             onSubmit={this.handleSubmitConfirmSendTransaction}
             passwordHash={this.props.passwordHash}/>
         );
@@ -137,7 +137,7 @@ const mapStateToProps = (state: State): Object => {
     fee: state.sendTransactionState.fee,
     description: state.sendTransactionState.description,
     passwordHash: state.loginState.passwordHash,
-    solt: state.config.encryptSolt
+    salt: state.config.encryptSalt
   };
 };
 

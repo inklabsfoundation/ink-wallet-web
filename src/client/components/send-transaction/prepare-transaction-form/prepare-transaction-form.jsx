@@ -30,7 +30,10 @@ type Props = {
 }
 
 export const selectFeeValue = (feeConst: number, feeCoef: number): number => {
-  return +(feeConst + (((1 - feeConst) / 100) * (feeCoef ? feeCoef : 0))).toFixed(6);
+  // eslint-disable-next-line no-magic-numbers
+  const feeDifference = ((1 - feeConst) / 100);
+  feeCoef = (feeCoef ? feeCoef : 0);
+  return +(feeConst + (feeDifference * feeCoef)).toFixed(6);
 };
 
 export const STANDART_FEE: number = 0.1;
@@ -78,6 +81,7 @@ const validate = (values: Object, props: Object) => {
       errors.amount = "sendTransaction.prepareForm.errors.amountLow";
     }
   }
+
   return errors;
 };
 
@@ -101,11 +105,10 @@ const renderAddress = ({input, toValue, meta: {touched, error}}) => (
         </div>
       </div>
     </div>
-    {touched && error
-      ? <div className="error-block-wrapper">
+    {(touched && error) &&
+      <div className="error-block-wrapper">
         {errorBlock({message: error})}
       </div>
-      : ""
     }
   </div>
 );
@@ -118,12 +121,11 @@ const renderAmount = ({input, meta: {touched, error}}) => (
       </label>
       <input {...input} name="amount" type="text"/>
     </div>
-      {touched && error
-        ? <div className="error-block-wrapper">
-          {errorBlock({message: error})}
-        </div>
-        : ""
-      }
+    {(touched && error) &&
+      <div className="error-block-wrapper">
+        {errorBlock({message: error})}
+      </div>
+    }
   </div>
 );
 
@@ -203,7 +205,8 @@ let PrepareTransactionForm = (props: Props) => {
                   <Translate value="sendTransaction.prepareForm.fee.custom"/>
                 </div>
                 <div className="fee-value">
-                  {selectFeeValue(props.recommendedFee, props.feeCoef)} Qtum</div>
+                  {selectFeeValue(props.recommendedFee, props.feeCoef)} Qtum
+                </div>
               </label>
             </Col>
             <Col xs={12} className="column-wrapper">
@@ -233,11 +236,8 @@ let PrepareTransactionForm = (props: Props) => {
 };
 const selector = formValueSelector("PrepareTransactionForm");
 
-PrepareTransactionForm = reduxForm(
-  {
-    form: "PrepareTransactionForm",
-    validate
-  })(PrepareTransactionForm);
+// eslint-disable-next-line max-len
+PrepareTransactionForm = reduxForm({form: "PrepareTransactionForm", validate})(PrepareTransactionForm);
 
 PrepareTransactionForm = connect(state => {
   const isStandart = selector(state, "isStandart");

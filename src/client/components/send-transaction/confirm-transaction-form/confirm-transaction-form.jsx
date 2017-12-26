@@ -20,7 +20,7 @@ type Props = {
   description: string,
   passwordHash: string,
   submitting: boolean,
-  solt: string,
+  salt: string,
   handleSubmit: Function,
   onSubmit: Function
 }
@@ -30,14 +30,13 @@ const submit = (values: Object, dispatch: Dispatch, props: Props) => {
     throw new SubmissionError({
       password: "sendTransaction.confirmForm.errors.passwordIsEmpty"
     });
-  } else if (SHA256(values.password + props.solt).toString() !== props.passwordHash) {
+  } else if (SHA256(values.password + props.salt).toString() !== props.passwordHash) {
     throw new SubmissionError({
       password: "sendTransaction.confirmForm.errors.passwordIsIncorrect"
     });
   }
-  //TODO Fix this dirty hack
-  dispatch(props.onSubmit(values));
-};
+  props.onSubmit(values);
+};``
 
 const renderPassword = ({input, meta: {touched, error}}) => (
   <div>
@@ -46,16 +45,14 @@ const renderPassword = ({input, meta: {touched, error}}) => (
              className="input"/>
     </div>
     <div className="error-block-wrapper">
-      {touched && error
-        ?
-        errorBlock({message: error})
-        : ""
-        }
+      {(touched && error) &&
+          errorBlock({message: error})
+      }
     </div>
   </div>
 );
 
-let PrepareConfirationForm = (props: Props) => (
+let prepareConfirationForm = (props: Props) => (
   <form onSubmit={props.handleSubmit(submit)}>
     <Modal.Body>
       <Row className="confirm-transaction-row">
@@ -119,9 +116,6 @@ let PrepareConfirationForm = (props: Props) => (
   </form>
 );
 
-PrepareConfirationForm = reduxForm(
-  {
-    form: "PrepareTransactionForm"
-  })(PrepareConfirationForm);
+prepareConfirationForm = reduxForm({form: "PrepareTransactionForm"})(prepareConfirationForm);
 
-export default PrepareConfirationForm;
+export default prepareConfirationForm;

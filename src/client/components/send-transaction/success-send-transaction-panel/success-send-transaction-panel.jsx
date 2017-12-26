@@ -46,4 +46,5 @@ const mapStateToProps = (state: State): Object => {
   return {};
 };
 
+// eslint-disable-next-line max-len
 export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SuccessSendTransactionPanel);

@@ -66,11 +66,10 @@ class Header extends React.Component<Props> {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            {this.props.isLoggedId
-              ? <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
+            {this.props.isLoggedId &&
+              <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
                   Logout
                 </NavItem>
-              : ""
             }
             <NavDropdown eventKey={1} title={Internalizator.getLangLabel(this.props.i18n.locale)}
                          className="lang-dropdown"

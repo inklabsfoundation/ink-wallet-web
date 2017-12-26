@@ -15,10 +15,10 @@ export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
   qtumExplorerPath: string,
-  encryptSolt: string
+  encryptSalt: string
 }
 
-export type SentTransactionState = {
+export type SendTransactionState = {
   tokenType: string,
   toAddress: string,
   amount: number,
@@ -79,7 +79,7 @@ export type State = {
   i18n: I18n,
   +amountState: AmountState,
   +config: ConfigState,
-  +sendTransactionState: SentTransactionState
+  +sendTransactionState: SendTransactionState
 }
 
 export const initialState: State = {
@@ -141,6 +141,6 @@ export const initialState: State = {
     derivePath: "",
     defaultLocale: "",
     qtumExplorerPath: "",
-    encryptSolt: ""
+    encryptSalt: ""
   }
 };

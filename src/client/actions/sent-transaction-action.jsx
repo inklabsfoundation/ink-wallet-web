@@ -6,6 +6,7 @@ import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
 import {requestQtumBalance, requestQtumTransactions} from "./amount-actions";
+import type {SendTransactionState} from "../initial-state";
 
 export const STEPS = {
   FIRST: 0,
@@ -154,16 +155,17 @@ const sentTransactionFetching = (): SentTransactionFetchingAction => {
 
 export const sentTransaction = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
+    const transactionState: SendTransactionState = getState().sendTransactionState;
     dispatch(sentTransactionFetching());
     const address = getState().loginState.address;
     const transaction: Transaction = new Transaction()
-      .from(getState().sendTransactionState.rawUtxos)
+      .from(transactionState.rawUtxos)
       .to(
-        getState().sendTransactionState.toAddress,
-        getState().sendTransactionState.amount * SATOSHI_COUNT)
+        transactionState.toAddress,
+        transactionState.amount * SATOSHI_COUNT)
       .change(address)
-      .addData(getState().sendTransactionState.description)
-      .fee(getState().sendTransactionState.fee * SATOSHI_COUNT)
+      .addData(transactionState.description)
+      .fee(transactionState.fee * SATOSHI_COUNT)
       .sign(getState().loginState.prKey);
     const rawTransaction: string = transaction.serialize(true);
     axios.post(`${getState().config.qtumExplorerPath}/tx/send`, {

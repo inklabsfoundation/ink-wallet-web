@@ -7277,6 +7277,10 @@ react-intl@^2.1.0, react-intl@^2.4.0:
     intl-relativeformat "^2.0.0"
     invariant "^2.1.1"
 
+react-load-image@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/react-load-image/-/react-load-image-0.1.6.tgz#abafacb18813983a8af43d9f2fe9ed7bf89ca29a"
+
 react-notify-toast@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-notify-toast/-/react-notify-toast-0.4.0.tgz#9b2711fd47609dabffce9a3937afffeb510ea2a8"

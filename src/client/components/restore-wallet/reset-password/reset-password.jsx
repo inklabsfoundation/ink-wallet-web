@@ -63,16 +63,16 @@ class ResetPassword extends React.Component<Props> {
                    className={`input${  this.checkError()}`}/>
           </div>
           <div className="error-message-block">
-            {!this.props.areInputPasswordsEqual
-              ? <div className="error-message">
+            {!this.props.areInputPasswordsEqual &&
+              <div className="error-message">
                 <Translate value="createWallet.errors.notMatch"/>
               </div>
-              : ""}
-            {!this.props.arePasswordsValid
-              ? <div className="error-message">
+            }
+            {!this.props.arePasswordsValid &&
+              <div className="error-message">
                 <Translate value="createWallet.errors.notEntered"/>
               </div>
-              : ""}
+            }
           </div>
         </div>
         <div className="info-block-panel reset">
