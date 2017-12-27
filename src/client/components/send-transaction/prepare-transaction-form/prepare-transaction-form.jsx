@@ -10,7 +10,6 @@ import {Field, reduxForm, formValueSelector} from "redux-form";
 import {connect} from "react-redux";
 import inputIcon from "../../../images/copy-icon-2.png";
 import alertIcon from "../../../images/alert-notice.png";
-// $FlowFixMe
 import Slider from "rc-slider";
 // $FlowFixMe
 import "rc-slider/assets/index.css";

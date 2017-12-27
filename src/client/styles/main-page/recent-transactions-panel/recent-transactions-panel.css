@@ -36,6 +36,7 @@
 
 .recent-transactions-panel .transactions-block {
   padding: 0 0 20px;
+  min-height: 200px;
 }
 
 .recent-transactions-panel .transactions-block .transaction-block {

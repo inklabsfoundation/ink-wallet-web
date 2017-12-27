@@ -12,8 +12,7 @@ import {tryToLogin} from "../../../actions/login-actions";
 import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
 import {Link} from "react-router";
-// $FlowFixMe
-import ImageLoader from "react-load-image";
+import Image from "../../common/image/image";
 
 type Props = {
   dispatch: Dispatch,
@@ -41,7 +40,7 @@ class RestoreSuccess extends React.Component<Props> {
         <div className="create-title-panel reset">
           <div className="success-logo">
             <img src={successLogo}/>
-            <ImageLoader
+            <Image
               src={successLogo}
             />
           </div>

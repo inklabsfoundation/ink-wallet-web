@@ -3,7 +3,6 @@
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
 import type {Dispatch} from "../../../types/redux";
-// $FlowFixMe
 import {Button, Col, Modal, Row} from "react-bootstrap";
 // $FlowFixMe
 import {Field, reduxForm, SubmissionError} from "redux-form";

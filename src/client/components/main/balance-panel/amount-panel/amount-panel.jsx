@@ -8,7 +8,6 @@ import {Col} from "react-bootstrap";
 import {Address} from "qtumcore-lib";
 import inkIcon28 from "../../../../images/ink-icon-28.png";
 import copyIcon from "../../../../images/copy-icon.png";
-// $FlowFixMe
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Translate} from "react-redux-i18n";
 import {openModal} from "../../../../actions/sent-transaction-action";

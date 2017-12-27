@@ -35,6 +35,8 @@
 
 .send-transition-modal .input-section input.address-input {
   padding-right: 60px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .send-transition-modal .input-address {

@@ -11,7 +11,6 @@ import type {LastTransaction} from "../../../services/transaction-mapper";
 import type {AmountState, State} from "../../../initial-state";
 import {Address} from "qtumcore-lib";
 import CurrencyIcon from "../../common/currency-icon";
-// $FlowFixMe
 import moment from "moment";
 
 type Props = {
@@ -42,7 +41,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
               {moment.unix(transaction.timestamp).format("YYYY.MM.DD HH:mm:ss")}
             </div>
             <div className={`amount-label ${transaction.isIn ? "in" : "out"}`}>
-              {`${(transaction.value > 0 ? transaction.value : -transaction.value)}
+              {`${transaction.value}
                 ${transaction.currencyName}`}
             </div>
           </div>

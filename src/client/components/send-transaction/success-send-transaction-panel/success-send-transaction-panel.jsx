@@ -7,8 +7,7 @@ import type {Dispatch} from "../../../types/redux";
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 import successLogo from "../../../images/success.png";
-// $FlowFixMe
-import ImageLoader from "react-load-image";
+import Image from "../../common/image/image";
 
 type Props = {
   dispatch: Dispatch,
@@ -26,7 +25,7 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
         <Modal.Body>
           <div className="create-title-panel reset">
             <div className="success-logo">
-              <ImageLoader
+              <Image
                 src={successLogo}
               />
             </div>
