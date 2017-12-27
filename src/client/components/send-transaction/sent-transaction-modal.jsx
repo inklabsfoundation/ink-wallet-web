@@ -37,9 +37,9 @@ type Props = {
   salt: string
 }
 
-let successImage: ?Image = null;
-
 class SendTransactionModal extends React.Component<Props> {
+  successImage: ?HTMLImageElement;
+
   constructor(props: Props) {
     super(props);
     (this: any).handleClose = this.handleClose.bind(this);
@@ -47,7 +47,7 @@ class SendTransactionModal extends React.Component<Props> {
     (this: any).handleDone = this.handleDone.bind(this);
     (this: any).handleSubmitPrepareSendTransaction = this.handleSubmitPrepareSendTransaction.bind(this);
     (this: any).handleSubmitConfirmSendTransaction = this.handleSubmitConfirmSendTransaction.bind(this);
-    successImage = preloadImage(successLogo);
+    this.successImage = preloadImage(successLogo);
   }
 
   componentDidMount() {
@@ -112,7 +112,7 @@ class SendTransactionModal extends React.Component<Props> {
         break;
       case STEPS.THIRD:
         stepPanel = (<SuccessSendTransactionPanel
-          successImage={successImage}
+          successImage={this.successImage}
           onClose={this.handleDone}/>);
         break;
     }

@@ -11,18 +11,12 @@ import {Button, Modal} from "react-bootstrap";
 type Props = {
   dispatch: Dispatch,
   onClose: Function,
-  successImage: ?Image
+  successImage: HTMLImageElement
 }
 
 class SuccessSendTransactionPanel extends React.Component<Props> {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    if (typeof window !== "undefined") {
-      this.refs.successImage.appendChild(this.props.successImage);
-    }
   }
 
   render() {
@@ -31,7 +25,7 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
         <Modal.Body>
           <div className="create-title-panel reset">
             <div className="success-logo">
-              <div ref="successImage"/>
+              <img src={this.props.successImage.src}/>
             </div>
             <div className="create-title">
               <Translate value="sendTransaction.successForm.succeed"/>

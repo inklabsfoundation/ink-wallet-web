@@ -20,12 +20,13 @@ type Props = {
   step: number
 }
 
-let successImage: ?Image = null;
 
 class RestoreWalletPanel extends React.Component<Props> {
+  successImage: ?HTMLImageElement;
+
   constructor(props: Props) {
     super(props);
-    successImage = preloadImage(successLogo);
+    this.successImage = preloadImage(successLogo);
   }
 
   componentDidMount(): void {
@@ -46,7 +47,7 @@ class RestoreWalletPanel extends React.Component<Props> {
         stepPanel = (<ResetPassword/>);
         break;
       case STEPS.THIRD:
-        stepPanel = (<RestoreSuccess successImage={successImage}/>);
+        stepPanel = (<RestoreSuccess successImage={this.successImage}/>);
         break;
     }
 

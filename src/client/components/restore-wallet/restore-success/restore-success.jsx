@@ -17,19 +17,13 @@ type Props = {
   mnemonic: Mnemonic,
   password: string,
   seed: Uint8Array,
-  successImage: ?Image
+  successImage: HTMLImageElement
 }
 
 class RestoreSuccess extends React.Component<Props> {
   constructor(props) {
     super(props);
     (this: any).handleClickNext = this.handleClickNext.bind(this);
-  }
-
-  componentDidMount() {
-    if (typeof window !== "undefined") {
-      this.refs.successImage.appendChild(this.props.successImage);
-    }
   }
 
   handleClickNext(): void {
@@ -44,7 +38,7 @@ class RestoreSuccess extends React.Component<Props> {
       <div>
         <div className="create-title-panel reset">
           <div className="success-logo">
-            <div ref="successImage"/>
+            <img src={this.props.successImage.src}/>
           </div>
           <div className="create-title">
             <Translate value="restoreWallet.restoreSuccessTitle"/>

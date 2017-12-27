@@ -2,10 +2,10 @@
 
 // @flow
 
-export const preloadImage = (url: string): ?Image => {
-  let image: ?Image = null;
+export const preloadImage = (url: string): ?HTMLImageElement => {
+  let image: ?HTMLImageElement = null;
   if (typeof window !== "undefined") {
-    image = new Image();
+    image = document.createElement("img");
     image.src = url;
   }
   return image;

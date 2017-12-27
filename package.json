@@ -70,6 +70,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "electrode-archetype-react-app-dev": "^4.0.0",
     "flow-bin": "^0.61.0",
     "pm2": "^2.9.0",
