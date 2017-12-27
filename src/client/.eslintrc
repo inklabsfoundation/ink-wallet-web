@@ -1,0 +1,10 @@
+---
+extends:
+  - "../../node_modules/electrode-archetype-react-app-dev/config/eslint/.eslintrc-react"
+globals:
+  window: true
+  document: true
+  ReactElement: false
+rules:
+  "no-unused-vars": "off"
+  "no-undef": "off"

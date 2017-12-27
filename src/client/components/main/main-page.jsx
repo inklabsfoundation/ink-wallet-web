@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {Grid} from "react-bootstrap";
 import NavPanel from "./nav-panel";
 import MainPagePanel from "./main-page-panel";
-import {requestQtumBalance, requestQtumTransactions} from "../../actions/amount-actions";
+import {requestWalletData} from "../../actions/amount-actions";
 
 type Props = {
   isLoggedIn: boolean;
@@ -17,8 +17,7 @@ type Props = {
 
 class MainPage extends React.Component<Props> {
   componentDidMount() {
-    this.props.dispatch(requestQtumBalance());
-    this.props.dispatch(requestQtumTransactions());
+    this.props.dispatch(requestWalletData());
   }
   render() {
     return (

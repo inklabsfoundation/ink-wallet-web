@@ -21,16 +21,15 @@ type Props = {
 class RecentTransactionsPanel extends React.Component<Props> {
   render() {
     const lastestRawTransactions: Array<LastTransaction> = mapLastTransactions(
-      this.props.amountState.QTUM.label,
-      this.props.address.toString(),
-      this.props.amountState.QTUM.txs);
+      this.props.amountState,
+      this.props.address.toString());
     const lastestTransactions = lastestRawTransactions.map((transaction: LastTransaction,
                                                             indx: number) => {
       return (
         <div key={indx} className="transaction-block">
           <div className="transaction-image">
             <div className="line-up"/>
-            <CurrencyIcon currencyName="QTUM"/>
+            <CurrencyIcon currencyName={transaction.currencyName}/>
             <div className="line-down"/>
           </div>
           <div className="transaction-info">

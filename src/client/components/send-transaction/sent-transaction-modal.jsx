@@ -18,7 +18,9 @@ import PrepareTransactionForm, {
 } from "./prepare-transaction-form/prepare-transaction-form";
 import ConfirmSendTransactionPanel from "./confirm-transaction-form/confirm-transaction-form";
 import SuccessSendTransactionPanel from "./success-send-transaction-panel/success-send-transaction-panel";
-import {requestQtumBalance, requestQtumTransactions} from "../../actions/amount-actions";
+import {requestWalletData} from "../../actions/amount-actions";
+import {preloadImage} from "../../services/image-preloader";
+import successLogo from "../../images/success.png";
 
 type Props = {
   dispatch: Dispatch,
@@ -35,6 +37,8 @@ type Props = {
   salt: string
 }
 
+let successImage: ?Image = null;
+
 class SendTransactionModal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -43,6 +47,7 @@ class SendTransactionModal extends React.Component<Props> {
     (this: any).handleDone = this.handleDone.bind(this);
     (this: any).handleSubmitPrepareSendTransaction = this.handleSubmitPrepareSendTransaction.bind(this);
     (this: any).handleSubmitConfirmSendTransaction = this.handleSubmitConfirmSendTransaction.bind(this);
+    successImage = preloadImage(successLogo);
   }
 
   componentDidMount() {
@@ -57,8 +62,7 @@ class SendTransactionModal extends React.Component<Props> {
 
   handleDone() {
     this.handleClose();
-    this.props.dispatch(requestQtumBalance());
-    this.props.dispatch(requestQtumTransactions());
+    this.props.dispatch(requestWalletData());
   }
 
   handleOpen() {
@@ -107,7 +111,9 @@ class SendTransactionModal extends React.Component<Props> {
         );
         break;
       case STEPS.THIRD:
-        stepPanel = (<SuccessSendTransactionPanel onClose={this.handleDone}/>);
+        stepPanel = (<SuccessSendTransactionPanel
+          successImage={successImage}
+          onClose={this.handleDone}/>);
         break;
     }
 

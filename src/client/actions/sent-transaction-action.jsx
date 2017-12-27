@@ -4,7 +4,7 @@ import {Transaction} from "qtumcore-lib";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
-import {requestQtumBalance, requestQtumTransactions} from "./amount-actions";
+import {requestWalletData} from "./amount-actions";
 import type {SendTransactionState} from "../initial-state";
 
 export const STEPS = {
@@ -133,8 +133,7 @@ const sentTransactionSuccess = (): ThunkAction => {
     dispatch(confirmConfirmModal());
     // eslint-disable-next-line no-undef
     setTimeout(() => {
-      dispatch(requestQtumBalance());
-      dispatch(requestQtumTransactions());
+      dispatch(requestWalletData());
     }, REFRESH_OFFSET);
     return {
       type: "SENT_TRANSACTION_SUCCESS"
@@ -174,7 +173,7 @@ export const sentTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch(() => {
+    }).catch((error) => {
       dispatch(sentTransactionFail());
     });
   };
