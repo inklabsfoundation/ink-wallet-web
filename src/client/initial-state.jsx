@@ -19,6 +19,10 @@ export type ConfigState = {
   INKcontractAddress: string
 }
 
+export type ReceiveState = {
+  isModalOpen: boolean
+}
+
 export type SendTransactionState = {
   tokenType: string,
   toAddress: string,
@@ -82,7 +86,8 @@ export type State = {
   i18n: I18n,
   +amountState: AmountState,
   +config: ConfigState,
-  +sendTransactionState: SendTransactionState
+  +sendTransactionState: SendTransactionState,
+  +receiveState: ReceiveState
 }
 
 export const initialState: State = {
@@ -146,6 +151,9 @@ export const initialState: State = {
     isSucceed: false,
     isTransactionIsSending: false,
     step: 0
+  },
+  receiveState: {
+    isModalOpen: false
   },
   config: {
     derivePath: "",

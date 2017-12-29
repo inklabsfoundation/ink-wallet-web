@@ -12,6 +12,8 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import {Translate} from "react-redux-i18n";
 import {openModal} from "../../../../actions/sent-transaction-action";
 import SendTransactionModal from "../../../send-transaction/sent-transaction-modal";
+import ReceiveModal from "../../../receive/receive-modal";
+import {openReceiveModal} from "../../../../actions/receive-actions";
 
 type Props = {
   qtumAmount: WalletAmount,
@@ -24,10 +26,15 @@ class AmountPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     (this: any).handleClickSendTransaction = this.handleClickSendTransaction.bind(this);
+    (this: any).handleClickReceive = this.handleClickReceive.bind(this);
   }
 
   handleClickSendTransaction() {
     this.props.dispatch(openModal());
+  }
+
+  handleClickReceive() {
+    this.props.dispatch(openReceiveModal());
   }
 
   render() {
@@ -54,11 +61,12 @@ class AmountPanel extends React.Component<Props> {
           <a onClick={this.handleClickSendTransaction} className="primary-red-btn amount-btn">
             <Translate value="mainPage.sendBtn"/>
           </a>
-          <a className="primary-white-btn bordered amount-btn">
+          <a onClick={this.handleClickReceive} className="primary-white-btn bordered amount-btn">
             <Translate value="mainPage.receiveBtn"/>
           </a>
         </div>
         <SendTransactionModal/>
+        <ReceiveModal/>
       </Col>
     );
   }

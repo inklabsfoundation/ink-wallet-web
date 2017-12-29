@@ -89,6 +89,12 @@ export const dictionary = {
         doneBtn: "Done"
       }
     },
+    receive: {
+      modalTitle: "Send",
+      qrDescription: "Scan the QR code or copy and share your wallet address to receive tokens in your wallet.",
+      addressLabel: "Your wallet address",
+      copyBtn: "Copy address"
+    },
     restoreWallet: {
       title: "Restore",
       inputYourMnemonics: "Please input your mnemonics",
