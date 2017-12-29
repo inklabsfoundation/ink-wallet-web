@@ -31,6 +31,31 @@ export const amountState = (store: AmountState = initialState.amountState,
           isAmountFetching: false
         }
       };
+    case "REQUEST_INK_BALANCE_FAIL_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
+          isAmountFetching: true
+        }
+      };
+    case "REQUEST_INK_BALANCE_FETCHING_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
+          isAmountFetching: true
+        }
+      };
+    case "REQUEST_INK_BALANCE_SUCCESS_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
+          balance: action.balance,
+          isAmountFetching: false
+        }
+      };
     case "REQUEST_QTUM_TRANSACTIONS_FAIL_ACTION":
       return {
         ...store,
@@ -52,6 +77,31 @@ export const amountState = (store: AmountState = initialState.amountState,
         ...store,
         QTUM: {
           ...store.QTUM,
+          txs: action.txs,
+          areTxsFetching: false
+        }
+      };
+    case "REQUEST_INK_TRANSACTIONS_FAIL_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
+          areTxsFetching: true
+        }
+      };
+    case "REQUEST_INK_TRANSACTIONS_FETCHING_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
+          areTxsFetching: true
+        }
+      };
+    case "REQUEST_INK_TRANSACTIONS_SUCCESS_ACTION":
+      return {
+        ...store,
+        INK: {
+          ...store.INK,
           txs: action.txs,
           areTxsFetching: false
         }

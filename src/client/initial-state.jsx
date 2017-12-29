@@ -15,15 +15,18 @@ export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
   qtumExplorerPath: string,
-  encryptSolt: string
+  encryptSalt: string,
+  INKcontractAddress: string
 }
 
-export type SentTransactionState = {
+export type SendTransactionState = {
   tokenType: string,
   toAddress: string,
   amount: number,
   description: string,
   fee: number,
+  isRecommendedFeeFetching: boolean,
+  recommendedFee: number,
   isModalOpen: boolean,
   conformationalPassword: string,
   rawUtxos: ?Array<Transaction.UnspentOutput>,
@@ -34,19 +37,21 @@ export type SentTransactionState = {
 }
 
 export const SUPPORTED_CURRENCIES = {
-  QTUM: "QTUM"
+  QTUM: "QTUM",
+  INK: "INK"
 };
 
 export type WalletAmount = {
   balance: number,
-  label: "Qtum",
+  label: string,
   isAmountFetching: boolean,
   areTxsFetching: boolean,
   txs: Array<Object>
 }
 
 export type AmountState = {
-  QTUM: WalletAmount
+  QTUM: WalletAmount,
+  INK: WalletAmount
 }
 
 export type CreationState = {
@@ -77,7 +82,7 @@ export type State = {
   i18n: I18n,
   +amountState: AmountState,
   +config: ConfigState,
-  +sendTransactionState: SentTransactionState
+  +sendTransactionState: SendTransactionState
 }
 
 export const initialState: State = {
@@ -117,6 +122,13 @@ export const initialState: State = {
       isAmountFetching: false,
       areTxsFetching: false,
       txs: []
+    },
+    INK: {
+      balance: 0,
+      label: "Ink",
+      isAmountFetching: false,
+      areTxsFetching: false,
+      txs: []
     }
   },
   sendTransactionState: {
@@ -125,6 +137,8 @@ export const initialState: State = {
     amount: 0,
     description: "",
     fee: 0,
+    isRecommendedFeeFetching: false,
+    recommendedFee: 0,
     isModalOpen: false,
     conformationalPassword: "",
     rawUtxos: [],
@@ -137,6 +151,7 @@ export const initialState: State = {
     derivePath: "",
     defaultLocale: "",
     qtumExplorerPath: "",
-    encryptSolt: ""
+    encryptSalt: "",
+    INKcontractAddress: ""
   }
 };

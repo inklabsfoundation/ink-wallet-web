@@ -8,8 +8,8 @@ import {config} from "electrode-confippet";
 const defaultLocale = config.$("settings.defaultLocale");
 const derivePath = config.$("settings.derivePath");
 const qtumExplorerPath = config.$("settings.qtumExplorerPath");
-const encryptSolt = config.$("settings.encryptSolt");
-
+const encryptSalt = config.$("settings.encryptSalt");
+const INKcontractAddress = config.$("settings.INKcontractAddress");
 
 const Promise = require("bluebird");
 
@@ -18,7 +18,8 @@ function createReduxStore(req, match) { // eslint-disable-line
     defaultLocale,
     derivePath,
     qtumExplorerPath,
-    encryptSolt
+    encryptSalt,
+    INKcontractAddress
   };
   const store = Internalizator.configureIn18n(
     configureStore(initialState),

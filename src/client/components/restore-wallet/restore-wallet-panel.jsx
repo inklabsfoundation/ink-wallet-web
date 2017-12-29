@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // @flow
 import * as React from "react";
 import {wrapWithWindow} from "../common/windowed";
@@ -10,13 +11,24 @@ import {resetCreation, STEPS} from "../../actions/creation-actions";
 import SetMnemonics from "./set-mnemonics/set-mnemonics";
 import RestoreSuccess from "./restore-success/restore-success";
 import ResetPassword from "./reset-password/reset-password";
+import {preloadImage} from "../../services/image-preloader";
+import successLogo from "../../images/success.png";
+
 
 type Props = {
   dispatch: Dispatch,
   step: number
 }
 
+
 class RestoreWalletPanel extends React.Component<Props> {
+  successImage: ?HTMLImageElement;
+
+  constructor(props: Props) {
+    super(props);
+    this.successImage = preloadImage(successLogo);
+  }
+
   componentDidMount(): void {
     this.props.dispatch(resetCreation());
   }
@@ -35,7 +47,7 @@ class RestoreWalletPanel extends React.Component<Props> {
         stepPanel = (<ResetPassword/>);
         break;
       case STEPS.THIRD:
-        stepPanel = (<RestoreSuccess/>);
+        stepPanel = (<RestoreSuccess successImage={this.successImage}/>);
         break;
     }
 

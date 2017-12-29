@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -9,7 +10,8 @@ import {Button, Modal} from "react-bootstrap";
 
 type Props = {
   dispatch: Dispatch,
-  onClose: Function
+  onClose: Function,
+  successImage: HTMLImageElement
 }
 
 class SuccessSendTransactionPanel extends React.Component<Props> {
@@ -21,18 +23,30 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
     return (
       <div>
         <Modal.Body>
-          123
+          <div className="create-title-panel reset">
+            <div className="success-logo">
+              <img src={this.props.successImage.src}/>
+            </div>
+            <div className="create-title">
+              <Translate value="sendTransaction.successForm.succeed"/>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => this.props.onClose()}>Done</Button>
+          <Button className="confirm-button primary-red-btn"
+                  onClick={() => this.props.onClose()}>
+            <Translate value="sendTransaction.successForm.doneBtn"/>
+          </Button>
         </Modal.Footer>
       </div>
     );
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const mapStateToProps = (state: State): Object => {
   return {};
 };
 
+// eslint-disable-next-line max-len
 export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SuccessSendTransactionPanel);

@@ -1,17 +1,19 @@
 // @flow
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import {Transaction} from "qtumcore-lib";
-import {SHA256} from "crypto-js";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
-import {requestQtumBalance, requestQtumTransactions} from "./amount-actions";
+import {requestWalletData} from "./amount-actions";
+import type {SendTransactionState} from "../initial-state";
 
 export const STEPS = {
   FIRST: 0,
   SECOND: 1,
   THIRD: 2
 };
+
+const REFRESH_OFFSET = 3000;
 
 type OpenModalAction = {
   type: "OPEN_MODAL",
@@ -51,18 +53,37 @@ type SentTransactionFetchingAction = {
 }
 
 type ConfirmPrepareModalAction = {
-  type: "CONFIRM_PREPARE_MODAL"
+  type: "CONFIRM_PREPARE_MODAL",
+  tokenType: string,
+  toAddress: string,
+  amount: number,
+  description: string,
+  fee: number,
 }
 
 type ConfirmConfirmModalAction = {
   type: "CONFIRM_CONFIRM_MODAL"
 }
 
+type RequestRecommendedFeeFetchingAction = {
+  type: "REQUEST_RECOMMENDED_FEE_FETCHING"
+}
+
+type RequestRecommendedFeeSuccessAction = {
+  type: "REQUEST_RECOMMENDED_FEE_SUCCESS",
+  recommendedFee: number
+}
+
+type RequestRecommendedFeeFailAction = {
+  type: "REQUEST_RECOMMENDED_FEE_FAIL"
+}
+
 export type SendTransactionAction = OpenModalAction | CloseModalAction
   | RequestUTXOSuccessAction | RequestUTXOFailAction | RequestUTXOFetchingAction
   | ResetModalAction | ConfirmPrepareModalAction | ConfirmConfirmModalAction
-  | SentTransactionSuccessAction | SentTransactionFailAction | SentTransactionFetchingAction;
-
+  | SentTransactionSuccessAction | SentTransactionFailAction | SentTransactionFetchingAction
+  | RequestRecommendedFeeFetchingAction | RequestRecommendedFeeSuccessAction
+  | RequestRecommendedFeeFailAction;
 
 export const openModal = (): OpenModalAction => {
   return {
@@ -82,29 +103,38 @@ export const resetModal = (): ResetModalAction => {
   };
 };
 
-export const confirmPrepareModalAction = (): ConfirmPrepareModalAction => {
+// eslint-disable-next-line max-params
+export const confirmPrepareModal = (tokenType: string,
+                                          toAddress: string,
+                                          amount: number,
+                                          description: string,
+                                          fee: number): ConfirmPrepareModalAction => {
   return {
-    type: "CONFIRM_PREPARE_MODAL"
+    type: "CONFIRM_PREPARE_MODAL",
+    tokenType,
+    toAddress,
+    amount,
+    description,
+    fee
   };
 };
 
-export const confirmConfirmModalAction = (): ConfirmConfirmModalAction => {
+export const confirmConfirmModal = (): ConfirmConfirmModalAction => {
   return {
     type: "CONFIRM_CONFIRM_MODAL"
   };
 };
 
-export const confirmSuccessModalAction = (): void => {
+export const confirmSuccessModa = (): void => {
 };
 
 const sentTransactionSuccess = (): ThunkAction => {
   return (dispatch: Dispatch) => {
-    dispatch(requestQtumBalance());
-    dispatch(requestQtumTransactions());
-    setTimeout(()=> {
-      dispatch(requestQtumBalance());
-      dispatch(requestQtumTransactions());
-    }, 2000);
+    dispatch(confirmConfirmModal());
+    // eslint-disable-next-line no-undef
+    setTimeout(() => {
+      dispatch(requestWalletData());
+    }, REFRESH_OFFSET);
     return {
       type: "SENT_TRANSACTION_SUCCESS"
     };
@@ -124,27 +154,27 @@ const sentTransactionFetching = (): SentTransactionFetchingAction => {
   };
 };
 
-export const sentTransaction = (toAddress: string, value: number, data: string): ThunkAction => {
+export const sentTransaction = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
+    const transactionState: SendTransactionState = getState().sendTransactionState;
     dispatch(sentTransactionFetching());
     const address = getState().loginState.address;
     const transaction: Transaction = new Transaction()
-      .from(getState().sendTransactionState.rawUtxos)
-      .to(toAddress, value * SATOSHI_COUNT)
+      .from(transactionState.rawUtxos)
+      .to(
+        transactionState.toAddress,
+        transactionState.amount * SATOSHI_COUNT)
       .change(address)
-      .addData(data)
-      .fee(0.005 * SATOSHI_COUNT)
+      .addData(transactionState.description)
+      .fee(transactionState.fee * SATOSHI_COUNT)
       .sign(getState().loginState.prKey);
     const rawTransaction: string = transaction.serialize(true);
     axios.post(`${getState().config.qtumExplorerPath}/tx/send`, {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-      dispatch(resetModal());
-      dispatch(closeModal());
     }).catch((error) => {
       dispatch(sentTransactionFail());
-      console.log(error.data);
     });
   };
 };
@@ -187,4 +217,37 @@ export const requestUtxos = (): ThunkAction => {
   };
 };
 
+const requestRecommendedFeeFail = (): RequestRecommendedFeeFailAction => {
+  return {
+    type: "REQUEST_RECOMMENDED_FEE_FAIL"
+  };
+};
+
+const requestRecommendedFeeFetching = (): RequestRecommendedFeeFetchingAction => {
+  return {
+    type: "REQUEST_RECOMMENDED_FEE_FETCHING"
+  };
+};
+
+// eslint-disable-next-line max-len
+const requestRecommendedFeeSuccess = (recommendedFee: number): RequestRecommendedFeeSuccessAction => {
+  return {
+    type: "REQUEST_RECOMMENDED_FEE_SUCCESS",
+    recommendedFee
+  };
+};
+
+export const requestRecomendedFee = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(requestRecommendedFeeFetching());
+    axios.get(`${getState().config.qtumExplorerPath}/utils/estimatefee`)
+      .then((response: $AxiosXHR<Object>) => {
+        // eslint-disable-next-line no-magic-numbers
+        dispatch(requestRecommendedFeeSuccess(response.data[2]));
+      })
+      .catch(() => {
+        dispatch(requestRecommendedFeeFail());
+      });
+  };
+};
 

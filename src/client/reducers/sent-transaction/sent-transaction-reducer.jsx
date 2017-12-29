@@ -1,11 +1,11 @@
 /* eslint-disable max-len,complexity */
 // @flow
-import type {SentTransactionState} from "../../initial-state";
+import type {SendTransactionState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {SendTransactionAction} from "../../actions/sent-transaction-action";
 
-export const sendTransactionState = (store: SentTransactionState = initialState.sendTransactionState,
-                                     action: SendTransactionAction): SentTransactionState => {
+export const sendTransactionState = (store: SendTransactionState = initialState.sendTransactionState,
+                                     action: SendTransactionAction): SendTransactionState => {
   switch (action.type) {
     case "OPEN_MODAL":
       return {
@@ -42,7 +42,12 @@ export const sendTransactionState = (store: SentTransactionState = initialState.
     case "CONFIRM_PREPARE_MODAL": {
       return {
         ...store,
-        step: 1
+        step: 1,
+        tokenType: action.tokenType,
+        toAddress: action.toAddress,
+        amount: action.amount,
+        description: action.description,
+        fee: action.fee
       };
     }
     case "REQUEST_UTXOs_FETCHING": {
@@ -80,6 +85,25 @@ export const sendTransactionState = (store: SentTransactionState = initialState.
       return {
         ...store,
         isTransactionIsSending: true
+      };
+    }
+    case "REQUEST_RECOMMENDED_FEE_FETCHING": {
+      return {
+        ...store,
+        isRecommendedFeeFetching: true
+      };
+    }
+    case "REQUEST_RECOMMENDED_FEE_FAIL": {
+      return {
+        ...store,
+        isRecommendedFeeFetching: true
+      };
+    }
+    case "REQUEST_RECOMMENDED_FEE_SUCCESS": {
+      return {
+        ...store,
+        recommendedFee: action.recommendedFee,
+        isRecommendedFeeFetching: true
       };
     }
     default:

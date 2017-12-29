@@ -7,7 +7,6 @@ import type {Dispatch} from "../../../types/redux";
 import Mnemonic from "bitcore-mnemonic";
 // $FlowFixMe
 import {connect} from "react-redux";
-import successLogo from "../../../images/success.png";
 import {tryToLogin} from "../../../actions/login-actions";
 import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
@@ -17,7 +16,8 @@ type Props = {
   dispatch: Dispatch,
   mnemonic: Mnemonic,
   password: string,
-  seed: Uint8Array
+  seed: Uint8Array,
+  successImage: HTMLImageElement
 }
 
 class RestoreSuccess extends React.Component<Props> {
@@ -38,7 +38,7 @@ class RestoreSuccess extends React.Component<Props> {
       <div>
         <div className="create-title-panel reset">
           <div className="success-logo">
-            <img src={successLogo}/>
+            <img src={this.props.successImage.src}/>
           </div>
           <div className="create-title">
             <Translate value="restoreWallet.restoreSuccessTitle"/>

@@ -13,27 +13,21 @@ type Props = {
 
 class CurrenciesListPanel extends React.Component<Props> {
   render() {
-    const currenciesList = [];
-    Object.keys(this.props.amountState).forEach((key: string) => {
-      currenciesList.push((
-        <div className="currency-item" key={key}>
+    return (
+      <Col className="currencies-panel" xs={12}>
+        <div className="currency-item">
           <div>
-            <CurrencyIcon currencyName={key}/>
+            <CurrencyIcon currencyName="QTUM"/>
           </div>
           <div className="currency-data">
             <div className="currency-name">
-              {this.props.amountState[key].label}
+              {this.props.amountState.QTUM.label}
             </div>
             <div className="currency-balance">
-              {this.props.amountState[key].balance}
+              {this.props.amountState.QTUM.balance}
             </div>
           </div>
         </div>
-      ));
-    });
-    return (
-      <Col className="currencies-panel" xs={12}>
-        {currenciesList}
       </Col>
     );
   }

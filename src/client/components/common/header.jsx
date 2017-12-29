@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // @flow
 import * as React from "react";
-import {MenuItem, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 // $FlowFixMe
 import {connect} from "react-redux";
 import type {State} from "../../initial-state";
@@ -13,22 +13,36 @@ import Internalizator from "../../services/internalizator";
 import {LANG_LABELS} from "../../locale/dictionary";
 import {setLocale} from "react-redux-i18n";
 import type {Dispatch} from "../../types/redux";
+import {tryToLogout} from "../../actions/login-actions";
 
 
 type Props = {
   i18n: Object,
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  isLoggedId: boolean
 }
 
 class Header extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     (this: any).setLang = this.setLang.bind(this);
+    (this: any).handleClickLogout = this.handleClickLogout.bind(this);
+    if (typeof window !== "undefined") {
+      window.onbeforeunload = this.closeIt;
+    }
+  }
+
+  closeIt() {
+    return "You have unsaved changes!";
   }
 
   setLang(lang: string): void {
     localStorage.setItem("locale", lang);
     this.props.dispatch(setLocale(lang));
+  }
+
+  handleClickLogout(): void {
+    this.props.dispatch(tryToLogout());
   }
 
   render() {
@@ -52,6 +66,11 @@ class Header extends React.Component<Props> {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
+            {this.props.isLoggedId &&
+              <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
+                  Logout
+                </NavItem>
+            }
             <NavDropdown eventKey={1} title={Internalizator.getLangLabel(this.props.i18n.locale)}
                          className="lang-dropdown"
                          id="lang-dropdown">
@@ -66,7 +85,8 @@ class Header extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    i18n: state.i18n
+    i18n: state.i18n,
+    isLoggedId: state.loginState.isLoggedIn
   };
 };
 

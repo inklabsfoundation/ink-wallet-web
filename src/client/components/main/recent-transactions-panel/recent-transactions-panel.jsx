@@ -11,7 +11,6 @@ import type {LastTransaction} from "../../../services/transaction-mapper";
 import type {AmountState, State} from "../../../initial-state";
 import {Address} from "qtumcore-lib";
 import CurrencyIcon from "../../common/currency-icon";
-// $FlowFixMe
 import moment from "moment";
 
 type Props = {
@@ -22,16 +21,15 @@ type Props = {
 class RecentTransactionsPanel extends React.Component<Props> {
   render() {
     const lastestRawTransactions: Array<LastTransaction> = mapLastTransactions(
-      this.props.amountState.QTUM.label,
-      this.props.address.toString(),
-      this.props.amountState.QTUM.txs);
+      this.props.amountState,
+      this.props.address.toString());
     const lastestTransactions = lastestRawTransactions.map((transaction: LastTransaction,
                                                             indx: number) => {
       return (
         <div key={indx} className="transaction-block">
           <div className="transaction-image">
             <div className="line-up"/>
-            <CurrencyIcon currencyName="QTUM"/>
+            <CurrencyIcon currencyName={transaction.currencyName}/>
             <div className="line-down"/>
           </div>
           <div className="transaction-info">
@@ -42,7 +40,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
               {moment.unix(transaction.timestamp).format("YYYY.MM.DD HH:mm:ss")}
             </div>
             <div className={`amount-label ${transaction.isIn ? "in" : "out"}`}>
-              {`${(transaction.value > 0 ? transaction.value : -transaction.value)}
+              {`${transaction.value}
                 ${transaction.currencyName}`}
             </div>
           </div>

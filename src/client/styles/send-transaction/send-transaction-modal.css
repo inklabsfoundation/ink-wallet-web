@@ -6,12 +6,15 @@
   border-top: 0;
   display: flex;
   justify-content: center;
+  padding-top: 0;
+  padding-bottom: 5px;
 }
 
 .send-transition-modal .input-section {
   padding-bottom: 20px;
   float: left;
 }
+
 .send-transition-modal .input-section label,
 .send-transition-modal .input-section input {
   display: block;
@@ -24,14 +27,365 @@
 }
 
 .send-transition-modal .input-section input {
+  min-height: 40px;
+  min-width: 370px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.send-transition-modal .input-section input.address-input {
+  padding-right: 60px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.send-transition-modal .input-address {
+  position: relative;
+  width: 370px;
+}
+
+.send-transition-modal .input-address .copy {
+  min-height: 40px;
+  min-width: 50px;
+  border-left: 1px solid #999;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.input-address .copy-inner {
+  padding-top: 5px;
+  padding-left: 11px;
+}
+
+.send-transition-modal .input-address .placeholder {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: #999;
+  font-size: 12px;
+}
+
+.send-transition-modal .input-section textarea,
+.send-transition-modal .input-section input {
   background-color: #FFF;
   color: #666;
   border: 1px solid #9999;
+}
+
+.send-transition-modal .input-section textarea:focus,
+.send-transition-modal .input-section input:focus {
+  outline: 0;
+}
+
+.send-transition-modal .input-section textarea {
+  min-height: 50px;
+  min-width: 525px;
+  resize: none;
+}
+
+.send-transition-modal .modal-body {
+  padding-left: 27px;
+  padding-top: 20px;
+  padding-bottom: 0;
+}
+
+.token-dropdown .token {
+  border-radius: 0;
+  border-color: #999;
+  min-width: 130px;
   min-height: 40px;
-  min-width: 370px;
+  color: #333;
+  font-size: 12px;
+  text-align: left;
+  background-color: #FFF;
+}
+
+.token.dropdown-toggle .caret {
+  float: right;
+  margin-top: 6px;
+  color: #999;
+}
+
+.token-dropdown .dropdown-menu {
+  min-width: 130px;
+}
+
+.available-amount-offset {
+  margin-left: 80px;
+}
+
+.available-amount-block {
+  padding-left: 5px;
+}
+
+.available-amount-wrapper {
+  display: flex;
+  padding-top: 37px;
+}
+
+.error-block-wrapper {
+  padding-top: 40px;
+}
+
+.available-amount-element {
+  text-align: left;
+  color: #999;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.token-dropdown .dropdown-toggle.btn-default:focus,
+.token-dropdown .dropdown-toggle.btn-default:hover {
+  color: #333;
+  background-color: #FFF;
+  border-color: #999;
+}
+
+.token-dropdown .open > .dropdown-menu {
+  border-radius: 0;
+}
+
+.send-modal-header .modal-title {
+  font-size: 20px;
+}
+
+.send-modal-header.modal-header {
+  padding: 35px 20px 20px 27px
+}
+
+.send-modal-header.modal-header .close {
+  margin-top: -25px;
+  color: #999;
+  font-weight: 200;
+  font-size: 35px;
 }
 
 .send-transition-modal .container {
   padding: 0;
 }
 
+.send-transition-modal .slider-wrapper {
+  width: 320px;
+  height: 45px;
+  padding-top: 13px;
+  background-color: #EEE;
+  display: flex;
+  color: #666
+}
+
+.send-transition-modal .active.slider-wrapper {
+  background-color: #FFF;
+  color: #333
+}
+
+.send-transition-modal .slider-wrapper .slow-label {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.send-transition-modal .slider-wrapper .slider {
+  width: 195px;
+  padding-top: 5px;
+}
+
+.send-transition-modal .slider-wrapper .quick-label {
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.send-transition-modal .rc-slider-rail {
+  background-color: #999;
+  height: 1px;
+}
+
+.send-transition-modal .rc-slider-disabled .rc-slider-handle {
+  background-color: #999;
+  border-color: #999;
+  margin-top: -6px;
+}
+
+.send-transition-modal .rc-slider-track {
+  background-color: #999;
+  height: 1px;
+}
+
+.send-transition-modal .active.slider-wrapper .rc-slider-handle {
+  background-color: #FFF;
+  border-color: #4a5ddd;
+  margin-top: -6px;
+}
+
+.send-transition-modal .column-wrapper {
+  padding-left: 0;
+}
+
+.send-transition-modal .radio {
+  vertical-align: top;
+  width: 8px;
+  height: 8px;
+  margin: 0 3px 0 0;
+}
+
+.send-transition-modal .radio + label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.send-transition-modal .radio:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+
+.send-transition-modal .radio:not(checked) + label {
+  position: relative;
+  padding: 0 0 0 20px;
+  color: #999;
+  display: flex;
+}
+
+.send-transition-modal .radio:checked + label {
+  color: #333;
+  display: flex;
+}
+
+.send-transition-modal .radio:not(checked) + label:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 1px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #4a5ddd;
+  border-radius: 50%;
+  background: #FFF;
+}
+
+.send-transition-modal .radio:not(checked) + label:after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4a5ddd;
+  opacity: 0;
+  transition: all .2s;
+}
+
+.send-transition-modal .radio:checked + label:after {
+  opacity: 1;
+}
+
+.fee-radio-wrapper {
+  display: flex;
+}
+
+.radio-label {
+  width: 60px;
+}
+
+.fee-value {
+  width: 150px;
+  text-align: right;
+}
+
+.confirm-button {
+  border-radius: 0;
+  outline: none;
+}
+
+.btn.btn-default.confirm-button:hover,
+.btn.btn-default.confirm-button:focus{
+  background: #4a5ddd;
+  border-color: #4a5ddd;
+  outline: none;
+  color: #fff;
+}
+
+.send-transition-modal .error-block {
+  display: flex;
+  padding-left: 20px;
+}
+
+.send-transition-modal .error-block .error-label {
+  font-size: 12px;
+  padding-top: 4px;
+}
+
+.send-transition-modal .error-block .error-image {
+  padding-right: 5px;
+}
+
+.send-transition-modal .input-section-wrapper {
+  display: flex;
+}
+
+.confirm-transaction-row {
+  padding-top: 25px;
+  padding-left: 6px;
+}
+
+.confirm-transaction-row:first-child {
+  padding-top: 0;
+}
+
+.confirm-transaction-row .label {
+  color: #666;
+  font-size: 16px;
+  text-align: left;
+}
+
+.confirm-transaction-row .data {
+  color: #333;
+  font-size: 18px;
+}
+
+.confirm-transaction-password-row {
+  padding-bottom: 25px;
+}
+
+.confirm-transaction-password-row .label {
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+}
+
+.confirm-transaction-input-password-row {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px
+}
+
+
+.confirm-transaction-input-password-row .password-input-block {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.confirm-transaction-input-password-row .password-input-block .input {
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.send-transition-modal .modal-body.password-body {
+  padding-top: 0;
+}
+
+.send-transition-modal .password-body .error-block-wrapper {
+  padding-top: 15px;
+  min-height: 35px;
+}
+
+.send-transition-modal .success-logo {
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+
+.send-transition-modal .create-title {
+  font-size: 20px;
+  margin-bottom: 150px;
+}
