@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 // @flow
 
 export const preloadImage = (url: string): ?HTMLImageElement => {

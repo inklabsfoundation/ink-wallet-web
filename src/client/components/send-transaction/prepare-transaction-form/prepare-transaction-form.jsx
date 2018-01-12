@@ -16,7 +16,6 @@ import "rc-slider/assets/index.css";
 import {Address} from "@evercode-lab/qtumcore-lib";
 import {SUPPORTED_CURRENCIES} from "../../../initial-state";
 
-
 type Props = {
   dispatch: Dispatch,
   handleSubmit: Function,
@@ -28,7 +27,8 @@ type Props = {
   fields: Object,
   recommendedFee: number,
   tokenRecommendedFee: number,
-  inkAmount: number
+  inkAmount: number,
+  token: string
 }
 
 const FEE_ORDER_OFFSET = 6;
@@ -68,11 +68,12 @@ export const errorBlock = (props: ErrorLabelProps) => (
 );
 
 const validate = (values: Object, props: Object) => {
-  const recommendedFee = values.token === SUPPORTED_CURRENCIES.QTUM ?
+  const isQtumSelected : boolean = values.token === SUPPORTED_CURRENCIES.QTUM;
+  const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
-  const amount = values.token === SUPPORTED_CURRENCIES.QTUM ?
+  const amount = isQtumSelected ?
     props.qtumAmount : props.inkAmount;
-  const errors = {};
+  const errors: Object = {};
   if (!values.to) {
     errors.to = "sendTransaction.prepareForm.errors.emptyAddress";
   } else if (!Address.isValid(values.to)) {
@@ -83,8 +84,8 @@ const validate = (values: Object, props: Object) => {
   } else if (isNaN(+values.amount)) {
     errors.amount = "sendTransaction.prepareForm.errors.invalidAmount";
   } else {
-    const fee = values.isStandart === "1"
-      ? (values.token === SUPPORTED_CURRENCIES.QTUM ? STANDART_FEE : STANDART_TOKEN_FEE)
+    const fee: number = values.isStandart === "1"
+      ? (isQtumSelected ? STANDART_FEE : STANDART_TOKEN_FEE)
       : selectFeeValue(recommendedFee, +values.feeCoef);
     if (amount < ((+values.amount) + (+fee))) {
       errors.amount = "sendTransaction.prepareForm.errors.amountLow";
@@ -155,9 +156,10 @@ const renderTokenDropdown = (props) => (
 );
 
 let PrepareTransactionForm = (props: Props) => {
-  const recommendedFee = props.token === SUPPORTED_CURRENCIES.QTUM ?
+  const isQtumSelected : boolean = props.token === SUPPORTED_CURRENCIES.QTUM;
+  const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
-  const amount = props.token === SUPPORTED_CURRENCIES.QTUM ?
+  const amount: number = isQtumSelected ?
     props.qtumAmount : props.inkAmount;
   return (
     <form onSubmit={props.handleSubmit}>

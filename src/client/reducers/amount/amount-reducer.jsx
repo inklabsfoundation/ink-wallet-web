@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 // @flow
 import type {AmountState} from "../../initial-state";
 import {initialState} from "../../initial-state";

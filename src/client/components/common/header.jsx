@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // @flow
 import * as React from "react";
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";

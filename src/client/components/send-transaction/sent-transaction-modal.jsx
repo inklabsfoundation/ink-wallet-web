@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -70,7 +69,7 @@ class SendTransactionModal extends React.Component<Props> {
   }
 
   handleSubmitPrepareSendTransaction(values: Object) {
-    const recommendedFee = values.token === SUPPORTED_CURRENCIES.QTUM ?
+    const recommendedFee: number = values.token === SUPPORTED_CURRENCIES.QTUM ?
       this.props.recommendedFee : this.props.tokenRecommendedFee;
     const fee: number = values.isStandart === "1"
       ? STANDART_FEE

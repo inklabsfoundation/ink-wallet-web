@@ -14,9 +14,8 @@ module.exports = function (composer, options, compose) {
   const tmp = base.partials["_extract-style"];
   tmp.enable = false;
   base.partials["custom-style"] = {order: tmp.order};
-
   const production = composer.profiles._production;
-  const tmpUglify = production.partials["_uglify"];
+  const tmpUglify = production.partials._uglify;
   tmpUglify.enable = false;
   production.partials["custom-uglify"] = {order: tmpUglify.order};
 

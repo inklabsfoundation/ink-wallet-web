@@ -55,9 +55,9 @@
 .receive-address-block {
   margin-right: 60px;
   margin-left: 60px;
+  margin-bottom: 80px;
   min-height: 100px;
   background-color: #EEE;
-  margin-bottom: 80px;
   color: #333333;
   text-align: center;
 }

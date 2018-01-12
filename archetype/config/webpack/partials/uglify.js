@@ -1,7 +1,5 @@
 "use strict";
-
-const optimize = require("webpack").optimize;
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = function() {
   // Allow env var to disable minifcation for inspectpack usage.

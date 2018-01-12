@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -19,7 +18,6 @@ type Props = {
 }
 
 class ReceiveModal extends React.Component<Props> {
-
   constructor(props: Props) {
     super(props);
     (this: any).handleClose = this.handleClose.bind(this);
