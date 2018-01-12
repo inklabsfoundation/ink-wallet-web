@@ -1,11 +1,14 @@
 // @flow
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
-import {Transaction} from "qtumcore-lib";
+import qtumcore, {Transaction, Address} from "@evercode-lab/qtumcore-lib";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
 import {requestWalletData} from "./amount-actions";
 import type {SendTransactionState} from "../initial-state";
+import {SUPPORTED_CURRENCIES} from "../initial-state";
+import CryptoHandler from "../services/crypto-handler";
+import * as _ from "lodash";
 
 export const STEPS = {
   FIRST: 0,
@@ -38,6 +41,11 @@ type RequestUTXOFailAction = {
 
 type RequestUTXOFetchingAction = {
   type: "REQUEST_UTXOs_FETCHING"
+}
+
+type SetStakingBalanceAction = {
+  type: "SET_STAKING_BALANCE",
+  stakingBalance: number
 }
 
 type SentTransactionSuccessAction = {
@@ -83,13 +91,7 @@ export type SendTransactionAction = OpenModalAction | CloseModalAction
   | ResetModalAction | ConfirmPrepareModalAction | ConfirmConfirmModalAction
   | SentTransactionSuccessAction | SentTransactionFailAction | SentTransactionFetchingAction
   | RequestRecommendedFeeFetchingAction | RequestRecommendedFeeSuccessAction
-  | RequestRecommendedFeeFailAction;
-
-export const openModal = (): OpenModalAction => {
-  return {
-    type: "OPEN_MODAL"
-  };
-};
+  | RequestRecommendedFeeFailAction | SetStakingBalanceAction;
 
 export const closeModal = (): CloseModalAction => {
   return {
@@ -125,9 +127,6 @@ export const confirmConfirmModal = (): ConfirmConfirmModalAction => {
   };
 };
 
-export const confirmSuccessModa = (): void => {
-};
-
 const sentTransactionSuccess = (): ThunkAction => {
   return (dispatch: Dispatch) => {
     dispatch(confirmConfirmModal());
@@ -135,9 +134,7 @@ const sentTransactionSuccess = (): ThunkAction => {
     setTimeout(() => {
       dispatch(requestWalletData());
     }, REFRESH_OFFSET);
-    return {
-      type: "SENT_TRANSACTION_SUCCESS"
-    };
+    dispatch({type: "SENT_TRANSACTION_SUCCESS"});
   };
 };
 
@@ -154,11 +151,11 @@ const sentTransactionFetching = (): SentTransactionFetchingAction => {
   };
 };
 
-export const sentTransaction = (): ThunkAction => {
+const sentQtumTransaction = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     const transactionState: SendTransactionState = getState().sendTransactionState;
     dispatch(sentTransactionFetching());
-    const address = getState().loginState.address;
+    const address: Address = getState().loginState.address;
     const transaction: Transaction = new Transaction()
       .from(transactionState.rawUtxos)
       .to(
@@ -176,6 +173,43 @@ export const sentTransaction = (): ThunkAction => {
     }).catch((error) => {
       dispatch(sentTransactionFail());
     });
+  };
+};
+
+const sentInkTransaction = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const transactionState: SendTransactionState = getState().sendTransactionState;
+    dispatch(sentTransactionFetching());
+    const address: Address = getState().loginState.address;
+    const asm: string = CryptoHandler.generateInkTransferContractAsm(
+      transactionState.toAddress.toString(),
+      transactionState.amount
+    );
+    const transaction: Transaction = new Transaction()
+      .from(transactionState.rawUtxos)
+      .to(address, 0)
+      .change(address)
+      .addData(transactionState.description);
+    transaction.outputs[0].setScript(qtumcore.Script.fromASM(asm));
+    transaction.fee(transactionState.fee * SATOSHI_COUNT);
+    transaction.sign(getState().loginState.prKey);
+    const rawTransaction: string = transaction.serialize(true);
+    axios.post(`${getState().config.qtumExplorerPath}/tx/send`, {
+      rawtx: rawTransaction
+    }).then(() => {
+      dispatch(sentTransactionSuccess());
+    }).catch((error) => {
+      dispatch(sentTransactionFail());
+    });
+  };
+};
+
+export const sentTransaction = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    // eslint-disable-next-line no-unused-expressions
+    getState().sendTransactionState.tokenType === SUPPORTED_CURRENCIES.QTUM
+      ? dispatch(sentQtumTransaction())
+      : dispatch(sentInkTransaction());
   };
 };
 
@@ -200,13 +234,28 @@ const requestUTXOFetching = (): RequestUTXOFetchingAction => {
   };
 };
 
+const setStakingBalance = (balance: number): SetStakingBalanceAction => {
+  return {
+    type: "SET_STAKING_BALANCE",
+    stakingBalance: balance
+  };
+};
+
 export const requestUtxos = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestUTXOFetching());
     const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/utxo`)
       .then((response: $AxiosXHR<Array<Object>>) => {
-        const utxos: Array<Transaction.UnspentOutput> = response.data.map((utxo: Object) => {
+        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => utxo.isStake);
+        let stakingAmount = 0;
+        stakingUtxos.forEach((utxo: Object) => {
+          stakingAmount += utxo.amount;
+        });
+        dispatch(setStakingBalance(stakingAmount));
+        // eslint-disable-next-line max-len
+        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => !utxo.isStake);
+        const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object) => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));
@@ -248,6 +297,14 @@ export const requestRecomendedFee = (): ThunkAction => {
       .catch(() => {
         dispatch(requestRecommendedFeeFail());
       });
+  };
+};
+
+export const openModal = (): ThunkAction => {
+  return (dispatch: Dispatch) => {
+    dispatch(requestUtxos());
+    dispatch(requestRecomendedFee());
+    dispatch({type: "OPEN_MODAL"});
   };
 };
 

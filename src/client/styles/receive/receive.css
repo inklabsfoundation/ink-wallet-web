@@ -1,0 +1,74 @@
+.receive-modal .modal-dialog {
+  width: 670px;
+}
+
+.receive-modal .modal-footer {
+  border-top: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+
+.receive-modal .modal-body {
+  padding: 0;
+}
+
+.receive-modal-header .modal-title {
+  font-size: 20px;
+}
+
+.receive-modal-header.modal-header {
+  padding: 35px 20px 20px 27px
+}
+
+.receive-modal-header.modal-header .close {
+  margin-top: -25px;
+  color: #999;
+  font-weight: 200;
+  font-size: 35px;
+}
+
+.receive-modal .container {
+  padding: 0;
+}
+
+.receive-modal .qr-code-wrapper {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.receive-modal .qr-code-container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.receive-qr-desc {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  font-size: 13px;
+  color: #333;
+}
+
+.receive-address-block {
+  margin-right: 60px;
+  margin-left: 60px;
+  margin-bottom: 80px;
+  min-height: 100px;
+  background-color: #EEE;
+  color: #333333;
+  text-align: center;
+}
+
+.receive-address-block .receive-address-desc {
+  padding-top: 25px;
+  font-size: 12px;
+}
+
+.receive-address-block .receive-address {
+  padding-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -8,3 +8,4 @@ globals:
 rules:
   "no-unused-vars": "off"
   "no-undef": "off"
+  "max-len": "off"

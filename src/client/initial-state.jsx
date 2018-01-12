@@ -1,6 +1,6 @@
 // @flow
 import Mnemonic from "bitcore-mnemonic";
-import {HDPrivateKey, PrivateKey, Address, PublicKey, Transaction} from "qtumcore-lib";
+import {HDPrivateKey, PrivateKey, Address, PublicKey, Transaction} from "@evercode-lab/qtumcore-lib";
 
 export type LoginState = {
   isLoggedIn: boolean;
@@ -19,14 +19,20 @@ export type ConfigState = {
   INKcontractAddress: string
 }
 
+export type ReceiveState = {
+  isModalOpen: boolean
+}
+
 export type SendTransactionState = {
   tokenType: string,
   toAddress: string,
   amount: number,
   description: string,
   fee: number,
+  stakingBalance: number,
   isRecommendedFeeFetching: boolean,
   recommendedFee: number,
+  tokenRecommendedFee: number,
   isModalOpen: boolean,
   conformationalPassword: string,
   rawUtxos: ?Array<Transaction.UnspentOutput>,
@@ -82,7 +88,8 @@ export type State = {
   i18n: I18n,
   +amountState: AmountState,
   +config: ConfigState,
-  +sendTransactionState: SendTransactionState
+  +sendTransactionState: SendTransactionState,
+  +receiveState: ReceiveState
 }
 
 export const initialState: State = {
@@ -139,13 +146,18 @@ export const initialState: State = {
     fee: 0,
     isRecommendedFeeFetching: false,
     recommendedFee: 0,
+    tokenRecommendedFee: 0.08,
     isModalOpen: false,
     conformationalPassword: "",
     rawUtxos: [],
+    stakingBalance: 0,
     areRawUtxosFetching: false,
     isSucceed: false,
     isTransactionIsSending: false,
     step: 0
+  },
+  receiveState: {
+    isModalOpen: false
   },
   config: {
     derivePath: "",

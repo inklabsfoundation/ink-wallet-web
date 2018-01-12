@@ -1,5 +1,5 @@
-// flow-typed signature: 4fd4de47627c46066f40bfaf82550b14
-// flow-typed version: da30fe6876/bluebird_v3.x.x/flow_>=v0.47.x
+// flow-typed signature: df358db676cf0e2268b09694d5a49186
+// flow-typed version: ca3d99cb5f/bluebird_v3.x.x/flow_>=v0.47.x
 
 type Bluebird$RangeError = Error;
 type Bluebird$CancellationErrors = Error;
@@ -173,7 +173,7 @@ declare class Bluebird$Promise<+R> extends Promise<R> {
   ): (...args: any) => Bluebird$Promise<T>;
 
   static cast<T>(value: $Promisable<T>): Bluebird$Promise<T>;
-  static bind(ctx: any): Bluebird$Promise<void>;
+  // static bind(ctx: any): Bluebird$Promise<void>;
   static is(value: any): boolean;
   static longStackTraces(): void;
 
@@ -239,7 +239,7 @@ declare class Bluebird$Promise<+R> extends Promise<R> {
   timeout(ms: number, message?: string): Bluebird$Promise<R>;
   cancel(): void;
 
-  bind(ctx: any): Bluebird$Promise<R>;
+  // bind(ctx: any): Bluebird$Promise<R>;
   call(propertyName: string, ...args: Array<any>): Bluebird$Promise<any>;
   throw(reason: Error): Bluebird$Promise<R>;
   thenThrow(reason: Error): Bluebird$Promise<R>;

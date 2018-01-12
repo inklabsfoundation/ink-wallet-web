@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";

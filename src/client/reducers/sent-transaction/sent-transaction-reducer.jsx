@@ -1,4 +1,4 @@
-/* eslint-disable max-len,complexity */
+/* eslint-disable complexity */
 // @flow
 import type {SendTransactionState} from "../../initial-state";
 import {initialState} from "../../initial-state";
@@ -67,6 +67,12 @@ export const sendTransactionState = (store: SendTransactionState = initialState.
         ...store,
         areRawUtxosFetching: false,
         rawUtxos: action.utxos
+      };
+    }
+    case "SET_STAKING_BALANCE": {
+      return {
+        ...store,
+        stakingBalance: action.stakingBalance
       };
     }
     case "SENT_TRANSACTION_FAIL": {

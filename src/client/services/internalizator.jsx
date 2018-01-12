@@ -1,4 +1,3 @@
-/* eslint-disable max-len,no-undef */
 //@flow
 import {loadTranslations, setLocale, syncTranslationWithStore} from "react-redux-i18n";
 import {dictionary, LANG_LABELS} from "../locale/dictionary";

@@ -9,7 +9,7 @@ import recentIcon from "../../../images/recent-icon.png";
 import {mapLastTransactions} from "../../../services/transaction-mapper";
 import type {LastTransaction} from "../../../services/transaction-mapper";
 import type {AmountState, State} from "../../../initial-state";
-import {Address} from "qtumcore-lib";
+import {Address} from "@evercode-lab/qtumcore-lib";
 import CurrencyIcon from "../../common/currency-icon";
 import moment from "moment";
 

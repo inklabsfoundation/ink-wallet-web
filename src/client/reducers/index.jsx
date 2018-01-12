@@ -6,6 +6,7 @@ import {loginState} from "./login/login-reducer";
 import {amountState} from "./amount/amount-reducer";
 import {reducer as formReducer} from "redux-form";
 import {sendTransactionState} from "./sent-transaction/sent-transaction-reducer";
+import {receiveState} from "./receive/receive-reducer";
 
 export default combineReducers({
   i18n: i18nReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   amountState,
   config,
   form: formReducer,
-  sendTransactionState
+  sendTransactionState,
+  receiveState
 });

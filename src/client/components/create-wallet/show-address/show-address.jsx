@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
 import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
-import {Address} from "qtumcore-lib";
+import {Address} from "@evercode-lab/qtumcore-lib";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {

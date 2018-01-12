@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -21,6 +20,7 @@ import SuccessSendTransactionPanel from "./success-send-transaction-panel/succes
 import {requestWalletData} from "../../actions/amount-actions";
 import {preloadImage} from "../../services/image-preloader";
 import successLogo from "../../images/success.png";
+import {SUPPORTED_CURRENCIES} from "../../initial-state";
 
 type Props = {
   dispatch: Dispatch,
@@ -28,13 +28,15 @@ type Props = {
   isModalOpen: boolean,
   qtumAmount: number,
   recommendedFee: number,
+  tokenRecommendedFee: number,
   tokenType: string,
   address: string,
   amount: number,
   fee: number,
   description: string,
   passwordHash: string,
-  salt: string
+  salt: string,
+  inkAmount: number
 }
 
 class SendTransactionModal extends React.Component<Props> {
@@ -50,11 +52,6 @@ class SendTransactionModal extends React.Component<Props> {
     this.successImage = preloadImage(successLogo);
   }
 
-  componentDidMount() {
-    this.props.dispatch(requestUtxos());
-    this.props.dispatch(requestRecomendedFee());
-  }
-
   handleClose() {
     this.props.dispatch(closeModal());
     this.props.dispatch(resetModal());
@@ -66,16 +63,20 @@ class SendTransactionModal extends React.Component<Props> {
   }
 
   handleOpen() {
+    this.props.dispatch(requestUtxos());
+    this.props.dispatch(requestRecomendedFee());
     this.props.dispatch(openModal());
   }
 
   handleSubmitPrepareSendTransaction(values: Object) {
+    const recommendedFee: number = values.token === SUPPORTED_CURRENCIES.QTUM ?
+      this.props.recommendedFee : this.props.tokenRecommendedFee;
     const fee: number = values.isStandart === "1"
       ? STANDART_FEE
-      : selectFeeValue(this.props.recommendedFee, +values.feeCoef);
+      : selectFeeValue(recommendedFee, +values.feeCoef);
     this.props.dispatch(
       confirmPrepareModal(
-        "QTUM",
+        values.token,
         values.to,
         values.amount,
         values.desc,
@@ -92,9 +93,12 @@ class SendTransactionModal extends React.Component<Props> {
     switch (this.props.step) {
       case STEPS.FIRST:
         // eslint-disable-next-line react/jsx-handler-names
-        stepPanel = (<PrepareTransactionForm qtumAmount={this.props.qtumAmount}
-                                             recommendedFee={this.props.recommendedFee}
-                                             onSubmit={this.handleSubmitPrepareSendTransaction}/>
+        stepPanel = (
+          <PrepareTransactionForm qtumAmount={this.props.qtumAmount}
+                                  inkAmount={this.props.inkAmount}
+                                  recommendedFee={this.props.recommendedFee}
+                                  tokenRecommendedFee={this.props.tokenRecommendedFee}
+                                  onSubmit={this.handleSubmitPrepareSendTransaction}/>
         );
         break;
       case STEPS.SECOND:
@@ -137,13 +141,15 @@ const mapStateToProps = (state: State): Object => {
     isModalOpen: state.sendTransactionState.isModalOpen,
     qtumAmount: state.amountState.QTUM.balance,
     recommendedFee: state.sendTransactionState.recommendedFee,
+    tokenRecommendedFee: state.sendTransactionState.tokenRecommendedFee,
     tokenType: state.sendTransactionState.tokenType,
     address: state.sendTransactionState.toAddress,
     amount: state.sendTransactionState.amount,
     fee: state.sendTransactionState.fee,
     description: state.sendTransactionState.description,
     passwordHash: state.loginState.passwordHash,
-    salt: state.config.encryptSalt
+    salt: state.config.encryptSalt,
+    inkAmount: state.amountState.INK.balance
   };
 };
 

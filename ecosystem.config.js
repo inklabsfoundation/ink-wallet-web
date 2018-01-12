@@ -15,7 +15,7 @@ module.exports = {
     stage: {
       user: "deployer",
       host: "92.53.66.193",
-      ref: "origin/feature/INK-token",
+      ref: "origin/feature/transfer-tokens",
       repo: "git@github.com:EvercodeLab/qtum-web.git",
       path: "/var/www/qtum",
       "post-deploy": "yarn install --production=false && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production",
