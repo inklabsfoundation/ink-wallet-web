@@ -79,6 +79,7 @@
     "flow-bin": "^0.61.0",
     "pm2": "^2.9.0",
     "slack-node": "^0.1.8",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "xclap": "^0.2.17",
     "xclap-cli": "^0.1.3"
   }
