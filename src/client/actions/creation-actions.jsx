@@ -3,7 +3,7 @@
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import * as _ from "lodash";
 import Mnemonic from "bitcore-mnemonic";
-import {HDPrivateKey, PrivateKey, Networks, Address} from "qtumcore-lib";
+import {HDPrivateKey, PrivateKey, Networks, Address} from "@evercode-lab/qtumcore-lib";
 
 export const STEPS = {
   FIRST: 1,

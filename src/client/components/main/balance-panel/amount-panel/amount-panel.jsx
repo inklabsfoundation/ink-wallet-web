@@ -5,7 +5,7 @@ import type {Dispatch} from "../../../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {Col} from "react-bootstrap";
-import {Address} from "qtumcore-lib";
+import {Address} from "@evercode-lab/qtumcore-lib";
 import inkIcon28 from "../../../../images/ink-icon-28.png";
 import copyIcon from "../../../../images/copy-icon.png";
 import CopyToClipboard from "react-copy-to-clipboard";

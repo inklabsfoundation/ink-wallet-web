@@ -1,7 +1,7 @@
 /* eslint-disable max-params,new-cap */
 // @flow
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
-import {HDPrivateKey, Networks, Address, PublicKey, PrivateKey} from "qtumcore-lib";
+import {HDPrivateKey, Networks, Address, PublicKey, PrivateKey} from "@evercode-lab/qtumcore-lib";
 import {SHA256} from "crypto-js";
 
 type LoginAction = {

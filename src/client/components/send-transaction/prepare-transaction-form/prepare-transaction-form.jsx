@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-handler-names,react/prop-types */
+/* eslint-disable react/jsx-handler-names,react/prop-types,no-nested-ternary */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -13,7 +13,8 @@ import alertIcon from "../../../images/alert-notice.png";
 import Slider from "rc-slider";
 // $FlowFixMe
 import "rc-slider/assets/index.css";
-import {Address} from "qtumcore-lib";
+import {Address} from "@evercode-lab/qtumcore-lib";
+import {SUPPORTED_CURRENCIES} from "../../../initial-state";
 
 
 type Props = {
@@ -25,7 +26,9 @@ type Props = {
   to: string,
   submitting: boolean,
   fields: Object,
-  recommendedFee: number
+  recommendedFee: number,
+  tokenRecommendedFee: number,
+  inkAmount: number
 }
 
 const FEE_ORDER_OFFSET = 6;
@@ -38,6 +41,7 @@ export const selectFeeValue = (feeConst: number, feeCoef: number): number => {
 };
 
 export const STANDART_FEE: number = 0.1;
+export const STANDART_TOKEN_FEE: number = 0.1;
 
 type SliderProps = {
   disabled: boolean,
@@ -64,6 +68,10 @@ export const errorBlock = (props: ErrorLabelProps) => (
 );
 
 const validate = (values: Object, props: Object) => {
+  const recommendedFee = values.token === SUPPORTED_CURRENCIES.QTUM ?
+    props.recommendedFee : props.tokenRecommendedFee;
+  const amount = values.token === SUPPORTED_CURRENCIES.QTUM ?
+    props.qtumAmount : props.inkAmount;
   const errors = {};
   if (!values.to) {
     errors.to = "sendTransaction.prepareForm.errors.emptyAddress";
@@ -76,9 +84,9 @@ const validate = (values: Object, props: Object) => {
     errors.amount = "sendTransaction.prepareForm.errors.invalidAmount";
   } else {
     const fee = values.isStandart === "1"
-      ? STANDART_FEE
-      : selectFeeValue(props.recommendedFee, +values.feeCoef);
-    if (props.qtumAmount < ((+values.amount) + (+fee))) {
+      ? (values.token === SUPPORTED_CURRENCIES.QTUM ? STANDART_FEE : STANDART_TOKEN_FEE)
+      : selectFeeValue(recommendedFee, +values.feeCoef);
+    if (amount < ((+values.amount) + (+fee))) {
       errors.amount = "sendTransaction.prepareForm.errors.amountLow";
     }
   }
@@ -130,7 +138,27 @@ const renderAmount = ({input, meta: {touched, error}}) => (
   </div>
 );
 
+const renderTokenDropdown = (props) => (
+  <DropdownButton className="token" title={props.input.value} name="token"
+                  {...props.input} id="token-type">
+    <MenuItem
+      eventKey="1"
+      onClick={() => props.input.onChange(SUPPORTED_CURRENCIES.QTUM)}>
+      Qtum
+    </MenuItem>
+    <MenuItem
+      eventKey="2"
+      onClick={() => props.input.onChange(SUPPORTED_CURRENCIES.INK)}>
+      Ink
+    </MenuItem>
+  </DropdownButton>
+);
+
 let PrepareTransactionForm = (props: Props) => {
+  const recommendedFee = props.token === SUPPORTED_CURRENCIES.QTUM ?
+    props.recommendedFee : props.tokenRecommendedFee;
+  const amount = props.token === SUPPORTED_CURRENCIES.QTUM ?
+    props.qtumAmount : props.inkAmount;
   return (
     <form onSubmit={props.handleSubmit}>
       <Modal.Body>
@@ -140,15 +168,13 @@ let PrepareTransactionForm = (props: Props) => {
               <Translate value="sendTransaction.prepareForm.token"/>
             </label>
             <ButtonToolbar className="token-dropdown">
-              <DropdownButton className="token" name="token" title="Qtum" id="token-type">
-                <MenuItem eventKey="1">Qtum</MenuItem>
-              </DropdownButton>
+              <Field name="token" component={renderTokenDropdown}/>
             </ButtonToolbar>
           </Col>
           <Col xs={9} className="available-amount-block">
             <div className="available-amount-wrapper">
               <div className="available-amount-element">
-                <Translate value="sendTransaction.prepareForm.availableAmount"/> {props.qtumAmount}
+                <Translate value="sendTransaction.prepareForm.availableAmount"/> {amount}
               </div>
             </div>
           </Col>
@@ -206,7 +232,7 @@ let PrepareTransactionForm = (props: Props) => {
                   <Translate value="sendTransaction.prepareForm.fee.custom"/>
                 </div>
                 <div className="fee-value">
-                  {selectFeeValue(props.recommendedFee, props.feeCoef)} Qtum
+                  {selectFeeValue(recommendedFee, props.feeCoef)} Qtum
                 </div>
               </label>
             </Col>
@@ -244,11 +270,13 @@ PrepareTransactionForm = connect(state => {
   const isStandart = selector(state, "isStandart");
   return {
     initialValues: {
-      isStandart: "1"
+      isStandart: "1",
+      token: SUPPORTED_CURRENCIES.INK
     },
     isStandart: isStandart === "1",
     feeCoef: selector(state, "feeCoef"),
-    to: selector(state, "to")
+    to: selector(state, "to"),
+    token: selector(state, "token")
   };
 })(PrepareTransactionForm);
 

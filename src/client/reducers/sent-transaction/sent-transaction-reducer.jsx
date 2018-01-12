@@ -69,6 +69,12 @@ export const sendTransactionState = (store: SendTransactionState = initialState.
         rawUtxos: action.utxos
       };
     }
+    case "SET_STAKING_BALANCE": {
+      return {
+        ...store,
+        stakingBalance: action.stakingBalance
+      };
+    }
     case "SENT_TRANSACTION_FAIL": {
       return {
         ...store,
