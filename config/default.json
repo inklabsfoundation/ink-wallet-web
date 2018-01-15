@@ -7,6 +7,7 @@
     "derivePath": "m/88'/0'/1'",
     "qtumExplorerPath": "https://explorer.qtum.org/insight-api",
     "encryptSalt": "qtum-wallet",
-    "INKcontractAddress": "QjnsK9sSa8QhJbvTRYEHXapT8M9JHhSLqY"
+    "INKcontractAddress": "QjnsK9sSa8QhJbvTRYEHXapT8M9JHhSLqY",
+    "refreshTime": 30000
   }
 }
