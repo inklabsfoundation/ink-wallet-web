@@ -11,8 +11,8 @@ import MainPagePanel from "./main-page-panel";
 import {requestWalletData} from "../../actions/amount-actions";
 
 type Props = {
-  isLoggedIn: boolean;
-  dispatch: Dispatch;
+  isLoggedIn: boolean,
+  dispatch: Dispatch,
   refreshTime: number
 }
 
