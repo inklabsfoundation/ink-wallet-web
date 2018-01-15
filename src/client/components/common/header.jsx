@@ -13,6 +13,10 @@ import {LANG_LABELS} from "../../locale/dictionary";
 import {setLocale} from "react-redux-i18n";
 import type {Dispatch} from "../../types/redux";
 import {tryToLogout} from "../../actions/login-actions";
+import {requestWalletData} from "../../actions/amount-actions";
+// $FlowFixMe
+import refreshIcon from "../../images/refresh-icon.png";
+import RotatingImage from "./rotating-image";
 
 
 type Props = {
@@ -26,6 +30,7 @@ class Header extends React.Component<Props> {
     super(props);
     (this: any).setLang = this.setLang.bind(this);
     (this: any).handleClickLogout = this.handleClickLogout.bind(this);
+    (this: any).handleClickRefresh = this.handleClickRefresh.bind(this);
     if (typeof window !== "undefined") {
       window.onbeforeunload = this.closeIt;
     }
@@ -42,6 +47,10 @@ class Header extends React.Component<Props> {
 
   handleClickLogout(): void {
     this.props.dispatch(tryToLogout());
+  }
+
+  handleClickRefresh(): void {
+    this.props.dispatch(requestWalletData());
   }
 
   render() {
@@ -65,6 +74,11 @@ class Header extends React.Component<Props> {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
+            {this.props.isLoggedId &&
+                <NavItem className="lang-dropdown" eventKey={3} onClick={this.handleClickRefresh}>
+                    <RotatingImage image={refreshIcon}/>
+                </NavItem>
+            }
             {this.props.isLoggedId &&
               <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
                   Logout

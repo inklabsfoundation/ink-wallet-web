@@ -16,6 +16,8 @@ export const STEPS = {
   THIRD: 2
 };
 
+const UTXO_STAKING_CONFIRMATIONS_LOCK = 501;
+
 const REFRESH_OFFSET = 3000;
 
 type OpenModalAction = {
@@ -107,10 +109,10 @@ export const resetModal = (): ResetModalAction => {
 
 // eslint-disable-next-line max-params
 export const confirmPrepareModal = (tokenType: string,
-                                          toAddress: string,
-                                          amount: number,
-                                          description: string,
-                                          fee: number): ConfirmPrepareModalAction => {
+                                    toAddress: string,
+                                    amount: number,
+                                    description: string,
+                                    fee: number): ConfirmPrepareModalAction => {
   return {
     type: "CONFIRM_PREPARE_MODAL",
     tokenType,
@@ -247,14 +249,18 @@ export const requestUtxos = (): ThunkAction => {
     const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/utxo`)
       .then((response: $AxiosXHR<Array<Object>>) => {
-        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => utxo.isStake);
+        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => {
+          return utxo.isStake && utxo.confirmations <= UTXO_STAKING_CONFIRMATIONS_LOCK;
+        });
         let stakingAmount = 0;
         stakingUtxos.forEach((utxo: Object) => {
           stakingAmount += utxo.amount;
         });
         dispatch(setStakingBalance(stakingAmount));
         // eslint-disable-next-line max-len
-        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => !utxo.isStake);
+        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => {
+          return !utxo.isStake || utxo.confirmations > UTXO_STAKING_CONFIRMATIONS_LOCK;
+        });
         const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object) => {
           return new Transaction.UnspentOutput(utxo);
         });

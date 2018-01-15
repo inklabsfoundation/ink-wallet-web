@@ -11,13 +11,17 @@ import MainPagePanel from "./main-page-panel";
 import {requestWalletData} from "../../actions/amount-actions";
 
 type Props = {
-  isLoggedIn: boolean;
-  dispatch: Dispatch;
+  isLoggedIn: boolean,
+  dispatch: Dispatch,
+  refreshTime: number
 }
 
 class MainPage extends React.Component<Props> {
   componentDidMount() {
     this.props.dispatch(requestWalletData());
+    setInterval(() => {
+      this.props.dispatch(requestWalletData());
+    }, this.props.refreshTime);
   }
   render() {
     return (
@@ -31,7 +35,8 @@ class MainPage extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    isLoggedIn: state.loginState.isLoggedIn
+    isLoggedIn: state.loginState.isLoggedIn,
+    refreshTime: state.config.refreshTime
   };
 };
 

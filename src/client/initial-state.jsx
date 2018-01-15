@@ -16,7 +16,8 @@ export type ConfigState = {
   derivePath: string,
   qtumExplorerPath: string,
   encryptSalt: string,
-  INKcontractAddress: string
+  INKcontractAddress: string,
+  refreshTime: number
 }
 
 export type ReceiveState = {
@@ -164,6 +165,7 @@ export const initialState: State = {
     defaultLocale: "",
     qtumExplorerPath: "",
     encryptSalt: "",
-    INKcontractAddress: ""
+    INKcontractAddress: "",
+    refreshTime: 0
   }
 };

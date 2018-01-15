@@ -10,6 +10,7 @@ const derivePath = config.$("settings.derivePath");
 const qtumExplorerPath = config.$("settings.qtumExplorerPath");
 const encryptSalt = config.$("settings.encryptSalt");
 const INKcontractAddress = config.$("settings.INKcontractAddress");
+const refreshTime = config.$("settings.refreshTime");
 
 const Promise = require("bluebird");
 
@@ -19,7 +20,8 @@ function createReduxStore(req, match) { // eslint-disable-line
     derivePath,
     qtumExplorerPath,
     encryptSalt,
-    INKcontractAddress
+    INKcontractAddress,
+    refreshTime
   };
   const store = Internalizator.configureIn18n(
     configureStore(initialState),
