@@ -14,6 +14,18 @@ export const dictionary = {
       receiveBtn: "Receive",
       recentTitle: "Recent"
     },
+    loginPage: {
+      title: "Login",
+      uploadFileBtn: "Upload My Wallet File",
+      uploadFileBtnUploaded: "Upload success",
+      inputPasswordLabel: "Please input your password",
+      confirmBtn: "Confirm",
+      restoreLink: "Restore by mnemonics",
+      errors: {
+       loginError: "Invalid file or password"
+      },
+      restoreDescLabel: "Click link above if you don't have wallet file, forgot PIN, log in on not frequently used device"
+    },
     createWallet: {
       errors: {
         notMatch: "Passwords doesn't match.",

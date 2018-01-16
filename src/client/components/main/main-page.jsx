@@ -16,13 +16,20 @@ type Props = {
   refreshTime: number
 }
 
+let refresh: number = 0;
+
 class MainPage extends React.Component<Props> {
   componentDidMount() {
     this.props.dispatch(requestWalletData());
-    setInterval(() => {
+    refresh = setInterval(() => {
       this.props.dispatch(requestWalletData());
     }, this.props.refreshTime);
   }
+
+  componentWillUnmount() {
+    clearInterval(refresh);
+  }
+
   render() {
     return (
       <Grid className="main-page">

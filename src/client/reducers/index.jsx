@@ -7,8 +7,11 @@ import {amountState} from "./amount/amount-reducer";
 import {reducer as formReducer} from "redux-form";
 import {sendTransactionState} from "./sent-transaction/sent-transaction-reducer";
 import {receiveState} from "./receive/receive-reducer";
+import {ROUTE_URLS} from "../routes";
+import {initialState} from "../initial-state";
+import {browserHistory} from "react-router";
 
-export default combineReducers({
+const appReducer = combineReducers({
   i18n: i18nReducer,
   creationState,
   loginState,
@@ -18,3 +21,21 @@ export default combineReducers({
   sendTransactionState,
   receiveState
 });
+
+export default (store, action) => {
+  switch (action.type) {
+    case "LOGOUT_ACTION":
+      if (typeof window !== "undefined") {
+        browserHistory.push(ROUTE_URLS.HOME_PAGE);
+      }
+      return {
+        ...store,
+        creationState: initialState.creationState,
+        loginState: initialState.loginState,
+        amountState: initialState.amountState,
+        sendTransactionState: initialState.sendTransactionState,
+        receiveState: initialState.receiveState
+      };
+  }
+  return appReducer(store, action);
+};

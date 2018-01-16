@@ -10,12 +10,14 @@ import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
 import {Link} from "react-router";
 import {tryToLogin} from "../../../actions/login-actions";
+import CryptoJS from "crypto-js";
 
 type Props = {
   dispatch: Dispatch,
   mnemonic: Mnemonic,
   seed: Uint8Array,
-  password: string
+  password: string,
+  derivePath: string
 }
 
 class ShowMnemonics extends React.Component<Props> {
@@ -32,6 +34,12 @@ class ShowMnemonics extends React.Component<Props> {
   }
 
   render() {
+    const backupObject = {
+      seed: Buffer.from(this.props.seed).toString("hex"),
+      derivePath: this.props.derivePath
+    };
+    const backupFile = CryptoJS.AES.encrypt(JSON.stringify(backupObject), this.props.password);
+    const backupDataStr = `data:application/octet-stream,${backupFile}`;
     return (
       <div>
         <div className="progress-panel">
@@ -55,7 +63,7 @@ class ShowMnemonics extends React.Component<Props> {
           </div>
         </div>
         <div className="show-mnemonics-btn-panel">
-          <a className="primary-red-btn">
+          <a className="primary-red-btn" href={backupDataStr} download="inkwallet.backup">
             <Translate value="createWallet.showMnemonicDownloadBtn"/>
           </a>
           <Link to={ROUTE_URLS.MAIN_PAGE}
@@ -72,7 +80,8 @@ const mapStateToProps = (state: State): Object => {
   return {
     mnemonic: state.creationState.mnemonic,
     password: state.creationState.password,
-    seed: state.creationState.seed
+    seed: state.creationState.seed,
+    derivePath: state.config.derivePath
   };
 };
 

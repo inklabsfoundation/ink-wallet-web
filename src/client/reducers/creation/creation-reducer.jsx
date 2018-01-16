@@ -26,12 +26,12 @@ export const creationState = (store: CreationState = initialState.creationState,
     case "SET_INPUT_PASSWORD_ACTION":
       return {
         ...store,
-        inputPassword: action.inputPassword
+        inputPassword: action.inputPassword.trim()
       };
     case "SET_INPUT_REPEAT_PASSWORD_ACTION":
       return {
         ...store,
-        inputRepeatPassword: action.inputRepeatPassword
+        inputRepeatPassword: action.inputRepeatPassword.trim()
       };
     case "SET_AGREED_ACTION":
       return {

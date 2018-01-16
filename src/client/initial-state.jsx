@@ -8,7 +8,11 @@ export type LoginState = {
   passwordHash: ?string,
   pubKey: ?PublicKey,
   prKey: ?PrivateKey,
-  address: Address
+  address: Address,
+  backupFile: ?File,
+  inputPassword: string,
+  invalidData: boolean,
+  isFileUploaded: boolean
 };
 
 export type ConfigState = {
@@ -100,7 +104,11 @@ export const initialState: State = {
     passwordHash: "",
     pubKey: {},
     prKey: {},
-    address: {}
+    address: {},
+    backupFile: null,
+    inputPassword: "",
+    isFileUploaded: false,
+    invalidData: false
   },
   creationState: {
     step: 1,
