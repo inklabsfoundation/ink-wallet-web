@@ -75,8 +75,7 @@ class LoginForm extends React.Component<Props> {
       <div>
         <Dropzone style={dropStyle} onDrop={this.onDrop}>
           <div className="upload-container">
-            <a onClick={this.handleClickUpload}
-               className="primary-red-btn btn-flex">
+            <a className="primary-red-btn btn-flex">
               {this.props.isFileUploaded
                 ? <Translate value="loginPage.uploadFileBtnUploaded"/>
                 : <Translate value="loginPage.uploadFileBtn"/>
