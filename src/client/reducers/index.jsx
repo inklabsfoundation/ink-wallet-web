@@ -10,6 +10,7 @@ import {receiveState} from "./receive/receive-reducer";
 import {ROUTE_URLS} from "../routes";
 import {initialState} from "../initial-state";
 import {browserHistory} from "react-router";
+import {securityCenterState} from "./security-center/security-center-reducer";
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
@@ -19,7 +20,8 @@ const appReducer = combineReducers({
   config,
   form: formReducer,
   sendTransactionState,
-  receiveState
+  receiveState,
+  securityCenterState
 });
 
 export default (store, action) => {
@@ -34,7 +36,8 @@ export default (store, action) => {
         loginState: initialState.loginState,
         amountState: initialState.amountState,
         sendTransactionState: initialState.sendTransactionState,
-        receiveState: initialState.receiveState
+        receiveState: initialState.receiveState,
+        securityCenterState: initialState.securityCenterState
       };
   }
   return appReducer(store, action);

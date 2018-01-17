@@ -34,7 +34,7 @@ class RestoreWalletPanel extends React.Component<Props> {
 
   componentDidUpdate(): void {
     if (this.props.isLoggedIn) {
-      browserHistory.push(ROUTE_URLS.MAIN_PAGE);
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
     }
   }
 

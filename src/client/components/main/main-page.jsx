@@ -13,7 +13,8 @@ import {requestWalletData} from "../../actions/amount-actions";
 type Props = {
   isLoggedIn: boolean,
   dispatch: Dispatch,
-  refreshTime: number
+  refreshTime: number,
+  children: React.Node
 }
 
 let refresh: number = 0;
@@ -34,7 +35,7 @@ class MainPage extends React.Component<Props> {
     return (
       <Grid className="main-page">
         <NavPanel/>
-        <MainPagePanel/>
+        {this.props.children}
       </Grid>
     );
   }

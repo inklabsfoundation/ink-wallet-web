@@ -3,9 +3,6 @@
 import type {LoginState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {AuthAction} from "../../actions/login-actions";
-import {ROUTE_URLS} from "../../routes";
-// $FlowFixMe
-import {browserHistory} from "react-router";
 
 export const loginState = (store: LoginState = initialState.loginState, action: AuthAction): LoginState => {
   switch (action.type) {
@@ -17,7 +14,8 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         passwordHash: action.passwordHash,
         pubKey: action.pubKey,
         prKey: action.prKey,
-        address: action.address
+        address: action.address,
+        mnemonic: action.mnemonic
       };
     case "INPUT_PASSWORD_ACTION": {
       return {

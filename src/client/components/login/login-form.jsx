@@ -91,7 +91,7 @@ class LoginForm extends React.Component<Props> {
           </div>
           <div className="password-input-block">
             <input type="password" onChange={this.handlePasswordInput}
-                   className={`input ${invalidData ? "error" : ""}`}/>
+                   className={`input center-input ${invalidData ? "error" : ""}`}/>
           </div>
           <div className="error-message-block">
             {invalidData &&

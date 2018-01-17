@@ -14,6 +14,27 @@ export const dictionary = {
       receiveBtn: "Receive",
       recentTitle: "Recent"
     },
+    securityCenter: {
+      pageHeading: "PLEASE DON'T TOUCH ANYTHING UNLESS YOU REALLY UNDERSTAND WHAT YOU ARE DOING",
+      panelHeading: "Backup",
+      panelSubHeading: "Input your password to backup",
+      displayBtn: "Display mnemonics",
+      downloadBackupBtn: "Download wallet file",
+      firstDescription: "You can get the backup of your mnemonics or wallet file here. It just like COPY YOU WALLET FILE, or TRANSCRIBE YOUR MNEMONICS.",
+      secondDescription: "Each backup is COMPLETELY SAME with the one you use to restore your wallet, and can be used to make your asset avaliable INDEPENDENTLY.",
+      thirdDescription: "You SHOULD NEVER share any backup with others. You should only backup for YOURSELF, and only on reliable devices, in safe situation.",
+      forthDescription: "MAKE SURE you know what you are doing before action.",
+      errorModal: {
+        title: "Password is incorrect",
+        doneBtn: "Done"
+      },
+      mnemonicsModal: {
+        title: "Your mnemonics is",
+        firstDescription: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
+        secondDescription: "We strongly suggest you write down this words in a paper and lock it in the proper place cannot be forgot.",
+        thirdDescription: "Save them in you computer would be convience, but if your hard-disk is dead you could lose all your assets."
+      }
+    },
     loginPage: {
       title: "Login",
       uploadFileBtn: "Upload My Wallet File",

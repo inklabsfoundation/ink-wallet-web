@@ -1,0 +1,91 @@
+.security-center .page-heading-wrapper {
+  border-bottom: 1px solid #DFDFDF;
+  display: flex;
+  justify-content: center;
+  padding: 20px 70px 30px 70px;
+}
+
+.security-center .page-heading-container {
+  width: 100%;
+  border: 1px solid #DFDFDF;
+  font-size: 18px;
+  font-weight: bold;
+  height: 60px;
+  padding: 17px 0;
+  text-align: center;
+}
+
+.security-center .page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.security-center .page-container {
+  width: 600px;
+}
+
+.security-center .page-container .heading-title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+.security-center .page-container .heading-subtitle {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom: 30px;
+}
+
+.security-center .page-container .form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.security-center .page-container .form-container {
+  width: 390px;
+}
+
+.security-center .page-container .button-block {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.security-center .page-container .desc-block {
+  padding-top: 30px;
+  font-size: 12px;
+  color: #999
+}
+
+.security-center .page-container .desc-block .desc {
+  margin-bottom: 15px;
+}
+
+.center-input {
+  text-align: center;
+}
+
+.mnemonics-title {
+  padding-top: 30px;
+  padding-bottom: 140px;
+  font-size: 20px;
+}
+
+.create-title-panel.img-panel {
+  margin-top: 60px;
+}
+
+.restore.create-title-panel.img-panel {
+  margin-top: 30px;
+}
+
+.mnemonic-field {
+  text-align: center;
+}
+
+.mnemonic-desc-advice {
+  padding-top: 15px;
+}

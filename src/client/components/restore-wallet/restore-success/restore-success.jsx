@@ -10,7 +10,7 @@ import {tryToLogin} from "../../../actions/login-actions";
 import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
 import {Link} from "react-router";
-import CryptoJS from "crypto-js";
+import CryptoHandler from "../../../services/crypto-handler";
 
 type Props = {
   dispatch: Dispatch,
@@ -30,17 +30,17 @@ class RestoreSuccess extends React.Component<Props> {
   handleClickNext(): void {
     this.props.dispatch(tryToLogin(
       this.props.seed,
-      this.props.password
+      this.props.password,
+      this.props.mnemonic
     ));
   }
 
   render() {
-    const backupObject = {
-      seed: Buffer.from(this.props.seed).toString("hex"),
-      derivePath: this.props.derivePath
-    };
-    const backupFile = CryptoJS.AES.encrypt(JSON.stringify(backupObject), this.props.password);
-    const backupDataStr = `data:application/octet-stream,${backupFile}`;
+    const backupDataStr = CryptoHandler.generateBackupFile(
+        this.props.derivePath,
+        this.props.password,
+        this.props.mnemonic
+    );
     return (
       <div>
         <div className="create-title-panel reset">
@@ -66,7 +66,7 @@ class RestoreSuccess extends React.Component<Props> {
           <a className="primary-red-btn" href={backupDataStr} download="inkwallet.backup">
             <Translate value="createWallet.showMnemonicDownloadBtn"/>
           </a>
-          <Link to={ROUTE_URLS.MAIN_PAGE}
+          <Link to={ROUTE_URLS.WALLET_PAGE}
                 onClick={this.handleClickNext} className="primary-white-btn bordered">
             <Translate value="createWallet.showMnemonicNextBtn"/>
           </Link>
