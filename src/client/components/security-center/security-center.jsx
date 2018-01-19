@@ -22,7 +22,7 @@ type Props = {
   seed: Uint8Array,
   derivePath: string,
   mnemonic: Mnemonic
-}
+};
 
 class SecurityCenter extends React.Component<Props> {
   successImage: ?HTMLImageElement;
@@ -35,7 +35,7 @@ class SecurityCenter extends React.Component<Props> {
     this.successImage = preloadImage(successLogo);
   }
 
-  handleClickDownload(e: SyntheticInputEvent<HTMLButtonElement>): void {
+  handleClickDownload(e: SyntheticInputEvent<HTMLButtonElement>) {
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, this.props.password, this.props.salt)) {
       e.preventDefault();
       this.refs.downloadBtn.href = "";
@@ -45,7 +45,7 @@ class SecurityCenter extends React.Component<Props> {
     }
   }
 
-  handleClickShow(e: SyntheticInputEvent<HTMLButtonElement>): void {
+  handleClickShow(e: SyntheticInputEvent<HTMLButtonElement>) {
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, this.props.password, this.props.salt)) {
       e.preventDefault();
       this.props.dispatch(openErrorModal());
@@ -54,14 +54,14 @@ class SecurityCenter extends React.Component<Props> {
     }
   }
 
-  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(setPasswordSecurity(e.currentTarget.value));
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, e.currentTarget.value, this.props.salt)) {
       this.refs.downloadBtn.href = "";
     }
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div className="security-center">
         <Col className="page-heading-wrapper" xs={10}>
@@ -128,4 +128,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SecurityCenter);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(SecurityCenter);

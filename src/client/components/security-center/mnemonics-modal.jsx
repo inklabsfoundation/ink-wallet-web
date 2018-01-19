@@ -17,7 +17,7 @@ type Props = {
   isMnemonicModalOpen: boolean,
   mnemonic: Mnemonic,
   img: HTMLImageElement
-}
+};
 
 class MnemonicModal extends React.Component<Props> {
   constructor(props: Props) {
@@ -25,11 +25,11 @@ class MnemonicModal extends React.Component<Props> {
     (this: any).handleClose = this.handleClose.bind(this);
   }
 
-  handleClose(): void {
+  handleClose() {
     this.props.dispatch(closeMnemonicModal());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <Modal className="receive-modal"
              show={this.props.isMnemonicModalOpen} onHide={this.handleClose}>
@@ -82,4 +82,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(MnemonicModal);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(MnemonicModal);

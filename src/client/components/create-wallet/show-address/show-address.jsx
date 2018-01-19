@@ -13,19 +13,19 @@ import {
 type Props = {
   dispatch: Dispatch,
   address: Address
-}
+};
 
 class ShowAddress extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     (this: any).handleClickNext = this.handleClickNext.bind(this);
   }
 
-  handleClickNext(): void {
+  handleClickNext() {
     this.props.dispatch(commitAddress());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div>
         <div className="progress-panel">
@@ -65,4 +65,4 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(ShowAddress);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(ShowAddress);

@@ -7,55 +7,55 @@ import {SATOSHI_COUNT, TOKENS_COUNT} from "../types/consts";
 
 type RequestQtumBalanceFetchingAction = {
   type: "REQUEST_QTUM_BALANCE_FETCHING_ACTION"
-}
+};
 
 type RequestQtumBalanceSuccessAction = {
   type: "REQUEST_QTUM_BALANCE_SUCCESS_ACTION",
   balance: number
-}
+};
 
 type RequestQtumBalanceFailAction = {
   type: "REQUEST_QTUM_BALANCE_FAIL_ACTION"
-}
+};
 
 type RequestQtumTransactionsFetchingAction = {
   type: "REQUEST_QTUM_TRANSACTIONS_FETCHING_ACTION"
-}
+};
 
 type RequestQtumTransactionsSuccessAction = {
   type: "REQUEST_QTUM_TRANSACTIONS_SUCCESS_ACTION",
   txs: Array<Object>
-}
+};
 
 type RequestQtumTransactionsFailAction = {
   type: "REQUEST_QTUM_TRANSACTIONS_FAIL_ACTION"
-}
+};
 
 type RequestInkTransactionsFetchingAction = {
   type: "REQUEST_INK_TRANSACTIONS_FETCHING_ACTION"
-}
+};
 
 type RequestInkTransactionsSuccessAction = {
   type: "REQUEST_INK_TRANSACTIONS_SUCCESS_ACTION",
   txs: Array<Object>
-}
+};
 
 type RequestInkTransactionsFailAction = {
   type: "REQUEST_INK_TRANSACTIONS_FAIL_ACTION"
-}
+};
 
 type RequestInkBalanceFetchingAction = {
   type: "REQUEST_INK_BALANCE_FETCHING_ACTION"
-}
+};
 
 type RequestinkBalanceSuccessAction = {
   type: "REQUEST_INK_BALANCE_SUCCESS_ACTION",
   balance: number
-}
+};
 
 type RequestInkBalanceFailAction = {
   type: "REQUEST_INK_BALANCE_FAIL_ACTION"
-}
+};
 
 export type AmountAction = RequestQtumBalanceFetchingAction |
   RequestQtumBalanceSuccessAction | RequestQtumBalanceFailAction |

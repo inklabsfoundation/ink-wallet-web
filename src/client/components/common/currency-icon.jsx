@@ -6,10 +6,10 @@ import {SUPPORTED_CURRENCIES} from "../../initial-state";
 
 type Props = {
   currencyName: string
-}
+};
 
 export default class CurrencyIcon extends React.Component<Props> {
-  render() {
+  render(): React.Node {
     let icon: string = "";
     switch (this.props.currencyName) {
       case SUPPORTED_CURRENCIES.QTUM:

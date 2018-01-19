@@ -8,7 +8,7 @@ import {Link} from "react-router";
 import {ROUTE_URLS} from "../../routes";
 
 class HomePanel extends React.Component<{}> {
-  render() {
+  render(): React.Node {
     return (
       <div className="main-page-form">
         <div className="main-page-logo-wrapper">

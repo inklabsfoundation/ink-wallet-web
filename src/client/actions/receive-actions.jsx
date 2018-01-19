@@ -1,12 +1,12 @@
 // @flow
 
 type OpenModalAction = {
-  type: "OPEN_RECEIVE_MODAL",
-}
+  type: "OPEN_RECEIVE_MODAL"
+};
 
 type CloseModalAction = {
   type: "CLOSE_RECEIVE_MODAL"
-}
+};
 
 export type ReceiveAction = OpenModalAction | CloseModalAction;
 

@@ -42,7 +42,7 @@ type Props = {
   passwordHash: string,
   salt: string,
   inkAmount: number
-}
+};
 
 class SendTransactionModal extends React.Component<Props> {
   successImage: ?HTMLImageElement;
@@ -93,7 +93,7 @@ class SendTransactionModal extends React.Component<Props> {
     this.props.dispatch(sentTransaction());
   }
 
-  render() {
+  render(): React.Node {
     let stepPanel: Object;
     switch (this.props.step) {
       case STEPS.FIRST:
@@ -159,4 +159,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SendTransactionModal);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(SendTransactionModal);

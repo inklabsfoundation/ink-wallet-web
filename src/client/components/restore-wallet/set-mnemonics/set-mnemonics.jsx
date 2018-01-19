@@ -17,17 +17,17 @@ type Props = {
   inputMnemonics: string,
   isInputMnemonicValid: boolean,
   isInputMnemonicEmpty: boolean
-}
+};
 
 class SetMnemonics extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     (this: any).checkError = this.checkError.bind(this);
     (this: any).handlePasswordInput = this.handlePasswordInput.bind(this);
     (this: any).handleClickNext = this.handleClickNext.bind(this);
   }
 
-  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(setInputMnemonic(e.currentTarget.value));
   }
 
@@ -35,11 +35,11 @@ class SetMnemonics extends React.Component<Props> {
     return (!this.props.isInputMnemonicValid || this.props.isInputMnemonicEmpty ? " error" : "");
   }
 
-  handleClickNext(): void {
+  handleClickNext() {
     this.props.dispatch(tryToCommitMnemonic());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div>
         <div className="mnemonics-panel">
@@ -84,4 +84,4 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SetMnemonics);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(SetMnemonics);

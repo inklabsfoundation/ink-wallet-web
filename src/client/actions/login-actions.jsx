@@ -13,31 +13,31 @@ type LoginAction = {
   prKey: PrivateKey,
   address: Address,
   mnemonic: Mnemonic
-}
+};
 
 type LogoutAction = {
   type: "LOGOUT_ACTION"
-}
+};
 
 type InputPasswordAction = {
   type: "INPUT_PASSWORD_ACTION",
   password: string
-}
+};
 
 type FileUploadAction = {
   type: "FILE_UPLOAD_ACTION",
   backupFile: File
-}
+};
 
 type DataErrorAction = {
   type: "DATA_ERROR_ACTION"
-}
+};
 
 type AttemptLoginAction = {
   type: "ATTEMPT_LOGIN_ACTION",
   password: string,
   backupFile: File
-}
+};
 
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
   | DataErrorAction | AttemptLoginAction;
@@ -71,14 +71,14 @@ const dataError = (): DataErrorAction => {
   };
 };
 
-export const inputPassword = (password: string) : InputPasswordAction => {
+export const inputPassword = (password: string): InputPasswordAction => {
   return {
     type: "INPUT_PASSWORD_ACTION",
     password
   };
 };
 
-export const fileUpload = (backupFile: File) : FileUploadAction => {
+export const fileUpload = (backupFile: File): FileUploadAction => {
   return {
     type: "FILE_UPLOAD_ACTION",
     backupFile
@@ -97,10 +97,10 @@ export const tryToLogin = (seed: Uint8Array, password: string, mnemonic: Mnemoni
 };
 
 
-export const attemptLogin = (password: string, backupFile: File) : ThunkAction => {
+export const attemptLogin = (password: string, backupFile: File): ThunkAction => {
   return (dispatch: Dispatch) => {
     const fileReader: FileReader = new FileReader();
-    fileReader.onload = (e) => {
+    fileReader.onload = (e: any) => {
       const decrypted: string = AES.decrypt(e.target.result, password)
         .toString(CryptoJS.enc.Latin1);
       if (!/^{"seed":/.test(decrypted)) {

@@ -15,6 +15,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {Address} from "@evercode-lab/qtumcore-lib";
 import {SUPPORTED_CURRENCIES} from "../../../initial-state";
+import type {State} from "../../../initial-state";
 
 type Props = {
   dispatch: Dispatch,
@@ -29,7 +30,7 @@ type Props = {
   tokenRecommendedFee: number,
   inkAmount: number,
   token: string
-}
+};
 
 const FEE_ORDER_OFFSET = 6;
 
@@ -48,15 +49,15 @@ type SliderProps = {
   input: Object
 };
 
-const renderSlider = (props: SliderProps) => (
+const renderSlider = (props: SliderProps): React.Node => (
   <Slider {...props.input} disabled={props.disabled}/>
 );
 
 type ErrorLabelProps = {
-  message: any,
-}
+  message: any
+};
 
-export const errorBlock = (props: ErrorLabelProps) => (
+export const errorBlock = (props: ErrorLabelProps): React.Node => (
   <div className="error-block">
     <div className="error-image">
       <img src={alertIcon} width={22}/>
@@ -67,7 +68,7 @@ export const errorBlock = (props: ErrorLabelProps) => (
   </div>
 );
 
-const validate = (values: Object, props: Object) => {
+const validate = (values: Object, props: Object): Object => {
   const isQtumSelected : boolean = values.token === SUPPORTED_CURRENCIES.QTUM;
   const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
@@ -95,7 +96,7 @@ const validate = (values: Object, props: Object) => {
   return errors;
 };
 
-const renderAddress = ({input, toValue, meta: {touched, error}}) => (
+const renderAddress = ({input, toValue, meta: {touched, error}}: Object): React.Node => (
   <div className="input-section-wrapper">
     <div>
       <label htmlFor="to">
@@ -123,7 +124,7 @@ const renderAddress = ({input, toValue, meta: {touched, error}}) => (
   </div>
 );
 
-const renderAmount = ({input, meta: {touched, error}}) => (
+const renderAmount = ({input, meta: {touched, error}}: Object): React.Node => (
   <div className="input-section-wrapper">
     <div>
       <label htmlFor="amount">
@@ -139,23 +140,23 @@ const renderAmount = ({input, meta: {touched, error}}) => (
   </div>
 );
 
-const renderTokenDropdown = (props) => (
+const renderTokenDropdown = (props: Object): React.Node => (
   <DropdownButton className="token" title={props.input.value} name="token"
                   {...props.input} id="token-type">
     <MenuItem
       eventKey="1"
-      onClick={() => props.input.onChange(SUPPORTED_CURRENCIES.QTUM)}>
+      onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.QTUM)}>
       Qtum
     </MenuItem>
     <MenuItem
       eventKey="2"
-      onClick={() => props.input.onChange(SUPPORTED_CURRENCIES.INK)}>
+      onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.INK)}>
       Ink
     </MenuItem>
   </DropdownButton>
 );
 
-let PrepareTransactionForm = (props: Props) => {
+let PrepareTransactionForm = (props: Props): React.Node => {
   const isQtumSelected : boolean = props.token === SUPPORTED_CURRENCIES.QTUM;
   const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
@@ -268,7 +269,7 @@ const selector = formValueSelector("PrepareTransactionForm");
 // eslint-disable-next-line max-len
 PrepareTransactionForm = reduxForm({form: "PrepareTransactionForm", validate})(PrepareTransactionForm);
 
-PrepareTransactionForm = connect(state => {
+PrepareTransactionForm = connect((state: State): Object => {
   const isStandart = selector(state, "isStandart");
   return {
     initialValues: {

@@ -5,7 +5,7 @@ import BalancePanel from "./balance-panel/balance-panel";
 import RecentTransactionsPanel from "./recent-transactions-panel/recent-transactions-panel";
 
 export default class MainPagePanel extends React.Component<{}> {
-  render() {
+  render(): React.Node {
     return (
       <div>
         <Col className="balance-panel-wrapper" xs={4}>

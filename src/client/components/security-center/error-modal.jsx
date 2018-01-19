@@ -13,8 +13,8 @@ import errorImage from "../../images/error-image.png";
 
 type Props = {
   dispatch: Dispatch,
-  isErrorModalOpen: boolean,
-}
+  isErrorModalOpen: boolean
+};
 
 class PasswordErrorModal extends React.Component<Props> {
   constructor(props: Props) {
@@ -22,11 +22,11 @@ class PasswordErrorModal extends React.Component<Props> {
     (this: any).handleClose = this.handleClose.bind(this);
   }
 
-  handleClose(): void {
+  handleClose() {
     this.props.dispatch(closeErrorModal());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <Modal className="receive-modal"
              show={this.props.isErrorModalOpen} onHide={this.handleClose}>
@@ -55,9 +55,9 @@ class PasswordErrorModal extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    isErrorModalOpen: state.securityCenterState.isErrorModalOpen,
+    isErrorModalOpen: state.securityCenterState.isErrorModalOpen
   };
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(PasswordErrorModal);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(PasswordErrorModal);

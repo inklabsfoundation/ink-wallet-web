@@ -21,46 +21,46 @@ const UTXO_STAKING_CONFIRMATIONS_LOCK = 501;
 const REFRESH_OFFSET = 3000;
 
 type OpenModalAction = {
-  type: "OPEN_MODAL",
-}
+  type: "OPEN_MODAL"
+};
 
 type CloseModalAction = {
   type: "CLOSE_MODAL"
-}
+};
 
 type ResetModalAction = {
   type: "RESET_MODAL"
-}
+};
 
 type RequestUTXOSuccessAction = {
   type: "REQUEST_UTXOs_SUCCESS",
   utxos: Array<Transaction.UnspentOutput>
-}
+};
 
 type RequestUTXOFailAction = {
   type: "REQUEST_UTXOs_FAIL"
-}
+};
 
 type RequestUTXOFetchingAction = {
   type: "REQUEST_UTXOs_FETCHING"
-}
+};
 
 type SetStakingBalanceAction = {
   type: "SET_STAKING_BALANCE",
   stakingBalance: number
-}
+};
 
 type SentTransactionSuccessAction = {
-  type: "SENT_TRANSACTION_SUCCESS",
-}
+  type: "SENT_TRANSACTION_SUCCESS"
+};
 
 type SentTransactionFailAction = {
   type: "SENT_TRANSACTION_FAIL"
-}
+};
 
 type SentTransactionFetchingAction = {
   type: "SENT_TRANSACTION_FETCHING"
-}
+};
 
 type ConfirmPrepareModalAction = {
   type: "CONFIRM_PREPARE_MODAL",
@@ -68,25 +68,25 @@ type ConfirmPrepareModalAction = {
   toAddress: string,
   amount: number,
   description: string,
-  fee: number,
-}
+  fee: number
+};
 
 type ConfirmConfirmModalAction = {
   type: "CONFIRM_CONFIRM_MODAL"
-}
+};
 
 type RequestRecommendedFeeFetchingAction = {
   type: "REQUEST_RECOMMENDED_FEE_FETCHING"
-}
+};
 
 type RequestRecommendedFeeSuccessAction = {
   type: "REQUEST_RECOMMENDED_FEE_SUCCESS",
   recommendedFee: number
-}
+};
 
 type RequestRecommendedFeeFailAction = {
   type: "REQUEST_RECOMMENDED_FEE_FAIL"
-}
+};
 
 export type SendTransactionAction = OpenModalAction | CloseModalAction
   | RequestUTXOSuccessAction | RequestUTXOFailAction | RequestUTXOFetchingAction
@@ -172,7 +172,7 @@ const sentQtumTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch((error) => {
+    }).catch(() => {
       dispatch(sentTransactionFail());
     });
   };
@@ -200,7 +200,7 @@ const sentInkTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch((error) => {
+    }).catch(() => {
       dispatch(sentTransactionFail());
     });
   };
@@ -249,7 +249,7 @@ export const requestUtxos = (): ThunkAction => {
     const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/utxo`)
       .then((response: $AxiosXHR<Array<Object>>) => {
-        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => {
+        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
           return utxo.isStake && utxo.confirmations <= UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
         let stakingAmount = 0;
@@ -258,10 +258,10 @@ export const requestUtxos = (): ThunkAction => {
         });
         dispatch(setStakingBalance(stakingAmount));
         // eslint-disable-next-line max-len
-        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object) => {
+        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
           return !utxo.isStake || utxo.confirmations > UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
-        const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object) => {
+        const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object): Transaction.UnspentOutput => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));

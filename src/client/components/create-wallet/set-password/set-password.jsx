@@ -21,10 +21,10 @@ type Props = {
   arePasswordsValid: boolean,
   areInputPasswordsEqual: boolean,
   isAgreed: boolean
-}
+};
 
 class SetPassword extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     (this: any).checkError = this.checkError.bind(this);
     (this: any).handlePasswordInput = this.handlePasswordInput.bind(this);
@@ -33,15 +33,15 @@ class SetPassword extends React.Component<Props> {
     (this: any).handleClickNext = this.handleClickNext.bind(this);
   }
 
-  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(setInputPassword(e.currentTarget.value));
   }
 
-  handleRepeatPasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handleRepeatPasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(setInputRepeatPassword(e.currentTarget.value));
   }
 
-  handleAgreedClick(): void {
+  handleAgreedClick() {
     this.props.dispatch(setAgreed(!this.props.isAgreed));
   }
 
@@ -49,13 +49,13 @@ class SetPassword extends React.Component<Props> {
     return (this.props.areInputPasswordsEqual && this.props.arePasswordsValid ? "" : " error");
   }
 
-  handleClickNext(): void {
+  handleClickNext() {
     if (this.props.isAgreed) {
       this.props.dispatch(tryToCommitPasswords());
     }
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div>
         <div className="progress-panel">
@@ -132,4 +132,4 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(SetPassword);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(SetPassword);

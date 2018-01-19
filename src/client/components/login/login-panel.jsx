@@ -14,20 +14,20 @@ import {browserHistory} from "react-router";
 type Props = {
   dispatch: Dispatch,
   isLoggedIn: boolean
-}
+};
 
 class LoginPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate() {
     if (this.props.isLoggedIn) {
       browserHistory.push(ROUTE_URLS.WALLET_PAGE);
     }
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div className="main-page-form creation-form">
         <div className="creation-heading">
@@ -49,4 +49,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(wrapWithWindow(LoginPanel));
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(wrapWithWindow(LoginPanel));

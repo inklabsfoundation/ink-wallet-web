@@ -22,12 +22,12 @@ import type {Location} from "react-router";
 import Header from "./header";
 
 type Props = {
-  children: React.Node;
-  location: Location;
-}
+  children: React.Node,
+  location: Location
+};
 
 export default class Page extends React.Component<Props> {
-  render() {
+  render(): React.Node {
     return (
       <div>
         <Header/>

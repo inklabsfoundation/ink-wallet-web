@@ -9,10 +9,10 @@ import CurrencyIcon from "../../../common/currency-icon";
 
 type Props = {
   amountState: AmountState
-}
+};
 
 class CurrenciesListPanel extends React.Component<Props> {
-  render() {
+  render(): React.Node {
     return (
       <Col className="currencies-panel" xs={12}>
         <div className="currency-item">
@@ -40,4 +40,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(CurrenciesListPanel);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(CurrenciesListPanel);
