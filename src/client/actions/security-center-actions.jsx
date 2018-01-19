@@ -1,25 +1,25 @@
 // @flow
 
 type OpenErrorModalAction = {
-  type: "OPEN_ERROR_MODAL",
-}
+  type: "OPEN_ERROR_MODAL"
+};
 
 type CloseErrorModalAction = {
   type: "CLOSE_ERROR_MODAL"
-}
+};
 
 type OpenMnemonicsModalAction = {
-  type: "OPEN_MNEMONICS_MODAL",
-}
+  type: "OPEN_MNEMONICS_MODAL"
+};
 
 type CloseMnemonicsModalAction = {
   type: "CLOSE_MNEMONICS_MODAL"
-}
+};
 
 type SetPasswordSecurityAction = {
   type: "SET_PASSWORD_SECURITY_ACTION",
   password: string
-}
+};
 
 export type SecurityCenterAction = OpenErrorModalAction | CloseErrorModalAction
   | OpenMnemonicsModalAction | CloseMnemonicsModalAction | SetPasswordSecurityAction;

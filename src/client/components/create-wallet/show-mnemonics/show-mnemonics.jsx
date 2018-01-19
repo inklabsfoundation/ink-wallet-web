@@ -18,15 +18,15 @@ type Props = {
   seed: Uint8Array,
   password: string,
   derivePath: string
-}
+};
 
 class ShowMnemonics extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     (this: any).handleClickNext = this.handleClickNext.bind(this);
   }
 
-  handleClickNext(): void {
+  handleClickNext() {
     this.props.dispatch(tryToLogin(
       this.props.seed,
       this.props.password,
@@ -34,7 +34,7 @@ class ShowMnemonics extends React.Component<Props> {
     ));
   }
 
-  render() {
+  render(): React.Node {
     const backupDataStr = CryptoHandler.generateBackupFile(
       this.props.derivePath,
       this.props.password,
@@ -85,4 +85,4 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(ShowMnemonics);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(ShowMnemonics);

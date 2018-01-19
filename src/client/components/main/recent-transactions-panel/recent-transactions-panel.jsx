@@ -14,17 +14,17 @@ import CurrencyIcon from "../../common/currency-icon";
 import moment from "moment";
 
 type Props = {
-  amountState: AmountState;
-  address: Address;
-}
+  amountState: AmountState,
+  address: Address
+};
 
 class RecentTransactionsPanel extends React.Component<Props> {
-  render() {
+  render(): React.Node {
     const lastestRawTransactions: Array<LastTransaction> = mapLastTransactions(
       this.props.amountState,
       this.props.address.toString());
     const lastestTransactions = lastestRawTransactions.map((transaction: LastTransaction,
-                                                            indx: number) => {
+                                                            indx: number): React.Node => {
       return (
         <div key={indx} className="transaction-block">
           <div className="transaction-image">
@@ -79,4 +79,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(RecentTransactionsPanel);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(RecentTransactionsPanel);

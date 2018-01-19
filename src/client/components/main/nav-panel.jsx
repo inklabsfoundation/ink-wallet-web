@@ -14,20 +14,20 @@ import {ROUTE_URLS} from "../../routes";
 import {browserHistory} from "react-router";
 
 class NavPanel extends React.Component<{}> {
-  onClickLink(link: string): void {
+  onClickLink(link: string) {
     browserHistory.push(link);
   }
 
-  render() {
+  render(): React.Node {
     const walletPanel = (
-      <div onClick={() => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
+      <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
         className="default-panel-item">
         <div><img src={walletIcon}/></div>
         <div className="panel-item-title">MyWallet</div>
       </div>
     );
     const securePanel = (
-      <div onClick={() => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}>
+      <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}>
         <div><img src={secureIcon}/></div>
         <div className="panel-item-title">
             Security Center
@@ -71,4 +71,4 @@ const mapStateToProps = (): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(NavPanel);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(NavPanel);

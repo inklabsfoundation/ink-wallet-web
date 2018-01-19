@@ -4,7 +4,7 @@ import {Col, Grid, Row} from "react-bootstrap";
 
 export const wrapWithWindow = (Component: any): any =>
   class Enhance extends React.Component<{}> {
-    render() {
+    render(): React.Node {
       return (
         <div className="main-page-container">
           <Grid>

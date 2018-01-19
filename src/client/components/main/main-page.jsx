@@ -15,23 +15,23 @@ type Props = {
   dispatch: Dispatch,
   refreshTime: number,
   children: React.Node
-}
+};
 
 let refresh: number = 0;
 
 class MainPage extends React.Component<Props> {
-  componentDidMount(): void {
+  componentDidMount() {
     this.props.dispatch(requestWalletData());
     refresh = setInterval(() => {
       this.props.dispatch(requestWalletData());
     }, this.props.refreshTime);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     clearInterval(refresh);
   }
 
-  render() {
+  render(): React.Node {
     return (
       <Grid className="main-page">
         <NavPanel/>
@@ -49,4 +49,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(authRequired(MainPage));
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(authRequired(MainPage));

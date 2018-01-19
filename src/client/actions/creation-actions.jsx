@@ -13,22 +13,22 @@ export const STEPS = {
 
 type ResetCreationAction = {
   type: "RESET_CREATION_ACTION"
-}
+};
 
 type SetInputPasswordAction = {
   type: "SET_INPUT_PASSWORD_ACTION",
-  inputPassword: string,
-}
+  inputPassword: string
+};
 
 type SetInputMnemonicAction = {
   type: "SET_INPUT_MNEMONIC",
-  inputMnemonic: string,
-}
+  inputMnemonic: string
+};
 
 type SetInputRepeatPasswordAction = {
   type: "SET_INPUT_REPEAT_PASSWORD_ACTION",
   inputRepeatPassword: string
-}
+};
 
 type CommitCreationAction = {
   type: "COMMIT_CREATION_ACTION",
@@ -37,32 +37,32 @@ type CommitCreationAction = {
   hdPrivateKey: HDPrivateKey,
   privateKey: PrivateKey,
   seed: any
-}
+};
 
 type CommitAddressAction = {
   type: "COMMIT_ADDRESS_ACTION"
-}
+};
 
 type SetPasswordCreationErrorAction = {
   type: "SET_PASSWORD_CREATION_ERROR_ACTION",
   areInputPasswordsEqual: boolean,
   arePasswordsValid: boolean
-}
+};
 
 type SetAgreedAction = {
   type: "SET_AGREED_ACTION",
   isAgreed: boolean
-}
+};
 
 type SetMnemonicRestoreErrorAction = {
   type: "SET_MNEMONIC_RESTORE_ERROR",
   isInputMnemonicEmpty: boolean,
   isInputMnemonicValid: boolean
-}
+};
 
 type CommitResetPasswordAction = {
   type: "COMMIT_RESET_PASSWORD_ACTION"
-}
+};
 
 export type CreateWalletAction = ResetCreationAction | SetPasswordCreationErrorAction |
   SetAgreedAction | SetInputPasswordAction | SetInputRepeatPasswordAction |

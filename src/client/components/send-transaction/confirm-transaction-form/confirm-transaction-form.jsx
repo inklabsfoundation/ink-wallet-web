@@ -21,7 +21,7 @@ type Props = {
   salt: string,
   handleSubmit: Function,
   onSubmit: Function
-}
+};
 
 const submit = (values: Object, dispatch: Dispatch, props: Props) => {
   if (!values.password) {
@@ -36,7 +36,7 @@ const submit = (values: Object, dispatch: Dispatch, props: Props) => {
   props.onSubmit(values);
 };
 
-const renderPassword = ({input, meta: {touched, error}}) => (
+const renderPassword = ({input, meta: {touched, error}}: Object): React.Node => (
   <div>
     <div className="password-input-block">
       <input {...input} type="password"
@@ -50,7 +50,7 @@ const renderPassword = ({input, meta: {touched, error}}) => (
   </div>
 );
 
-let prepareConfirationForm = (props: Props) => (
+let prepareConfirationForm = (props: Props): React.Node => (
   <form onSubmit={props.handleSubmit(submit)}>
     <Modal.Body>
       <Row className="confirm-transaction-row">

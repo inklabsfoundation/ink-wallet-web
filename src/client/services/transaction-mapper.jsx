@@ -12,7 +12,7 @@ export type LastTransaction = {
   isIn: boolean,
   currencyName: string,
   timestamp: number
-}
+};
 
 const TRANSACTIONS_COUNT: number = 4;
 
@@ -27,12 +27,12 @@ const mapQtumTransactions = (currencyName: string,
       let value: number = 0;
       let inputValue: Decimal = math.bignumber(0);
       let outputValue: Decimal = math.bignumber(0);
-      transaction.vin.forEach((inTransaction: Object): void => {
+      transaction.vin.forEach((inTransaction: Object) => {
         if (inTransaction.addr === address) {
           inputValue = math.add(math.bignumber(inputValue), math.bignumber(inTransaction.value));
         }
       });
-      transaction.vout.forEach((outTransaction: Object): void => {
+      transaction.vout.forEach((outTransaction: Object) => {
         if (outTransaction.scriptPubKey.addresses &&
           _.find(outTransaction.scriptPubKey.addresses,
             (outAddress: string): boolean => outAddress === address)
@@ -96,7 +96,7 @@ export const mapLastTransactions = (walletData: AmountState, address: string): A
   let lastTransactions: Array<LastTransaction> = qtumTransactions.concat(inkTransactions);
   lastTransactions = _.sortBy(
     lastTransactions,
-    (transaction: LastTransaction) => transaction.timestamp
+    (transaction: LastTransaction): number  => transaction.timestamp
   ).reverse();
   if (lastTransactions.length > TRANSACTIONS_COUNT) {
     lastTransactions = lastTransactions.slice(0, TRANSACTIONS_COUNT);

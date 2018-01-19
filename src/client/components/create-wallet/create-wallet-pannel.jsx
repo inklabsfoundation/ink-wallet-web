@@ -18,28 +18,28 @@ type Props = {
   dispatch: Dispatch,
   step: number,
   isLoggedIn: boolean
-}
+};
 
 class CreateWalletPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.props.dispatch(resetCreation());
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate() {
     if (this.props.isLoggedIn) {
       browserHistory.push(ROUTE_URLS.WALLET_PAGE);
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     this.props.dispatch(resetCreation());
   }
 
-  render() {
+  render(): React.Node {
     let stepPanel;
     switch (this.props.step) {
       case STEPS.FIRST:
@@ -81,4 +81,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(wrapWithWindow(CreateWalletPanel));
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(wrapWithWindow(CreateWalletPanel));

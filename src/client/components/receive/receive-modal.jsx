@@ -14,8 +14,8 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 type Props = {
   dispatch: Dispatch,
   isModalOpen: boolean,
-  address: string,
-}
+  address: string
+};
 
 class ReceiveModal extends React.Component<Props> {
   constructor(props: Props) {
@@ -27,7 +27,7 @@ class ReceiveModal extends React.Component<Props> {
     this.props.dispatch(closeReceiveModal());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <Modal className="receive-modal"
              show={this.props.isModalOpen} onHide={this.handleClose}>
@@ -76,4 +76,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(ReceiveModal);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(ReceiveModal);

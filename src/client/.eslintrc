@@ -5,7 +5,40 @@ globals:
   window: true
   document: true
   ReactElement: false
+plugins:
+  - flowtype
 rules:
   "no-unused-vars": "off"
   "no-undef": "off"
   "max-len": "off"
+  "flowtype/use-flow-type": "off"
+  "flowtype/valid-syntax": "error"
+  "flowtype/require-parameter-type": "error"
+  "flowtype/require-return-type":
+     - "error"
+     - "always"
+     - "annotateUndefined": "never"
+  "flowtype/object-type-delimiter":
+     - "error"
+     - "comma"
+  "flowtype/semi":
+     - "error"
+     - "always"
+  "flowtype/space-after-type-colon":
+     - "error"
+     - "always"
+  "flowtype/space-before-generic-bracket":
+     - "error"
+     - "never"
+  "flowtype/space-before-type-colon":
+     - "error"
+     - "never"
+  "flowtype/delimiter-dangle":
+     - "error"
+     - "never"
+  "flowtype/generic-spacing":
+     - "error"
+     - "never"
+settings:
+  "flowtype":
+     "onlyFilesWithFlowAnnotation": true

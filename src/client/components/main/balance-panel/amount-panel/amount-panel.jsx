@@ -20,7 +20,7 @@ type Props = {
   inkAmount: WalletAmount,
   address: Address,
   dispatch: Dispatch
-}
+};
 
 class AmountPanel extends React.Component<Props> {
   constructor(props: Props) {
@@ -29,15 +29,15 @@ class AmountPanel extends React.Component<Props> {
     (this: any).handleClickReceive = this.handleClickReceive.bind(this);
   }
 
-  handleClickSendTransaction(): void {
+  handleClickSendTransaction() {
     this.props.dispatch(openModal());
   }
 
-  handleClickReceive(): void {
+  handleClickReceive() {
     this.props.dispatch(openReceiveModal());
   }
 
-  render() {
+  render(): React.Node {
     return (
       <Col className="amount-panel" xs={12}>
         <div className="amount-title-block">
@@ -81,4 +81,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(AmountPanel);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(AmountPanel);

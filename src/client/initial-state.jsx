@@ -3,7 +3,7 @@ import Mnemonic from "bitcore-mnemonic";
 import {HDPrivateKey, PrivateKey, Address, PublicKey, Transaction} from "@evercode-lab/qtumcore-lib";
 
 export type LoginState = {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean,
   seed: ?Uint8Array,
   passwordHash: ?string,
   pubKey: ?PublicKey,
@@ -23,11 +23,11 @@ export type ConfigState = {
   encryptSalt: string,
   INKcontractAddress: string,
   refreshTime: number
-}
+};
 
 export type ReceiveState = {
   isModalOpen: boolean
-}
+};
 
 export type SendTransactionState = {
   tokenType: string,
@@ -46,7 +46,7 @@ export type SendTransactionState = {
   isSucceed: boolean,
   isTransactionIsSending: boolean,
   step: number
-}
+};
 
 export const SUPPORTED_CURRENCIES = {
   QTUM: "QTUM",
@@ -59,18 +59,18 @@ export type WalletAmount = {
   isAmountFetching: boolean,
   areTxsFetching: boolean,
   txs: Array<Object>
-}
+};
 
 export type AmountState = {
   QTUM: WalletAmount,
   INK: WalletAmount
-}
+};
 
 export type SecurityCenterState = {
   isErrorModalOpen: boolean,
   isMnemonicModalOpen: boolean,
-  inputPassword: string,
-}
+  inputPassword: string
+};
 
 export type CreationState = {
   step: number,
@@ -87,8 +87,9 @@ export type CreationState = {
   address: ?Address,
   inputMnemonic: string,
   isInputMnemonicEmpty: boolean,
-  isInputMnemonicValid: boolean,
+  isInputMnemonicValid: boolean
 };
+
 export type I18n = {
   locale: string,
   translations: Object
@@ -102,8 +103,8 @@ export type State = {
   +config: ConfigState,
   +sendTransactionState: SendTransactionState,
   +receiveState: ReceiveState,
-  +securityCenterState: SecurityCenterState,
-}
+  +securityCenterState: SecurityCenterState
+};
 
 export const initialState: State = {
   loginState: {

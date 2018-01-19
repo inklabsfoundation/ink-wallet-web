@@ -13,7 +13,7 @@ export const authRequired = (Component: any): any => {
       }
     }
 
-    render() {
+    render(): React.Node {
       return <div>{this.props.isLoggedIn ? <Component {...this.props} /> : ""}</div>;
     }
   };

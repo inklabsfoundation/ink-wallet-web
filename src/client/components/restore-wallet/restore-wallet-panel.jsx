@@ -21,7 +21,7 @@ type Props = {
   dispatch: Dispatch,
   step: number,
   isLoggedIn: boolean
-}
+};
 
 
 class RestoreWalletPanel extends React.Component<Props> {
@@ -32,21 +32,21 @@ class RestoreWalletPanel extends React.Component<Props> {
     this.successImage = preloadImage(successLogo);
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate() {
     if (this.props.isLoggedIn) {
       browserHistory.push(ROUTE_URLS.WALLET_PAGE);
     }
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.props.dispatch(resetCreation());
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     this.props.dispatch(resetCreation());
   }
 
-  render() {
+  render(): React.Node {
     let stepPanel;
     switch (this.props.step) {
       case STEPS.FIRST:
@@ -82,4 +82,4 @@ const mapStateToProps = (state: State): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(wrapWithWindow(RestoreWalletPanel));
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(wrapWithWindow(RestoreWalletPanel));

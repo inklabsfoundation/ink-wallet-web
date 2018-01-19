@@ -10,7 +10,7 @@ import {Translate} from "react-redux-i18n";
 
 
 class BalancePanel extends React.Component<{}> {
-  render() {
+  render(): React.Node {
     return (
       <Col className="balance-panel" xs={12}>
         <AmountPanel/>
@@ -30,4 +30,4 @@ const mapStateToProps = (): Object => {
 };
 
 // eslint-disable-next-line max-len
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(BalancePanel);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(BalancePanel);

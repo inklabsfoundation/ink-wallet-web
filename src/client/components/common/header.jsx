@@ -23,7 +23,7 @@ type Props = {
   i18n: Object,
   dispatch: Dispatch,
   isLoggedId: boolean
-}
+};
 
 class Header extends React.Component<Props> {
   constructor(props: Props) {
@@ -36,28 +36,28 @@ class Header extends React.Component<Props> {
     }
   }
 
-  closeIt() {
+  closeIt(): string {
     return "You have unsaved changes!";
   }
 
-  setLang(lang: string): void {
+  setLang(lang: string)  {
     localStorage.setItem("locale", lang);
     this.props.dispatch(setLocale(lang));
   }
 
-  handleClickLogout(): void {
+  handleClickLogout() {
     this.props.dispatch(tryToLogout());
   }
 
-  handleClickRefresh(): void {
+  handleClickRefresh() {
     this.props.dispatch(requestWalletData());
   }
 
-  render() {
-    const langDropdown: React.Node = Object.keys(LANG_LABELS).map((key: string, indx: number) => {
+  render(): React.Node {
+    const langDropdown: React.Node = Object.keys(LANG_LABELS).map((key: string, indx: number): React.Node => {
       return (
         this.props.i18n.locale !== key
-          ? <MenuItem key={indx} onClick={() => this.setLang(key)}
+          ? <MenuItem key={indx} onClick={(): void => this.setLang(key)}
                       eventKey={`1.${indx}`}>{LANG_LABELS[key]}</MenuItem>
           : ""
       );
@@ -83,7 +83,7 @@ class Header extends React.Component<Props> {
                 <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
                   Logout
                 </NavItem>
-              : <NavItem href="" className="lang-dropdown" eventKey={2} onClick={() => browserHistory.push(ROUTE_URLS.LOGIN)}>
+              : <NavItem href="" className="lang-dropdown" eventKey={2} onClick={(): void => browserHistory.push(ROUTE_URLS.LOGIN)}>
                     Login
                 </NavItem>
             }
@@ -106,5 +106,5 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(Header);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(Header);
 

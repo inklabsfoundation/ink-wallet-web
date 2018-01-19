@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-handler-names */
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
@@ -18,10 +19,10 @@ type Props = {
   inputPassword: string,
   isFileUploaded: boolean,
   backupFile: File
-}
+};
 
 class LoginForm extends React.Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     (this: any).handleClickUpload = this.handleClickUpload.bind(this);
     (this: any).handlePasswordInput = this.handlePasswordInput.bind(this);
@@ -31,7 +32,7 @@ class LoginForm extends React.Component<Props> {
     (this: any).onDrop = this.onDrop.bind(this);
   }
 
-  handleClickUpload(): void {
+  handleClickUpload() {
     this.refs.fileInput.click();
   }
 
@@ -39,15 +40,15 @@ class LoginForm extends React.Component<Props> {
     return this.props.invalidData ? "error" : "";
   }
 
-  handleUpdateInputChange(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handleUpdateInputChange(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(fileUpload(e.currentTarget.files[0]));
   }
 
-  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
+  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
     this.props.dispatch(inputPassword(e.currentTarget.value));
   }
 
-  handleClickConfirm(): void {
+  handleClickConfirm() {
     if (this.isConfirmable()) {
       this.props.dispatch(attemptLogin(this.props.inputPassword, this.props.backupFile));
     }
@@ -57,11 +58,11 @@ class LoginForm extends React.Component<Props> {
     return this.props.inputPassword.length > 0 && this.props.isFileUploaded;
   }
 
-  onDrop(acceptedFiles: Array<File>, rejectedFiles: Array<File>): void {
+  onDrop(acceptedFiles: Array<File>, rejectedFiles: Array<File>) {
     this.props.dispatch(fileUpload(acceptedFiles[0]));
   }
 
-  render() {
+  render(): React.Node {
     const invalidData: boolean = this.props.invalidData;
     const dropStyle = {
       width: "inherit",
@@ -129,4 +130,4 @@ const mapStateToProps = (state: State): Object => {
   };
 };
 
-export default connect(mapStateToProps, (dispatch: Dispatch) => ({dispatch}))(LoginForm);
+export default connect(mapStateToProps, (dispatch: Dispatch): Object => ({dispatch}))(LoginForm);
