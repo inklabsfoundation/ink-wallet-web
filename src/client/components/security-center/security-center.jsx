@@ -35,7 +35,7 @@ class SecurityCenter extends React.Component<Props> {
     this.successImage = preloadImage(successLogo);
   }
 
-  handleClickDownload(e: SyntheticInputEvent<HTMLButtonElement>) {
+  handleClickDownload(e: SyntheticInputEvent<HTMLButtonElement>): void {
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, this.props.password, this.props.salt)) {
       e.preventDefault();
       this.refs.downloadBtn.href = "";
@@ -45,7 +45,7 @@ class SecurityCenter extends React.Component<Props> {
     }
   }
 
-  handleClickShow(e: SyntheticInputEvent<HTMLButtonElement>) {
+  handleClickShow(e: SyntheticInputEvent<HTMLButtonElement>): void {
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, this.props.password, this.props.salt)) {
       e.preventDefault();
       this.props.dispatch(openErrorModal());
@@ -54,7 +54,7 @@ class SecurityCenter extends React.Component<Props> {
     }
   }
 
-  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>) {
+  handlePasswordInput(e: SyntheticInputEvent<HTMLInputElement>): void {
     this.props.dispatch(setPasswordSecurity(e.currentTarget.value));
     if (!CryptoHandler.isPasswordCorrect(this.props.passwordHash, e.currentTarget.value, this.props.salt)) {
       this.refs.downloadBtn.href = "";

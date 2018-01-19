@@ -25,7 +25,7 @@ class MnemonicModal extends React.Component<Props> {
     (this: any).handleClose = this.handleClose.bind(this);
   }
 
-  handleClose() {
+  handleClose(): void {
     this.props.dispatch(closeMnemonicModal());
   }
 

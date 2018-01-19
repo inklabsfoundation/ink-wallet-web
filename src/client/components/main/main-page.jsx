@@ -20,14 +20,14 @@ type Props = {
 let refresh: number = 0;
 
 class MainPage extends React.Component<Props> {
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.dispatch(requestWalletData());
     refresh = setInterval(() => {
       this.props.dispatch(requestWalletData());
     }, this.props.refreshTime);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     clearInterval(refresh);
   }
 
