@@ -12,11 +12,15 @@ import RestoreSuccess from "./restore-success/restore-success";
 import ResetPassword from "./reset-password/reset-password";
 import {preloadImage} from "../../services/image-preloader";
 import successLogo from "../../images/success.png";
+import {ROUTE_URLS} from "../../routes";
+// $FlowFixMe
+import {browserHistory} from "react-router";
 
 
 type Props = {
   dispatch: Dispatch,
-  step: number
+  step: number,
+  isLoggedIn: boolean
 }
 
 
@@ -26,6 +30,12 @@ class RestoreWalletPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.successImage = preloadImage(successLogo);
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.isLoggedIn) {
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+    }
   }
 
   componentDidMount(): void {
@@ -66,7 +76,8 @@ class RestoreWalletPanel extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    step: state.creationState.step
+    step: state.creationState.step,
+    isLoggedIn: state.loginState.isLoggedIn
   };
 };
 

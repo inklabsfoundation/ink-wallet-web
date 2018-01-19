@@ -9,19 +9,29 @@ import secureIcon from "../../images/secure-center-logo.png";
 import faqIcon from "../../images/faq-icon.png";
 import assetsIcon from "../../images/asserts-logo.png";
 import qtumIcon21 from "../../images/qtum-icon-21.png";
+import {ROUTE_URLS} from "../../routes";
+// $FlowFixMe
+import {browserHistory} from "react-router";
 
 class NavPanel extends React.Component<{}> {
+  onClickLink(link: string): void {
+    browserHistory.push(link);
+  }
+
   render() {
     const walletPanel = (
-      <div className="default-panel-item">
+      <div onClick={() => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
+        className="default-panel-item">
         <div><img src={walletIcon}/></div>
         <div className="panel-item-title">MyWallet</div>
       </div>
     );
     const securePanel = (
-      <div>
+      <div onClick={() => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}>
         <div><img src={secureIcon}/></div>
-        <div className="panel-item-title">Secure Center</div>
+        <div className="panel-item-title">
+            Security Center
+        </div>
       </div>
     );
     const faqPanel = (

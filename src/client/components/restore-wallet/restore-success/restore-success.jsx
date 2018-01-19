@@ -10,13 +10,15 @@ import {tryToLogin} from "../../../actions/login-actions";
 import {ROUTE_URLS} from "../../../routes";
 // $FlowFixMe
 import {Link} from "react-router";
+import CryptoHandler from "../../../services/crypto-handler";
 
 type Props = {
   dispatch: Dispatch,
   mnemonic: Mnemonic,
   password: string,
   seed: Uint8Array,
-  successImage: HTMLImageElement
+  successImage: HTMLImageElement,
+  derivePath: string
 }
 
 class RestoreSuccess extends React.Component<Props> {
@@ -28,11 +30,17 @@ class RestoreSuccess extends React.Component<Props> {
   handleClickNext(): void {
     this.props.dispatch(tryToLogin(
       this.props.seed,
-      this.props.password
+      this.props.password,
+      this.props.mnemonic
     ));
   }
 
   render() {
+    const backupDataStr = CryptoHandler.generateBackupFile(
+        this.props.derivePath,
+        this.props.password,
+        this.props.mnemonic
+    );
     return (
       <div>
         <div className="create-title-panel reset">
@@ -55,10 +63,10 @@ class RestoreSuccess extends React.Component<Props> {
           </div>
         </div>
         <div className="show-mnemonics-btn-panel">
-          <a className="primary-red-btn">
+          <a className="primary-red-btn" href={backupDataStr} download="inkwallet.backup">
             <Translate value="createWallet.showMnemonicDownloadBtn"/>
           </a>
-          <Link to={ROUTE_URLS.MAIN_PAGE}
+          <Link to={ROUTE_URLS.WALLET_PAGE}
                 onClick={this.handleClickNext} className="primary-white-btn bordered">
             <Translate value="createWallet.showMnemonicNextBtn"/>
           </Link>
@@ -72,7 +80,8 @@ const mapStateToProps = (state: State): Object => {
   return {
     mnemonic: state.creationState.mnemonic,
     password: state.creationState.password,
-    seed: state.creationState.seed
+    seed: state.creationState.seed,
+    derivePath: state.config.derivePath
   };
 };
 

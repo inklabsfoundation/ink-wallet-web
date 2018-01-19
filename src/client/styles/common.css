@@ -1,7 +1,11 @@
-.primary-red-btn {
+.primary-red-btn,
+.primary-red-btn:active,
+.primary-red-btn:visited,
+.primary-red-btn:focus {
   color: #FFF;
   background-color: #394CB0;
   border: 1px solid #394CB0;
+  text-decoration: none;
 }
 
 .primary-white-btn {

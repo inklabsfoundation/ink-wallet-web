@@ -10,10 +10,14 @@ import SetPassword from "./set-password/set-password";
 import ShowAddress from "./show-address/show-address";
 import {resetCreation, STEPS} from "../../actions/creation-actions";
 import ShowMnemonics from "./show-mnemonics/show-mnemonics";
+import {ROUTE_URLS} from "../../routes";
+// $FlowFixMe
+import {browserHistory} from "react-router";
 
 type Props = {
   dispatch: Dispatch,
-  step: number
+  step: number,
+  isLoggedIn: boolean
 }
 
 class CreateWalletPanel extends React.Component<Props> {
@@ -23,6 +27,12 @@ class CreateWalletPanel extends React.Component<Props> {
 
   componentDidMount(): void {
     this.props.dispatch(resetCreation());
+  }
+
+  componentDidUpdate(): void {
+    if (this.props.isLoggedIn) {
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+    }
   }
 
   componentWillUnmount(): void {
@@ -65,7 +75,8 @@ class CreateWalletPanel extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    step: state.creationState.step
+    step: state.creationState.step,
+    isLoggedIn: state.loginState.isLoggedIn
   };
 };
 

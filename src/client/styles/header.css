@@ -40,6 +40,13 @@ a.navbar-brand {
   color: #999;
 }
 
+.navbar-default .navbar-nav > li.lang-dropdown > a > a,
+.navbar-default .navbar-nav > li.lang-dropdown > a > a:hover,
+.navbar-default .navbar-nav > li.lang-dropdown > a > a:focus {
+  color: #999;
+  text-decoration: none;
+}
+
 .navbar.navbar-default .container {
   width: calc(100% - 100px);
 }

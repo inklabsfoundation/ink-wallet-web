@@ -7,7 +7,7 @@ import type {State} from "../../initial-state";
 import {ROUTE_URLS} from "../../routes";
 import logo from "../../images/logo-md.png";
 // $FlowFixMe
-import {Link} from "react-router";
+import {Link, browserHistory} from "react-router";
 import Internalizator from "../../services/internalizator";
 import {LANG_LABELS} from "../../locale/dictionary";
 import {setLocale} from "react-redux-i18n";
@@ -79,9 +79,12 @@ class Header extends React.Component<Props> {
                     <RotatingImage image={refreshIcon}/>
                 </NavItem>
             }
-            {this.props.isLoggedId &&
-              <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
+            {this.props.isLoggedId ?
+                <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
                   Logout
+                </NavItem>
+              : <NavItem href="" className="lang-dropdown" eventKey={2} onClick={() => browserHistory.push(ROUTE_URLS.LOGIN)}>
+                    Login
                 </NavItem>
             }
             <NavDropdown eventKey={1} title={Internalizator.getLangLabel(this.props.i18n.locale)}

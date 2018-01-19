@@ -8,6 +8,8 @@ import "../../styles/common.css";
 import "../../styles/header.css";
 import "../../styles/creation.css";
 import "../../styles/restore.css";
+import "../../styles/login.css";
+import "../../styles/security-center.css";
 import "../../styles/main-page/main-page.css";
 import "../../styles/main-page/nav-panel.css";
 import "../../styles/main-page/balance-panel/balance-panel.css";

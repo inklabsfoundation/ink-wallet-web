@@ -8,7 +8,12 @@ export type LoginState = {
   passwordHash: ?string,
   pubKey: ?PublicKey,
   prKey: ?PrivateKey,
-  address: Address
+  address: Address,
+  backupFile: ?File,
+  inputPassword: string,
+  invalidData: boolean,
+  isFileUploaded: boolean,
+  mnemonic: ?Mnemonic
 };
 
 export type ConfigState = {
@@ -61,6 +66,12 @@ export type AmountState = {
   INK: WalletAmount
 }
 
+export type SecurityCenterState = {
+  isErrorModalOpen: boolean,
+  isMnemonicModalOpen: boolean,
+  inputPassword: string,
+}
+
 export type CreationState = {
   step: number,
   password: string,
@@ -90,7 +101,8 @@ export type State = {
   +amountState: AmountState,
   +config: ConfigState,
   +sendTransactionState: SendTransactionState,
-  +receiveState: ReceiveState
+  +receiveState: ReceiveState,
+  +securityCenterState: SecurityCenterState,
 }
 
 export const initialState: State = {
@@ -100,7 +112,12 @@ export const initialState: State = {
     passwordHash: "",
     pubKey: {},
     prKey: {},
-    address: {}
+    address: {},
+    backupFile: null,
+    inputPassword: "",
+    isFileUploaded: false,
+    invalidData: false,
+    mnemonic: null
   },
   creationState: {
     step: 1,
@@ -156,6 +173,11 @@ export const initialState: State = {
     isSucceed: false,
     isTransactionIsSending: false,
     step: 0
+  },
+  securityCenterState: {
+    isErrorModalOpen: false,
+    isMnemonicModalOpen: false,
+    inputPassword: ""
   },
   receiveState: {
     isModalOpen: false

@@ -29,11 +29,11 @@ class AmountPanel extends React.Component<Props> {
     (this: any).handleClickReceive = this.handleClickReceive.bind(this);
   }
 
-  handleClickSendTransaction() {
+  handleClickSendTransaction(): void {
     this.props.dispatch(openModal());
   }
 
-  handleClickReceive() {
+  handleClickReceive(): void {
     this.props.dispatch(openReceiveModal());
   }
 

@@ -7,9 +7,10 @@ import type {AuthAction} from "../actions/login-actions";
 import type {AmountAction} from "../actions/amount-actions";
 import type {SendTransactionAction} from "../actions/sent-transaction-action";
 import type {ReceiveAction} from "../actions/receive-actions";
+import type {SecurityCenterAction} from "../actions/security-center-actions";
 
 export type Action = CreateWalletAction | AuthAction |
-  AmountAction | SendTransactionAction | ReceiveAction;
+  AmountAction | SendTransactionAction | ReceiveAction | SecurityCenterAction;
 export type GetState = () => State;
 export type PromiseAction = Promise<Action>;
 export type Dispatch = (action: Action | ThunkAction | Array<Action>) => any;

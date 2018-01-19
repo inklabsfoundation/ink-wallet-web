@@ -13,21 +13,29 @@ import {requestWalletData} from "../../actions/amount-actions";
 type Props = {
   isLoggedIn: boolean,
   dispatch: Dispatch,
-  refreshTime: number
+  refreshTime: number,
+  children: React.Node
 }
 
+let refresh: number = 0;
+
 class MainPage extends React.Component<Props> {
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.dispatch(requestWalletData());
-    setInterval(() => {
+    refresh = setInterval(() => {
       this.props.dispatch(requestWalletData());
     }, this.props.refreshTime);
   }
+
+  componentWillUnmount(): void {
+    clearInterval(refresh);
+  }
+
   render() {
     return (
       <Grid className="main-page">
         <NavPanel/>
-        <MainPagePanel/>
+        {this.props.children}
       </Grid>
     );
   }

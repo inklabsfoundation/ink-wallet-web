@@ -11,6 +11,9 @@ module.exports = function() {
     sourceMap: true,
     compress: {
       warnings: false
+    },
+    mangle: {
+      safari10: true
     }
   };
 

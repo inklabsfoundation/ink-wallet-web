@@ -6,7 +6,12 @@ import type {Dispatch} from "../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {
-  closeModal, confirmPrepareModal, openModal, requestRecomendedFee, requestUtxos, resetModal,
+  closeModal,
+  confirmPrepareModal,
+  openModal,
+  requestRecomendedFee,
+  requestUtxos,
+  resetModal,
   sentTransaction,
   STEPS
 } from "../../actions/sent-transaction-action";
