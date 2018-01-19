@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import {Translate} from "react-redux-i18n";
-import type {State} from "../../../initial-state";
-import type {Action, Dispatch} from "../../../types/redux";
+import type {Dispatch} from "../../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
