@@ -11,7 +11,6 @@ import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
 
-
 type Props = {
   dispatch: Dispatch,
   isLoggedIn: boolean
@@ -19,7 +18,6 @@ type Props = {
 
 
 class LoginPanel extends React.Component<Props> {
-
   constructor(props: Props) {
     super(props);
   }
