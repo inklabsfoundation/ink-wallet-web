@@ -16,7 +16,6 @@ type Props = {
   isLoggedIn: boolean
 }
 
-
 class LoginPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
