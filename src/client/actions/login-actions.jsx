@@ -4,6 +4,7 @@ import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import {HDPrivateKey, Networks, Address, PublicKey, PrivateKey} from "@evercode-lab/qtumcore-lib";
 import Mnemonic from "bitcore-mnemonic";
 import CryptoJS, {SHA256, AES} from "crypto-js";
+import {EXIT_MODAL_SHOW_KEY} from "../services/confirm-exit-handler";
 
 type LoginAction = {
   type: "LOGIN_ACTION",
@@ -33,14 +34,35 @@ type DataErrorAction = {
   type: "DATA_ERROR_ACTION"
 };
 
+type DontShowExitModalAction = {
+  type: "DONT_SHOW_EXIT_MODAL_ACTION"
+};
+
+type ShowExitModalAction = {
+  type: "SHOW_EXIT_MODAL_ACTION"
+};
+
 type AttemptLoginAction = {
   type: "ATTEMPT_LOGIN_ACTION",
   password: string,
   backupFile: File
 };
 
+type OpenExitModalAction = {
+  type: "OPEN_EXIT_MODAL_ACTION"
+};
+
+type SetExitAction = {
+  type: "SET_EXIT_ACTION"
+};
+
+type CloseExitModalAction = {
+  type: "CLOSE_EXIT_MODAL_ACTION"
+};
+
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
-  | DataErrorAction | AttemptLoginAction;
+  | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
+  | SetExitAction | ShowExitModalAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -56,6 +78,44 @@ const executeLogin = (seed: Uint8Array,
     prKey,
     address,
     mnemonic
+  };
+};
+
+export const openExitModal = (): OpenExitModalAction => {
+  return {
+    type: "OPEN_EXIT_MODAL_ACTION"
+  };
+};
+
+export const setExit = (): SetExitAction => {
+  return {
+    type: "SET_EXIT_ACTION"
+  };
+};
+
+export const closeExitModal = (): CloseExitModalAction => {
+  return {
+    type: "CLOSE_EXIT_MODAL_ACTION"
+  };
+};
+
+export const dontShowModal = (): DontShowExitModalAction => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(EXIT_MODAL_SHOW_KEY, "false");
+  }
+
+  return {
+    type: "DONT_SHOW_EXIT_MODAL_ACTION"
+  };
+};
+
+export const showModal = (): ShowExitModalAction => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(EXIT_MODAL_SHOW_KEY, "true");
+  }
+
+  return {
+    type: "SHOW_EXIT_MODAL_ACTION"
   };
 };
 

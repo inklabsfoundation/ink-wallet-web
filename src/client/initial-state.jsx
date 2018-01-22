@@ -13,7 +13,10 @@ export type LoginState = {
   inputPassword: string,
   invalidData: boolean,
   isFileUploaded: boolean,
-  mnemonic: ?Mnemonic
+  mnemonic: ?Mnemonic,
+  dontShowConfirmExit: boolean,
+  isExitModalOpen: boolean,
+  isExit: boolean
 };
 
 export type ConfigState = {
@@ -118,7 +121,10 @@ export const initialState: State = {
     inputPassword: "",
     isFileUploaded: false,
     invalidData: false,
-    mnemonic: null
+    mnemonic: null,
+    dontShowConfirmExit: false,
+    isExitModalOpen: false,
+    isExit: false
   },
   creationState: {
     step: 1,

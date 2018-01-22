@@ -3,6 +3,7 @@
     "registerPluginsTimeout": 500000
   },
   "settings": {
+    "pageTitle": "INK Wallet",
     "defaultLocale": "en",
     "derivePath": "m/88'/0'/1'",
     "qtumExplorerPath": "https://explorer.qtum.org/insight-api",

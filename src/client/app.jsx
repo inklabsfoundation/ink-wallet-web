@@ -5,14 +5,16 @@ import { Router, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import Internalizator from "./services/internalizator";
+import {handleConfirmExitShowness} from "./services/confirm-exit-handler";
 
 
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
-  const store = Internalizator.configureIn18n(
+  let store = Internalizator.configureIn18n(
     configureStore(initialState),
     initialState.config.defaultLocale
   );
+  store = handleConfirmExitShowness(store);
   render(
     <Provider store={store}>
       <Router history={browserHistory}>{routes}</Router>

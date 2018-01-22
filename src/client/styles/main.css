@@ -64,6 +64,32 @@ body {
   margin-top: 80px;
 }
 
+.confirm-exit-image {
+  width: 125px;
+  height: 125px;
+}
+
+.confirm-exit-image-container {
+  padding-top: 20px;
+}
+
+.confirm-exit-desc-container {
+  padding-top: 50px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.confirm-exit-btn-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 70px 60px 25px 60px;
+}
+
+.confirm-exit-dontshow-panel {
+  padding: 0 60px 40px 60px;
+  text-align: left;
+}
+
 @media (max-height: 650px) {
   .footer {
     display: none;

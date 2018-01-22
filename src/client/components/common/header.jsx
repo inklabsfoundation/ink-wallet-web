@@ -12,17 +12,19 @@ import Internalizator from "../../services/internalizator";
 import {LANG_LABELS} from "../../locale/dictionary";
 import {setLocale} from "react-redux-i18n";
 import type {Dispatch} from "../../types/redux";
-import {tryToLogout} from "../../actions/login-actions";
+import {openExitModal, tryToLogout} from "../../actions/login-actions";
 import {requestWalletData} from "../../actions/amount-actions";
 // $FlowFixMe
 import refreshIcon from "../../images/refresh-icon.png";
 import RotatingImage from "./rotating-image";
+import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
 
 
 type Props = {
   i18n: Object,
   dispatch: Dispatch,
-  isLoggedId: boolean
+  isLoggedId: boolean,
+  dontShowConfirmExit: boolean
 };
 
 class Header extends React.Component<Props> {
@@ -31,13 +33,6 @@ class Header extends React.Component<Props> {
     (this: any).setLang = this.setLang.bind(this);
     (this: any).handleClickLogout = this.handleClickLogout.bind(this);
     (this: any).handleClickRefresh = this.handleClickRefresh.bind(this);
-    if (typeof window !== "undefined") {
-      window.onbeforeunload = this.closeIt;
-    }
-  }
-
-  closeIt(): string {
-    return "You have unsaved changes!";
   }
 
   setLang(lang: string)  {
@@ -46,7 +41,11 @@ class Header extends React.Component<Props> {
   }
 
   handleClickLogout() {
-    this.props.dispatch(tryToLogout());
+    if (localStorage.getItem(EXIT_MODAL_SHOW_KEY) !== "false") {
+      this.props.dispatch(openExitModal());
+    } else {
+      this.props.dispatch(tryToLogout());
+    }
   }
 
   handleClickRefresh() {
@@ -102,7 +101,8 @@ class Header extends React.Component<Props> {
 const mapStateToProps = (state: State): Object => {
   return {
     i18n: state.i18n,
-    isLoggedId: state.loginState.isLoggedIn
+    isLoggedId: state.loginState.isLoggedIn,
+    dontShowConfirmExit: state.loginState.dontShowConfirmExit
   };
 };
 

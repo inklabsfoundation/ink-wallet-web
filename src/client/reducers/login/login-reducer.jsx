@@ -17,6 +17,37 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         address: action.address,
         mnemonic: action.mnemonic
       };
+    case "DONT_SHOW_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        dontShowConfirmExit: true
+      };
+    }
+    case "SHOW_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        dontShowConfirmExit: false
+      };
+    }
+    case "OPEN_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        isExitModalOpen: true
+      };
+    }
+    case "CLOSE_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        isExitModalOpen: false,
+        isExit: false
+      };
+    }
+    case "SET_EXIT_ACTION": {
+      return {
+        ...store,
+        isExit: true
+      };
+    }
     case "INPUT_PASSWORD_ACTION": {
       return {
         ...store,

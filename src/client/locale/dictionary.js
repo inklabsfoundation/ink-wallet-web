@@ -14,6 +14,14 @@ export const dictionary = {
       receiveBtn: "Receive",
       recentTitle: "Recent"
     },
+    confirmCloseModal: {
+      mainTitle: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
+      secureCenterBtn1: "Go to security center",
+      secureCenterBtn2: "to BACKUP",
+      logoutBtn: "OK, Log out",
+      exitBtn: "OK, Close",
+      dontShowBox: "Don’t show this again"
+    },
     securityCenter: {
       pageHeading: "PLEASE DON'T TOUCH ANYTHING UNLESS YOU REALLY UNDERSTAND WHAT YOU ARE DOING",
       panelHeading: "Backup",
