@@ -29,6 +29,12 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         dontShowConfirmExit: false
       };
     }
+    case "SET_LAST_TRASACTION_TIME_STAMP_ACTION": {
+      return {
+        ...store,
+        lastTransactionTimeStamp: action.timestamp > store.lastTransactionTimeStamp ? action.timestamp : store.lastTransactionTimeStamp
+      };
+    }
     case "OPEN_EXIT_MODAL_ACTION": {
       return {
         ...store,

@@ -30,6 +30,11 @@ type FileUploadAction = {
   backupFile: File
 };
 
+type SetLastTransactionTimeStampAction = {
+  type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
+  timestamp: number
+};
+
 type DataErrorAction = {
   type: "DATA_ERROR_ACTION"
 };
@@ -62,7 +67,7 @@ type CloseExitModalAction = {
 
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
   | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
-  | SetExitAction | ShowExitModalAction;
+  | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -90,6 +95,13 @@ export const openExitModal = (): OpenExitModalAction => {
 export const setExit = (): SetExitAction => {
   return {
     type: "SET_EXIT_ACTION"
+  };
+};
+
+export const setLastTransactionTimeStamp = (timestamp: number): SetLastTransactionTimeStampAction => {
+  return {
+    type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
+    timestamp
   };
 };
 

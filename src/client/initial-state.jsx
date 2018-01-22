@@ -16,7 +16,8 @@ export type LoginState = {
   mnemonic: ?Mnemonic,
   dontShowConfirmExit: boolean,
   isExitModalOpen: boolean,
-  isExit: boolean
+  isExit: boolean,
+  lastTransactionTimeStamp: number
 };
 
 export type ConfigState = {
@@ -61,7 +62,8 @@ export type WalletAmount = {
   label: string,
   isAmountFetching: boolean,
   areTxsFetching: boolean,
-  txs: Array<Object>
+  txs: Array<Object>,
+  isFirstFetchComplete: boolean
 };
 
 export type AmountState = {
@@ -124,7 +126,8 @@ export const initialState: State = {
     mnemonic: null,
     dontShowConfirmExit: false,
     isExitModalOpen: false,
-    isExit: false
+    isExit: false,
+    lastTransactionTimeStamp: 0
   },
   creationState: {
     step: 1,
@@ -153,14 +156,16 @@ export const initialState: State = {
       label: "Qtum",
       isAmountFetching: false,
       areTxsFetching: false,
-      txs: []
+      txs: [],
+      isFirstFetchComplete: false
     },
     INK: {
       balance: 0,
       label: "Ink",
       isAmountFetching: false,
       areTxsFetching: false,
-      txs: []
+      txs: [],
+      isFirstFetchComplete: false
     }
   },
   sendTransactionState: {

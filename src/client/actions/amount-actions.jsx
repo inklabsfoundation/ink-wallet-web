@@ -1,9 +1,13 @@
+/* eslint-disable no-magic-numbers */
 // @flow
 
 import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import axios from "axios";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT, TOKENS_COUNT} from "../types/consts";
+import {setLastTransactionTimeStamp} from "./login-actions";
+import * as _ from "lodash";
+import {SUPPORTED_CURRENCIES} from "../initial-state";
 
 type RequestQtumBalanceFetchingAction = {
   type: "REQUEST_QTUM_BALANCE_FETCHING_ACTION"
@@ -57,13 +61,18 @@ type RequestInkBalanceFailAction = {
   type: "REQUEST_INK_BALANCE_FAIL_ACTION"
 };
 
+type SetFirstTxRequestMadeAction = {
+  type: "SET_FIRST_TX_REQUEST_MADE_ACTION",
+  currency: string
+};
+
 export type AmountAction = RequestQtumBalanceFetchingAction |
   RequestQtumBalanceSuccessAction | RequestQtumBalanceFailAction |
   RequestQtumTransactionsFetchingAction | RequestQtumTransactionsSuccessAction |
   RequestQtumTransactionsFailAction | RequestInkTransactionsFetchingAction |
   RequestInkTransactionsSuccessAction | RequestInkTransactionsFailAction |
   RequestInkBalanceFetchingAction | RequestinkBalanceSuccessAction |
-  RequestInkBalanceFailAction;
+  RequestInkBalanceFailAction | SetFirstTxRequestMadeAction;
 
 const requestInkBalanceFetching = (): RequestInkBalanceFetchingAction => {
   return {
@@ -74,6 +83,13 @@ const requestInkBalanceFetching = (): RequestInkBalanceFetchingAction => {
 const requestInkBalanceError = (): RequestInkBalanceFailAction => {
   return {
     type: "REQUEST_INK_BALANCE_FAIL_ACTION"
+  };
+};
+
+const setFirstTxRequestMadeAction = (currency: string): SetFirstTxRequestMadeAction => {
+  return {
+    type: "SET_FIRST_TX_REQUEST_MADE_ACTION",
+    currency
   };
 };
 
@@ -158,17 +174,25 @@ const requestQtumTransactionsSuccess = (txs: Array<Object>): RequestQtumTransact
   };
 };
 
-export const requestQtumTransactions = (): ThunkAction => {
+export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumTransactionsFetching());
     const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/txs?address=${address}&pageNum=0`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.txs;
+        if (isFirstRequest) {
+          const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
+            return tx.time;
+          });
+          dispatch(setLastTransactionTimeStamp(lastTransTime.time - 1));
+          dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
+        }
         dispatch(requestQtumTransactionsSuccess(txs));
       })
       .catch(() => {
         dispatch(requestQtumTransactionsError());
+        dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
       });
   };
 };
@@ -193,7 +217,7 @@ const requestInkTransactionsSuccess = (txs: Array<Object>): RequestInkTransactio
   };
 };
 
-export const requestInkTransactions = (): ThunkAction => {
+export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestInkTransactionsFetching());
     const address: string = getState().loginState.address.toString();
@@ -202,19 +226,27 @@ export const requestInkTransactions = (): ThunkAction => {
     axios.get(`${path}/tokens/${tokenAddress}/transactions?addresses[]=${address}`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.items;
+        if (isFirstRequest) {
+          const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
+            return Date.parse(tx.block_date_time) / 1000;
+          });
+          dispatch(setLastTransactionTimeStamp(Date.parse(lastTransTime.block_date_time) / 1000));
+          dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));
+        }
         dispatch(requestInkTransactionsSuccess(txs));
       })
       .catch(() => {
         dispatch(requestInkTransactionsError());
+        dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));
       });
   };
 };
 
-export const requestWalletData = (): ThunkAction => {
+export const requestWalletData = (isFirstRequest: ?boolean): ThunkAction => {
   return (dispatch: Dispatch) => {
     dispatch(requestQtumBalance());
-    dispatch(requestQtumTransactions());
+    dispatch(requestQtumTransactions(isFirstRequest));
     dispatch(requestInkBalance());
-    dispatch(requestInkTransactions());
+    dispatch(requestInkTransactions(isFirstRequest));
   };
 };

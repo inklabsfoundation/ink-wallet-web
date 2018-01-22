@@ -35,7 +35,7 @@ class MainPage extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.props.dispatch(requestWalletData());
+    this.props.dispatch(requestWalletData(true));
     if (localStorage.getItem(EXIT_MODAL_SHOW_KEY) !== "false") {
       if (typeof window !== "undefined") {
         window.onbeforeunload = this.closeIt;
