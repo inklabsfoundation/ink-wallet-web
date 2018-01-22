@@ -185,7 +185,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
           const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
             return tx.time;
           });
-          dispatch(setLastTransactionTimeStamp(lastTransTime.time - 1));
+          dispatch(setLastTransactionTimeStamp(lastTransTime.time));
           dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
         }
         dispatch(requestQtumTransactionsSuccess(txs));
