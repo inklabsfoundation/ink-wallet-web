@@ -90,6 +90,48 @@ body {
   text-align: left;
 }
 
+.modal.alert-modal {
+  top: 150px;
+}
+
+.error-request-container {
+  padding: 15px 20px 40px 20px;
+}
+
+.error-request-btn-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-elem {
+  cursor: pointer;
+}
+
+.new-transactions-container {
+  padding: 15px 20px 40px 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.new-transactions-btn-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal.alert-modal .modal-dialog {
+  width: 450px;
+}
+
+.alert-modal .modal-header {
+  border-bottom: 0;
+}
+
+.main-page-form .main-page-btn {
+  margin-bottom: 15px;
+}
+
 @media (max-height: 650px) {
   .footer {
     display: none;

@@ -23,10 +23,10 @@ export const wrapWithWindow = (Component: any): any =>
               <Row>
                 <Col xs={4}/>
                 <Col xs={4} className="copyright-wrapper footer-label">
-                  Copyright©2017
+                  Copyright©{(new Date()).getFullYear()}
                 </Col>
                 <Col xs={4} className="version-wrapper footer-label">
-                  版本号V0.1.1
+                  版本号V0.0.1
                 </Col>
               </Row>
           </div>

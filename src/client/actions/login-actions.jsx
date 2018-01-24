@@ -57,6 +57,22 @@ type OpenExitModalAction = {
   type: "OPEN_EXIT_MODAL_ACTION"
 };
 
+type OpenRequestFailModalAction = {
+  type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
+};
+
+type CloseRequestFailModalAction = {
+  type: "CLOSE_REQUEST_FAIL_MODAL_ACTION"
+};
+
+type OpenNewTransactionsModalAction = {
+  type: "OPEN_NEW_TRANSACTIONS_MODAL_ACTION"
+};
+
+type CloseNewTransactionsModalAction = {
+  type: "CLOSE_NEW_TRANSACTIONS_MODAL_ACTION"
+};
+
 type SetExitAction = {
   type: "SET_EXIT_ACTION"
 };
@@ -67,7 +83,8 @@ type CloseExitModalAction = {
 
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
   | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
-  | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction;
+  | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction | OpenRequestFailModalAction
+  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -86,9 +103,33 @@ const executeLogin = (seed: Uint8Array,
   };
 };
 
+export const openNewTransactionsModal = (): OpenNewTransactionsModalAction => {
+  return {
+    type: "OPEN_NEW_TRANSACTIONS_MODAL_ACTION"
+  };
+};
+
+export const closeNewTransactionsModal = (): CloseNewTransactionsModalAction => {
+  return {
+    type: "CLOSE_NEW_TRANSACTIONS_MODAL_ACTION"
+  };
+};
+
 export const openExitModal = (): OpenExitModalAction => {
   return {
     type: "OPEN_EXIT_MODAL_ACTION"
+  };
+};
+
+export const openRequestFailModal = (): OpenRequestFailModalAction => {
+  return {
+    type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
+  };
+};
+
+export const closeRequestFailModal = (): CloseRequestFailModalAction => {
+  return {
+    type: "CLOSE_REQUEST_FAIL_MODAL_ACTION"
   };
 };
 

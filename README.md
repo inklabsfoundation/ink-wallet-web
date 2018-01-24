@@ -27,7 +27,7 @@ $ clap dev
 ```sh
 $ yarn install
 $ clap build
-$ clap wds.hot //in the another terminal
+$ clap wds.dev //in the another terminal
 $ clap server
 
 

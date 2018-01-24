@@ -17,7 +17,9 @@ export type LoginState = {
   dontShowConfirmExit: boolean,
   isExitModalOpen: boolean,
   isExit: boolean,
-  lastTransactionTimeStamp: number
+  lastTransactionTimeStamp: number,
+  isRequestFailModalOpen: boolean,
+  isNewTransactionsModalOpen: boolean
 };
 
 export type ConfigState = {
@@ -53,8 +55,8 @@ export type SendTransactionState = {
 };
 
 export const SUPPORTED_CURRENCIES = {
-  QTUM: "QTUM",
-  INK: "INK"
+  INK: "INK",
+  QTUM: "QTUM"
 };
 
 export type WalletAmount = {
@@ -127,7 +129,9 @@ export const initialState: State = {
     dontShowConfirmExit: false,
     isExitModalOpen: false,
     isExit: false,
-    lastTransactionTimeStamp: 0
+    lastTransactionTimeStamp: 0,
+    isRequestFailModalOpen: false,
+    isNewTransactionsModalOpen: false
   },
   creationState: {
     step: 1,

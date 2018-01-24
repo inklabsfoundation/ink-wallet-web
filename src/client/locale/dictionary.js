@@ -6,7 +6,23 @@ export const dictionary = {
     },
     main: {
       createWalletBtnLabel: "Create New Wallet",
-      restoreWalletBtnLabel: "Restore My Wallet"
+      restoreWalletBtnLabel: "Restore My Wallet",
+      backToWalletBtn: "Back To My Wallet"
+    },
+    requestErrorModal: {
+      title: "The explorer can not return data correctly. Please set a valid one.",
+      setBtn: "Go to set",
+      cancelBtn: "Cancel"
+    },
+    newTransactionsModal: {
+      title: "transations have been confirmed.",
+      okBtn: "ok"
+    },
+    navPanel: {
+      wallet: "My Wallet",
+      assetsDetails: "Assets Details",
+      securityCenter: "Security Center",
+      faq: "F&Q"
     },
     mainPage: {
       sendBtn: "Send",

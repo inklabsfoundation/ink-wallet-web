@@ -10,6 +10,8 @@ import NavPanel from "./nav-panel";
 import {requestWalletData} from "../../actions/amount-actions";
 import {openExitModal, setExit} from "../../actions/login-actions";
 import ExitModal from "./exit-modal/exit-modal";
+import FailRequestModal from "./fail-request-modal/fail-request-modal";
+import CountTransactionsModal from "./count-transactions-modal/count-transactions-modal";
 import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
 
 type Props = {
@@ -17,7 +19,8 @@ type Props = {
   dispatch: Dispatch,
   refreshTime: number,
   children: React.Node,
-  dontShowConfirmExit: boolean
+  dontShowConfirmExit: boolean,
+  location: string
 };
 
 class MainPage extends React.Component<Props> {
@@ -54,9 +57,11 @@ class MainPage extends React.Component<Props> {
   render(): React.Node {
     return (
       <Grid className="main-page">
-        <NavPanel/>
+        <NavPanel location={this.props.location}/>
         {this.props.children}
         <ExitModal intervalId={this.refresh}/>
+        <FailRequestModal/>
+        <CountTransactionsModal/>
       </Grid>
     );
   }

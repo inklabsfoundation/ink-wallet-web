@@ -5,7 +5,7 @@ import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import axios from "axios";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT, TOKENS_COUNT} from "../types/consts";
-import {setLastTransactionTimeStamp} from "./login-actions";
+import {openRequestFailModal, setLastTransactionTimeStamp} from "./login-actions";
 import * as _ from "lodash";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 
@@ -115,6 +115,7 @@ export const requestInkBalance = (): ThunkAction => {
         dispatch(requestInkFetchingSuccess(amount));
       })
       .catch(() => {
+        dispatch(openRequestFailModal());
         dispatch(requestInkBalanceError());
       });
   };
@@ -149,6 +150,7 @@ export const requestQtumBalance = (): ThunkAction => {
         dispatch(requestQtumFetchingSuccess(amount / SATOSHI_COUNT));
       })
       .catch(() => {
+        dispatch(openRequestFailModal());
         dispatch(requestQtumBalanceError());
       });
   };
@@ -191,6 +193,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
         dispatch(requestQtumTransactionsSuccess(txs));
       })
       .catch(() => {
+        dispatch(openRequestFailModal());
         dispatch(requestQtumTransactionsError());
         dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
       });
@@ -236,6 +239,7 @@ export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction =>
         dispatch(requestInkTransactionsSuccess(txs));
       })
       .catch(() => {
+        dispatch(openRequestFailModal());
         dispatch(requestInkTransactionsError());
         dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));
       });
