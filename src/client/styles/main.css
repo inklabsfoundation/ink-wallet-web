@@ -62,6 +62,7 @@ body {
   display: grid;
   justify-content: center;
   margin-top: 80px;
+  padding-bottom: 10px;
 }
 
 .confirm-exit-image {

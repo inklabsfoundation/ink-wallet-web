@@ -31,7 +31,7 @@ class HomePanel extends React.Component<Props> {
                 <Translate value="header.loginBtnLabel"/>
               </Link>
           }
-          <Link to={ROUTE_URLS.CREATE_WALLET_PAGE} className="primary-white-btn main-page-btn">
+          <Link to={ROUTE_URLS.CREATE_WALLET_PAGE} className="primary-red-btn main-page-btn">
             <Translate value="main.createWalletBtnLabel"/>
           </Link>
           <Link to={ROUTE_URLS.RESTORE_WALLET_PAGE} className="primary-white-btn main-page-btn">

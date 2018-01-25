@@ -52,6 +52,13 @@ export const dictionary = {
         title: "Password is incorrect",
         doneBtn: "Done"
       },
+      explorerContainer: {
+        title: "Explorer Settings",
+        desc: "You can choose qtum explorer or ink explorer to get transation datas.You can also set the explorer you prefer.",
+        customRadioLabel: "Custom",
+        customPathInputPlaceholder: "Please input an explorer address",
+        submitBtn: "Submit"
+      },
       mnemonicsModal: {
         title: "Your mnemonics is",
         firstDescription: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",

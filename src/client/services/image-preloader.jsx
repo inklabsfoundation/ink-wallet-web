@@ -6,5 +6,6 @@ export const preloadImage = (url: string): ?HTMLImageElement => {
     image = document.createElement("img");
     image.src = url;
   }
+
   return image;
 };

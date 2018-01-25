@@ -25,7 +25,7 @@ export type LoginState = {
 export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
-  qtumExplorerPath: string,
+  qtumExplorerPath: ?string,
   encryptSalt: string,
   INKcontractAddress: string,
   refreshTime: number

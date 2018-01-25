@@ -9,10 +9,11 @@ export const EXIT_MODAL_SHOW_KEY = "isExitModalShow";
 
 export const handleConfirmExitShowness = (store: Store<State, Action, Dispatch>): Store<State, Action, Dispatch> => {
   if (typeof window !== "undefined") {
-    if (!_.isUndefined(localStorage.getItem(EXIT_MODAL_SHOW_KEY))
-        &&  localStorage.getItem(EXIT_MODAL_SHOW_KEY) === "false") {
+    const exitModalKey: ?string = localStorage.getItem(EXIT_MODAL_SHOW_KEY);
+    if (exitModalKey &&  exitModalKey === "false") {
         store.dispatch(dontShowModal());
     }
   }
+
   return store;
 };

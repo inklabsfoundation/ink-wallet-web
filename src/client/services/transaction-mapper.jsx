@@ -97,6 +97,7 @@ const mapTransactions = (walletData: AmountState, address: string): Array<LastTr
     lastTransactions,
     (transaction: LastTransaction): number  => transaction.timestamp
   ).reverse();
+
   return lastTransactions;
 };
 
@@ -135,5 +136,6 @@ export const getLastTxTimestamp = (amountState: AmountState, address: string): n
   const lastestTx: LastTransaction = _.maxBy(lastTransactions, (tx: LastTransaction) => {
     return tx.timestamp;
   });
+
   return lastestTx.timestamp;
 };

@@ -38,6 +38,7 @@ export default class Internalizator {
         label = LANG_LABELS[key];
       }
     });
+
     return label;
   }
 }
