@@ -27,7 +27,6 @@ type State = {
 };
 
 class NavPanel extends React.Component<Props, State> {
-
   constructor(props: Props) {
     super(props);
     (this: any).isActive = this.isActive.bind(this);

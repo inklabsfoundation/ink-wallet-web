@@ -83,11 +83,11 @@ body {
 .confirm-exit-btn-container {
   display: flex;
   justify-content: space-between;
-  padding: 70px 60px 25px 60px;
+  padding: 70px 60px 25px;
 }
 
 .confirm-exit-dontshow-panel {
-  padding: 0 60px 40px 60px;
+  padding: 0 60px 40px;
   text-align: left;
 }
 
@@ -96,7 +96,7 @@ body {
 }
 
 .error-request-container {
-  padding: 15px 20px 40px 20px;
+  padding: 15px 20px 40px;
 }
 
 .error-request-btn-container {
@@ -110,7 +110,7 @@ body {
 }
 
 .new-transactions-container {
-  padding: 15px 20px 40px 20px;
+  padding: 15px 20px 40px;
   font-size: 18px;
   text-align: center;
 }

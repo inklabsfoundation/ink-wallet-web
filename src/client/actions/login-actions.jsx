@@ -5,6 +5,7 @@ import {HDPrivateKey, Networks, Address, PublicKey, PrivateKey} from "@evercode-
 import Mnemonic from "bitcore-mnemonic";
 import CryptoJS, {SHA256, AES} from "crypto-js";
 import {EXIT_MODAL_SHOW_KEY} from "../services/confirm-exit-handler";
+import {isClientSide} from "../services/is-client-side-helper";
 
 type LoginAction = {
   type: "LOGIN_ACTION",
@@ -153,7 +154,7 @@ export const closeExitModal = (): CloseExitModalAction => {
 };
 
 export const dontShowModal = (): DontShowExitModalAction => {
-  if (typeof window !== "undefined") {
+  if (isClientSide()) {
     localStorage.setItem(EXIT_MODAL_SHOW_KEY, "false");
   }
 
@@ -163,7 +164,7 @@ export const dontShowModal = (): DontShowExitModalAction => {
 };
 
 export const showModal = (): ShowExitModalAction => {
-  if (typeof window !== "undefined") {
+  if (isClientSide()) {
     localStorage.setItem(EXIT_MODAL_SHOW_KEY, "true");
   }
 

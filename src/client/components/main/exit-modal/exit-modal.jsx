@@ -12,6 +12,7 @@ import {closeExitModal, dontShowModal, showModal, tryToLogout} from "../../../ac
 // $FlowFixMe
 import {browserHistory} from "react-router";
 import {ROUTE_URLS} from "../../../routes";
+import {isClientSide} from "../../../services/is-client-side-helper";
 
 type Props = {
   dispatch: Dispatch,
@@ -48,15 +49,13 @@ class ExitModal extends React.Component<Props> {
 
   handleLogOut() {
     this.handleClose();
-    if (this.props.isExit) {
-      if (typeof window !== "undefined") {
-        window.onbeforeunload = null;
-        const win = window.open("about:blank", "_self");
-        win.close();
-      }
-    } else {
+    if (!this.props.isExit) {
       clearInterval(this.props.intervalId);
       this.props.dispatch(tryToLogout());
+    } else if (isClientSide()) {
+      window.onbeforeunload = null;
+      const win = window.open("about:blank", "_self");
+      win.close();
     }
   }
 

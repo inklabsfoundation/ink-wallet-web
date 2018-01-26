@@ -13,6 +13,7 @@ import ExitModal from "./exit-modal/exit-modal";
 import FailRequestModal from "./fail-request-modal/fail-request-modal";
 import CountTransactionsModal from "./count-transactions-modal/count-transactions-modal";
 import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
+import {isClientSide} from "../../services/is-client-side-helper";
 
 type Props = {
   isLoggedIn: boolean,
@@ -39,10 +40,8 @@ class MainPage extends React.Component<Props> {
 
   componentDidMount() {
     this.props.dispatch(requestWalletData(true));
-    if (localStorage.getItem(EXIT_MODAL_SHOW_KEY) !== "false") {
-      if (typeof window !== "undefined") {
-        window.onbeforeunload = this.closeIt;
-      }
+    if (localStorage.getItem(EXIT_MODAL_SHOW_KEY) !== "false" && isClientSide()) {
+      window.onbeforeunload = this.closeIt;
     }
     this.refresh = setInterval(() => {
       this.props.dispatch(requestWalletData());
