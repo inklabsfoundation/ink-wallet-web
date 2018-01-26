@@ -27,7 +27,7 @@ const appReducer = combineReducers({
 export default (store, action) => {
   switch (action.type) {
     case "LOGOUT_ACTION":
-      if (typeof window !== "undefined") {
+      if (isClientSide()) {
         browserHistory.push(ROUTE_URLS.HOME_PAGE);
       }
       return {

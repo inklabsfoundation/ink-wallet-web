@@ -4,6 +4,8 @@ import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import {HDPrivateKey, Networks, Address, PublicKey, PrivateKey} from "@evercode-lab/qtumcore-lib";
 import Mnemonic from "bitcore-mnemonic";
 import CryptoJS, {SHA256, AES} from "crypto-js";
+import {EXIT_MODAL_SHOW_KEY} from "../services/confirm-exit-handler";
+import {isClientSide} from "../services/is-client-side-helper";
 
 type LoginAction = {
   type: "LOGIN_ACTION",
@@ -29,8 +31,21 @@ type FileUploadAction = {
   backupFile: File
 };
 
+type SetLastTransactionTimeStampAction = {
+  type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
+  timestamp: number
+};
+
 type DataErrorAction = {
   type: "DATA_ERROR_ACTION"
+};
+
+type DontShowExitModalAction = {
+  type: "DONT_SHOW_EXIT_MODAL_ACTION"
+};
+
+type ShowExitModalAction = {
+  type: "SHOW_EXIT_MODAL_ACTION"
 };
 
 type AttemptLoginAction = {
@@ -39,8 +54,38 @@ type AttemptLoginAction = {
   backupFile: File
 };
 
+type OpenExitModalAction = {
+  type: "OPEN_EXIT_MODAL_ACTION"
+};
+
+type OpenRequestFailModalAction = {
+  type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
+};
+
+type CloseRequestFailModalAction = {
+  type: "CLOSE_REQUEST_FAIL_MODAL_ACTION"
+};
+
+type OpenNewTransactionsModalAction = {
+  type: "OPEN_NEW_TRANSACTIONS_MODAL_ACTION"
+};
+
+type CloseNewTransactionsModalAction = {
+  type: "CLOSE_NEW_TRANSACTIONS_MODAL_ACTION"
+};
+
+type SetExitAction = {
+  type: "SET_EXIT_ACTION"
+};
+
+type CloseExitModalAction = {
+  type: "CLOSE_EXIT_MODAL_ACTION"
+};
+
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
-  | DataErrorAction | AttemptLoginAction;
+  | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
+  | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction | OpenRequestFailModalAction
+  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -56,6 +101,75 @@ const executeLogin = (seed: Uint8Array,
     prKey,
     address,
     mnemonic
+  };
+};
+
+export const openNewTransactionsModal = (): OpenNewTransactionsModalAction => {
+  return {
+    type: "OPEN_NEW_TRANSACTIONS_MODAL_ACTION"
+  };
+};
+
+export const closeNewTransactionsModal = (): CloseNewTransactionsModalAction => {
+  return {
+    type: "CLOSE_NEW_TRANSACTIONS_MODAL_ACTION"
+  };
+};
+
+export const openExitModal = (): OpenExitModalAction => {
+  return {
+    type: "OPEN_EXIT_MODAL_ACTION"
+  };
+};
+
+export const openRequestFailModal = (): OpenRequestFailModalAction => {
+  return {
+    type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
+  };
+};
+
+export const closeRequestFailModal = (): CloseRequestFailModalAction => {
+  return {
+    type: "CLOSE_REQUEST_FAIL_MODAL_ACTION"
+  };
+};
+
+export const setExit = (): SetExitAction => {
+  return {
+    type: "SET_EXIT_ACTION"
+  };
+};
+
+export const setLastTransactionTimeStamp = (timestamp: number): SetLastTransactionTimeStampAction => {
+  return {
+    type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
+    timestamp
+  };
+};
+
+export const closeExitModal = (): CloseExitModalAction => {
+  return {
+    type: "CLOSE_EXIT_MODAL_ACTION"
+  };
+};
+
+export const dontShowModal = (): DontShowExitModalAction => {
+  if (isClientSide()) {
+    localStorage.setItem(EXIT_MODAL_SHOW_KEY, "false");
+  }
+
+  return {
+    type: "DONT_SHOW_EXIT_MODAL_ACTION"
+  };
+};
+
+export const showModal = (): ShowExitModalAction => {
+  if (isClientSide()) {
+    localStorage.setItem(EXIT_MODAL_SHOW_KEY, "true");
+  }
+
+  return {
+    type: "SHOW_EXIT_MODAL_ACTION"
   };
 };
 

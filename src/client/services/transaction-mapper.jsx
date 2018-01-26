@@ -81,8 +81,7 @@ const mapTokensTransactions = (currencyName: string,
   );
 };
 
-// eslint-disable-next-line max-len
-export const mapLastTransactions = (walletData: AmountState, address: string): Array<LastTransaction> => {
+const mapTransactions = (walletData: AmountState, address: string): Array<LastTransaction> => {
   const qtumTransactions: Array<LastTransaction> = mapQtumTransactions(
     SUPPORTED_CURRENCIES.QTUM,
     address,
@@ -98,9 +97,47 @@ export const mapLastTransactions = (walletData: AmountState, address: string): A
     lastTransactions,
     (transaction: LastTransaction): number  => transaction.timestamp
   ).reverse();
+
+  return lastTransactions;
+};
+
+// eslint-disable-next-line max-len
+export const mapLastTransactions = (walletData: AmountState, address: string): Array<LastTransaction> => {
+  let lastTransactions: Array<LastTransaction> = mapTransactions(walletData, address);
   if (lastTransactions.length > TRANSACTIONS_COUNT) {
     lastTransactions = lastTransactions.slice(0, TRANSACTIONS_COUNT);
   }
 
   return lastTransactions;
+};
+
+export const calcNewTransactionsCount = (amountState: AmountState, address: string, txTimestamp: number): ?number => {
+  const lastTransactions: Array<LastTransaction> = mapTransactions(amountState, address);
+  if (!lastTransactions || lastTransactions.length === 0 || txTimestamp === 0) return null;
+  let areAllRequestsComplete: boolean = true;
+  Object.keys(amountState).forEach((key: string) => {
+    if (!amountState[key].isFirstFetchComplete) {
+      areAllRequestsComplete = false;
+    }
+  });
+  if (!areAllRequestsComplete) {
+    return null;
+  }
+  let count: number = 0;
+  lastTransactions.forEach((tx: LastTransaction) => {
+    if (tx.timestamp > txTimestamp) {
+      count++;
+    }
+  });
+
+  return count > 0 ? count : null;
+};
+
+export const getLastTxTimestamp = (amountState: AmountState, address: string): number => {
+  const lastTransactions: Array<LastTransaction> = mapTransactions(amountState, address);
+  const lastestTx: LastTransaction = _.maxBy(lastTransactions, (tx: LastTransaction) => {
+    return tx.timestamp;
+  });
+
+  return lastestTx.timestamp;
 };

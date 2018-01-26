@@ -6,13 +6,37 @@ export const dictionary = {
     },
     main: {
       createWalletBtnLabel: "Create New Wallet",
-      restoreWalletBtnLabel: "Restore My Wallet"
+      restoreWalletBtnLabel: "Restore My Wallet",
+      backToWalletBtn: "Back To My Wallet"
+    },
+    requestErrorModal: {
+      title: "The explorer can not return data correctly. Please set a valid one.",
+      setBtn: "Go to set",
+      cancelBtn: "Cancel"
+    },
+    newTransactionsModal: {
+      title: "transations have been confirmed.",
+      okBtn: "ok"
+    },
+    navPanel: {
+      wallet: "My Wallet",
+      assetsDetails: "Assets Details",
+      securityCenter: "Security Center",
+      faq: "F&Q"
     },
     mainPage: {
       sendBtn: "Send",
       importMoreBtn: "Import more",
       receiveBtn: "Receive",
       recentTitle: "Recent"
+    },
+    confirmCloseModal: {
+      mainTitle: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
+      secureCenterBtn1: "Go to security center",
+      secureCenterBtn2: "to BACKUP",
+      logoutBtn: "OK, Log out",
+      exitBtn: "OK, Close",
+      dontShowBox: "Don’t show this again"
     },
     securityCenter: {
       pageHeading: "PLEASE DON'T TOUCH ANYTHING UNLESS YOU REALLY UNDERSTAND WHAT YOU ARE DOING",
@@ -27,6 +51,13 @@ export const dictionary = {
       errorModal: {
         title: "Password is incorrect",
         doneBtn: "Done"
+      },
+      explorerContainer: {
+        title: "Explorer Settings",
+        desc: "You can choose qtum explorer or ink explorer to get transation datas.You can also set the explorer you prefer.",
+        customRadioLabel: "Custom",
+        customPathInputPlaceholder: "Please input an explorer address",
+        submitBtn: "Submit"
       },
       mnemonicsModal: {
         title: "Your mnemonics is",

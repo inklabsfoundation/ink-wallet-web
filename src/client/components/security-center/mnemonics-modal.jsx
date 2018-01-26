@@ -11,7 +11,6 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 import {closeMnemonicModal} from "../../actions/security-center-actions";
 import Mnemonic from "bitcore-mnemonic";
 
-
 type Props = {
   dispatch: Dispatch,
   isMnemonicModalOpen: boolean,

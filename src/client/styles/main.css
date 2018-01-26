@@ -62,6 +62,75 @@ body {
   display: grid;
   justify-content: center;
   margin-top: 80px;
+  padding-bottom: 10px;
+}
+
+.confirm-exit-image {
+  width: 125px;
+  height: 125px;
+}
+
+.confirm-exit-image-container {
+  padding-top: 20px;
+}
+
+.confirm-exit-desc-container {
+  padding-top: 50px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.confirm-exit-btn-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 70px 60px 25px;
+}
+
+.confirm-exit-dontshow-panel {
+  padding: 0 60px 40px;
+  text-align: left;
+}
+
+.modal.alert-modal {
+  top: 150px;
+}
+
+.error-request-container {
+  padding: 15px 20px 40px;
+}
+
+.error-request-btn-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-elem {
+  cursor: pointer;
+}
+
+.new-transactions-container {
+  padding: 15px 20px 40px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.new-transactions-btn-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal.alert-modal .modal-dialog {
+  width: 450px;
+}
+
+.alert-modal .modal-header {
+  border-bottom: 0;
+}
+
+.main-page-form .main-page-btn {
+  margin-bottom: 15px;
 }
 
 @media (max-height: 650px) {

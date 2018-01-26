@@ -17,6 +17,67 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         address: action.address,
         mnemonic: action.mnemonic
       };
+    case "DONT_SHOW_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        dontShowConfirmExit: true
+      };
+    }
+    case "SHOW_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        dontShowConfirmExit: false
+      };
+    }
+    case "OPEN_REQUEST_FAIL_MODAL_ACTION": {
+      return {
+        ...store,
+        isRequestFailModalOpen: true
+      };
+    }
+    case "CLOSE_REQUEST_FAIL_MODAL_ACTION": {
+      return {
+        ...store,
+        isRequestFailModalOpen: false
+      };
+    }
+    case "OPEN_NEW_TRANSACTIONS_MODAL_ACTION": {
+      return {
+        ...store,
+        isNewTransactionsModalOpen: true
+      };
+    }
+    case "CLOSE_NEW_TRANSACTIONS_MODAL_ACTION": {
+      return {
+        ...store,
+        isNewTransactionsModalOpen: false
+      };
+    }
+    case "SET_LAST_TRASACTION_TIME_STAMP_ACTION": {
+      return {
+        ...store,
+        lastTransactionTimeStamp: action.timestamp > store.lastTransactionTimeStamp ? action.timestamp : store.lastTransactionTimeStamp
+      };
+    }
+    case "OPEN_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        isExitModalOpen: true
+      };
+    }
+    case "CLOSE_EXIT_MODAL_ACTION": {
+      return {
+        ...store,
+        isExitModalOpen: false,
+        isExit: false
+      };
+    }
+    case "SET_EXIT_ACTION": {
+      return {
+        ...store,
+        isExit: true
+      };
+    }
     case "INPUT_PASSWORD_ACTION": {
       return {
         ...store,

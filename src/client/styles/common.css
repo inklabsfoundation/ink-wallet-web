@@ -50,3 +50,10 @@
 .nav > li.lang-dropdown > a {
   padding-left: 40px;
 }
+
+.primary-white-btn.large,
+.primary-red-btn.large {
+  height: 45px;
+  padding-top: 0;
+  padding-bottom: 0;
+}

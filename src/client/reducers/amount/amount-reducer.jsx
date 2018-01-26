@@ -3,6 +3,7 @@
 import type {AmountState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {AmountAction} from "../../actions/amount-actions";
+import * as _ from "lodash";
 
 export const amountState = (store: AmountState = initialState.amountState,
                             action: AmountAction): AmountState => {
@@ -32,6 +33,11 @@ export const amountState = (store: AmountState = initialState.amountState,
           isAmountFetching: false
         }
       };
+    // eslint-disable-next-line no-case-declarations
+    case "SET_FIRST_TX_REQUEST_MADE_ACTION":
+      const state: AmountState = _.cloneDeep(store);
+      state[action.currency].isFirstFetchComplete = true;
+      return state;
     case "REQUEST_INK_BALANCE_FAIL_ACTION":
       return {
         ...store,

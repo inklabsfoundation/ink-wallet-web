@@ -5,6 +5,7 @@ import type {Store} from "redux";
 import type {State} from "../initial-state";
 import type {Action, Dispatch} from "../types/redux";
 import * as _ from "lodash";
+import {isClientSide} from "./is-client-side-helper";
 
 export default class Internalizator {
 
@@ -17,7 +18,7 @@ export default class Internalizator {
   }
 
   static getBrowserLanguage(defaultLocale: string): string {
-    if (typeof window !== "undefined") {
+    if (isClientSide()) {
       const locale = localStorage.getItem("locale");
       if (!locale) {
         const language = (navigator.languages && navigator.languages[0]) || navigator.language;
@@ -38,6 +39,7 @@ export default class Internalizator {
         label = LANG_LABELS[key];
       }
     });
+
     return label;
   }
 }

@@ -3,26 +3,37 @@ import * as React from "react";
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 // $FlowFixMe
 import {connect} from "react-redux";
-import type {State} from "../../initial-state";
+import type {AmountState, State} from "../../initial-state";
 import {ROUTE_URLS} from "../../routes";
 import logo from "../../images/logo-md.png";
 // $FlowFixMe
-import {Link, browserHistory} from "react-router";
+import {Link} from "react-router";
 import Internalizator from "../../services/internalizator";
 import {LANG_LABELS} from "../../locale/dictionary";
-import {setLocale} from "react-redux-i18n";
+import {setLocale, Translate} from "react-redux-i18n";
 import type {Dispatch} from "../../types/redux";
-import {tryToLogout} from "../../actions/login-actions";
+import {
+  openExitModal, openNewTransactionsModal,
+  tryToLogout
+} from "../../actions/login-actions";
 import {requestWalletData} from "../../actions/amount-actions";
 // $FlowFixMe
 import refreshIcon from "../../images/refresh-icon.png";
+import newTransIcon from "../../images/new-trans.png";
 import RotatingImage from "./rotating-image";
+import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
+import {calcNewTransactionsCount} from "../../services/transaction-mapper";
+import {Address} from "@evercode-lab/qtumcore-lib";
 
 
 type Props = {
   i18n: Object,
   dispatch: Dispatch,
-  isLoggedId: boolean
+  isLoggedId: boolean,
+  dontShowConfirmExit: boolean,
+  amountState: AmountState,
+  address: Address,
+  lastTransactionTimeStamp: number
 };
 
 class Header extends React.Component<Props> {
@@ -31,13 +42,7 @@ class Header extends React.Component<Props> {
     (this: any).setLang = this.setLang.bind(this);
     (this: any).handleClickLogout = this.handleClickLogout.bind(this);
     (this: any).handleClickRefresh = this.handleClickRefresh.bind(this);
-    if (typeof window !== "undefined") {
-      window.onbeforeunload = this.closeIt;
-    }
-  }
-
-  closeIt(): string {
-    return "You have unsaved changes!";
+    (this: any).handleResetLastTxClick = this.handleResetLastTxClick.bind(this);
   }
 
   setLang(lang: string)  {
@@ -46,11 +51,21 @@ class Header extends React.Component<Props> {
   }
 
   handleClickLogout() {
-    this.props.dispatch(tryToLogout());
+    if (localStorage.getItem(EXIT_MODAL_SHOW_KEY) !== "false") {
+      this.props.dispatch(openExitModal());
+    } else {
+      this.props.dispatch(tryToLogout());
+    }
   }
 
   handleClickRefresh() {
     this.props.dispatch(requestWalletData());
+  }
+
+  handleResetLastTxClick(newTxCount: ?number) {
+    if (newTxCount && newTxCount > 0) {
+      this.props.dispatch(openNewTransactionsModal());
+    }
   }
 
   render(): React.Node {
@@ -62,6 +77,11 @@ class Header extends React.Component<Props> {
           : ""
       );
     });
+    const newTxCount: ?number = calcNewTransactionsCount(
+      this.props.amountState,
+      this.props.address,
+      this.props.lastTransactionTimeStamp
+    );
     return (
       <Navbar>
         <Navbar.Header>
@@ -75,16 +95,21 @@ class Header extends React.Component<Props> {
         <Navbar.Collapse>
           <Nav pullRight>
             {this.props.isLoggedId &&
+                <NavItem className="lang-dropdown" eventKey={4} onClick={(): void => this.handleResetLastTxClick(newTxCount)}>
+                  <img src={newTransIcon}/>
+                  {newTxCount &&
+                    <span className="new-transaction-label">{newTxCount}</span>
+                  }
+                </NavItem>
+            }
+            {this.props.isLoggedId &&
                 <NavItem className="lang-dropdown" eventKey={3} onClick={this.handleClickRefresh}>
                     <RotatingImage image={refreshIcon}/>
                 </NavItem>
             }
-            {this.props.isLoggedId ?
+            {this.props.isLoggedId &&
                 <NavItem className="lang-dropdown" eventKey={2} onClick={this.handleClickLogout}>
-                  Logout
-                </NavItem>
-              : <NavItem href="" className="lang-dropdown" eventKey={2} onClick={(): void => browserHistory.push(ROUTE_URLS.LOGIN)}>
-                    Login
+                    <Translate value="header.logoutBtnLabel"/>
                 </NavItem>
             }
             <NavDropdown eventKey={1} title={Internalizator.getLangLabel(this.props.i18n.locale)}
@@ -102,7 +127,11 @@ class Header extends React.Component<Props> {
 const mapStateToProps = (state: State): Object => {
   return {
     i18n: state.i18n,
-    isLoggedId: state.loginState.isLoggedIn
+    isLoggedId: state.loginState.isLoggedIn,
+    dontShowConfirmExit: state.loginState.dontShowConfirmExit,
+    amountState: state.amountState,
+    address: state.loginState.address,
+    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp
   };
 };
 

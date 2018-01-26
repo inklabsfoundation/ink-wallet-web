@@ -8,11 +8,11 @@
 }
 
 .nav-panel .panel {
-  border-bottom: 1px solid #dfdfdf;
   border-top: 0;
   border-right: 0;
   border-top: 0;
   margin-right: 10px;
+  margin-bottom: 0;
   border-radius: 0;
   box-shadow: none;
 }
@@ -23,6 +23,7 @@
   min-height: 50px;
   padding-right: 10px;
   padding-top: 11px;
+  border-bottom: 0;
 }
 
 .panel-title {
@@ -35,7 +36,12 @@
   border-top: 1px solid #DFDFDF;
 }
 
-.nav-panel .panel.panel-default .default-panel-item.panel-title {
+.nav-panel .panel-body {
+  padding: 0 15px 10px;
+  min-height: 155px;
+}
+
+.nav-panel .panel.panel-default .active.panel-title {
   color: #394CB0
 }
 
@@ -43,6 +49,51 @@
   display: flex;
   cursor: pointer;
   text-decoration: none;
+}
+
+.nav-panel .search-input {
+  text-align: left;
+  border: 1px solid #EEEEEE;
+  background-color: transparent;
+  width: 205px;
+  height: 30px;
+  padding-left: 9px;
+  color: #999999;
+  z-index: 2;
+}
+
+.search-input-container {
+  padding-bottom: 20px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.nav-panel .divider {
+  background-color: #EEEEEE;
+  height: 1px;
+  width: 213px;
+  padding-right: 10px;
+}
+
+.search-placeholder {
+  color: #999999;
+  font-weight: lighter;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  letter-spacing: 0.8px;
+  pointer-events: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 16px;
+  right: 5px;
+  color: #999999;
+}
+
+.search-input:focus {
+  outline:0;
 }
 
 .panel-item-title {
@@ -57,4 +108,5 @@
 .assets-item {
   display: flex;
   padding-left: 10px;
+  padding-bottom: 15px;
 }

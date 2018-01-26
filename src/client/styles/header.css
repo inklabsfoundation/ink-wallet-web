@@ -72,6 +72,17 @@ a.navbar-brand {
   animation: rotate-keyframes 1s;
 }
 
+.new-transaction-label {
+  color: #fff;
+  font-size: 10px;
+  background-color: #394CB0;
+  padding: 1px 2px 1px 3px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  line-height: initial;
+}
+
 @keyframes rotate-keyframes {
   from {
     transform: rotate(0deg);
