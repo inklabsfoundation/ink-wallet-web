@@ -120,7 +120,9 @@ export const calcNewTransactionsCount = (amountState: AmountState, address: stri
       areAllRequestsComplete = false;
     }
   });
-  if (!areAllRequestsComplete) return null;
+  if (!areAllRequestsComplete) {
+    return null;
+  }
   let count: number = 0;
   lastTransactions.forEach((tx: LastTransaction) => {
     if (tx.timestamp > txTimestamp) {
