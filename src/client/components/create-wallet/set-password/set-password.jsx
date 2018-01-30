@@ -20,7 +20,8 @@ type Props = {
   inputPassword: string,
   arePasswordsValid: boolean,
   areInputPasswordsEqual: boolean,
-  isAgreed: boolean
+  isAgreed: boolean,
+  isPasswordShort: boolean
 };
 
 class SetPassword extends React.Component<Props> {
@@ -46,7 +47,7 @@ class SetPassword extends React.Component<Props> {
   }
 
   checkError(): string {
-    return (this.props.areInputPasswordsEqual && this.props.arePasswordsValid ? "" : " error");
+    return (this.props.areInputPasswordsEqual && this.props.arePasswordsValid && !this.props.isPasswordShort ? "" : " error");
   }
 
   handleClickNext() {
@@ -84,11 +85,16 @@ class SetPassword extends React.Component<Props> {
                 <Translate value="createWallet.errors.notMatch"/>
               </div>
             }
-            {this.props.arePasswordsValid &&
+            {!this.props.arePasswordsValid &&
               <div className="error-message">
                 <Translate value="createWallet.errors.notEntered"/>
               </div>
              }
+            {(this.props.arePasswordsValid && this.props.isPasswordShort) &&
+              <div className="error-message">
+                <Translate value="createWallet.errors.shortPassword"/>
+              </div>
+            }
           </div>
         </div>
         <div className="info-block-panel">
@@ -128,7 +134,8 @@ const mapStateToProps = (state: State): Object => {
   return {
     arePasswordsValid: state.creationState.arePasswordsValid,
     areInputPasswordsEqual: state.creationState.areInputPasswordsEqual,
-    isAgreed: state.creationState.isAgreed
+    isAgreed: state.creationState.isAgreed,
+    isPasswordShort: state.creationState.isPasswordShort
   };
 };
 

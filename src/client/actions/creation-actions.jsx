@@ -46,8 +46,11 @@ type CommitAddressAction = {
 type SetPasswordCreationErrorAction = {
   type: "SET_PASSWORD_CREATION_ERROR_ACTION",
   areInputPasswordsEqual: boolean,
-  arePasswordsValid: boolean
+  arePasswordsValid: boolean,
+  isPasswordShort: boolean
 };
+
+const PASSWORD_MIN_LENGTH = 6;
 
 type SetAgreedAction = {
   type: "SET_AGREED_ACTION",
@@ -78,11 +81,13 @@ const arePasswordsEmpty = (password: string, repeatPassword: string): boolean =>
 };
 
 const setPasswordCreationError = (areInputPasswordsEqual: boolean,
-                                  arePasswordsValid: boolean): SetPasswordCreationErrorAction => {
+                                  arePasswordsValid: boolean,
+                                  isPasswordShort: boolean): SetPasswordCreationErrorAction => {
   return {
     type: "SET_PASSWORD_CREATION_ERROR_ACTION",
     areInputPasswordsEqual,
-    arePasswordsValid
+    arePasswordsValid,
+    isPasswordShort
   };
 };
 
@@ -179,8 +184,10 @@ export const tryToCommitResetPasswords = (): ThunkAction => {
       getState().creationState.inputPassword,
       getState().creationState.inputRepeatPassword
     );
-    if (!isValid || !areEqual) {
-      dispatch(setPasswordCreationError(areEqual, isValid));
+    const isPasswordShort: boolean = areEqual &&
+      getState().creationState.inputPassword.length < PASSWORD_MIN_LENGTH;
+    if (!isValid || !areEqual || isPasswordShort) {
+      dispatch(setPasswordCreationError(areEqual, isValid, isPasswordShort));
     } else {
       dispatch(commitReset());
     }
@@ -197,8 +204,10 @@ export const tryToCommitPasswords = (): ThunkAction => {
       getState().creationState.inputPassword,
       getState().creationState.inputRepeatPassword
     );
-    if (!isValid || !areEqual) {
-      dispatch(setPasswordCreationError(areEqual, isValid));
+    const isPasswordShort: boolean = areEqual &&
+      getState().creationState.inputPassword.length < PASSWORD_MIN_LENGTH;
+    if (!isValid || !areEqual || isPasswordShort) {
+      dispatch(setPasswordCreationError(areEqual, isValid, isPasswordShort));
     } else {
       dispatch(commitCreation(getState().config.derivePath));
     }

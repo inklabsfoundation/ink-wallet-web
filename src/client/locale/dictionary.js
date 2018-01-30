@@ -94,7 +94,8 @@ export const dictionary = {
     createWallet: {
       errors: {
         notMatch: "Passwords doesn't match.",
-        notEntered: "No passwords entered."
+        notEntered: "No passwords entered.",
+        shortPassword: "Password must be longer than 6 characters."
       },
       title: "Create New Wallet",
       setPassword: "Set your password:",
@@ -196,70 +197,196 @@ export const dictionary = {
   },
   zh: {
     header: {
-      loginBtnLabel: "Login1",
-      logoutBtnLabel: "Logout1"
+      loginBtnLabel: "Login",
+      logoutBtnLabel: "注销"
     },
     main: {
-      createWalletBtnLabel: "Create New Wallet1",
-      restoreWalletBtnLabel: "Restore My Wallet1"
+      createWalletBtnLabel: "创建新钱包",
+      restoreWalletBtnLabel: "载入钱包",
+      backToWalletBtn: "Back To My Wallet"
+    },
+    requestErrorModal: {
+      title: "The explorer can not return data correctly. Please set a valid one.",
+      setBtn: "Go to set",
+      cancelBtn: "Cancel"
+    },
+    newTransactionsModal: {
+      title: "transations have been confirmed.",
+      okBtn: "ok"
+    },
+    navPanel: {
+      wallet: "My Wallet",
+      assetsDetails: "Assets Details",
+      securityCenter: "Security Center",
+      faq: "F&Q"
+    },
+    assetsDetails: {
+      amountLabel: "Amount:",
+      pendingLabel: "Pending:",
+      allTabLabel: "All",
+      sendTabLabel: "Send",
+      receivedTabLabel: "Received",
+      sendLabel: "Send",
+      receivedLabel: "Received",
+      fromLabel: "From:",
+      toLabel: "To:",
+      descLabel: "Description:",
+      myWalletLabel: "My Wallet"
     },
     mainPage: {
-      sendBtn: "Send1",
-      importMoreBtn: "Import more1",
-      receiveBtn: "Receive1",
-      recentTitle: "Recent1"
+      sendBtn: "Send",
+      importMoreBtn: "Import more",
+      receiveBtn: "Receive",
+      recentTitle: "Recent"
+    },
+    confirmCloseModal: {
+      mainTitle: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
+      secureCenterBtn1: "Go to security center",
+      secureCenterBtn2: "to BACKUP",
+      logoutBtn: "OK, Log out",
+      exitBtn: "OK, Close",
+      dontShowBox: "Don’t show this again"
+    },
+    securityCenter: {
+      pageHeading: "PLEASE DON'T TOUCH ANYTHING UNLESS YOU REALLY UNDERSTAND WHAT YOU ARE DOING",
+      panelHeading: "Backup",
+      panelSubHeading: "Input your password to backup",
+      displayBtn: "Display mnemonics",
+      downloadBackupBtn: "Download wallet file",
+      firstDescription: "You can get the backup of your mnemonics or wallet file here. It just like COPY YOU WALLET FILE, or TRANSCRIBE YOUR MNEMONICS.",
+      secondDescription: "Each backup is COMPLETELY SAME with the one you use to restore your wallet, and can be used to make your asset avaliable INDEPENDENTLY.",
+      thirdDescription: "You SHOULD NEVER share any backup with others. You should only backup for YOURSELF, and only on reliable devices, in safe situation.",
+      forthDescription: "MAKE SURE you know what you are doing before action.",
+      errorModal: {
+        title: "Password is incorrect",
+        doneBtn: "Done"
+      },
+      explorerContainer: {
+        title: "Explorer Settings",
+        desc: "You can choose qtum explorer or ink explorer to get transation datas.You can also set the explorer you prefer.",
+        customRadioLabel: "Custom",
+        customPathInputPlaceholder: "Please input an explorer address",
+        submitBtn: "Submit"
+      },
+      mnemonicsModal: {
+        title: "Your mnemonics is",
+        firstDescription: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
+        secondDescription: "We strongly suggest you write down this words in a paper and lock it in the proper place cannot be forgot.",
+        thirdDescription: "Save them in you computer would be convience, but if your hard-disk is dead you could lose all your assets."
+      }
+    },
+    loginPage: {
+      title: "Login",
+      uploadFileBtn: "Upload My Wallet File",
+      uploadFileBtnUploaded: "Upload success",
+      inputPasswordLabel: "Please input your password",
+      confirmBtn: "Confirm",
+      restoreLink: "Restore by mnemonics",
+      errors: {
+        loginError: "Invalid file or password"
+      },
+      restoreDescLabel: "Click link above if you don't have wallet file, forgot PIN, log in on not frequently used device"
     },
     createWallet: {
       errors: {
-        notMatch: "Passwords doesn't match.1",
-        notEntered: "No passwords entered.1"
+        notMatch: "Passwords doesn't match.",
+        notEntered: "No passwords entered.",
+        shortPassword: "Password must be longer than 6 characters."
       },
-      title: "Create New Wallet1",
-      setPassword: "Set your password:1",
-      confirmPassword: "Confirm your password:1",
-      passwordInfo1: "Password used to unlock your wallet file.1",
-      passwordInfo2: "You will be asked to input it when you log in and make transfers.1",
-      agree: "I have read and agree Term of usage for INK wallet1",
-      passwordNextBtn: "Next1",
-      goToMainPageBtn: "Go to main page1",
-      showAddressTitle: "Your wallet address1",
-      showAddressDescr: "Wallet 1111 address is the identity of your wallet. " +
-      "You can tell it to others.  For yourself, Mnenonics and Wallet File are" +
-      " the keys to your wallet. Wallet File is used to log in your wallet, and " +
-      "Mnemonics is used to restore your wallet in other devices.So you should " +
-      "hold both of them. Stressly, Ink will not save mnenonics or wallet file." +
-      "Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
-      showAddressNextBtn: "Understand1,\n" +
-      "get my Mnemonics and Wallet Files1",
-      showMnemonicTitle: "You Mnemonics1",
-      showMnemonicDescr: "1Once more, Wallet File is used to log in your wallet," +
+      title: "Create New Wallet",
+      setPassword: "Set your password:",
+      confirmPassword: "Confirm your password:",
+      passwordInfo1: "Password used to unlock your wallet file.",
+      passwordInfo2: "You will be asked to input it when you log in and make transfers.",
+      agree: "I have read and agree Term of usage for INK wallet",
+      passwordNextBtn: "Next",
+      goToMainPageBtn: "Go to main page",
+      showAddressTitle: "Your wallet address",
+      showAddressDescr: "Wallet address is the identity of your wallet." +
+      "You can tell it to others.  For yourself, Mnenonics and Wallet" +
+      "File are the keys to your wallet. Wallet File is used to log in" +
+      "your wallet, and Mnemonics is used to restore your wallet in other" +
+      "devices.So you should hold both of them. Stressly, Ink will not save mnenonics or" +
+      "wallet file.Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
+      showAddressNextBtn: "Understand,\n get my Mnemonics and Wallet Files",
+      showMnemonicTitle: "Your Mnemonics",
+      showMnemonicDescr: "Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
       "Anyone who get the mnenonics or wallet file can get in your wallet." +
       "You MUST write down your mnenonics," +
       "download your wallet file and save them carefully and safely." +
       "You CAN NOT re-get your wallet if you lose both of them." +
       "Do Remember Your Mnenonics and Wallet File and don't share them with anyone.",
-      showMnemonicNextBtn: "Understand and get started1",
-      showMnemonicDownloadBtn: "Download your Wallet File1"
+      showMnemonicNextBtn: "Understand and get started",
+      showMnemonicDownloadBtn: "Download your Wallet File"
+    },
+    sendTransaction: {
+      modalTitle: "Send",
+      prepareForm: {
+        token: "Token",
+        availableAmount: "Available amount:",
+        amountPlaceholder: "Input address",
+        to: "To",
+        amount: "Amount",
+        description: "Description",
+        fee: {
+          label: "Fees",
+          custom: "Custom",
+          standart: "Standart",
+          slow: "Slow",
+          quick: "quick"
+        },
+        confirmBtn: "Confirm",
+        errors: {
+          emptyAddress: "Address field is empty",
+          emptyAmount: "Amount field is empty",
+          invalidAmount: "Amount is invalid",
+          invalidAddress: "Address is invalid",
+          amountLow: "Amount to send more than your balance"
+        }
+      },
+      confirmForm: {
+        token: "Token:",
+        to: "To:",
+        amount: "Amount:",
+        description: "Description:",
+        fees: "Fees",
+        inputPassword: "Input password",
+        errors: {
+          passwordIsIncorrect: "Incorrect password",
+          passwordIsEmpty: "Password field is empty"
+        },
+        confirmBtn: "Confirm"
+      },
+      successForm: {
+        succeed: "Succeed",
+        doneBtn: "Done"
+      }
+    },
+    receive: {
+      modalTitle: "Send",
+      qrDescription: "Scan the QR code or copy and share your wallet address to receive tokens in your wallet.",
+      addressLabel: "Your wallet address",
+      copyBtn: "Copy address"
     },
     restoreWallet: {
-      title: "Restore1",
-      inputYourMnemonics: "Please input your mnemonics1",
+      title: "Restore",
+      inputYourMnemonics: "Please input your mnemonics",
       errors: {
-        invalid: "Invalid mnemonic1",
-        notEntered: "No mnemonics entered1"
+        invalid: "Invalid mnemonic",
+        notEntered: "No mnemonics entered"
       },
-      passwordInfo: "11This password is for your NEW wallet file only." +
+      passwordInfo: "This password is for your NEW wallet file only." +
       " You can just use it once or download it for later." +
       "You old wallet file is still valid and its password is NOT be changed.",
-      resetPassword: "1Reset your password:",
-      resetPassword2: "1Confirm your password:",
-      restoreSuccessTitle: "1Successed!",
+      resetPassword: "Reset your password:",
+      resetPassword2: "Confirm your password:",
+      restoreSuccessTitle: "Successed!",
       restoreInfo: {
-        info1: "1If you only use this wallet file & password one-off, please DO NOT\n" +
+        info1: "If you only use this wallet file & password one-off, please DO NOT\n" +
         "download it. If so, your new password will not be saved after you loging out.",
-        info2: "1Aware the old wallet file is still valid and its password is not changed.",
-        info3: "1OLD password for OLD waller file, NEW password for the new one.\n" +
+        info2: "Aware the old wallet file is still valid and its password is not changed.",
+        info3: "OLD password for OLD waller file, NEW password for the new one.\n" +
         "You can delete the old wallet file to aviod confusion"
       }
     }
