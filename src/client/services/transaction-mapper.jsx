@@ -19,7 +19,7 @@ export type LastTransaction = {
 const TRANSACTIONS_COUNT: number = 4;
 export const MY_WALLET_LABEL = "MY_WALLET";
 
-const mapQtumTransaction = (currencyName: string,
+export const mapQtumTransaction = (currencyName: string,
                                    address: string,
                                    transaction: Object): LastTransaction => {
   let value: number = 0;
