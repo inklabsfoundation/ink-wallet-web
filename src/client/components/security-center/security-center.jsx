@@ -38,6 +38,7 @@ const CUSTOM_EXPLORER_KEY: string = "custom";
 class SecurityCenter extends React.Component<Props, SecurityCenterState> {
   successImage: ?HTMLImageElement;
 
+// eslint-disable-next-line max-statements
   constructor(props: Props) {
     super(props);
     (this: any).handleClickDownload = this.handleClickDownload.bind(this);

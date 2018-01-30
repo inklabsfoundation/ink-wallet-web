@@ -14,6 +14,8 @@ import FailRequestModal from "./fail-request-modal/fail-request-modal";
 import CountTransactionsModal from "./count-transactions-modal/count-transactions-modal";
 import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
 import {isClientSide} from "../../services/is-client-side-helper";
+import SendTransactionModal from "../send-transaction/sent-transaction-modal";
+import ReceiveModal from "../receive/receive-modal";
 
 type Props = {
   isLoggedIn: boolean,
@@ -61,6 +63,8 @@ class MainPage extends React.Component<Props> {
         <ExitModal intervalId={this.refresh}/>
         <FailRequestModal/>
         <CountTransactionsModal/>
+        <SendTransactionModal/>
+        <ReceiveModal/>
       </Grid>
     );
   }

@@ -101,6 +101,16 @@
   padding-top: 2px;
 }
 
+.panel-item-title a,
+.panel-item-title a:active,
+.panel-item-title a:visited,
+.panel-item-title a:hover {
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666666;
+}
+
 .assets-list {
   margin: 5px 0;
 }

@@ -1,0 +1,200 @@
+.assets-details-header {
+  height: 120px;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+div.paddingless {
+  padding: 0;
+}
+
+.assets-details-header .btn-panel {
+  display: block;
+  padding-top: 25px;
+  padding-right: 30px;
+}
+
+.assets-details-header .btn-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.assets-details-header .currecy-name-container {
+  padding-top: 25px;
+  padding-left: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.assets-details-header .currecy-name-container .currency-name {
+  padding-top: 5px;
+  font-weight: lighter;
+  font-size: 18px;
+  padding-left: 24px;
+}
+
+.assets-details-header .currecy-data-container {
+  padding-top: 15px;
+  padding-left: 85px;
+  display: flex;
+}
+
+.assets-details-header .currecy-data-container .currency-full-amount {
+  font-weight: lighter;
+  font-size: 24px;
+}
+
+.assets-details-header .currecy-data-container .currency-available-amount,
+.assets-details-header .currecy-data-container .currency-pending-amount {
+  padding-left: 40px;
+  padding-top: 10px;
+  color: #999999;
+}
+
+.assets-transactions-panel {
+  padding: 20px 28px 0 28px;
+  display: flex;
+}
+
+.assets-transactions-panel .assets-transactions-tab-btns {
+  justify-content: left;
+  width: 50%;
+  display: flex;
+}
+
+.assets-transactions-panel .assets-transactions-time-panel {
+  display: flex;
+  justify-content: right;
+  width: 50%;
+}
+
+.assets-transactions-panel .assets-transactions-btn {
+  text-align: center;
+  font-size: 12px;
+  padding: 7px 15px 10px 15px;
+  border-bottom: 1px solid #DFDFDF;
+  border-left: 1px solid #DFDFDF;
+  border-top: 1px solid #DFDFDF;
+  cursor: pointer;
+}
+
+.assets-transactions-panel .assets-transactions-btn.active {
+  border: 1px solid #394CB0;
+  background-color: #394CB0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.assets-transactions-panel .assets-transactions-btn:last-child {
+  border-right: 1px solid #DFDFDF;
+}
+
+.assets-transactions-list {
+  overflow-y: scroll;
+  width: calc(100% - 56px);
+  height: calc(100vh - 320px);
+  margin: 10px 28px 60px 28px;
+  border: 1px solid #DFDFDF;
+}
+
+.assets-details-tx {
+  display: flex;
+  border-bottom: 1px solid #DFDFDF;
+  height: 60px;
+}
+
+.assets-details-tx-data {
+  width: 25%;
+  display: block;
+}
+
+.assets-details-tx-data .direction,
+.assets-details-tx-data .date,
+.assets-details-tx-data .from,
+.assets-details-tx-data .to {
+  text-align: left;
+  height: 30px;
+  padding-left: 15px;
+}
+
+.assets-details-tx-data .direction {
+  color: #333333;
+  padding-top: 13px;
+}
+
+.assets-details-tx-data .date {
+  color: #999999;
+  font-size: 12px;
+  padding-bottom: 13px;
+  padding-top: 2px;
+}
+
+.assets-details-tx-data .from {
+  padding-top: 11px;
+  display: flex;
+}
+
+.assets-details-tx-data .to {
+  padding-bottom: 11px;
+  padding-top: 2px;
+  display: flex;
+}
+
+.assets-details-tx-data .address-label {
+  font-size: 12px;
+  color: #999999;
+  width: 35px
+}
+
+.assets-details-tx-data .address-data {
+  padding-left: 5px;
+  font-size: 12px;
+  color: #333333
+}
+
+.assets-details-tx-data .description {
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+.assets-details-tx-data.small {
+  width: 15%;
+}
+
+.assets-details-tx-data.big {
+  width: 30%;
+}
+
+.assets-details-tx-data .amount-inner {
+  padding-top: 20px;
+}
+
+.assets-details-tx-data .amount-container {
+  text-align: right;
+  padding-right: 50px;
+}
+
+.assets-transactions-list .not-found {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 16px;
+  padding-top: 20px;
+  color: #DFDFDF;
+}
+
+.assets-transactions-list .in {
+  color: #39A6B0
+}
+
+.assets-transactions-list .out {
+  color: #394CB0
+}
+
+@media (max-height: 700px) {
+  .assets-transactions-list {
+    height: 360px;
+    margin-bottom: 60px;
+  }
+}

@@ -5,7 +5,7 @@ import type {Dispatch, GetState, ThunkAction} from "../types/redux";
 import axios from "axios";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT, TOKENS_COUNT} from "../types/consts";
-import {openRequestFailModal, setLastTransactionTimeStamp} from "./login-actions";
+import {openRequestFailModal, requestBlockHeight, setLastTransactionTimeStamp} from "./login-actions";
 import * as _ from "lodash";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 
@@ -180,9 +180,9 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumTransactionsFetching());
     const address = getState().loginState.address.toString();
-    axios.get(`${getState().config.qtumExplorerPath}/txs?address=${address}&pageNum=0`)
+    axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=0&to=50`)
       .then((response: $AxiosXHR<Object>) => {
-        const txs: Array<Object> = response.data.txs;
+        const txs: Array<Object> = response.data.items;
         if (isFirstRequest) {
           const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
             return tx.time;
@@ -251,6 +251,7 @@ export const requestWalletData = (isFirstRequest: ?boolean): ThunkAction => {
     dispatch(requestQtumBalance());
     dispatch(requestQtumTransactions(isFirstRequest));
     dispatch(requestInkBalance());
+    dispatch(requestBlockHeight());
     dispatch(requestInkTransactions(isFirstRequest));
   };
 };

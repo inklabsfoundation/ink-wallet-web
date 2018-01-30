@@ -6,15 +6,49 @@ import type {Decimal} from "mathjs";
 import {TOKENS_COUNT} from "../types/consts";
 import type {AmountState} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
+import CryptoJS from "crypto-js";
 
 export type LastTransaction = {
   value: number,
   isIn: boolean,
   currencyName: string,
-  timestamp: number
+  timestamp: number,
+  tx: Object
 };
 
 const TRANSACTIONS_COUNT: number = 4;
+export const MY_WALLET_LABEL = "MY_WALLET";
+
+const mapQtumTransaction = (currencyName: string,
+                                   address: string,
+                                   transaction: Object): LastTransaction => {
+  let value: number = 0;
+  let inputValue: Decimal = math.bignumber(0);
+  let outputValue: Decimal = math.bignumber(0);
+  transaction.vin.forEach((inTransaction: Object) => {
+    if (inTransaction.addr === address) {
+      inputValue = math.add(math.bignumber(inputValue), math.bignumber(inTransaction.value));
+    }
+  });
+  transaction.vout.forEach((outTransaction: Object) => {
+    if (outTransaction.scriptPubKey.addresses &&
+      _.find(outTransaction.scriptPubKey.addresses,
+        (outAddress: string): boolean => outAddress === address)
+    ) {
+      outputValue = math.add(math.bignumber(outputValue), math.bignumber(outTransaction.value));
+    }
+  });
+  value = math.subtract(outputValue, inputValue);
+  const isIn: boolean = (value >= 0);
+
+  return {
+    value,
+    isIn,
+    currencyName,
+    tx: transaction,
+    timestamp: transaction.time
+  };
+};
 
 const mapQtumTransactions = (currencyName: string,
                              address: string,
@@ -24,31 +58,7 @@ const mapQtumTransactions = (currencyName: string,
   }
 
   return txs.map((transaction: Object): LastTransaction => {
-      let value: number = 0;
-      let inputValue: Decimal = math.bignumber(0);
-      let outputValue: Decimal = math.bignumber(0);
-      transaction.vin.forEach((inTransaction: Object) => {
-        if (inTransaction.addr === address) {
-          inputValue = math.add(math.bignumber(inputValue), math.bignumber(inTransaction.value));
-        }
-      });
-      transaction.vout.forEach((outTransaction: Object) => {
-        if (outTransaction.scriptPubKey.addresses &&
-          _.find(outTransaction.scriptPubKey.addresses,
-            (outAddress: string): boolean => outAddress === address)
-        ) {
-          outputValue = math.add(math.bignumber(outputValue), math.bignumber(outTransaction.value));
-        }
-      });
-      value = math.subtract(outputValue, inputValue);
-      const isIn: boolean = (value >= 0);
-
-      return {
-        value,
-        isIn,
-        currencyName,
-        timestamp: transaction.time
-      };
+    return mapQtumTransaction(currencyName, address, transaction);
     }
   );
 };
@@ -75,6 +85,7 @@ const mapTokensTransactions = (currencyName: string,
         value,
         isIn,
         currencyName,
+        tx: transaction,
         timestamp
       };
     }
@@ -135,9 +146,84 @@ export const calcNewTransactionsCount = (amountState: AmountState, address: stri
 
 export const getLastTxTimestamp = (amountState: AmountState, address: string): number => {
   const lastTransactions: Array<LastTransaction> = mapTransactions(amountState, address);
-  const lastestTx: LastTransaction = _.maxBy(lastTransactions, (tx: LastTransaction) => {
+  const lastestTx: LastTransaction = _.maxBy(lastTransactions, (tx: LastTransaction): number => {
     return tx.timestamp;
   });
 
   return lastestTx.timestamp;
+};
+
+export type AssetsTransaction = {
+  premappedTx: LastTransaction,
+  description: string,
+  from: string,
+  to: string
+};
+
+const findDescriptionInTx = (tx: Object): string => {
+  const tempVout: ?Object = _.find(tx.vout, (vout: Object): boolean => {
+    return +vout.value === 0 && vout.scriptPubKey.asm && vout.scriptPubKey.asm.startsWith("OP_RETURN");
+  });
+  const hex: string = tempVout ? tempVout.scriptPubKey.hex : "";
+  return tempVout && hex ? (CryptoJS.enc.Hex.parse(hex.slice(2))).toString(CryptoJS.enc.Utf8) : "";
+};
+
+const mapAssetsQtumTransactions = (premappedTxs: Array<LastTransaction>, address: string): Array<AssetsTransaction> => {
+  const mappedTransactions: Array<AssetsTransaction> = [];
+  premappedTxs.forEach((tx: LastTransaction) => {
+    const assetsTx: AssetsTransaction = {
+      premappedTx: tx,
+      description: findDescriptionInTx(tx.tx),
+      from: "",
+      to: ""
+    };
+    if (tx.isIn) {
+      assetsTx.to = MY_WALLET_LABEL;
+      assetsTx.from = tx.tx.vin[0].addr ? tx.tx.vin[0].addr : "";
+    } else {
+      assetsTx.from = MY_WALLET_LABEL;
+      const tempVout: ?Object = _.find(tx.tx.vout, (vout: Object): boolean => {
+        return +vout.value > 0 && vout.scriptPubKey.addresses && vout.scriptPubKey.addresses[0] !== address;
+      });
+      if (tempVout) {
+        assetsTx.to = tempVout.scriptPubKey.addresses[0];
+      }
+    }
+    mappedTransactions.push(assetsTx);
+  });
+
+  return mappedTransactions;
+};
+
+
+const mapAssetsTokenTransactions = (premappedTxs: Array<LastTransaction>, address: string): Array<AssetsTransaction> => {
+  const mappedTransactions: Array<AssetsTransaction> = [];
+  premappedTxs.forEach((tx: LastTransaction) => {
+    const assetsTx: AssetsTransaction = {
+      premappedTx: tx,
+      description: "",
+      from: "",
+      to: ""
+    };
+    if (tx.isIn) {
+      assetsTx.to = MY_WALLET_LABEL;
+      assetsTx.from = tx.tx.from;
+    } else {
+      assetsTx.from = MY_WALLET_LABEL;
+      assetsTx.to = tx.tx.to;
+    }
+    mappedTransactions.push(assetsTx);
+  });
+
+  return mappedTransactions;
+};
+
+export const mapAssetsTransactions = (walletState: AmountState, currency: string, address: string): Array<AssetsTransaction> => {
+  if (currency === SUPPORTED_CURRENCIES.QTUM) {
+    const premappedTxs: Array<LastTransaction> = mapQtumTransactions(currency, address, walletState.QTUM.txs);
+    return mapAssetsQtumTransactions(premappedTxs, address);
+  } else {
+    const premappedTxs: Array<LastTransaction> = mapTokensTransactions(currency, address, walletState.INK.txs);
+    return mapAssetsTokenTransactions(premappedTxs, address);
+  }
 };

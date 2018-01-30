@@ -17,7 +17,7 @@ class CurrenciesListPanel extends React.Component<Props> {
       <Col className="currencies-panel" xs={12}>
         <div className="currency-item">
           <div>
-            <CurrencyIcon currencyName="QTUM"/>
+            <CurrencyIcon small={false} currencyName="QTUM"/>
           </div>
           <div className="currency-data">
             <div className="currency-name">

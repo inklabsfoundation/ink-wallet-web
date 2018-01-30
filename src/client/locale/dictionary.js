@@ -24,6 +24,19 @@ export const dictionary = {
       securityCenter: "Security Center",
       faq: "F&Q"
     },
+    assetsDetails: {
+      amountLabel: "Amount:",
+      pendingLabel: "Pending:",
+      allTabLabel: "All",
+      sendTabLabel: "Send",
+      receivedTabLabel: "Received",
+      sendLabel: "Send",
+      receivedLabel: "Received",
+      fromLabel: "From:",
+      toLabel: "To:",
+      descLabel: "Description:",
+      myWalletLabel: "My Wallet"
+    },
     mainPage: {
       sendBtn: "Send",
       importMoreBtn: "Import more",

@@ -6,6 +6,8 @@ import Mnemonic from "bitcore-mnemonic";
 import CryptoJS, {SHA256, AES} from "crypto-js";
 import {EXIT_MODAL_SHOW_KEY} from "../services/confirm-exit-handler";
 import {isClientSide} from "../services/is-client-side-helper";
+import type {$AxiosXHR} from "axios";
+import axios from "axios";
 
 type LoginAction = {
   type: "LOGIN_ACTION",
@@ -82,10 +84,16 @@ type CloseExitModalAction = {
   type: "CLOSE_EXIT_MODAL_ACTION"
 };
 
+type RequestBlockHeightSuccessAction = {
+  type: "REQUEST_BLOCK_HEIGHT_SUCCESS",
+  blockHeight: number
+};
+
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
   | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
   | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction | OpenRequestFailModalAction
-  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction;
+  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction
+  | RequestBlockHeightSuccessAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -199,6 +207,26 @@ export const fileUpload = (backupFile: File): FileUploadAction => {
   };
 };
 
+const requestBlockHeightSuccess = (blockHeight: number): RequestBlockHeightSuccessAction => {
+  return {
+    type: "REQUEST_BLOCK_HEIGHT_SUCCESS",
+    blockHeight
+  };
+};
+
+export const requestBlockHeight = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    axios.get(`${getState().config.qtumExplorerPath}/blocks`)
+      .then((response: $AxiosXHR<Object>) => {
+        const blockHeight: number = response.data.blocks[0].height;
+        dispatch(requestBlockHeightSuccess(blockHeight));
+      })
+      .catch(() => {
+        dispatch(openRequestFailModal());
+      });
+  };
+};
+
 export const tryToLogin = (seed: Uint8Array, password: string, mnemonic: Mnemonic): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     const passwordHash = (SHA256(password + getState().config.encryptSalt).toString());
@@ -209,7 +237,6 @@ export const tryToLogin = (seed: Uint8Array, password: string, mnemonic: Mnemoni
     dispatch(executeLogin(seed, passwordHash, publicKey, privateKey, address, mnemonic));
   };
 };
-
 
 export const attemptLogin = (password: string, backupFile: File): ThunkAction => {
   return (dispatch: Dispatch) => {

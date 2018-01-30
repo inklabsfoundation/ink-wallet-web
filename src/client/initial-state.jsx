@@ -19,13 +19,14 @@ export type LoginState = {
   isExit: boolean,
   lastTransactionTimeStamp: number,
   isRequestFailModalOpen: boolean,
-  isNewTransactionsModalOpen: boolean
+  isNewTransactionsModalOpen: boolean,
+  blockHeight: number
 };
 
 export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
-  qtumExplorerPath: ?string,
+  qtumExplorerPath: string,
   encryptSalt: string,
   INKcontractAddress: string,
   refreshTime: number
@@ -131,7 +132,8 @@ export const initialState: State = {
     isExit: false,
     lastTransactionTimeStamp: 0,
     isRequestFailModalOpen: false,
-    isNewTransactionsModalOpen: false
+    isNewTransactionsModalOpen: false,
+    blockHeight: 0
   },
   creationState: {
     step: 1,

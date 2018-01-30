@@ -13,6 +13,8 @@ import assetsIcon from "../../images/asserts-logo.png";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
+// $FlowFixMe
+import {Link} from "react-router";
 import {SUPPORTED_CURRENCIES} from "../../initial-state";
 import CurrencyIcon from "../common/currency-icon";
 import {Translate} from "react-redux-i18n";
@@ -42,8 +44,13 @@ class NavPanel extends React.Component<Props, State> {
     browserHistory.push(link);
   }
 
-  isActive(route: string): string {
-    return (this.props.location.pathname === route) ? "active" : "";
+  isActive(route: string, exactly: boolean = false): string {
+    const path: string = this.props.location.pathname;
+    if (exactly) {
+      return (path === route) ? "active" : "";
+    } else {
+      return (path.includes(route)) ? "active" : "";
+    }
   }
 
   handleSelect() {
@@ -57,10 +64,10 @@ class NavPanel extends React.Component<Props, State> {
   render(): React.Node {
     const walletPanel = (
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
-           className={`${this.isActive(ROUTE_URLS.WALLET_PAGE)} nav-elem`}>
+           className={`${this.isActive(ROUTE_URLS.WALLET_PAGE, true)} nav-elem`}>
         <div>
           <img src={
-            this.isActive(ROUTE_URLS.WALLET_PAGE)
+            this.isActive(ROUTE_URLS.WALLET_PAGE, true)
               ? walletIconActive
               : walletIconDisable
           }/>
@@ -70,10 +77,10 @@ class NavPanel extends React.Component<Props, State> {
     );
     const securePanel: React.Node = (
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}
-           className={`${this.isActive(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)} nav-elem`}>
+           className={`${this.isActive(ROUTE_URLS.SECURITY_CENTER)} nav-elem`}>
         <div>
           <img src={
-            this.isActive(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)
+            this.isActive(ROUTE_URLS.SECURITY_CENTER)
               ? secureIconActive
               : secureIconDisable
           }/>
@@ -90,7 +97,8 @@ class NavPanel extends React.Component<Props, State> {
       </div>
     );
     const assetsPanel: React.Node = (
-      <div className="nav-elem" onClick={this.handleSelect}>
+      <div className={`${this.isActive(ROUTE_URLS.ASSETS_DETAILS)} nav-elem`}
+           onClick={this.handleSelect}>
         <div><img src={assetsIcon}/></div>
         <div className="panel-item-title"><Translate value="navPanel.assetsDetails"/></div>
       </div>
@@ -99,7 +107,9 @@ class NavPanel extends React.Component<Props, State> {
       return key.toLowerCase().includes(this.state.searchNeedle.toLowerCase()) && (
         <div key={key} className="assets-item">
           <div><CurrencyIcon small={true} currencyName={key}/></div>
-          <div className="panel-item-title">{key}</div>
+          <div className="panel-item-title">
+            <Link to={`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.ASSETS_DETAILS}/${key}`}>{key}</Link>
+          </div>
         </div>
       );
     });

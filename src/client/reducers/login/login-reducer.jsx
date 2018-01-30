@@ -97,6 +97,12 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         invalidData: true
       };
     }
+    case "REQUEST_BLOCK_HEIGHT_SUCCESS": {
+      return {
+        ...store,
+        blockHeight: action.blockHeight
+      };
+    }
     default:
       return store;
   }
