@@ -65,15 +65,17 @@
 }
 
 .progress-bar-first-step {
-  background-color: #b6cff3;
+  background-color: #394CB0;
+  opacity: 0.333;
 }
 
 .progress-bar-second-step {
-  background-color: #5e92f3;
+  background-color: #394CB0;
+  opacity: 0.666
 }
 
 .progress-bar-third-step {
-  background-color: #202647;
+  background-color: #394CB0;
 }
 
 .password-panel {

@@ -22,7 +22,8 @@ export const dictionary = {
       wallet: "My Wallet",
       assetsDetails: "Assets Details",
       securityCenter: "Security Center",
-      faq: "F&Q"
+      faq: "F&Q",
+      search: "Search..."
     },
     assetsDetails: {
       amountLabel: "Amount:",
@@ -104,7 +105,7 @@ export const dictionary = {
       passwordInfo2: "You will be asked to input it when you log in and make transfers.",
       agree: "I have read and agree Term of usage for INK wallet",
       passwordNextBtn: "Next",
-      goToMainPageBtn: "Go to main page",
+      goToMainPageBtn: "Back to main page",
       showAddressTitle: "Your wallet address",
       showAddressDescr: "Wallet address is the identity of your wallet." +
       "You can tell it to others.  For yourself, Mnenonics and Wallet" +
@@ -154,7 +155,7 @@ export const dictionary = {
         to: "To:",
         amount: "Amount:",
         description: "Description:",
-        fees: "Fees",
+        fees: "Fees:",
         inputPassword: "Input password",
         errors: {
           passwordIsIncorrect: "Incorrect password",
@@ -168,7 +169,7 @@ export const dictionary = {
       }
     },
     receive: {
-      modalTitle: "Send",
+      modalTitle: "Receive",
       qrDescription: "Scan the QR code or copy and share your wallet address to receive tokens in your wallet.",
       addressLabel: "Your wallet address",
       copyBtn: "Copy address"
@@ -215,10 +216,11 @@ export const dictionary = {
       okBtn: "ok"
     },
     navPanel: {
-      wallet: "My Wallet",
-      assetsDetails: "Assets Details",
-      securityCenter: "Security Center",
-      faq: "F&Q"
+      wallet: "我的钱包",
+      assetsDetails: "资产详情",
+      securityCenter: "安全中心",
+      faq: "常见问题",
+      search: "搜索..."
     },
     assetsDetails: {
       amountLabel: "Amount:",
@@ -298,9 +300,9 @@ export const dictionary = {
       confirmPassword: "Confirm your password:",
       passwordInfo1: "Password used to unlock your wallet file.",
       passwordInfo2: "You will be asked to input it when you log in and make transfers.",
-      agree: "I have read and agree Term of usage for INK wallet",
-      passwordNextBtn: "Next",
-      goToMainPageBtn: "Go to main page",
+      agree: "我已阅读并同意INK钱包服务条款。",
+      passwordNextBtn: "下一步",
+      goToMainPageBtn: "回到首页",
       showAddressTitle: "Your wallet address",
       showAddressDescr: "Wallet address is the identity of your wallet." +
       "You can tell it to others.  For yourself, Mnenonics and Wallet" +
@@ -350,7 +352,7 @@ export const dictionary = {
         to: "To:",
         amount: "Amount:",
         description: "Description:",
-        fees: "Fees",
+        fees: "Fees:",
         inputPassword: "Input password",
         errors: {
           passwordIsIncorrect: "Incorrect password",
@@ -364,7 +366,7 @@ export const dictionary = {
       }
     },
     receive: {
-      modalTitle: "Send",
+      modalTitle: "Receive",
       qrDescription: "Scan the QR code or copy and share your wallet address to receive tokens in your wallet.",
       addressLabel: "Your wallet address",
       copyBtn: "Copy address"

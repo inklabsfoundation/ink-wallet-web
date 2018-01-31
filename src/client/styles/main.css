@@ -133,6 +133,11 @@ body {
   margin-bottom: 15px;
 }
 
+.nav-icon {
+  width: 25px;
+  height: 25px;
+}
+
 @media (max-height: 650px) {
   .footer {
     display: none;

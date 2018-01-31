@@ -8,8 +8,9 @@ import walletIconActive from "../../images/wallet-icon-act.png";
 import walletIconDisable from "../../images/wallet-icon-dis.png";
 import secureIconActive from "../../images/secure-center-logo-active.png";
 import secureIconDisable from "../../images/secure-center-logo.png";
-import faqIcon from "../../images/faq-icon.png";
-import assetsIcon from "../../images/asserts-logo.png";
+import faqIconDisable from "../../images/faq-logo.png";
+import assetsIconDisable from "../../images/asserts-logo.png";
+import assetsIconActive from "../../images/asserts-logo-active.png";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
@@ -66,7 +67,7 @@ class NavPanel extends React.Component<Props, State> {
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
            className={`${this.isActive(ROUTE_URLS.WALLET_PAGE, true)} nav-elem`}>
         <div>
-          <img src={
+          <img className="nav-icon" src={
             this.isActive(ROUTE_URLS.WALLET_PAGE, true)
               ? walletIconActive
               : walletIconDisable
@@ -79,7 +80,7 @@ class NavPanel extends React.Component<Props, State> {
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}
            className={`${this.isActive(ROUTE_URLS.SECURITY_CENTER)} nav-elem`}>
         <div>
-          <img src={
+          <img className="nav-icon" src={
             this.isActive(ROUTE_URLS.SECURITY_CENTER)
               ? secureIconActive
               : secureIconDisable
@@ -92,14 +93,20 @@ class NavPanel extends React.Component<Props, State> {
     );
     const faqPanel: React.Node = (
       <div className="nav-elem">
-        <div><img src={faqIcon}/></div>
+        <div><img className="nav-icon" src={faqIconDisable}/></div>
         <div className="panel-item-title"><Translate value="navPanel.faq"/></div>
       </div>
     );
     const assetsPanel: React.Node = (
       <div className={`${this.isActive(ROUTE_URLS.ASSETS_DETAILS)} nav-elem`}
            onClick={this.handleSelect}>
-        <div><img src={assetsIcon}/></div>
+        <div>
+          <img className="nav-icon" src={
+            this.isActive(ROUTE_URLS.ASSETS_DETAILS)
+              ? assetsIconActive
+              : assetsIconDisable
+            }/>
+        </div>
         <div className="panel-item-title"><Translate value="navPanel.assetsDetails"/></div>
       </div>
     );
@@ -123,8 +130,8 @@ class NavPanel extends React.Component<Props, State> {
             <div className="search-input-container">
               <input id="assets-search" onChange={this.handleSearchInput} className="search-input"/>
               {this.state.searchNeedle.length === 0
-                && <span className="search-placeholder">SEARCH...</span>}
-                <span className="search-icon"><i className="glyphicon glyphicon-search"/></span>
+              && <span className="search-placeholder"><Translate value="navPanel.search"/></span>}
+              <span className="search-icon"><i className="glyphicon glyphicon-search"/></span>
             </div>
             <div className="assets-list">
               {assets}
