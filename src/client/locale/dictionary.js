@@ -10,9 +10,9 @@ export const dictionary = {
       backToWalletBtn: "Back To My Wallet"
     },
     requestErrorModal: {
-      title: "The explorer can not return data correctly. Please set a valid one.",
-      setBtn: "Go to set",
-      cancelBtn: "Cancel"
+      title: "The explorer could not return data correctly. Reset explorer or retry.",
+      resetBtn: "Reset",
+      retryBtn: "Retry"
     },
     newTransactionsModal: {
       title: "transations have been confirmed.",
@@ -206,9 +206,9 @@ export const dictionary = {
       backToWalletBtn: "Back To My Wallet"
     },
     requestErrorModal: {
-      title: "The explorer can not return data correctly. Please set a valid one.",
-      setBtn: "Go to set",
-      cancelBtn: "Cancel"
+      title: "The explorer could not return data correctly. Reset explorer or retry.",
+      resetBtn: "Go to set",
+      retryBtn: "Cancel"
     },
     newTransactionsModal: {
       title: "transations have been confirmed.",

@@ -165,7 +165,7 @@ const findDescriptionInTx = (tx: Object): string => {
     return +vout.value === 0 && vout.scriptPubKey.asm && vout.scriptPubKey.asm.startsWith("OP_RETURN");
   });
   const hex: string = tempVout ? tempVout.scriptPubKey.hex : "";
-  return tempVout && hex ? (CryptoJS.enc.Hex.parse(hex.slice(2))).toString(CryptoJS.enc.Utf8) : "";
+  return tempVout && hex ? (CryptoJS.enc.Hex.parse(hex.slice(4))).toString(CryptoJS.enc.Utf8) : "";
 };
 
 const mapAssetsQtumTransactions = (premappedTxs: Array<LastTransaction>, address: string): Array<AssetsTransaction> => {
