@@ -122,7 +122,7 @@ export const mapLastTransactions = (walletData: AmountState, address: string): A
   return lastTransactions;
 };
 
-export const calcNewTransactionsCount = (amountState: AmountState, address: string, txTimestamp: number): ?number => {
+export const calcNewTransactionsCount = (amountState: AmountState, address: string, txTimestamp: number, unconfirmedTxIds: Array<string>): ?number => {
   const lastTransactions: Array<LastTransaction> = mapTransactions(amountState, address);
   if (!lastTransactions || lastTransactions.length === 0 || txTimestamp === 0) return null;
   let areAllRequestsComplete: boolean = true;
@@ -136,7 +136,11 @@ export const calcNewTransactionsCount = (amountState: AmountState, address: stri
   }
   let count: number = 0;
   lastTransactions.forEach((tx: LastTransaction) => {
-    if (tx.timestamp > txTimestamp) {
+    let foundOldUncormiedTxId: ?string = "";
+    if (tx.tx.txid) {
+      foundOldUncormiedTxId = _.find(unconfirmedTxIds, (txId: string): boolean => txId === tx.tx.txid);
+    }
+    if (tx.timestamp > txTimestamp && !foundOldUncormiedTxId) {
       count++;
     }
   });
@@ -151,6 +155,19 @@ export const getLastTxTimestamp = (amountState: AmountState, address: string): n
   });
 
   return lastestTx.timestamp;
+};
+
+export const getUnconfirmedTxsIds = (amountState: AmountState, address: string): Array<string> => {
+  const transactions: Array<LastTransaction> = mapTransactions(amountState, address);
+  const unconfirmedTxs: Array<Object> = _.filter(transactions, (tx: LastTransaction): boolean => {
+    return tx.tx.confirmations === 0;
+  });
+  const unconfirmedTxsIds: Array<string> = [];
+  unconfirmedTxs.forEach((tx: Object) => {
+    unconfirmedTxsIds.push(tx.tx.txid);
+  });
+
+  return unconfirmedTxsIds;
 };
 
 export type AssetsTransaction = {

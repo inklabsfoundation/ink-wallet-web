@@ -18,6 +18,7 @@ export type LoginState = {
   isExitModalOpen: boolean,
   isExit: boolean,
   lastTransactionTimeStamp: number,
+  unconfirmedTransactionsIds: Array<string>,
   isRequestFailModalOpen: boolean,
   isNewTransactionsModalOpen: boolean,
   blockHeight: number
@@ -134,7 +135,8 @@ export const initialState: State = {
     lastTransactionTimeStamp: 0,
     isRequestFailModalOpen: false,
     isNewTransactionsModalOpen: false,
-    blockHeight: 0
+    blockHeight: 0,
+    unconfirmedTransactionsIds: []
   },
   creationState: {
     step: 1,

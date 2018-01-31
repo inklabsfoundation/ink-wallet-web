@@ -33,6 +33,11 @@ type FileUploadAction = {
   backupFile: File
 };
 
+type SetUnconfirmedTransactionsIdsAction = {
+  type: "SET_UNCONFIRMED_TRANSACTIONS_IDS",
+  unconfirmedTransactionsIds: Array<string>
+};
+
 type SetLastTransactionTimeStampAction = {
   type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
   timestamp: number
@@ -93,7 +98,7 @@ export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | File
   | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
   | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction | OpenRequestFailModalAction
   | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction
-  | RequestBlockHeightSuccessAction;
+  | RequestBlockHeightSuccessAction | SetUnconfirmedTransactionsIdsAction;
 
 const executeLogin = (seed: Uint8Array,
                       passwordHash: string,
@@ -152,6 +157,13 @@ export const setLastTransactionTimeStamp = (timestamp: number): SetLastTransacti
   return {
     type: "SET_LAST_TRASACTION_TIME_STAMP_ACTION",
     timestamp
+  };
+};
+
+export const setUnconfirmedTxsIds = (unconfirmedTxsIds: Array<string>): SetUnconfirmedTransactionsIdsAction => {
+  return {
+    type: "SET_UNCONFIRMED_TRANSACTIONS_IDS",
+    unconfirmedTransactionsIds: unconfirmedTxsIds
   };
 };
 

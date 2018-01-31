@@ -33,7 +33,8 @@ type Props = {
   dontShowConfirmExit: boolean,
   amountState: AmountState,
   address: Address,
-  lastTransactionTimeStamp: number
+  lastTransactionTimeStamp: number,
+  unconfirmedTxIds: Array<string>
 };
 
 class Header extends React.Component<Props> {
@@ -80,7 +81,8 @@ class Header extends React.Component<Props> {
     const newTxCount: ?number = calcNewTransactionsCount(
       this.props.amountState,
       this.props.address,
-      this.props.lastTransactionTimeStamp
+      this.props.lastTransactionTimeStamp,
+      this.props.unconfirmedTxIds
     );
     return (
       <Navbar>
@@ -131,7 +133,8 @@ const mapStateToProps = (state: State): Object => {
     dontShowConfirmExit: state.loginState.dontShowConfirmExit,
     amountState: state.amountState,
     address: state.loginState.address,
-    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp
+    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp,
+    unconfirmedTxIds: state.loginState.unconfirmedTransactionsIds
   };
 };
 
