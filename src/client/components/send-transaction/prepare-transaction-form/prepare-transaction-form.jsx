@@ -111,7 +111,7 @@ const renderAddress = ({input, toValue, meta: {touched, error}}: Object): React.
           : ""}
         <div className="copy">
           <div className="copy-inner">
-            <img src={inputIcon}/>
+            <img width={25} height={27} src={inputIcon}/>
           </div>
         </div>
       </div>

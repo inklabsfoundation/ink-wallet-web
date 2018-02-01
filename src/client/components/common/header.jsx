@@ -98,7 +98,7 @@ class Header extends React.Component<Props> {
           <Nav pullRight>
             {this.props.isLoggedId &&
                 <NavItem className="lang-dropdown" eventKey={4} onClick={(): void => this.handleResetLastTxClick(newTxCount)}>
-                  <img src={newTransIcon}/>
+                  <img width={16} src={newTransIcon}/>
                   {newTxCount &&
                     <span className="new-transaction-label">{newTxCount}</span>
                   }

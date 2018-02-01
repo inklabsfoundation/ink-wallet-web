@@ -55,7 +55,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
             <Translate value="mainPage.recentTitle"/>
           </div>
           <div className="recent-transactions-title-icon">
-            <img src={recentIcon}/>
+            <img width={25} height={25} src={recentIcon}/>
           </div>
         </div>
         <div className="transactions-block">

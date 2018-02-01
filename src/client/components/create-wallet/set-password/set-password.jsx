@@ -99,7 +99,7 @@ class SetPassword extends React.Component<Props> {
         </div>
         <div className="info-block-panel">
           <div className="alert-info-pic-block">
-            <img src={alertNoticeIcon}/>
+            <img width={22} src={alertNoticeIcon}/>
           </div>
           <div className="info-block">
             <Translate value="createWallet.passwordInfo1"/>

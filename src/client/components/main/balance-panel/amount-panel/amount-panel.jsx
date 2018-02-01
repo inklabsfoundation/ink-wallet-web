@@ -50,7 +50,7 @@ class AmountPanel extends React.Component<Props> {
         <div className="amount-address">
           <div className="amount-address-icon">
             <CopyToClipboard text={this.props.address.toString()}>
-              <img src={copyIcon}/>
+              <img width={18} height={18} src={copyIcon}/>
             </CopyToClipboard>
           </div>
           <div className="amount-address-value">{this.props.address.toString()}</div>

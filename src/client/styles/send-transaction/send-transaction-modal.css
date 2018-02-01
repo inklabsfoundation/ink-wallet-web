@@ -1,5 +1,6 @@
 .send-transition-modal .modal-dialog {
   width: 670px;
+  margin: 0;
 }
 
 .send-transition-modal .modal-footer {
@@ -8,6 +9,13 @@
   justify-content: center;
   padding-top: 0;
   padding-bottom: 5px;
+}
+
+.send-transition-modal.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  margin-top: 20px;
 }
 
 .send-transition-modal .input-section {
@@ -390,3 +398,4 @@
   font-size: 20px;
   margin-bottom: 150px;
 }
+

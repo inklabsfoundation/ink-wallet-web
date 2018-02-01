@@ -22,7 +22,7 @@ module.exports = {
     "webapp": {
       "module": "electrode-react-webapp/lib/hapi",
       "options": {
-        "pageTitle": "qtum-web",
+        "pageTitle": "INK Wallet",
         "paths": {
           "/{args*}": {
             "content": {

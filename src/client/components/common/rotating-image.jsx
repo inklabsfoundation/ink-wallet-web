@@ -34,6 +34,8 @@ export default class RotatingImage extends React.Component {
         ref={elm => {
           this.image = elm;
         }}
+        width={20}
+        height={16}
         onClick={() => this.setState({ rotate: true })}
         className={rotate ? "rotate" : ""}
       />
