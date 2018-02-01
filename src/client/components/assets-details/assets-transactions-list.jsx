@@ -79,7 +79,7 @@ class AssetsTransactionsList extends React.Component<Props> {
           </div>
           <div className="assets-details-tx-data">
             <div className="amount-container">
-              <div className={`amount-inner ${tx.premappedTx.isIn ? "in" : "out"}`}>
+              <div className={`amount-inner ${tx.premappedTx.isIn ? "in-tx" : "out-tx"}`}>
                 {+tx.premappedTx.value}
               </div>
             </div>

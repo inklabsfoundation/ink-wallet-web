@@ -232,10 +232,7 @@ export const requestBlockHeight = (): ThunkAction => {
       .then((response: $AxiosXHR<Object>) => {
         const blockHeight: number = response.data.blocks[0].height;
         dispatch(requestBlockHeightSuccess(blockHeight));
-      })
-      .catch(() => {
-        dispatch(openRequestFailModal());
-      });
+      }, (): void => dispatch(openRequestFailModal()));
   };
 };
 

@@ -215,3 +215,11 @@
   padding-top: 15px;
   margin-top: 0;
 }
+
+.password-failed-modal.modal,
+.mnemonics-modal.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  top: calc(50% - 268px);
+}

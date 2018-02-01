@@ -30,7 +30,7 @@ class MnemonicModal extends React.Component<Props> {
 
   render(): React.Node {
     return (
-      <Modal className="receive-modal"
+      <Modal className="receive-modal mnemonics-modal"
              show={this.props.isMnemonicModalOpen} onHide={this.handleClose}>
         <Modal.Header className="receive-modal-header" closeButton/>
         <div>

@@ -184,12 +184,12 @@ div.paddingless {
   color: #DFDFDF;
 }
 
-.assets-transactions-list .in {
-  color: #39A6B0
+.assets-transactions-list .in-tx {
+  color: #59BAD8
 }
 
-.assets-transactions-list .out {
-  color: #394CB0
+.assets-transactions-list .out-tx {
+  color: #EA5717
 }
 
 @media (max-height: 700px) {

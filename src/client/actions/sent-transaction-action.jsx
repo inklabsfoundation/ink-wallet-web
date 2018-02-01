@@ -172,9 +172,7 @@ const sentQtumTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch(() => {
-      dispatch(sentTransactionFail());
-    });
+    }, (): void => dispatch(sentTransactionFail()));
   };
 };
 
@@ -200,9 +198,7 @@ const sentInkTransaction = (): ThunkAction => {
       rawtx: rawTransaction
     }).then(() => {
       dispatch(sentTransactionSuccess());
-    }).catch(() => {
-      dispatch(sentTransactionFail());
-    });
+    }, (): void => dispatch(sentTransactionFail()));
   };
 };
 
@@ -265,10 +261,7 @@ export const requestUtxos = (): ThunkAction => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));
-      })
-      .catch(() => {
-        dispatch(requestUTXOFail());
-      });
+      }, (): void => dispatch(requestUTXOFail()));
   };
 };
 
@@ -299,10 +292,7 @@ export const requestRecomendedFee = (): ThunkAction => {
       .then((response: $AxiosXHR<Object>) => {
         // eslint-disable-next-line no-magic-numbers
         dispatch(requestRecommendedFeeSuccess(response.data[2]));
-      })
-      .catch(() => {
-        dispatch(requestRecommendedFeeFail());
-      });
+      }, (): void => dispatch(requestRecommendedFeeFail()));
   };
 };
 

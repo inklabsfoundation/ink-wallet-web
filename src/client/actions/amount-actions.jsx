@@ -113,9 +113,10 @@ export const requestInkBalance = (): ThunkAction => {
           amount = response.data.balance / TOKENS_COUNT;
         }
         dispatch(requestInkFetchingSuccess(amount));
-      })
-      .catch(() => {
-        dispatch(openRequestFailModal());
+      }, (error: Object) => {
+        if (error.response && error.response.status !== 404) {
+          dispatch(openRequestFailModal());
+        }
         dispatch(requestInkBalanceError());
       });
   };
@@ -148,8 +149,7 @@ export const requestQtumBalance = (): ThunkAction => {
       .then((response: $AxiosXHR<number>) => {
         const amount: number = response.data;
         dispatch(requestQtumFetchingSuccess(amount / SATOSHI_COUNT));
-      })
-      .catch(() => {
+      }, () => {
         dispatch(openRequestFailModal());
         dispatch(requestQtumBalanceError());
       });
@@ -183,7 +183,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=0&to=50`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.items;
-        if (isFirstRequest) {
+        if (isFirstRequest && txs.length > 0) {
           const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
             return tx.time;
           });
@@ -191,8 +191,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
           dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
         }
         dispatch(requestQtumTransactionsSuccess(txs));
-      })
-      .catch(() => {
+      }, () => {
         dispatch(openRequestFailModal());
         dispatch(requestQtumTransactionsError());
         dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
@@ -229,7 +228,7 @@ export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction =>
     axios.get(`${path}/tokens/${tokenAddress}/transactions?addresses[]=${address}`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.items;
-        if (isFirstRequest) {
+        if (isFirstRequest && txs.length > 0) {
           const lastTransTime: Object = _.maxBy(txs, (tx: Object): number => {
             return Date.parse(tx.block_date_time) / 1000;
           });
@@ -237,8 +236,7 @@ export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction =>
           dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));
         }
         dispatch(requestInkTransactionsSuccess(txs));
-      })
-      .catch(() => {
+      }, () => {
         dispatch(openRequestFailModal());
         dispatch(requestInkTransactionsError());
         dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));

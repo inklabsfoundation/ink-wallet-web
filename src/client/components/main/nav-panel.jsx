@@ -11,6 +11,9 @@ import secureIconDisable from "../../images/secure-center-logo.png";
 import faqIconDisable from "../../images/faq-logo.png";
 import assetsIconDisable from "../../images/asserts-logo.png";
 import assetsIconActive from "../../images/asserts-logo-active.png";
+import openCarretIcon from "../../images/open-carret.png";
+import closeCarretIcon from "../../images/close-carret.png";
+import searchIcon from "../../images/search-icon.png";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
@@ -25,7 +28,7 @@ type Props = {
 };
 
 type State = {
-  activeKey: boolean,
+  isAssetsExpanded: boolean,
   searchNeedle: string
 };
 
@@ -36,7 +39,7 @@ class NavPanel extends React.Component<Props, State> {
     (this: any).handleSelect = this.handleSelect.bind(this);
     (this: any).handleSearchInput = this.handleSearchInput.bind(this);
     this.state = {
-      activeKey: true,
+      isAssetsExpanded: true,
       searchNeedle: ""
     };
   }
@@ -55,7 +58,7 @@ class NavPanel extends React.Component<Props, State> {
   }
 
   handleSelect() {
-    this.setState({activeKey: !this.state.activeKey});
+    this.setState({isAssetsExpanded: !this.state.isAssetsExpanded});
   }
 
   handleSearchInput(e: SyntheticInputEvent<HTMLInputElement>) {
@@ -108,6 +111,12 @@ class NavPanel extends React.Component<Props, State> {
             }/>
         </div>
         <div className="panel-item-title"><Translate value="navPanel.assetsDetails"/></div>
+        <div className="open-carret">
+          {(this.state.isAssetsExpanded)
+            ? <img height={5} width={10} src={openCarretIcon}/>
+            : <img height={5} width={10} src={closeCarretIcon}/>
+          }
+        </div>
       </div>
     );
     const assets: Array<React.Node> = Object.keys(SUPPORTED_CURRENCIES).map((key: string): ?React.Node => {
@@ -125,13 +134,13 @@ class NavPanel extends React.Component<Props, State> {
         <div>
           <Panel header={walletPanel} collapsible={false}/>
           <Panel collapsible={true}
-                 expanded={this.state.activeKey} header={assetsPanel}>
+                 expanded={this.state.isAssetsExpanded} header={assetsPanel}>
             <div className="divider"/>
             <div className="search-input-container">
               <input id="assets-search" onChange={this.handleSearchInput} className="search-input"/>
               {this.state.searchNeedle.length === 0
               && <span className="search-placeholder"><Translate value="navPanel.search"/></span>}
-              <span className="search-icon"><i className="glyphicon glyphicon-search"/></span>
+              <span className="search-icon"><img width={17} height={16} src={searchIcon}/></span>
             </div>
             <div className="assets-list">
               {assets}

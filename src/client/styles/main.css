@@ -110,6 +110,7 @@ body {
 
 .nav-elem {
   cursor: pointer;
+  position: relative;
 }
 
 .new-transactions-container {
@@ -166,6 +167,11 @@ body {
   display: table-cell;
   left: calc(50% - 334px);
   margin-top: 20px;
+}
+
+.open-carret {
+  position: absolute;
+  right: -5px;
 }
 
 @media (max-height: 650px) {

@@ -298,7 +298,8 @@
 
 .fee-value {
   width: 150px;
-  text-align: right;
+  text-align: left;
+  padding-left: 40px;
 }
 
 .confirm-button {
