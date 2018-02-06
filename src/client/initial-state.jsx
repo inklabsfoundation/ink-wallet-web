@@ -61,13 +61,20 @@ export const SUPPORTED_CURRENCIES = {
   QTUM: "QTUM"
 };
 
+export type TokenDesc = {
+  txId: string,
+  desc: string
+};
+
 export type WalletAmount = {
   balance: number,
   label: string,
   isAmountFetching: boolean,
   areTxsFetching: boolean,
   txs: Array<Object>,
-  isFirstFetchComplete: boolean
+  isFirstFetchComplete: boolean,
+  tokenDescs: Array<TokenDesc>,
+  totalItems: number
 };
 
 export type AmountState = {
@@ -167,7 +174,9 @@ export const initialState: State = {
       isAmountFetching: false,
       areTxsFetching: false,
       txs: [],
-      isFirstFetchComplete: false
+      isFirstFetchComplete: false,
+      tokenDescs: [],
+      totalItems: 0
     },
     INK: {
       balance: 0,
@@ -175,7 +184,9 @@ export const initialState: State = {
       isAmountFetching: false,
       areTxsFetching: false,
       txs: [],
-      isFirstFetchComplete: false
+      isFirstFetchComplete: false,
+      tokenDescs: [],
+      totalItems: 0
     }
   },
   sendTransactionState: {

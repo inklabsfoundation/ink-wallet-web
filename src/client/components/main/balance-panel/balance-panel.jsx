@@ -15,11 +15,7 @@ class BalancePanel extends React.Component<{}> {
       <Col className="balance-panel" xs={12}>
         <AmountPanel/>
         <CurrenciesListPanel/>
-        <div className="balance-panel-btn-panel">
-            <a className="primary-red-btn amount-btn">
-              <Translate value="mainPage.importMoreBtn"/>
-            </a>
-        </div>
+        <div className="balance-panel-btn-panel"/>
       </Col>
     );
   }

@@ -65,8 +65,6 @@ div.paddingless {
 
 .assets-transactions-panel .assets-transactions-time-panel {
   display: flex;
-  justify-content: right;
-  width: 50%;
 }
 
 .assets-transactions-panel .assets-transactions-btn {
@@ -190,6 +188,21 @@ div.paddingless {
 
 .assets-transactions-list .out-tx {
   color: #EA5717
+}
+
+.assets-transactions-controls {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.nav-arrow {
+  width: 7px;
+  height: 16px;
+}
+
+.address-data a{
+  cursor: pointer;
 }
 
 @media (max-height: 700px) {

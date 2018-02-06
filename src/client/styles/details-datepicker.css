@@ -1,0 +1,71 @@
+
+.assets-transactions-time-panel .DateInput_input__small {
+  color: #999999;
+  font-size: 12px;
+  border: 1px solid #dfdfdf;
+  text-align: center;
+}
+
+.assets-transactions-time-panel .CalendarDay {
+  font-size: 12px;
+}
+
+.assets-transactions-time-panel .DayPickerKeyboardShortcuts_show__bottomRight {
+  display: none;
+}
+
+.assets-transactions-time-panel .CalendarMonth_caption {
+  font-size: 12px;
+  padding-bottom: 55px;
+}
+
+.assets-transactions-time-panel .CalendarMonthGrid_month__horizontal.CalendarMonthGrid_month__horizontal_1.CalendarMonthGrid_month__hideForAnimation.CalendarMonthGrid_month__hideForAnimation_2.CalendarMonthGrid_month__hidden.CalendarMonthGrid_month__hidden_3 {
+  border-right: 1px solid #dfdfdf;
+}
+
+.assets-transactions-time-panel .DayPicker_weekHeader.DayPicker_weekHeader_1 {
+  padding-top: 5px;
+  border-top: 1px solid #dfdfdf;
+}
+
+.assets-transactions-time-panel .CalendarDay__outside {
+  color: #BFBFBF;
+}
+
+.assets-transactions-time-panel .CalendarDay__default {
+  border: 0;
+}
+
+.assets-transactions-time-panel .CalendarMonthGrid_month__horizontal.CalendarMonthGrid_month__horizontal_1:nth-child(2) {
+  border-right: 1px solid #dfdfdf;
+}
+
+.assets-transactions-time-panel .CalendarDay__selected_span,
+.assets-transactions-time-panel .CalendarDay__selected_span:hover,
+.assets-transactions-time-panel .CalendarDay__hovered_span,
+.assets-transactions-time-panel .CalendarDay__hovered_span:hover,
+.assets-transactions-time-panel .CalendarDay__selected {
+  background: rgba(57, 76, 176, 0.51);
+  color: #fff;
+  border: 0;
+}
+
+.assets-transactions-time-panel .CalendarDay__selected_span.CalendarDay__outside {
+  color: #ccc;
+}
+
+.assets-transactions-time-panel .CalendarDay__selected,
+.assets-transactions-time-panel .CalendarDay__selected:active,
+.assets-transactions-time-panel .CalendarDay__selected:hover {
+  background-color: #394CB0;
+  border: 0;
+}
+
+.date-divider {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.DayPickerNavigation_button__horizontal {
+  border: 0
+}

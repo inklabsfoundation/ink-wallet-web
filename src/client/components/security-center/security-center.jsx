@@ -30,7 +30,8 @@ type Props = {
 type SecurityCenterState = {
   selectedExplorerOption: string,
   customExplorerPath: string,
-  isInputPlaceHolderShown: boolean
+  isInputPlaceHolderShown: boolean,
+  isCustomSet: boolean
 };
 
 const CUSTOM_EXPLORER_KEY: string = "custom";
@@ -63,7 +64,8 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
     this.state = {
       selectedExplorerOption: explorerPath,
       customExplorerPath,
-      isInputPlaceHolderShown: customExplorerPath.length === 0
+      isInputPlaceHolderShown: customExplorerPath.length === 0,
+      isCustomSet: false
     };
   }
 
@@ -78,6 +80,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
         customExplorerPath += "/";
       }
       this.props.dispatch(setExplorerUrl(customExplorerPath));
+      this.setState({isCustomSet: true});
     }
   }
 
@@ -96,7 +99,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
     if (CUSTOM_EXPLORER_KEY !== newExplorerPath) {
       this.props.dispatch(setExplorerUrl(newExplorerPath));
     }
-    this.setState({selectedExplorerOption: newExplorerPath});
+    this.setState({selectedExplorerOption: newExplorerPath, isCustomSet: false});
   }
 
   handleClickShow(e: SyntheticInputEvent<HTMLButtonElement>) {
@@ -253,7 +256,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                     </div>
                     <div className="button-block submit">
                       <a onClick={this.handleApplyCustomPath}
-                         className={`primary-red-btn ${!this.isCustom() ? "disabled" : ""}`}>
+                         className={`primary-red-btn ${!this.isCustom() ? "disabled" : ""} ${this.state.isCustomSet ? "green" : ""}`}>
                         <Translate value="securityCenter.explorerContainer.submitBtn"/>
                       </a>
                     </div>

@@ -8,6 +8,11 @@ import {SATOSHI_COUNT, TOKENS_COUNT} from "../types/consts";
 import {openRequestFailModal, requestBlockHeight, setLastTransactionTimeStamp} from "./login-actions";
 import * as _ from "lodash";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
+import {findDescriptionInTx} from "../services/transaction-mapper";
+import type {TokenDesc} from "../initial-state";
+
+const QTUM_PAGE_COUNT = 50;
+const INK_PAGE_COUNT = 100;
 
 type RequestQtumBalanceFetchingAction = {
   type: "REQUEST_QTUM_BALANCE_FETCHING_ACTION"
@@ -28,7 +33,8 @@ type RequestQtumTransactionsFetchingAction = {
 
 type RequestQtumTransactionsSuccessAction = {
   type: "REQUEST_QTUM_TRANSACTIONS_SUCCESS_ACTION",
-  txs: Array<Object>
+  txs: Array<Object>,
+  totalItems: number
 };
 
 type RequestQtumTransactionsFailAction = {
@@ -41,6 +47,17 @@ type RequestInkTransactionsFetchingAction = {
 
 type RequestInkTransactionsSuccessAction = {
   type: "REQUEST_INK_TRANSACTIONS_SUCCESS_ACTION",
+  txs: Array<Object>,
+  totalItems: number
+};
+
+type RequestQtumHistoryTransactionsSuccessAction = {
+  type: "REQUEST_HISTORY_QTUM_TRANSACTIONS_SUCCESS_ACTION",
+  txs: Array<Object>
+};
+
+type RequestInkHistoryTransactionsSuccessAction = {
+  type: "REQUEST_HISTORY_INK_TRANSACTIONS_SUCCESS_ACTION",
   txs: Array<Object>
 };
 
@@ -66,13 +83,76 @@ type SetFirstTxRequestMadeAction = {
   currency: string
 };
 
+type RequestTokenDescSuccessAction = {
+  type: "REQUEST_TOKEN_DESC_SUCCESS_ACTION",
+  token: string,
+  data: TokenDesc
+};
+
 export type AmountAction = RequestQtumBalanceFetchingAction |
   RequestQtumBalanceSuccessAction | RequestQtumBalanceFailAction |
   RequestQtumTransactionsFetchingAction | RequestQtumTransactionsSuccessAction |
   RequestQtumTransactionsFailAction | RequestInkTransactionsFetchingAction |
   RequestInkTransactionsSuccessAction | RequestInkTransactionsFailAction |
   RequestInkBalanceFetchingAction | RequestinkBalanceSuccessAction |
-  RequestInkBalanceFailAction | SetFirstTxRequestMadeAction;
+  RequestInkBalanceFailAction | SetFirstTxRequestMadeAction |
+  RequestTokenDescSuccessAction | RequestQtumHistoryTransactionsSuccessAction |
+  RequestInkHistoryTransactionsSuccessAction;
+
+const requestQtumHistoryTransactionsSuccess = (txs: Array<Object>): RequestQtumHistoryTransactionsSuccessAction => {
+  return {
+    type: "REQUEST_HISTORY_QTUM_TRANSACTIONS_SUCCESS_ACTION",
+    txs
+  };
+};
+
+const requestInkHistoryTransactionsSuccess = (txs: Array<Object>): RequestInkHistoryTransactionsSuccessAction => {
+  return {
+    type: "REQUEST_HISTORY_INK_TRANSACTIONS_SUCCESS_ACTION",
+    txs
+  };
+};
+
+export const requestQtumHistoryTransactions = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const totalItems = getState().amountState.QTUM.totalItems;
+    if (totalItems > QTUM_PAGE_COUNT) {
+      const address = getState().loginState.address.toString();
+      const requestCount = Math.floor((totalItems - 1) / QTUM_PAGE_COUNT);
+      for (let i = 1; i <= requestCount; i++) {
+        axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=${QTUM_PAGE_COUNT * i }&to=${QTUM_PAGE_COUNT * (i + 1)}`)
+          .then((response: $AxiosXHR<Object>) => {
+            const txs: Array<Object> = response.data.items;
+            dispatch(requestQtumHistoryTransactionsSuccess(txs));
+          }, () => {
+            dispatch(openRequestFailModal());
+          });
+      }
+    }
+  };
+};
+
+export const requestInkHistoryTransactions = (): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const totalItems = getState().amountState.INK.totalItems;
+    if (totalItems > INK_PAGE_COUNT) {
+      const address = getState().loginState.address.toString();
+      const requestCount = Math.floor((totalItems - 1) / INK_PAGE_COUNT);
+      const tokenAddress: string = getState().config.INKcontractAddress;
+      const path: string = getState().config.qtumExplorerPath;
+      axios.get(`${path}/tokens/${tokenAddress}/transactions?addresses[]=${address}`);
+      for (let i = 1; i <= requestCount; i++) {
+        axios.get(`${path}/tokens/${tokenAddress}/transactions?addresses[]=${address}&offset=${INK_PAGE_COUNT * i }`)
+          .then((response: $AxiosXHR<Object>) => {
+            const txs: Array<Object> = response.data.items;
+            dispatch(requestInkHistoryTransactionsSuccess(txs));
+          }, () => {
+            dispatch(openRequestFailModal());
+          });
+      }
+    }
+  };
+};
 
 const requestInkBalanceFetching = (): RequestInkBalanceFetchingAction => {
   return {
@@ -169,10 +249,36 @@ const requestQtumTransactionsFetching = (): RequestQtumTransactionsFetchingActio
 };
 
 // eslint-disable-next-line max-len
-const requestQtumTransactionsSuccess = (txs: Array<Object>): RequestQtumTransactionsSuccessAction => {
+const requestQtumTransactionsSuccess = (txs: Array<Object>, totalItems: number): RequestQtumTransactionsSuccessAction => {
   return {
     type: "REQUEST_QTUM_TRANSACTIONS_SUCCESS_ACTION",
-    txs
+    txs,
+    totalItems
+  };
+};
+
+const requestTokensDescSuccess = (token: string, txId: string, desc: string): RequestTokenDescSuccessAction => {
+  return {
+    type: "REQUEST_TOKEN_DESC_SUCCESS_ACTION",
+    token,
+    data: {
+      txId,
+      desc
+    }
+  };
+};
+
+export const requestTokensDesc = (txId: string, tokenName: string): ThunkAction => {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(requestQtumTransactionsFetching());
+    const address = getState().loginState.address.toString();
+    axios.get(`${getState().config.qtumExplorerPath}/tx/${txId}`)
+      .then((response: $AxiosXHR<Object>) => {
+        const descr: string = findDescriptionInTx(response.data);
+        dispatch(requestTokensDescSuccess(tokenName, txId, descr));
+      }, () => {
+        dispatch(openRequestFailModal());
+      });
   };
 };
 
@@ -180,7 +286,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumTransactionsFetching());
     const address = getState().loginState.address.toString();
-    axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=0&to=50`)
+    axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=0&to=${QTUM_PAGE_COUNT}`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.items;
         if (isFirstRequest && txs.length > 0) {
@@ -190,7 +296,7 @@ export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction =
           dispatch(setLastTransactionTimeStamp(lastTransTime.time));
           dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.QTUM));
         }
-        dispatch(requestQtumTransactionsSuccess(txs));
+        dispatch(requestQtumTransactionsSuccess(txs, response.data.totalItems));
       }, () => {
         dispatch(openRequestFailModal());
         dispatch(requestQtumTransactionsError());
@@ -212,10 +318,11 @@ const requestInkTransactionsFetching = (): RequestInkTransactionsFetchingAction 
 };
 
 // eslint-disable-next-line max-len
-const requestInkTransactionsSuccess = (txs: Array<Object>): RequestInkTransactionsSuccessAction => {
+const requestInkTransactionsSuccess = (txs: Array<Object>, totalItems: number): RequestInkTransactionsSuccessAction => {
   return {
     type: "REQUEST_INK_TRANSACTIONS_SUCCESS_ACTION",
-    txs
+    txs,
+    totalItems
   };
 };
 
@@ -235,7 +342,7 @@ export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction =>
           dispatch(setLastTransactionTimeStamp(Date.parse(lastTransTime.block_date_time) / 1000));
           dispatch(setFirstTxRequestMadeAction(SUPPORTED_CURRENCIES.INK));
         }
-        dispatch(requestInkTransactionsSuccess(txs));
+        dispatch(requestInkTransactionsSuccess(txs, response.data.count));
       }, () => {
         dispatch(openRequestFailModal());
         dispatch(requestInkTransactionsError());
@@ -251,5 +358,12 @@ export const requestWalletData = (isFirstRequest: ?boolean): ThunkAction => {
     dispatch(requestInkBalance());
     dispatch(requestBlockHeight());
     dispatch(requestInkTransactions(isFirstRequest));
+  };
+};
+
+export const requestHistoryTxsData = (): ThunkAction => {
+  return (dispatch: Dispatch) => {
+    dispatch(requestQtumHistoryTransactions());
+    dispatch(requestInkHistoryTransactions());
   };
 };

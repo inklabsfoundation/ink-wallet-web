@@ -8,6 +8,7 @@ import type {Dispatch} from "../../types/redux";
 import {connect} from "react-redux";
 import AssetsDetailsHeader from "./assets-details-header";
 import AssetsTransactionsPanel from "./assets-transactions-panel";
+import {requestHistoryTxsData} from "../../actions/amount-actions";
 
 type Props = {
   dispatch: Dispatch,
@@ -18,6 +19,10 @@ type Props = {
 class AssetsDetails extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(requestHistoryTxsData());
   }
 
   render(): React.Node {

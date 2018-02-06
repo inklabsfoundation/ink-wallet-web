@@ -4,7 +4,7 @@ import * as _ from "lodash";
 import math from "mathjs";
 import type {Decimal} from "mathjs";
 import {TOKENS_COUNT} from "../types/consts";
-import type {AmountState} from "../initial-state";
+import type {AmountState, TokenDesc} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 import CryptoJS from "crypto-js";
 
@@ -172,12 +172,12 @@ export const getUnconfirmedTxsIds = (amountState: AmountState, address: string):
 
 export type AssetsTransaction = {
   premappedTx: LastTransaction,
-  description: string,
+  description: ?string,
   from: string,
   to: string
 };
 
-const findDescriptionInTx = (tx: Object): string => {
+export const findDescriptionInTx = (tx: Object): string => {
   const tempVout: ?Object = _.find(tx.vout, (vout: Object): boolean => {
     return +vout.value === 0 && vout.scriptPubKey.asm && vout.scriptPubKey.asm.startsWith("OP_RETURN");
   });
@@ -218,7 +218,7 @@ const mapAssetsTokenTransactions = (premappedTxs: Array<LastTransaction>, addres
   premappedTxs.forEach((tx: LastTransaction) => {
     const assetsTx: AssetsTransaction = {
       premappedTx: tx,
-      description: "",
+      description: null,
       from: "",
       to: ""
     };
@@ -243,4 +243,21 @@ export const mapAssetsTransactions = (walletState: AmountState, currency: string
     const premappedTxs: Array<LastTransaction> = mapTokensTransactions(currency, address, walletState.INK.txs);
     return mapAssetsTokenTransactions(premappedTxs, address);
   }
+};
+
+export const mergeTokensDescriptions = (walletState: AmountState, currency: string, txs: Array<AssetsTransaction>): Array<AssetsTransaction> => {
+  if (currency === SUPPORTED_CURRENCIES.QTUM) {
+    return txs;
+  }
+  const descs: Array<TokenDesc> = walletState.INK.tokenDescs;
+  descs.forEach((desc: TokenDesc) => {
+   const tx: ?AssetsTransaction =  _.find(txs, (assetsTransaction: AssetsTransaction): boolean => {
+     return assetsTransaction.premappedTx.tx.tx_hash === desc.txId;
+    });
+    if (tx) {
+      tx.description = desc.desc;
+    }
+  });
+
+  return txs;
 };

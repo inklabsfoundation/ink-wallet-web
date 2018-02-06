@@ -19,6 +19,7 @@ import "../../styles/main-page/recent-transactions-panel/recent-transactions-pan
 import "../../styles/send-transaction/send-transaction-modal.css";
 import "../../styles/assets-details.css";
 import "../../styles/receive/receive.css";
+import "../../styles/details-datepicker.css";
 import type {Location} from "react-router";
 import Header from "./header";
 // $FlowFixMe

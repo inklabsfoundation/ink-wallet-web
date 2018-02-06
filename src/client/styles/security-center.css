@@ -202,6 +202,11 @@
   border: 1px solid #394CB0;
 }
 
+.security-center .primary-red-btn.green {
+  background-color: #00ae00;
+  border: 1px solid #00ae00;
+}
+
 .custom-path-input .input:focus {
   outline:0;
 }
@@ -223,3 +228,4 @@
   left: calc(50% - 334px);
   top: calc(50% - 268px);
 }
+
