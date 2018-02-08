@@ -27,7 +27,7 @@ class AssetsDetails extends React.Component<Props> {
 
   render(): React.Node {
     return (
-      <Col className="summary-info-panel paddingless" xs={10}>
+      <Col className="summary-info-panel paddingless" xs={12}>
         <div className="assets-details">
           <div className="assets-details-header">
             <AssetsDetailsHeader routeParams={this.props.routeParams}/>

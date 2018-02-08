@@ -5,14 +5,14 @@ import {isClientSide} from "../services/is-client-side-helper";
 
 type SetExplorerUrlAction = {
   type: "SET_EXPLORER_URL_ACTION",
-  url: ?string
+  url: string
 };
 
 export type ConfigAction = SetExplorerUrlAction;
 
-export const setExplorerUrl = (url: ?string): SetExplorerUrlAction => {
-  if (url && !url.endsWith("insight-api")) {
-    url = `${url}insight-api`;
+export const setExplorerUrl = (url: string): SetExplorerUrlAction => {
+  if (url && url.endsWith("/")) {
+    url = url.slice(0, -1);
   }
   if (isClientSide() && url) {
       localStorage.setItem(EXPLORER_URL, url);

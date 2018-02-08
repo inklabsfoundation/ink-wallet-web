@@ -148,6 +148,28 @@ class NavPanel extends React.Component<Props, State> {
           </Panel>
           <Panel header={securePanel} collapsible={false}/>
           <Panel header={faqPanel} collapsible={false}/>
+          <div className="bottom-nav-container">
+            <div className="bottom-nav-container-inner">
+              <div className="link-container">
+                <Link className={this.isActive(ROUTE_URLS.TERMS)} to={`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.TERMS}`}>
+                  <Translate value="navPanel.terms"/>
+                </Link>
+              </div>
+              <div className="link-container">
+                <Link className={this.isActive(ROUTE_URLS.POLICY)} to={`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.POLICY}`}>
+                  <Translate value="navPanel.policy"/>
+                </Link>
+              </div>
+              <div className="link-container">
+                <Link className={this.isActive(ROUTE_URLS.ABOUT)} to={`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.ABOUT}`}>
+                  <Translate value="navPanel.about"/>
+                </Link>
+              </div>
+              <div className="copyright-container">
+                <span className="footer-label">Copyright©{(new Date()).getFullYear()}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </Col>
     );

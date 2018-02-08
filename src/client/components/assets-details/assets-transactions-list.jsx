@@ -81,8 +81,8 @@ class AssetsTransactionsList extends React.Component<Props> {
         <div className="assets-details-tx" key={indx}>
           <div className="assets-details-tx-data small">
             <div className="direction">
-              {tx.premappedTx.isIn ? <Translate value="assetsDetails.sendLabel"/> :
-                <Translate value="assetsDetails.receivedLabel"/>}
+              {tx.premappedTx.isIn ? <Translate value="assetsDetails.receivedLabel"/> :
+                <Translate value="assetsDetails.sendLabel"/>}
             </div>
             <div className="date">
               {moment.unix(tx.premappedTx.timestamp).format("YYYY.MM.DD HH:mm:ss")}

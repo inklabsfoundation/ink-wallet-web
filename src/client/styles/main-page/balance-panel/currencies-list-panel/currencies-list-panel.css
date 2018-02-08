@@ -1,6 +1,8 @@
 .currencies-panel {
   padding: 0 26px;
   color: #666;
+  height: 474px;
+  overflow-y: scroll;
 }
 .currencies-panel .currency-item {
   min-height: 50px;

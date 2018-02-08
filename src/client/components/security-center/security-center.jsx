@@ -52,10 +52,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
     (this: any).handleInputOnFocus = this.handleInputOnFocus.bind(this);
     (this: any).handleApplyCustomPath = this.handleApplyCustomPath.bind(this);
     this.successImage = preloadImage(successLogo);
-    let explorerPath: string = props.explorerPath;
-    if (explorerPath.endsWith("insight-api")) {
-      explorerPath = explorerPath.slice(0, -("insight-api".length));
-    }
+    const explorerPath: string = props.explorerPath;
     let customExplorerPath: string = "";
     if (explorerPath !== DEFAULT_EXPLORERS_PATHS.QTUM
       && explorerPath !== DEFAULT_EXPLORERS_PATHS.INK) {
@@ -75,11 +72,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
 
   handleApplyCustomPath() {
     if (this.isCustom()) {
-      let customExplorerPath = this.state.customExplorerPath;
-      if (!customExplorerPath.endsWith("/")) {
-        customExplorerPath += "/";
-      }
-      this.props.dispatch(setExplorerUrl(customExplorerPath));
+      this.props.dispatch(setExplorerUrl(this.state.customExplorerPath));
       this.setState({isCustomSet: true});
     }
   }
@@ -134,12 +127,14 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
   render(): React.Node {
     return (
       <div className="security-center">
-        <Col className="page-heading-wrapper" xs={10}>
-          <div className="page-heading-container">
-            <Translate value="securityCenter.pageHeading"/>
-          </div>
-        </Col>
-        <Col xs={5} className="page-wrapper">
+        <div className="page-heading">
+          <Col className="page-heading-wrapper" xs={12}>
+            <div className="page-heading-container">
+              <Translate value="securityCenter.pageHeading"/>
+            </div>
+          </Col>
+        </div>
+        <Col xs={6} className="page-wrapper">
           <div className="page-container">
             <div className="heading-title">
               <Translate value="securityCenter.panelHeading"/>
@@ -154,11 +149,11 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                          className="input center-input blue"/>
                 </div>
                 <div className="button-block">
-                  <a onClick={this.handleClickShow} className="primary-red-btn">
+                  <a onClick={this.handleClickShow} className="primary-red-btn btn-flex">
                     <Translate value="securityCenter.displayBtn"/>
                   </a>
                   <a ref="downloadBtn" onClick={this.handleClickDownload} download="inkwallet.backup"
-                     className="primary-red-btn">
+                     className="primary-red-btn btn-flex">
                     <Translate value="securityCenter.downloadBackupBtn"/>
                   </a>
                 </div>
@@ -166,7 +161,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
             </div>
           </div>
         </Col>
-        <Col xs={5} className="page-wrapper">
+        <Col xs={6} className="page-wrapper">
           <div className="page-container">
             <div className="desc-block">
               <div className="desc">
@@ -184,30 +179,14 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
             </div>
           </div>
         </Col>
-        <Col xs={10} className="explorer-block-divider"/>
-        <Col xs={5} className="page-wrapper">
+        <Col xs={12} className="explorer-block-divider"/>
+        <Col xs={6} className="page-wrapper">
           <div className="page-container">
             <div className="heading-title">
               <Translate value="securityCenter.explorerContainer.title"/>
             </div>
             <div className="form-wrapper explorer-path-container">
               <div className="form-container">
-                <div className="column-wrapper path-radio-wrapper">
-                  <input
-                    className="radio"
-                    name="isQtum"
-                    type="radio"
-                    value={DEFAULT_EXPLORERS_PATHS.QTUM}
-                    id="is-qtum"
-                    onChange={this.handlePathChange}
-                    checked={this.state.selectedExplorerOption === DEFAULT_EXPLORERS_PATHS.QTUM}
-                  />
-                  <label htmlFor="is-qtum">
-                    <div className="radio-label">
-                      {DEFAULT_EXPLORERS_PATHS.QTUM}
-                    </div>
-                  </label>
-                </div>
                 <div className="column-wrapper path-radio-wrapper">
                   <input
                     className="radio"
@@ -219,8 +198,24 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                     checked={this.state.selectedExplorerOption === DEFAULT_EXPLORERS_PATHS.INK}
                   />
                   <label htmlFor="is-ink">
-                    <div className="radio-label">
+                    <div className="radio-label-long">
                       {DEFAULT_EXPLORERS_PATHS.INK}
+                    </div>
+                  </label>
+                </div>
+                <div className="column-wrapper path-radio-wrapper">
+                  <input
+                    className="radio"
+                    name="isQtum"
+                    type="radio"
+                    value={DEFAULT_EXPLORERS_PATHS.QTUM}
+                    id="is-qtum"
+                    onChange={this.handlePathChange}
+                    checked={this.state.selectedExplorerOption === DEFAULT_EXPLORERS_PATHS.QTUM}
+                  />
+                  <label htmlFor="is-qtum">
+                    <div className="radio-label-long">
+                      {DEFAULT_EXPLORERS_PATHS.QTUM}
                     </div>
                   </label>
                 </div>
@@ -247,7 +242,8 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                              onBlur={this.handleInputOnBlur}
                              onFocus={this.handleInputOnFocus}
                              value={this.state.customExplorerPath}
-                             className={`input blue ${!this.isCustom() ? "disabled" : ""}`} disabled={!this.isCustom()}/>
+                             className={`input blue ${!this.isCustom() ? "disabled" : ""}`}
+                             disabled={!this.isCustom()}/>
                       {/* TODO Withdraw input with placehodler in separate component */}
                       {(this.state.isInputPlaceHolderShown && this.state.customExplorerPath.length === 0)
                       && <span className="path-input-placeholder">
@@ -257,7 +253,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                     <div className="button-block submit">
                       <a onClick={this.handleApplyCustomPath}
                          className={`primary-red-btn ${!this.isCustom() ? "disabled" : ""} ${this.state.isCustomSet ? "green" : ""}`}>
-                        <Translate value="securityCenter.explorerContainer.submitBtn"/>
+                        {this.state.isCustomSet ? "✓" : <Translate value="securityCenter.explorerContainer.submitBtn"/>}
                       </a>
                     </div>
                   </div>
@@ -266,7 +262,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
             </div>
           </div>
         </Col>
-        <Col xs={5} className="page-wrapper">
+        <Col xs={6} className="page-wrapper">
           <div className="page-container">
             <div className="desc-block">
               <div className="desc">

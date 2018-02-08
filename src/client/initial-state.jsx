@@ -30,7 +30,8 @@ export type ConfigState = {
   qtumExplorerPath: string,
   encryptSalt: string,
   INKcontractAddress: string,
-  refreshTime: number
+  refreshTime: number,
+  playMarketDownloadLink: string
 };
 
 export type ReceiveState = {
@@ -221,6 +222,7 @@ export const initialState: State = {
     qtumExplorerPath: "",
     encryptSalt: "",
     INKcontractAddress: "",
-    refreshTime: 0
+    refreshTime: 0,
+    playMarketDownloadLink: ""
   }
 };

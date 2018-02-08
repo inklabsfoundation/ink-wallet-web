@@ -25,7 +25,7 @@
   height: 30px;
   font-size: 12px;
   margin-bottom: 20px;
-  padding-top: 5px;
+  padding: 5px 5px 5px 0;
 }
 
 .primary-red-btn.disabled {
@@ -65,4 +65,48 @@
   height: 45px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.page-heading .page-heading-wrapper {
+  border-bottom: 1px solid #DFDFDF;
+  display: flex;
+  justify-content: center;
+  padding: 20px 70px 30px 70px;
+}
+
+.page-heading .page-heading-container {
+  width: 100%;
+  border: 1px solid #DFDFDF;
+  font-size: 18px;
+  font-weight: bold;
+  height: 60px;
+  padding: 17px 0;
+  text-align: center;
+}
+
+.page-text-contaner {
+  padding: 40px 70px 30px 70px;
+  font-size: 16px;
+}
+
+.page-text-block {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.page-text-title {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.page-text-block-li {
+  width: 100%;
+  padding-left: 20px;
+}
+
+.page-text-block-ul {
+  padding-bottom: 20px;
 }

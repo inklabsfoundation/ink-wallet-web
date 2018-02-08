@@ -9,6 +9,9 @@ import LoginPanel from "./components/login/login-panel";
 import MainPagePanel from "./components/main/main-page-panel";
 import SecurityCenter from "./components/security-center/security-center";
 import AssetsDetails from "./components/assets-details/assets-details";
+import About from "./components/about/about";
+import Policy from "./components/privacy-policy/policy";
+import Terms from "./components/terms-of-usage/terms";
 
 export const ROUTE_URLS = {
   HOME_PAGE: "/",
@@ -17,7 +20,10 @@ export const ROUTE_URLS = {
   WALLET_PAGE: "/wallet",
   SECURITY_CENTER: "security",
   LOGIN: "/login",
-  ASSETS_DETAILS: "details"
+  ASSETS_DETAILS: "details",
+  ABOUT: "about",
+  POLICY: "policy",
+  TERMS: "terms"
 };
 
 export const routes = (
@@ -30,6 +36,9 @@ export const routes = (
       <IndexRoute component={MainPagePanel}/>
       <Route path={ROUTE_URLS.SECURITY_CENTER} component={SecurityCenter}/>
       <Route path={`${ROUTE_URLS.ASSETS_DETAILS}/:currency`} component={AssetsDetails}/>
+      <Route path={ROUTE_URLS.ABOUT} component={About}/>
+      <Route path={ROUTE_URLS.POLICY} component={Policy}/>
+      <Route path={ROUTE_URLS.TERMS} component={Terms}/>
     </Route>
   </Route>
 );

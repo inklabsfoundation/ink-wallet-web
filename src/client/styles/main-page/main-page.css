@@ -1,4 +1,8 @@
 .main-page.container {
   width: 100%;
-  padding: 0;
+  padding: 50px 0 0 0;
+}
+
+.data-panel {
+  padding-left: 16.66666%;
 }

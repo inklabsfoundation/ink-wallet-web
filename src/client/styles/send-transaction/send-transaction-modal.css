@@ -296,6 +296,10 @@
   width: 60px;
 }
 
+.radio-label-long {
+  width: 500px;
+}
+
 .fee-value {
   width: 150px;
   text-align: left;

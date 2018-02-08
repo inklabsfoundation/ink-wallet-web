@@ -23,7 +23,69 @@ export const dictionary = {
       assetsDetails: "Assets Details",
       securityCenter: "Security Center",
       faq: "F&Q",
-      search: "Search..."
+      search: "Search...",
+      about: "About",
+      policy: "Privacy Policy",
+      terms: "Terms of Usage"
+    },
+    about: {
+      desc1: "INK Wallet is a SPV blockchain tool developed by Ink community and provided by Ink Labs Foundation. Built on the Qtum core, INK Wallet allows its users to manage their accounts, make transactions and receive deposits within Qtum network. INK Wallet currently supports Qtum and INK, and will accept the generic tokens issued in the INK ecosystem.",
+      desc2: "Ink Labs Foundation is a not-for-profit organization based in Singapore, founded by the acknowledged serial entrepreneur Francis Tang. It aims at promoting the blockchain technology towards global cultural and creative industries, as an important tool in the protection of copyright and other legal rights of global content creators. By supporting the creation of our artists, Ink Labs Foundation hopes to make its own contribution to the cultural heritage worldwide."
+    },
+    terms: {
+      title1: "1. Parties",
+      desc1: "1.1. This agreement is between you ( ‘You’ or ‘Your’ in this agreement) and Ink Labs Foundation Ltd.  (‘Ink’ in this agreement).  INK Wallet is a blockchain tool provided by Ink, including Web-Pages and Mobile Applications. You acknowledge that any use of INK Wallet is subject to these Terms of Service.",
+      desc1_2: "1.2. It's Your own responsibility to read the Terms of Service carefully before you start to use INK Wallet.",
+      title2: "2. Definitions and Services offered",
+      desc2: "INK Wallet is a way in which users could access and transfer ownership of some crypto assets in Qtum blockchain, including QTUM, INK coins and IP tokens defined by Ink. You should only use Ink wallet if You are familiar with blockchain and crypto assets. Ink highly recommend learning the basics of the specific crypto asset that You plan on using Ink wallet  before You start. Belows are some critical (but not all) informations You should know.",
+      title2_1: "2.1. You Own Your Private Keys",
+      desc2_1: "Ink does not store user’s wallet files, mnemonics, or passwords (\"Private Information\"). It is very important that You backup Private Information. If You lose Your Private Information then it will not be possible for Ink to recover it for You and You may lose access to Your crypto assets. If You do not understand the above paragraph then we strictly recommend that You learn more about crypto assets before using INK Wallet.",
+      title2_2: "2.2. Transactions",
+      desc2_2: "The only authentic record of crypto asset transactions is the Qtum blockchain. The INK Wallet provides functionality that allows You to send crypto transfer instructions. Ink does not guarantee that transactions You perform using INK Wallet shall be stored in Qtum blockchain. You must ensure that Your transactions conform to the applicable rules of Qtum. There are transaction fees (e.g. mining fees) associated with Your transactions that are required by Qtum system. INK Wallet shall not be responsible for any losses You incur due to transaction fees or losses that occur due to incorrectly set transaction fees (i.e. too low or high). Ink does not have access to Your transactions (or anyone else's).",
+      title2_3: "2.3. No Control Over Blockchains",
+      desc2_3: "Ink does not have any control over any of the crypto asset that INK Wallet allows You to use.",
+      title3: "3. User Obligations",
+      desc3_1: "You shall:",
+      desc3_1_ul_1: {
+        li1: "be of the age of majority in Your local jurisdiction; and,",
+        li2: "be responsible for Your own crypto asset; and,",
+        li3: "backup/write down Your Private Information and keep it private; and,",
+        li4: "carefully guard Your mnemonics and wallet files in case of using INK Wallet and,",
+        li5: "ensure that Your device(s) are fully updated and do not contain viruses, malware or otherwise malicious software."
+      },
+      desc3_2: "You shall not:",
+      desc3_2_ul_2: {
+        li1: "deposit crypto asset into addresses that are not supported by INK Wallet; or,",
+        li2: "use INK Wallet in a manner likely to infer with other users or blockchain nodes (e.g. excessive API calls or network spam); or,",
+        li3: "use INK Wallet in a manner contrary to Your local laws."
+      },
+      title4: "4. Limited Intellectual Property License",
+      desc4: "This agreement licenses Ink services to You on a personal, non-exclusive, royalty-free, non-transferable, worldwide-basis, for the purpose of managing crypto assets. You are not permitted to re-distribute any of Ink’s services, modify any code or use any Ink content, including images and text, as part of any other software or project of any kind. For partnership inquiries please contact us.",
+      title5: "5. Specifically Disclaimed Risks",
+      desc5: "Using crypto asset software necessarily entails many risks. Ink specifically disclaims and shall have no liability to You for the following risks:",
+      desc5_ul_1: {
+        li1: "operating system failures (mobile or desktop); and,",
+        li2: "poor interactions between Your hardware, software, and INK Wallet; and,",
+        li3: "cloud backup software (e.g. certain Android distributions) may upload your private information to third party services; and,",
+        li4: "malware, viruses or other malicious software on Your device that is able to take control of or interfere with INK Wallet; and,",
+        li5: "communication delays between Your INK Wallet and a node or relay service for a crypto asset."
+      },
+      title6: "6. No Warranty",
+      desc6: "INK Wallet is provided to You at no cost, \"as-is \" and without any warranty whatsoever, to the maximum extent permissible by law. Without limiting the generality of the foregoing,  does not warrant that INK Wallet is fit for Your purpose, even if You have previously provided notice of Your intended purpose, and does not warrant that INK Wallet will operate in a bug-free manner.",
+      title7: "7. Limitation of Liability",
+      desc7: "Ink's liability to You shall not, under any circumstances, exceed the greater of USD 50.",
+      title8: "8. Indemnity",
+      desc8: "You agree to indemnify Ink against any claims, damages, losses or legal fees incurred due to Your use (or misuse) of INK Wallet.",
+      title9: "9. Non-Waiver",
+      desc9: "No action or inaction on the part of Ink shall be considered a waiver of any right or obligation by INK Wallet.",
+      title10: "10. Amendment",
+      desc10: "This agreement may be amended by Ink by providing You with 30 days notice of any proposed change. If You do not agree to the amended terms then Your sole remedy shall be to cease using INK Wallet.",
+      title11: "11. Assignment",
+      desc11: "You may not assign this agreement. Ink  may assign this agreement to 11 days notice.",
+      title12: "12. Governing Law",
+      desc12: "This agreement shall be governed by the laws of Singapore.",
+      title13: "13. Entire Agreement",
+      desc13: "This is the entire agreement between the parties and supersedes any other agreement."
     },
     assetsDetails: {
       amountLabel: "Amount:",
@@ -44,7 +106,8 @@ export const dictionary = {
       sendBtn: "Send",
       importMoreBtn: "Import more",
       receiveBtn: "Receive",
-      recentTitle: "Recent"
+      recentTitle: "Recent",
+      newsTitle: "INK News"
     },
     confirmCloseModal: {
       mainTitle: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
@@ -115,7 +178,7 @@ export const dictionary = {
       "your wallet, and Mnemonics is used to restore your wallet in other" +
       "devices.So you should hold both of them. Stressly, Ink will not save mnenonics or" +
       "wallet file.Do Remember Your Mnenonics and Wallet Files and don't share them with anyone",
-      showAddressNextBtn: "Understand,\n get my Mnemonics and Wallet Files",
+      showAddressNextBtn: "Understand, get my Mnemonics and Wallet Files",
       showMnemonicTitle: "Your Mnemonics",
       showMnemonicDescr: "Once more, Wallet File is used to log in your wallet," +
       "and Mnemonics is used to restore your wallet in other devices." +
@@ -191,10 +254,10 @@ export const dictionary = {
       resetPassword2: "Confirm your password:",
       restoreSuccessTitle: "Successed!",
       restoreInfo: {
-        info1: "If you only use this wallet file & password one-off, please DO NOT\n" +
+        info1: "If you only use this wallet file & password one-off, please DO NOT" +
         "download it. If so, your new password will not be saved after you loging out.",
         info2: "Aware the old wallet file is still valid and its password is not changed.",
-        info3: "OLD password for OLD waller file, NEW password for the new one.\n" +
+        info3: "OLD password for OLD waller file, NEW password for the new one." +
         "You can delete the old wallet file to aviod confusion"
       }
     }
@@ -223,7 +286,69 @@ export const dictionary = {
       assetsDetails: "资产详情",
       securityCenter: "安全中心",
       faq: "常见问题",
-      search: "搜索..."
+      search: "搜索...",
+      about: "About",
+      policy: "Privacy Policy",
+      terms: "Terms of Usage"
+    },
+    about: {
+      desc1: "INK钱包是Ink lab foundation基于开发者社区，为用户提供的轻量级区块链资产管理工具。该钱包搭建于Qtum区块链的核心代码之上，允许用户在Qtum区块链网络中管理自己的账户、发起及接收交易。目前，INK钱包支持Qtum及INK两种区块链资产，后续将支持INK泛IP生态体系中发行的其他通证（token）类资产",
+      desc2: "Ink Labs Foundation 是总部位于新加坡的非盈利组织，由著名连续创业者Francis Tang发起，致力于把区块链技术推向全世界创意文化产业，以保护各国艺术家的知识产权和其艺术作品的版权、支持鼓励优秀艺术家创作、传承人类文明硕果。"
+    },
+    terms: {
+      title1: "1、总则",
+      desc1: "1.1、本协议是在您（下文称作“您”或者“用户”）在自觉自愿的基础上，为规范INK钱包的使用及可能出现的问题，与Ink Labs Foundation Ltd.（下文称作“Ink”）达成的一致性意见。INK钱包是Ink提供的一款区块链工具，包括相关的网站页面及手机端应用程序。以任何方式使用INK钱包都代表您同意本协议。",
+      desc1_2: "1.2、在开始使用INK钱包之前，您有义务仔细阅读本协议，并在使用过程中接受其中条款的约束。",
+      title2: "2、服务内容",
+      desc2: "INK钱包允许用户管理Qtum区块链上的一些加密资产，包括QTUM资产、INK资产及Ink所定义的IP通证，并在Qtum网络中交易这些资产。只有在具备相关知识、熟悉区块链技术及加密资产的性质的前提下，您才被允许使用INK钱包。如果您符合前述条件，并准备使用INK钱包管理某一加密资产，Ink强烈建议您首先了解这种加密资产的价值基础。您必须理解的信息包括（但不仅限于）以下内容：。",
+      title2_1: "2.1、 您独立保管自己的私钥",
+      desc2_1: "iNK不储存用户的钱包文件、记忆词及密码（以下统称为“隐私信息”）。因此，恰当地备份并保存隐私信息对您而言至关重要。如果您的隐私信息丢失或被盗，您将永远失去与之相应的加密资产。Ink无法为您恢复隐私信息或加密资产。Ink严正告知您，如果您不能完全理解上述文字，请不要使用INK钱包。您应该参考更多资料，直到充分理解加密资产的性质及私钥的作用方式",
+      title2_2: "2.2、交易",
+      desc2_2: "只有Qtum区块链网络能提供权威的加密资产交易记录。INK钱包只是提供了一组功能界面，并允许您通过这些界面向Qtum网络中发送交易指令。Ink无法保证，您通过INK钱包执行的交易操作一定会被Qtum网络记录。您必须保证，您的交易符合Qtum网络的现行规则。同时，Qtum网络还会对您的交易收取一定数量的费用（如矿工费用等）。您（以及其他所有用户）所支付的交易费用与Ink无关，您必须自行承担这些费用。如果您错误地设置了交易费用（如过高或过低）并因此而遭受损失，您无权要求Ink退还或赔偿。",
+      title2_3: "2.3、无法控制区块链网络",
+      desc2_3: "尽管INK钱包允许您管理一些加密资产，但Ink对这些资产及它们所依赖的Qtum区块链网络都不具有控制权。",
+      title3: "3、用户责任",
+      desc3_1: "您应该：",
+      desc3_1_ul_1: {
+        li1: "达到当地法律所规定的成年年龄; ",
+        li2: "为您的加密资产负全部责任；",
+        li3: "恰当地备份/抄下您的隐私信息，并恰当地保存它们；",
+        li4: "在使用INK钱包时，确保您的记忆词和钱包文件不泄露给其他人；",
+        li5: "确保您的设备升级到最新版本，且没有病毒、木马或其他恶意软件。."
+      },
+      desc3_2: "您不应该：",
+      desc3_2_ul_2: {
+        li1: "将加密资产转移到您所控制的、但INK钱包不支持的区块链地址；",
+        li2: "以可能会影响其他用户正常使用或区块链节点正常工作的方式使用INK钱包（例如过于频繁地调用API或制造垃圾信息）；",
+        li3: "使用INK钱包从事当地法律所禁止的活动。"
+      },
+      title4: "4、知识产权条款",
+      desc4: "本协议允许您个人在全球范围内，以非独占、免版税、不可转让的方式使用Ink服务，且相关服务只能被来管理您的虚拟资产。任何对NK服务的二次分发和代码修改都是不被许可的，您也不能使用Ink上的任何内容作为任何其他软件或项目中的一部分，包括图片和文本。如果您希望在本协议范围之外与Ink展开进一步合作，请联系我们。",
+      title5: "5、风险提示",
+      desc5: "使用加密资产工具可能会面临许多风险。Ink特别提示您注意以下风险，但这并不涵盖您将面临的全部风险：",
+      desc5_ul_1: {
+        li1: "（桌面或移动）操作系统崩溃；",
+        li2: "您的硬件、软件及INK钱包之间的不兼容；",
+        li3: "云备份软件 （如一些安卓定制系统）可能会将您的隐私信息上传到第三方服务器；,",
+        li4: "您设备上的木马、病毒或其他恶意软件可能会控制INK钱包，或通过INK钱包执行某些操作；",
+        li5: "INK钱包与区块链网络节点或加密资产相关服务之间的通信延迟。"
+      },
+      title6: "6、非担保条款",
+      desc6: "本协议允许您以免费的、预先设定的的方式使用INK钱包，且在法律允许最大限度之内不提供任何条件下的任何保证。除此以外，即使在您事先声明过预期用途，本协议也不保证INK钱包能符合您的使用目的；本协议也不保证INK钱包不存在任何Bug。",
+      title7: "7、有限责任条款",
+      desc7: "任何情况下，Ink都仅在50美元的额度之内对您承担责任。",
+      title8: "8、赔偿条款",
+      desc8: "如果您对INK钱包的使用（或误用）使Ink的权益受到损害，您同意赔偿Ink因为而受到的各类损失，并承担相关的法律费用。",
+      title9: "9、不弃权条款",
+      desc9: "Ink方面的任何作为或不作为都不应被视为放弃对INK钱包所享有的任何权益。",
+      title10: "10、协议的修改",
+      desc10: "Ink可能修改本协议，并在距新协议生效30日以前向您提示所有改动。如果您不同意修改后的协议，您可以停止使用INK钱包，并单方面中止本协议。",
+      title11: "11、协议的转让",
+      desc11: "您无权转让本协议。Ink可以转让本协议，但应提前11日通知您。",
+      title12: "12、法律适用及管辖权",
+      desc12: "与本协议有关的法律事项适用新加坡法律，相关争议由新加坡法院管辖。",
+      title13: "13、完整性声明",
+      desc13: "上述内容是双方之间的完整协议，具有高于其他任何协议的效力。"
     },
     assetsDetails: {
       amountLabel: "可用余额：",
@@ -244,7 +369,8 @@ export const dictionary = {
       sendBtn: "发送",
       importMoreBtn: "导入更多",
       receiveBtn: "接收",
-      recentTitle: "最近交易"
+      recentTitle: "最近交易",
+      newsTitle: "INK News"
     },
     confirmCloseModal: {
       mainTitle: "您应该合理地保存了钱包文件和记忆词，否则您将永远丢失您的钱包。",
@@ -423,7 +549,69 @@ export const dictionary = {
       assetsDetails: "자산 정보",
       securityCenter: "보안 센터",
       faq: "FAQ",
-      search: "검색..."
+      search: "검색...",
+      about: "About",
+      policy: "Privacy Policy",
+      terms: "Terms of Usage"
+    },
+    about: {
+      desc1: "INK Wallet is a SPV blockchain tool developed by Ink community and provided by Ink Labs Foundation. Built on the Qtum core, INK Wallet allows its users to manage their accounts, make transactions and receive deposits within Qtum network. INK Wallet currently supports Qtum and INK, and will accept the generic tokens issued in the INK ecosystem.",
+      desc2: "Ink Labs Foundation is a not-for-profit organization based in Singapore, founded by the acknowledged serial entrepreneur Francis Tang. It aims at promoting the blockchain technology towards global cultural and creative industries, as an important tool in the protection of copyright and other legal rights of global content creators. By supporting the creation of our artists, Ink Labs Foundation hopes to make its own contribution to the cultural heritage worldwide."
+    },
+    terms: {
+      title1: "1. Parties",
+      desc1: "1.1. This agreement is between you ( ‘You’ or ‘Your’ in this agreement) and Ink Labs Foundation Ltd.  (‘Ink’ in this agreement).  INK Wallet is a blockchain tool provided by Ink, including Web-Pages and Mobile Applications. You acknowledge that any use of INK Wallet is subject to these Terms of Service.",
+      desc1_2: "1.2. It's Your own responsibility to read the Terms of Service carefully before you start to use INK Wallet.",
+      title2: "2. Definitions and Services offered",
+      desc2: "INK Wallet is a way in which users could access and transfer ownership of some crypto assets in Qtum blockchain, including QTUM, INK coins and IP tokens defined by Ink. You should only use Ink wallet if You are familiar with blockchain and crypto assets. Ink highly recommend learning the basics of the specific crypto asset that You plan on using Ink wallet  before You start. Belows are some critical (but not all) informations You should know.",
+      title2_1: "2.1. You Own Your Private Keys",
+      desc2_1: "Ink does not store user’s wallet files, mnemonics, or passwords (\"Private Information\"). It is very important that You backup Private Information. If You lose Your Private Information then it will not be possible for Ink to recover it for You and You may lose access to Your crypto assets. If You do not understand the above paragraph then we strictly recommend that You learn more about crypto assets before using INK Wallet.",
+      title2_2: "2.2. Transactions",
+      desc2_2: "The only authentic record of crypto asset transactions is the Qtum blockchain. The INK Wallet provides functionality that allows You to send crypto transfer instructions. Ink does not guarantee that transactions You perform using INK Wallet shall be stored in Qtum blockchain. You must ensure that Your transactions conform to the applicable rules of Qtum. There are transaction fees (e.g. mining fees) associated with Your transactions that are required by Qtum system. INK Wallet shall not be responsible for any losses You incur due to transaction fees or losses that occur due to incorrectly set transaction fees (i.e. too low or high). Ink does not have access to Your transactions (or anyone else's).",
+      title2_3: "2.3. No Control Over Blockchains",
+      desc2_3: "Ink does not have any control over any of the crypto asset that INK Wallet allows You to use.",
+      title3: "3. User Obligations",
+      desc3_1: "You shall:",
+      desc3_1_ul_1: {
+        li1: "be of the age of majority in Your local jurisdiction; and,",
+        li2: "be responsible for Your own crypto asset; and,",
+        li3: "backup/write down Your Private Information and keep it private; and,",
+        li4: "carefully guard Your mnemonics and wallet files in case of using INK Wallet and,",
+        li5: "ensure that Your device(s) are fully updated and do not contain viruses, malware or otherwise malicious software."
+      },
+      desc3_2: "You shall not:",
+      desc3_2_ul_2: {
+        li1: "deposit crypto asset into addresses that are not supported by INK Wallet; or,",
+        li2: "use INK Wallet in a manner likely to infer with other users or blockchain nodes (e.g. excessive API calls or network spam); or,",
+        li3: "use INK Wallet in a manner contrary to Your local laws."
+      },
+      title4: "4. Limited Intellectual Property License",
+      desc4: "This agreement licenses Ink services to You on a personal, non-exclusive, royalty-free, non-transferable, worldwide-basis, for the purpose of managing crypto assets. You are not permitted to re-distribute any of Ink’s services, modify any code or use any Ink content, including images and text, as part of any other software or project of any kind. For partnership inquiries please contact us.",
+      title5: "5. Specifically Disclaimed Risks",
+      desc5: "Using crypto asset software necessarily entails many risks. Ink specifically disclaims and shall have no liability to You for the following risks:",
+      desc5_ul_1: {
+        li1: "operating system failures (mobile or desktop); and,",
+        li2: "poor interactions between Your hardware, software, and INK Wallet; and,",
+        li3: "cloud backup software (e.g. certain Android distributions) may upload your private information to third party services; and,",
+        li4: "malware, viruses or other malicious software on Your device that is able to take control of or interfere with INK Wallet; and,",
+        li5: "communication delays between Your INK Wallet and a node or relay service for a crypto asset."
+      },
+      title6: "6. No Warranty",
+      desc6: "INK Wallet is provided to You at no cost, \"as-is \" and without any warranty whatsoever, to the maximum extent permissible by law. Without limiting the generality of the foregoing,  does not warrant that INK Wallet is fit for Your purpose, even if You have previously provided notice of Your intended purpose, and does not warrant that INK Wallet will operate in a bug-free manner.",
+      title7: "7. Limitation of Liability",
+      desc7: "Ink's liability to You shall not, under any circumstances, exceed the greater of USD 50.",
+      title8: "8. Indemnity",
+      desc8: "You agree to indemnify Ink against any claims, damages, losses or legal fees incurred due to Your use (or misuse) of INK Wallet.",
+      title9: "9. Non-Waiver",
+      desc9: "No action or inaction on the part of Ink shall be considered a waiver of any right or obligation by INK Wallet.",
+      title10: "10. Amendment",
+      desc10: "This agreement may be amended by Ink by providing You with 30 days notice of any proposed change. If You do not agree to the amended terms then Your sole remedy shall be to cease using INK Wallet.",
+      title11: "11. Assignment",
+      desc11: "You may not assign this agreement. Ink  may assign this agreement to 11 days notice.",
+      title12: "12. Governing Law",
+      desc12: "This agreement shall be governed by the laws of Singapore.",
+      title13: "13. Entire Agreement",
+      desc13: "This is the entire agreement between the parties and supersedes any other agreement."
     },
     assetsDetails: {
       amountLabel: "잔액:",
@@ -444,7 +632,8 @@ export const dictionary = {
       sendBtn: "보내기",
       importMoreBtn: "더 가져오기",
       receiveBtn: "받기",
-      recentTitle: "최근 거래"
+      recentTitle: "최근 거래",
+      newsTitle: "INK News"
     },
     confirmCloseModal: {
       mainTitle: "지갑 파일 저장과 니모닉을 확인하세요. 최악의 경우 당신의 지갑을 영영 찾지 못할 수도 있습니다.",
@@ -623,7 +812,69 @@ export const dictionary = {
       assetsDetails: "資産詳細",
       securityCenter: "セキュリティ・センター",
       faq: "よくある質問",
-      search: "検索..."
+      search: "検索...",
+      about: "About",
+      policy: "Privacy Policy",
+      terms: "Terms of Usage"
+    },
+    about: {
+      desc1: "INK Wallet is a SPV blockchain tool developed by Ink community and provided by Ink Labs Foundation. Built on the Qtum core, INK Wallet allows its users to manage their accounts, make transactions and receive deposits within Qtum network. INK Wallet currently supports Qtum and INK, and will accept the generic tokens issued in the INK ecosystem.",
+      desc2: "Ink Labs Foundation is a not-for-profit organization based in Singapore, founded by the acknowledged serial entrepreneur Francis Tang. It aims at promoting the blockchain technology towards global cultural and creative industries, as an important tool in the protection of copyright and other legal rights of global content creators. By supporting the creation of our artists, Ink Labs Foundation hopes to make its own contribution to the cultural heritage worldwide."
+    },
+    terms: {
+      title1: "1. Parties",
+      desc1: "1.1. This agreement is between you ( ‘You’ or ‘Your’ in this agreement) and Ink Labs Foundation Ltd.  (‘Ink’ in this agreement).  INK Wallet is a blockchain tool provided by Ink, including Web-Pages and Mobile Applications. You acknowledge that any use of INK Wallet is subject to these Terms of Service.",
+      desc1_2: "1.2. It's Your own responsibility to read the Terms of Service carefully before you start to use INK Wallet.",
+      title2: "2. Definitions and Services offered",
+      desc2: "INK Wallet is a way in which users could access and transfer ownership of some crypto assets in Qtum blockchain, including QTUM, INK coins and IP tokens defined by Ink. You should only use Ink wallet if You are familiar with blockchain and crypto assets. Ink highly recommend learning the basics of the specific crypto asset that You plan on using Ink wallet  before You start. Belows are some critical (but not all) informations You should know.",
+      title2_1: "2.1. You Own Your Private Keys",
+      desc2_1: "Ink does not store user’s wallet files, mnemonics, or passwords (\"Private Information\"). It is very important that You backup Private Information. If You lose Your Private Information then it will not be possible for Ink to recover it for You and You may lose access to Your crypto assets. If You do not understand the above paragraph then we strictly recommend that You learn more about crypto assets before using INK Wallet.",
+      title2_2: "2.2. Transactions",
+      desc2_2: "The only authentic record of crypto asset transactions is the Qtum blockchain. The INK Wallet provides functionality that allows You to send crypto transfer instructions. Ink does not guarantee that transactions You perform using INK Wallet shall be stored in Qtum blockchain. You must ensure that Your transactions conform to the applicable rules of Qtum. There are transaction fees (e.g. mining fees) associated with Your transactions that are required by Qtum system. INK Wallet shall not be responsible for any losses You incur due to transaction fees or losses that occur due to incorrectly set transaction fees (i.e. too low or high). Ink does not have access to Your transactions (or anyone else's).",
+      title2_3: "2.3. No Control Over Blockchains",
+      desc2_3: "Ink does not have any control over any of the crypto asset that INK Wallet allows You to use.",
+      title3: "3. User Obligations",
+      desc3_1: "You shall:",
+      desc3_1_ul_1: {
+        li1: "be of the age of majority in Your local jurisdiction; and,",
+        li2: "be responsible for Your own crypto asset; and,",
+        li3: "backup/write down Your Private Information and keep it private; and,",
+        li4: "carefully guard Your mnemonics and wallet files in case of using INK Wallet and,",
+        li5: "ensure that Your device(s) are fully updated and do not contain viruses, malware or otherwise malicious software."
+      },
+      desc3_2: "You shall not:",
+      desc3_2_ul_2: {
+        li1: "deposit crypto asset into addresses that are not supported by INK Wallet; or,",
+        li2: "use INK Wallet in a manner likely to infer with other users or blockchain nodes (e.g. excessive API calls or network spam); or,",
+        li3: "use INK Wallet in a manner contrary to Your local laws."
+      },
+      title4: "4. Limited Intellectual Property License",
+      desc4: "This agreement licenses Ink services to You on a personal, non-exclusive, royalty-free, non-transferable, worldwide-basis, for the purpose of managing crypto assets. You are not permitted to re-distribute any of Ink’s services, modify any code or use any Ink content, including images and text, as part of any other software or project of any kind. For partnership inquiries please contact us.",
+      title5: "5. Specifically Disclaimed Risks",
+      desc5: "Using crypto asset software necessarily entails many risks. Ink specifically disclaims and shall have no liability to You for the following risks:",
+      desc5_ul_1: {
+        li1: "operating system failures (mobile or desktop); and,",
+        li2: "poor interactions between Your hardware, software, and INK Wallet; and,",
+        li3: "cloud backup software (e.g. certain Android distributions) may upload your private information to third party services; and,",
+        li4: "malware, viruses or other malicious software on Your device that is able to take control of or interfere with INK Wallet; and,",
+        li5: "communication delays between Your INK Wallet and a node or relay service for a crypto asset."
+      },
+      title6: "6. No Warranty",
+      desc6: "INK Wallet is provided to You at no cost, \"as-is \" and without any warranty whatsoever, to the maximum extent permissible by law. Without limiting the generality of the foregoing,  does not warrant that INK Wallet is fit for Your purpose, even if You have previously provided notice of Your intended purpose, and does not warrant that INK Wallet will operate in a bug-free manner.",
+      title7: "7. Limitation of Liability",
+      desc7: "Ink's liability to You shall not, under any circumstances, exceed the greater of USD 50.",
+      title8: "8. Indemnity",
+      desc8: "You agree to indemnify Ink against any claims, damages, losses or legal fees incurred due to Your use (or misuse) of INK Wallet.",
+      title9: "9. Non-Waiver",
+      desc9: "No action or inaction on the part of Ink shall be considered a waiver of any right or obligation by INK Wallet.",
+      title10: "10. Amendment",
+      desc10: "This agreement may be amended by Ink by providing You with 30 days notice of any proposed change. If You do not agree to the amended terms then Your sole remedy shall be to cease using INK Wallet.",
+      title11: "11. Assignment",
+      desc11: "You may not assign this agreement. Ink  may assign this agreement to 11 days notice.",
+      title12: "12. Governing Law",
+      desc12: "This agreement shall be governed by the laws of Singapore.",
+      title13: "13. Entire Agreement",
+      desc13: "This is the entire agreement between the parties and supersedes any other agreement."
     },
     assetsDetails: {
       amountLabel: "余力:",
@@ -644,7 +895,8 @@ export const dictionary = {
       sendBtn: "送付",
       importMoreBtn: "更に取り込む",
       receiveBtn: "受取",
-      recentTitle: "最近"
+      recentTitle: "最近",
+      newsTitle: "INK News"
     },
     confirmCloseModal: {
       mainTitle: "ウォレット・ファイルと二モニックを適切に保存したことを確認して下さい。そうしなければ、このウォレットを永久に失うことになります。",

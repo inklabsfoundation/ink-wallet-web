@@ -1,0 +1,71 @@
+.news-panel {
+  height: 400px;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  width: calc(50% - 20px);
+  float: left;
+  margin-right: 40px;
+}
+
+.news-panel .news-inner .news-title-block {
+  padding-left: 26px;
+  display: flex;
+  font-size: 18px;
+  color: #333333;
+}
+
+.news-panel .news-inner {
+  display: flex;
+  justify-content: left;
+  padding-top: 20px;
+  min-height: 65px;
+  width: 100%;
+  border-bottom: 1px solid #DFDFDF;
+
+}
+
+.news-panel .news-inner .news-title-block .news-title {
+  padding-top: 4px;
+}
+
+.news-inner .news-title-icon {
+  padding-left: 20px;
+}
+
+.news-list-block {
+  height: 335px;
+  overflow-y: scroll;
+}
+
+.news-list-block .news-item {
+  margin: 25px 20px 0 20px;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 12px;
+}
+
+.news-item .time {
+  color: #999;
+  padding-left: 5px;
+  padding-bottom: 3px;
+}
+
+.news-item .desc {
+  padding-left: 5px;
+  padding-bottom: 15px;
+}
+
+.news-item .desc a,
+.news-item .desc a:active,
+.news-item .desc a:visited,
+.news-item .desc a:focus {
+  color: #666666;
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+}
+
+.news-item .desc a:hover {
+  color: #394CB0
+}
+

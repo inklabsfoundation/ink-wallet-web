@@ -109,7 +109,7 @@ class Header extends React.Component<Props, HeaderState> {
       </div>
     );
     return (
-      <Navbar>
+      <Navbar className="sticky-header">
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={ROUTE_URLS.HOME_PAGE}>
