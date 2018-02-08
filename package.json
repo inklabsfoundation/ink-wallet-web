@@ -34,6 +34,7 @@
     "coverage": "clap check",
     "prod": "echo 'Starting standalone server in PROD mode'; NODE_ENV=production node ./lib/server/",
     "deploy:stage": "pm2 deploy stage && node src/middleware/slack-notify.js staging",
+    "deploy:prod": "pm2 deploy prod1 && node src/middleware/slack-notify.js prod1 && pm2 deploy prod2 && node src/middleware/slack-notify.js prod2",
     "heroku-postbuild": "clap build"
   },
   "resolutions": {

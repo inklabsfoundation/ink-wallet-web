@@ -9,7 +9,8 @@ body {
 
 .main-page-container {
   background-color: #EEE;
-  height: calc(100vh - 50px);
+  height: calc(100vh);
+  padding-top: 50px;
 }
 
 .window-wrapper {

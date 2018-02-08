@@ -4,7 +4,7 @@
 
 Universal React/node.js application 
 
-Derive path: m/88'/0'/1',
+Derive path: m/88'/0/0,
 
 Powered by [electrode.io](http://www.electrode.io/)
 ## Requirements

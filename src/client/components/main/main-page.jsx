@@ -59,7 +59,9 @@ class MainPage extends React.Component<Props> {
     return (
       <Grid className="main-page">
         <NavPanel location={this.props.location}/>
+        <div className="data-panel">
         {this.props.children}
+        </div>
         <ExitModal intervalId={this.refresh}/>
         <FailRequestModal/>
         <CountTransactionsModal/>

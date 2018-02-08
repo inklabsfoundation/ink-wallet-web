@@ -1,9 +1,9 @@
 .balance-panel {
-  min-height: calc(100vh - 160px);
   border: 1px solid #DFDFDF;
   border-radius: 4px;
   padding: 0;
 }
+
 .balance-panel-wrapper {
   padding: 40px 20px 65px 40px;
 }
