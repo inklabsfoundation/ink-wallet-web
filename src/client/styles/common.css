@@ -71,7 +71,7 @@
   border-bottom: 1px solid #DFDFDF;
   display: flex;
   justify-content: center;
-  padding: 20px 70px 30px 70px;
+  padding: 20px 70px 30px;
 }
 
 .page-heading .page-heading-container {
@@ -85,7 +85,7 @@
 }
 
 .page-text-contaner {
-  padding: 40px 70px 30px 70px;
+  padding: 40px 70px 30px;
   font-size: 16px;
 }
 

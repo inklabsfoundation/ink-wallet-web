@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 // @flow
 import * as React from "react";
 import {Col, Row} from "react-bootstrap";
@@ -253,7 +254,7 @@ class SecurityCenter extends React.Component<Props, SecurityCenterState> {
                     <div className="button-block submit">
                       <a onClick={this.handleApplyCustomPath}
                          className={`primary-red-btn ${!this.isCustom() ? "disabled" : ""} ${this.state.isCustomSet ? "green" : ""}`}>
-                        {this.state.isCustomSet ? "✓" : <Translate value="securityCenter.explorerContainer.submitBtn"/>}
+                        {this.state.isCustomSet ? String.fromCharCode(10003) : <Translate value="securityCenter.explorerContainer.submitBtn"/>}
                       </a>
                     </div>
                   </div>
