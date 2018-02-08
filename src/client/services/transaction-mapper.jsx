@@ -32,9 +32,7 @@ export const mapQtumTransaction = (currencyName: string,
   });
   transaction.vout.forEach((outTransaction: Object) => {
     if (outTransaction.scriptPubKey.addresses &&
-      _.find(outTransaction.scriptPubKey.addresses,
-        (outAddress: string): boolean => outAddress === address)
-    ) {
+      outTransaction.scriptPubKey.addresses.indexOf(address) !== -1) {
       outputValue = math.add(math.bignumber(outputValue), math.bignumber(outTransaction.value));
     }
   });
@@ -58,7 +56,7 @@ const mapQtumTransactions = (currencyName: string,
   }
 
   return txs.map((transaction: Object): LastTransaction => {
-    return mapQtumTransaction(currencyName, address, transaction);
+      return mapQtumTransaction(currencyName, address, transaction);
     }
   );
 };
@@ -106,7 +104,7 @@ const mapTransactions = (walletData: AmountState, address: string): Array<LastTr
   let lastTransactions: Array<LastTransaction> = qtumTransactions.concat(inkTransactions);
   lastTransactions = _.sortBy(
     lastTransactions,
-    (transaction: LastTransaction): number  => transaction.timestamp
+    (transaction: LastTransaction): number => transaction.timestamp
   ).reverse();
 
   return lastTransactions;
@@ -222,13 +220,8 @@ const mapAssetsTokenTransactions = (premappedTxs: Array<LastTransaction>, addres
       from: "",
       to: ""
     };
-    if (tx.isIn) {
-      assetsTx.to = MY_WALLET_LABEL;
-      assetsTx.from = tx.tx.from;
-    } else {
-      assetsTx.from = MY_WALLET_LABEL;
-      assetsTx.to = tx.tx.to;
-    }
+    assetsTx.to = tx.isIn ? MY_WALLET_LABEL : tx.tx.to;
+    assetsTx.from = tx.isIn ? tx.tx.from : MY_WALLET_LABEL;
     mappedTransactions.push(assetsTx);
   });
 
@@ -239,10 +232,9 @@ export const mapAssetsTransactions = (walletState: AmountState, currency: string
   if (currency === SUPPORTED_CURRENCIES.QTUM) {
     const premappedTxs: Array<LastTransaction> = mapQtumTransactions(currency, address, walletState.QTUM.txs);
     return mapAssetsQtumTransactions(premappedTxs, address);
-  } else {
-    const premappedTxs: Array<LastTransaction> = mapTokensTransactions(currency, address, walletState.INK.txs);
-    return mapAssetsTokenTransactions(premappedTxs, address);
   }
+  const premappedTxs: Array<LastTransaction> = mapTokensTransactions(currency, address, walletState.INK.txs);
+  return mapAssetsTokenTransactions(premappedTxs, address);
 };
 
 export const mergeTokensDescriptions = (walletState: AmountState, currency: string, txs: Array<AssetsTransaction>): Array<AssetsTransaction> => {
@@ -251,8 +243,8 @@ export const mergeTokensDescriptions = (walletState: AmountState, currency: stri
   }
   const descs: Array<TokenDesc> = walletState.INK.tokenDescs;
   descs.forEach((desc: TokenDesc) => {
-   const tx: ?AssetsTransaction =  _.find(txs, (assetsTransaction: AssetsTransaction): boolean => {
-     return assetsTransaction.premappedTx.tx.tx_hash === desc.txId;
+    const tx: ?AssetsTransaction = _.find(txs, (assetsTransaction: AssetsTransaction): boolean => {
+      return assetsTransaction.premappedTx.tx.tx_hash === desc.txId;
     });
     if (tx) {
       tx.description = desc.desc;

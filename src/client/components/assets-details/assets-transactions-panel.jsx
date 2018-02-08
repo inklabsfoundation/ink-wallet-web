@@ -10,7 +10,7 @@ import AssetsTransactionsList from "./assets-transactions-list";
 import "react-dates/initialize";
 // $FlowFixMe
 import "react-dates/lib/css/_datepicker.css";
-import { DateRangePicker } from "react-dates";
+import {DateRangePicker} from "react-dates";
 import moment from "moment";
 import rightArrow from "../../images/right-arrow.png";
 import leftArrow from "../../images/left-arrow.png";
@@ -58,11 +58,7 @@ class AssetsTransactionsPanel extends React.Component<Props, AssetsDetailsState>
   handleDatePickerLocale() {
     if (isClientSide()) {
       const locale: ?string = this.props.i18n.locale;
-      if (locale === "zh") {
-        moment.locale("zh-cn");
-      } else {
-        moment.locale(locale ? locale : "en");
-      }
+      moment.locale(locale ? locale.replace("zh", "zh-cn") : "en");
     }
   }
 
@@ -94,7 +90,7 @@ class AssetsTransactionsPanel extends React.Component<Props, AssetsDetailsState>
                   startDateId="Date1"
                   endDate={this.state.endDate}
                   endDateId="Date2"
-                  onDatesChange={({ startDate, endDate }: Object): void => this.setState({ startDate, endDate })}
+                  onDatesChange={({startDate, endDate}: Object): void => this.setState({startDate, endDate})}
                   focusedInput={this.state.focusedDateInput}
                   anchorDirection="right"
                   small={true}
@@ -108,7 +104,7 @@ class AssetsTransactionsPanel extends React.Component<Props, AssetsDetailsState>
                   navNext={<img className="nav-arrow" src={rightArrow}/>}
                   customArrowIcon={(<span className="date-divider">-</span>)}
                   displayFormat="DD/MM/YYYY"
-                  onFocusChange={(focusedDateInput: FocusedDateInput): void => this.setState({ focusedDateInput })}
+                  onFocusChange={(focusedDateInput: FocusedDateInput): void => this.setState({focusedDateInput})}
                 />
               </div>
             </div>

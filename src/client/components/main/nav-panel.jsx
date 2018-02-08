@@ -52,9 +52,8 @@ class NavPanel extends React.Component<Props, State> {
     const path: string = this.props.location.pathname;
     if (exactly) {
       return (path === route) ? "active" : "";
-    } else {
-      return (path.includes(route)) ? "active" : "";
     }
+    return (path.includes(route)) ? "active" : "";
   }
 
   handleSelect() {
@@ -108,14 +107,11 @@ class NavPanel extends React.Component<Props, State> {
             this.isActive(ROUTE_URLS.ASSETS_DETAILS)
               ? assetsIconActive
               : assetsIconDisable
-            }/>
+          }/>
         </div>
         <div className="panel-item-title"><Translate value="navPanel.assetsDetails"/></div>
         <div className="open-carret">
-          {(this.state.isAssetsExpanded)
-            ? <img height={5} width={10} src={openCarretIcon}/>
-            : <img height={5} width={10} src={closeCarretIcon}/>
-          }
+          <img height={5} width={10} src={this.state.isAssetsExpanded ? openCarretIcon : closeCarretIcon}/>
         </div>
       </div>
     );
