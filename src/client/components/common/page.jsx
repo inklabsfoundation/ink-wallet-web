@@ -17,9 +17,14 @@ import "../../styles/main-page/balance-panel/amount-panel/amount-panel.css";
 import "../../styles/main-page/balance-panel/currencies-list-panel/currencies-list-panel.css";
 import "../../styles/main-page/recent-transactions-panel/recent-transactions-panel.css";
 import "../../styles/send-transaction/send-transaction-modal.css";
+import "../../styles/assets-details.css";
 import "../../styles/receive/receive.css";
+import "../../styles/details-datepicker.css";
 import type {Location} from "react-router";
 import Header from "./header";
+// $FlowFixMe
+import {Helmet} from "react-helmet";
+import favicon from "../../images/favicon.png";
 
 type Props = {
   children: React.Node,
@@ -32,6 +37,10 @@ export default class Page extends React.Component<Props> {
       <div>
         <Header/>
         {this.props.children}
+        <Helmet>
+          <link rel="icon" href={favicon} sizes="32x32"/>
+          <title>INK Wallet</title>
+        </Helmet>
       </div>
     );
   }

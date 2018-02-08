@@ -15,7 +15,8 @@ type Props = {
   repeatInputPassword: string,
   inputPassword: string,
   arePasswordsValid: boolean,
-  areInputPasswordsEqual: boolean
+  areInputPasswordsEqual: boolean,
+  isPasswordShort: boolean
 };
 
 class ResetPassword extends React.Component<Props> {
@@ -36,7 +37,7 @@ class ResetPassword extends React.Component<Props> {
   }
 
   checkError(): string {
-    return (this.props.areInputPasswordsEqual && this.props.arePasswordsValid ? "" : " error");
+    return (this.props.areInputPasswordsEqual && this.props.arePasswordsValid && !this.props.isPasswordShort ? "" : " error");
   }
 
   handleClickNext() {
@@ -72,6 +73,11 @@ class ResetPassword extends React.Component<Props> {
                 <Translate value="createWallet.errors.notEntered"/>
               </div>
             }
+            {(this.props.arePasswordsValid && this.props.isPasswordShort) &&
+            <div className="error-message">
+              <Translate value="createWallet.errors.shortPassword"/>
+            </div>
+            }
           </div>
         </div>
         <div className="info-block-panel reset">
@@ -93,7 +99,8 @@ class ResetPassword extends React.Component<Props> {
 const mapStateToProps = (state: State): Object => {
   return {
     arePasswordsValid: state.creationState.arePasswordsValid,
-    areInputPasswordsEqual: state.creationState.areInputPasswordsEqual
+    areInputPasswordsEqual: state.creationState.areInputPasswordsEqual,
+    isPasswordShort: state.creationState.isPasswordShort
   };
 };
 

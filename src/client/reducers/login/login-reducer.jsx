@@ -41,6 +41,12 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
         isRequestFailModalOpen: false
       };
     }
+    case "SET_UNCONFIRMED_TRANSACTIONS_IDS": {
+      return {
+        ...store,
+        unconfirmedTransactionsIds: action.unconfirmedTransactionsIds
+      };
+    }
     case "OPEN_NEW_TRANSACTIONS_MODAL_ACTION": {
       return {
         ...store,
@@ -95,6 +101,12 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
       return {
         ...store,
         invalidData: true
+      };
+    }
+    case "REQUEST_BLOCK_HEIGHT_SUCCESS": {
+      return {
+        ...store,
+        blockHeight: action.blockHeight
       };
     }
     default:

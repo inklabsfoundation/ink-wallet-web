@@ -5,6 +5,7 @@ export const TOKENS_COUNT:number = 1000000000;
 
 export const DEFAULT_EXPLORERS_PATHS = {
   QTUM: "https://explorer.qtum.org/",
-  INK: "https://explorer.ink.plus/"
+  INK: "https://infk.ink/"
 };
 
+export const MILLISECONDS_OFFSET: number = 1000;

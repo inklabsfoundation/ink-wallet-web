@@ -33,6 +33,7 @@ type Props = {
 };
 
 const FEE_ORDER_OFFSET = 6;
+const DUST_AMOUNT =  1E-9;
 
 export const selectFeeValue = (feeConst: number, feeCoef: number): number => {
   // eslint-disable-next-line no-magic-numbers
@@ -84,6 +85,8 @@ const validate = (values: Object, props: Object): Object => {
     errors.amount = "sendTransaction.prepareForm.errors.emptyAmount";
   } else if (isNaN(+values.amount)) {
     errors.amount = "sendTransaction.prepareForm.errors.invalidAmount";
+  } else if (+values.amount < DUST_AMOUNT) {
+    errors.amount = "sendTransaction.prepareForm.errors.dustAmount";
   } else {
     const fee: number = values.isStandart === "1"
       ? (isQtumSelected ? STANDART_FEE : STANDART_TOKEN_FEE)
@@ -111,7 +114,7 @@ const renderAddress = ({input, toValue, meta: {touched, error}}: Object): React.
           : ""}
         <div className="copy">
           <div className="copy-inner">
-            <img src={inputIcon}/>
+            <img width={25} height={27} src={inputIcon}/>
           </div>
         </div>
       </div>

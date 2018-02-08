@@ -8,6 +8,7 @@ import MainPage from "./components/main/main-page";
 import LoginPanel from "./components/login/login-panel";
 import MainPagePanel from "./components/main/main-page-panel";
 import SecurityCenter from "./components/security-center/security-center";
+import AssetsDetails from "./components/assets-details/assets-details";
 
 export const ROUTE_URLS = {
   HOME_PAGE: "/",
@@ -15,7 +16,8 @@ export const ROUTE_URLS = {
   RESTORE_WALLET_PAGE: "/restore-wallet",
   WALLET_PAGE: "/wallet",
   SECURITY_CENTER: "security",
-  LOGIN: "/login"
+  LOGIN: "/login",
+  ASSETS_DETAILS: "details"
 };
 
 export const routes = (
@@ -27,6 +29,7 @@ export const routes = (
     <Route path={ROUTE_URLS.WALLET_PAGE} component={MainPage}>
       <IndexRoute component={MainPagePanel}/>
       <Route path={ROUTE_URLS.SECURITY_CENTER} component={SecurityCenter}/>
+      <Route path={`${ROUTE_URLS.ASSETS_DETAILS}/:currency`} component={AssetsDetails}/>
     </Route>
   </Route>
 );

@@ -29,7 +29,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
         <div key={indx} className="transaction-block">
           <div className="transaction-image">
             <div className="line-up"/>
-            <CurrencyIcon currencyName={transaction.currencyName}/>
+            <CurrencyIcon small={false} currencyName={transaction.currencyName}/>
             <div className="line-down"/>
           </div>
           <div className="transaction-info">
@@ -55,7 +55,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
             <Translate value="mainPage.recentTitle"/>
           </div>
           <div className="recent-transactions-title-icon">
-            <img src={recentIcon}/>
+            <img width={25} height={25} src={recentIcon}/>
           </div>
         </div>
         <div className="transactions-block">

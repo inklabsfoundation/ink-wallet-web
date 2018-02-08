@@ -1,5 +1,6 @@
 .send-transition-modal .modal-dialog {
   width: 670px;
+  margin: 0;
 }
 
 .send-transition-modal .modal-footer {
@@ -8,6 +9,13 @@
   justify-content: center;
   padding-top: 0;
   padding-bottom: 5px;
+}
+
+.send-transition-modal.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  margin-top: 20px;
 }
 
 .send-transition-modal .input-section {
@@ -29,8 +37,8 @@
 .send-transition-modal .input-section input {
   min-height: 40px;
   min-width: 370px;
-  text-align: right;
-  padding-right: 10px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .send-transition-modal .input-section input.address-input {
@@ -65,6 +73,7 @@
   top: 12px;
   color: #999;
   font-size: 12px;
+  pointer-events: none;
 }
 
 .send-transition-modal .input-section textarea,
@@ -212,7 +221,7 @@
 }
 
 .send-transition-modal .active.slider-wrapper .rc-slider-handle {
-  background-color: #FFF;
+  background-color: #4a5ddd;
   border-color: #4a5ddd;
   margin-top: -6px;
 }
@@ -289,7 +298,8 @@
 
 .fee-value {
   width: 150px;
-  text-align: right;
+  text-align: left;
+  padding-left: 40px;
 }
 
 .confirm-button {
@@ -389,3 +399,4 @@
   font-size: 20px;
   margin-bottom: 150px;
 }
+

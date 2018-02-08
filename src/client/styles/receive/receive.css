@@ -1,5 +1,17 @@
 .receive-modal .modal-dialog {
   width: 670px;
+  margin: 0;
+}
+
+.receive .modal-dialog {
+  margin: 0;
+}
+
+.receive.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  top: calc(50% - 316px);
 }
 
 .receive-modal .modal-footer {

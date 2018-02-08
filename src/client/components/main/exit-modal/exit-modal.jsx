@@ -61,7 +61,7 @@ class ExitModal extends React.Component<Props> {
 
   render(): React.Node {
     return (
-      <Modal className="receive-modal"
+      <Modal className="receive-modal exit-modal"
              show={this.props.isExitModalOpen} onHide={this.handleClose}>
         <Modal.Header className="receive-modal-header" closeButton/>
         <div>

@@ -42,7 +42,8 @@ export const creationState = (store: CreationState = initialState.creationState,
       return {
         ...store,
         areInputPasswordsEqual: action.areInputPasswordsEqual,
-        arePasswordsValid: action.arePasswordsValid
+        arePasswordsValid: action.arePasswordsValid,
+        isPasswordShort: action.isPasswordShort
       };
     case "SET_INPUT_MNEMONIC":
       return {

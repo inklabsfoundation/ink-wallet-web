@@ -11,8 +11,6 @@ import copyIcon from "../../../../images/copy-icon.png";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Translate} from "react-redux-i18n";
 import {openModal} from "../../../../actions/sent-transaction-action";
-import SendTransactionModal from "../../../send-transaction/sent-transaction-modal";
-import ReceiveModal from "../../../receive/receive-modal";
 import {openReceiveModal} from "../../../../actions/receive-actions";
 
 type Props = {
@@ -52,7 +50,7 @@ class AmountPanel extends React.Component<Props> {
         <div className="amount-address">
           <div className="amount-address-icon">
             <CopyToClipboard text={this.props.address.toString()}>
-              <img src={copyIcon}/>
+              <img width={18} height={18} src={copyIcon}/>
             </CopyToClipboard>
           </div>
           <div className="amount-address-value">{this.props.address.toString()}</div>
@@ -65,8 +63,6 @@ class AmountPanel extends React.Component<Props> {
             <Translate value="mainPage.receiveBtn"/>
           </a>
         </div>
-        <SendTransactionModal/>
-        <ReceiveModal/>
       </Col>
     );
   }

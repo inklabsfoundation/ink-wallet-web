@@ -87,8 +87,8 @@
 
 .search-icon {
   position: absolute;
-  top: 16px;
-  right: 5px;
+  top: 14px;
+  right: 3px;
   color: #999999;
 }
 
@@ -99,6 +99,16 @@
 .panel-item-title {
   padding-left: 10px;
   padding-top: 2px;
+}
+
+.panel-item-title a,
+.panel-item-title a:active,
+.panel-item-title a:visited,
+.panel-item-title a:hover {
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666666;
 }
 
 .assets-list {

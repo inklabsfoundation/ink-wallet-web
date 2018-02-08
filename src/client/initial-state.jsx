@@ -18,14 +18,16 @@ export type LoginState = {
   isExitModalOpen: boolean,
   isExit: boolean,
   lastTransactionTimeStamp: number,
+  unconfirmedTransactionsIds: Array<string>,
   isRequestFailModalOpen: boolean,
-  isNewTransactionsModalOpen: boolean
+  isNewTransactionsModalOpen: boolean,
+  blockHeight: number
 };
 
 export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
-  qtumExplorerPath: ?string,
+  qtumExplorerPath: string,
   encryptSalt: string,
   INKcontractAddress: string,
   refreshTime: number
@@ -59,13 +61,20 @@ export const SUPPORTED_CURRENCIES = {
   QTUM: "QTUM"
 };
 
+export type TokenDesc = {
+  txId: string,
+  desc: string
+};
+
 export type WalletAmount = {
   balance: number,
   label: string,
   isAmountFetching: boolean,
   areTxsFetching: boolean,
   txs: Array<Object>,
-  isFirstFetchComplete: boolean
+  isFirstFetchComplete: boolean,
+  tokenDescs: Array<TokenDesc>,
+  totalItems: number
 };
 
 export type AmountState = {
@@ -86,6 +95,7 @@ export type CreationState = {
   areInputPasswordsEqual: boolean,
   arePasswordsValid: boolean,
   isAgreed: boolean,
+  isPasswordShort: boolean,
   inputRepeatPassword: string,
   mnemonic: ?Mnemonic,
   hdPrivateKey: ?HDPrivateKey,
@@ -131,7 +141,9 @@ export const initialState: State = {
     isExit: false,
     lastTransactionTimeStamp: 0,
     isRequestFailModalOpen: false,
-    isNewTransactionsModalOpen: false
+    isNewTransactionsModalOpen: false,
+    blockHeight: 0,
+    unconfirmedTransactionsIds: []
   },
   creationState: {
     step: 1,
@@ -140,6 +152,7 @@ export const initialState: State = {
     inputRepeatPassword: "",
     areInputPasswordsEqual: true,
     arePasswordsValid: true,
+    isPasswordShort: false,
     inputMnemonic: "",
     isInputMnemonicEmpty: false,
     isInputMnemonicValid: true,
@@ -161,7 +174,9 @@ export const initialState: State = {
       isAmountFetching: false,
       areTxsFetching: false,
       txs: [],
-      isFirstFetchComplete: false
+      isFirstFetchComplete: false,
+      tokenDescs: [],
+      totalItems: 0
     },
     INK: {
       balance: 0,
@@ -169,7 +184,9 @@ export const initialState: State = {
       isAmountFetching: false,
       areTxsFetching: false,
       txs: [],
-      isFirstFetchComplete: false
+      isFirstFetchComplete: false,
+      tokenDescs: [],
+      totalItems: 0
     }
   },
   sendTransactionState: {

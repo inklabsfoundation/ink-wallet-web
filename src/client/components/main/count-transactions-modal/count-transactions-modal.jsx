@@ -8,8 +8,11 @@ import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 // $FlowFixMe
 import {CopyToClipboard} from "react-copy-to-clipboard";
-import {closeNewTransactionsModal, setLastTransactionTimeStamp} from "../../../actions/login-actions";
-import {calcNewTransactionsCount, getLastTxTimestamp} from "../../../services/transaction-mapper";
+import {
+  closeNewTransactionsModal, setLastTransactionTimeStamp,
+  setUnconfirmedTxsIds
+} from "../../../actions/login-actions";
+import {calcNewTransactionsCount, getLastTxTimestamp, getUnconfirmedTxsIds} from "../../../services/transaction-mapper";
 import {Address} from "@evercode-lab/qtumcore-lib";
 
 type Props = {
@@ -17,7 +20,8 @@ type Props = {
   isNewTransactionsModalOpen: boolean,
   amountState: AmountState,
   address: Address,
-  lastTransactionTimeStamp: number
+  lastTransactionTimeStamp: number,
+  unconfirmedTxIds: Array<string>
 };
 
 class CountTransactionsModal extends React.Component<Props> {
@@ -32,6 +36,11 @@ class CountTransactionsModal extends React.Component<Props> {
       this.props.amountState,
       this.props.address
     );
+    const unconfirmedTxsIds: Array<string> = getUnconfirmedTxsIds(
+      this.props.amountState,
+      this.props.address
+    );
+    this.props.dispatch(setUnconfirmedTxsIds(unconfirmedTxsIds));
     this.props.dispatch(setLastTransactionTimeStamp(lastTxTimeStamp));
   }
 
@@ -44,7 +53,8 @@ class CountTransactionsModal extends React.Component<Props> {
     const newTxCount: ?number = calcNewTransactionsCount(
       this.props.amountState,
       this.props.address,
-      this.props.lastTransactionTimeStamp
+      this.props.lastTransactionTimeStamp,
+      this.props.unconfirmedTxIds
     );
     return (
       <Modal bsSize={"sm"} className="receive-modal alert-modal"
@@ -72,7 +82,8 @@ const mapStateToProps = (state: State): Object => {
     isNewTransactionsModalOpen: state.loginState.isNewTransactionsModalOpen,
     amountState: state.amountState,
     address: state.loginState.address,
-    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp
+    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp,
+    unconfirmedTxIds: state.loginState.unconfirmedTransactionsIds
   };
 };
 

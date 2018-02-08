@@ -92,7 +92,10 @@ body {
 }
 
 .modal.alert-modal {
-  top: 150px;
+  position: absolute;
+  display: table-cell;
+  top: calc(50% - 106px);
+  left: calc(50% - 225px);
 }
 
 .error-request-container {
@@ -107,6 +110,7 @@ body {
 
 .nav-elem {
   cursor: pointer;
+  position: relative;
 }
 
 .new-transactions-container {
@@ -123,6 +127,7 @@ body {
 
 .modal.alert-modal .modal-dialog {
   width: 450px;
+  margin: 0;
 }
 
 .alert-modal .modal-header {
@@ -133,8 +138,45 @@ body {
   margin-bottom: 15px;
 }
 
+.nav-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.exit-modal .modal-dialog {
+  margin: 0;
+}
+
+.exit-modal.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  top: calc(50% - 300px);
+}
+
+.send-transition-modal .modal-footer {
+  border-top: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+
+.send-transition-modal.modal {
+  position: absolute;
+  display: table-cell;
+  left: calc(50% - 334px);
+  margin-top: 20px;
+}
+
+.open-carret {
+  position: absolute;
+  right: -5px;
+}
+
 @media (max-height: 650px) {
   .footer {
     display: none;
   }
 }
+

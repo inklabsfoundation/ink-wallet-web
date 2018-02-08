@@ -28,7 +28,7 @@ class PasswordErrorModal extends React.Component<Props> {
 
   render(): React.Node {
     return (
-      <Modal className="receive-modal"
+      <Modal className="receive-modal password-failed-modal"
              show={this.props.isErrorModalOpen} onHide={this.handleClose}>
         <Modal.Header className="receive-modal-header" closeButton/>
         <div>

@@ -11,6 +11,7 @@ import {Link} from "react-router";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {closeRequestFailModal} from "../../../actions/login-actions";
 import {ROUTE_URLS} from "../../../routes";
+import {requestWalletData} from "../../../actions/amount-actions";
 
 type Props = {
   dispatch: Dispatch,
@@ -21,10 +22,16 @@ class FailRequestModal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     (this: any).handleClose = this.handleClose.bind(this);
+    (this: any).handleRetryRequestData = this.handleRetryRequestData.bind(this);
   }
 
   handleClose() {
     this.props.dispatch(closeRequestFailModal());
+  }
+
+  handleRetryRequestData() {
+      this.handleClose();
+      this.props.dispatch(requestWalletData());
   }
 
   render(): React.Node {
@@ -41,10 +48,11 @@ class FailRequestModal extends React.Component<Props> {
               <Link
                 onClick={this.handleClose}
                 to={`${ROUTE_URLS.WALLET_PAGE  }/${  ROUTE_URLS.SECURITY_CENTER}`} className="btn-flex primary-red-btn">
-                <Translate value="requestErrorModal.setBtn"/>
+                <Translate value="requestErrorModal.resetBtn"/>
               </Link>
-              <button onClick={this.handleClose} className="btn-flex primary-white-btn bordered">
-                <Translate value="requestErrorModal.cancelBtn"/>
+              <button onClick={this.handleRetryRequestData}
+                      className={"btn-flex primary-white-btn bordered"}>
+                <Translate value="requestErrorModal.retryBtn"/>
               </button>
             </div>
           </Modal.Body>

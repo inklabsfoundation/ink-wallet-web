@@ -65,15 +65,17 @@
 }
 
 .progress-bar-first-step {
-  background-color: #b6cff3;
+  background-color: #394CB0;
+  opacity: 0.333;
 }
 
 .progress-bar-second-step {
-  background-color: #5e92f3;
+  background-color: #394CB0;
+  opacity: 0.666
 }
 
 .progress-bar-third-step {
-  background-color: #202647;
+  background-color: #394CB0;
 }
 
 .password-panel {
@@ -95,8 +97,8 @@
 .password-input-block .input {
   width: 100%;
   height: 40px;
-  background-color: #EEEEEE;
-  border: 0;
+  background-color: #fff;
+  border: 1px solid #394CB0;
   font-size: 20px;
   color: #333;
   padding: 0 20px;
@@ -120,6 +122,7 @@
 
 .alert-info-pic-block {
   width: 35px;
+  padding-top: 5px;
 }
 
 .error-message-block {
@@ -136,7 +139,7 @@
   width: calc(100% - 35px);
   font-size: 12px;
   font-weight: bold;
-  color: #394CB0;
+  color: #666666;
   text-align: left;
   padding-left: 10px;
 }

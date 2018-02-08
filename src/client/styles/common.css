@@ -43,6 +43,15 @@
   color: #4a5ddd;
 }
 
+.primary-white-btn.disabled,
+.primary-white-btn.disabled:focus {
+  color: #7793ba;
+}
+
+.primary-white-btn.bordered.disabled {
+  border: 1px solid #7793ba;
+}
+
 .primary-red-btn:hover {
   color: #FFF;
 }

@@ -24,6 +24,8 @@ import RotatingImage from "./rotating-image";
 import {EXIT_MODAL_SHOW_KEY} from "../../services/confirm-exit-handler";
 import {calcNewTransactionsCount} from "../../services/transaction-mapper";
 import {Address} from "@evercode-lab/qtumcore-lib";
+import openCarretIcon from "../../images/open-carret.png";
+import closeCarretIcon from "../../images/close-carret.png";
 
 
 type Props = {
@@ -33,16 +35,25 @@ type Props = {
   dontShowConfirmExit: boolean,
   amountState: AmountState,
   address: Address,
-  lastTransactionTimeStamp: number
+  lastTransactionTimeStamp: number,
+  unconfirmedTxIds: Array<string>
 };
 
-class Header extends React.Component<Props> {
+type HeaderState = {
+  isLangDropdownOpen: boolean
+};
+
+class Header extends React.Component<Props, HeaderState> {
   constructor(props: Props) {
     super(props);
     (this: any).setLang = this.setLang.bind(this);
     (this: any).handleClickLogout = this.handleClickLogout.bind(this);
     (this: any).handleClickRefresh = this.handleClickRefresh.bind(this);
     (this: any).handleResetLastTxClick = this.handleResetLastTxClick.bind(this);
+    (this: any).handleClickLangDropdown = this.handleClickLangDropdown.bind(this);
+    this.state = {
+      isLangDropdownOpen: false
+    };
   }
 
   setLang(lang: string)  {
@@ -68,6 +79,11 @@ class Header extends React.Component<Props> {
     }
   }
 
+  handleClickLangDropdown() {
+    const isOpen: boolean = !this.state.isLangDropdownOpen;
+    this.setState({isLangDropdownOpen: isOpen});
+  }
+
   render(): React.Node {
     const langDropdown: React.Node = Object.keys(LANG_LABELS).map((key: string, indx: number): React.Node => {
       return (
@@ -80,7 +96,14 @@ class Header extends React.Component<Props> {
     const newTxCount: ?number = calcNewTransactionsCount(
       this.props.amountState,
       this.props.address,
-      this.props.lastTransactionTimeStamp
+      this.props.lastTransactionTimeStamp,
+      this.props.unconfirmedTxIds
+    );
+    const langHeader: React.Node = (
+      <div>
+        <span className="lang-label">{Internalizator.getLangLabel(this.props.i18n.locale)}</span>
+          <img height={5} width={10} src={this.state.isLangDropdownOpen ? openCarretIcon : closeCarretIcon}/>
+      </div>
     );
     return (
       <Navbar>
@@ -96,7 +119,7 @@ class Header extends React.Component<Props> {
           <Nav pullRight>
             {this.props.isLoggedId &&
                 <NavItem className="lang-dropdown" eventKey={4} onClick={(): void => this.handleResetLastTxClick(newTxCount)}>
-                  <img src={newTransIcon}/>
+                  <img width={16} src={newTransIcon}/>
                   {newTxCount &&
                     <span className="new-transaction-label">{newTxCount}</span>
                   }
@@ -112,8 +135,10 @@ class Header extends React.Component<Props> {
                     <Translate value="header.logoutBtnLabel"/>
                 </NavItem>
             }
-            <NavDropdown eventKey={1} title={Internalizator.getLangLabel(this.props.i18n.locale)}
+            <NavDropdown eventKey={1} title={langHeader}
                          className="lang-dropdown"
+                         onToggle={this.handleClickLangDropdown}
+                         noCaret={true}
                          id="lang-dropdown">
               {langDropdown}
             </NavDropdown>
@@ -131,7 +156,8 @@ const mapStateToProps = (state: State): Object => {
     dontShowConfirmExit: state.loginState.dontShowConfirmExit,
     amountState: state.amountState,
     address: state.loginState.address,
-    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp
+    lastTransactionTimeStamp: state.loginState.lastTransactionTimeStamp,
+    unconfirmedTxIds: state.loginState.unconfirmedTransactionsIds
   };
 };
 

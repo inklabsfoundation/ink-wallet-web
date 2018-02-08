@@ -83,6 +83,10 @@ a.navbar-brand {
   line-height: initial;
 }
 
+.lang-label {
+  padding-right: 10px;
+}
+
 @keyframes rotate-keyframes {
   from {
     transform: rotate(0deg);

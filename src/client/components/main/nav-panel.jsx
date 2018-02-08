@@ -8,11 +8,17 @@ import walletIconActive from "../../images/wallet-icon-act.png";
 import walletIconDisable from "../../images/wallet-icon-dis.png";
 import secureIconActive from "../../images/secure-center-logo-active.png";
 import secureIconDisable from "../../images/secure-center-logo.png";
-import faqIcon from "../../images/faq-icon.png";
-import assetsIcon from "../../images/asserts-logo.png";
+import faqIconDisable from "../../images/faq-logo.png";
+import assetsIconDisable from "../../images/asserts-logo.png";
+import assetsIconActive from "../../images/asserts-logo-active.png";
+import openCarretIcon from "../../images/open-carret.png";
+import closeCarretIcon from "../../images/close-carret.png";
+import searchIcon from "../../images/search-icon.png";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
+// $FlowFixMe
+import {Link} from "react-router";
 import {SUPPORTED_CURRENCIES} from "../../initial-state";
 import CurrencyIcon from "../common/currency-icon";
 import {Translate} from "react-redux-i18n";
@@ -22,7 +28,7 @@ type Props = {
 };
 
 type State = {
-  activeKey: boolean,
+  isAssetsExpanded: boolean,
   searchNeedle: string
 };
 
@@ -33,7 +39,7 @@ class NavPanel extends React.Component<Props, State> {
     (this: any).handleSelect = this.handleSelect.bind(this);
     (this: any).handleSearchInput = this.handleSearchInput.bind(this);
     this.state = {
-      activeKey: true,
+      isAssetsExpanded: true,
       searchNeedle: ""
     };
   }
@@ -42,12 +48,16 @@ class NavPanel extends React.Component<Props, State> {
     browserHistory.push(link);
   }
 
-  isActive(route: string): string {
-    return (this.props.location.pathname === route) ? "active" : "";
+  isActive(route: string, exactly: boolean = false): string {
+    const path: string = this.props.location.pathname;
+    if (exactly) {
+      return (path === route) ? "active" : "";
+    }
+    return (path.includes(route)) ? "active" : "";
   }
 
   handleSelect() {
-    this.setState({activeKey: !this.state.activeKey});
+    this.setState({isAssetsExpanded: !this.state.isAssetsExpanded});
   }
 
   handleSearchInput(e: SyntheticInputEvent<HTMLInputElement>) {
@@ -57,10 +67,10 @@ class NavPanel extends React.Component<Props, State> {
   render(): React.Node {
     const walletPanel = (
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}`)}
-           className={`${this.isActive(ROUTE_URLS.WALLET_PAGE)} nav-elem`}>
+           className={`${this.isActive(ROUTE_URLS.WALLET_PAGE, true)} nav-elem`}>
         <div>
-          <img src={
-            this.isActive(ROUTE_URLS.WALLET_PAGE)
+          <img className="nav-icon" src={
+            this.isActive(ROUTE_URLS.WALLET_PAGE, true)
               ? walletIconActive
               : walletIconDisable
           }/>
@@ -70,10 +80,10 @@ class NavPanel extends React.Component<Props, State> {
     );
     const securePanel: React.Node = (
       <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)}
-           className={`${this.isActive(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)} nav-elem`}>
+           className={`${this.isActive(ROUTE_URLS.SECURITY_CENTER)} nav-elem`}>
         <div>
-          <img src={
-            this.isActive(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.SECURITY_CENTER}`)
+          <img className="nav-icon" src={
+            this.isActive(ROUTE_URLS.SECURITY_CENTER)
               ? secureIconActive
               : secureIconDisable
           }/>
@@ -85,21 +95,33 @@ class NavPanel extends React.Component<Props, State> {
     );
     const faqPanel: React.Node = (
       <div className="nav-elem">
-        <div><img src={faqIcon}/></div>
+        <div><img className="nav-icon" src={faqIconDisable}/></div>
         <div className="panel-item-title"><Translate value="navPanel.faq"/></div>
       </div>
     );
     const assetsPanel: React.Node = (
-      <div className="nav-elem" onClick={this.handleSelect}>
-        <div><img src={assetsIcon}/></div>
+      <div className={`${this.isActive(ROUTE_URLS.ASSETS_DETAILS)} nav-elem`}
+           onClick={this.handleSelect}>
+        <div>
+          <img className="nav-icon" src={
+            this.isActive(ROUTE_URLS.ASSETS_DETAILS)
+              ? assetsIconActive
+              : assetsIconDisable
+          }/>
+        </div>
         <div className="panel-item-title"><Translate value="navPanel.assetsDetails"/></div>
+        <div className="open-carret">
+          <img height={5} width={10} src={this.state.isAssetsExpanded ? openCarretIcon : closeCarretIcon}/>
+        </div>
       </div>
     );
     const assets: Array<React.Node> = Object.keys(SUPPORTED_CURRENCIES).map((key: string): ?React.Node => {
       return key.toLowerCase().includes(this.state.searchNeedle.toLowerCase()) && (
         <div key={key} className="assets-item">
           <div><CurrencyIcon small={true} currencyName={key}/></div>
-          <div className="panel-item-title">{key}</div>
+          <div className="panel-item-title">
+            <Link to={`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.ASSETS_DETAILS}/${key}`}>{key}</Link>
+          </div>
         </div>
       );
     });
@@ -108,13 +130,13 @@ class NavPanel extends React.Component<Props, State> {
         <div>
           <Panel header={walletPanel} collapsible={false}/>
           <Panel collapsible={true}
-                 expanded={this.state.activeKey} header={assetsPanel}>
+                 expanded={this.state.isAssetsExpanded} header={assetsPanel}>
             <div className="divider"/>
             <div className="search-input-container">
               <input id="assets-search" onChange={this.handleSearchInput} className="search-input"/>
               {this.state.searchNeedle.length === 0
-                && <span className="search-placeholder">SEARCH...</span>}
-                <span className="search-icon"><i className="glyphicon glyphicon-search"/></span>
+              && <span className="search-placeholder"><Translate value="navPanel.search"/></span>}
+              <span className="search-icon"><img width={17} height={16} src={searchIcon}/></span>
             </div>
             <div className="assets-list">
               {assets}

@@ -11,6 +11,7 @@ import {ROUTE_URLS} from "../routes";
 import {initialState} from "../initial-state";
 import {browserHistory} from "react-router";
 import {securityCenterState} from "./security-center/security-center-reducer";
+import {isClientSide} from "../services/is-client-side-helper";
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
