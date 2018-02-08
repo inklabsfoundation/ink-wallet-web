@@ -242,13 +242,13 @@ const setStakingBalance = (balance: number): SetStakingBalanceAction => {
 export const requestUtxos = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestUTXOFetching());
-    const address = getState().loginState.address.toString();
+    const address: string = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/utxo`)
       .then((response: $AxiosXHR<Array<Object>>) => {
         const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
           return utxo.isStake && utxo.confirmations <= UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
-        let stakingAmount = 0;
+        let stakingAmount: number = 0;
         stakingUtxos.forEach((utxo: Object) => {
           stakingAmount += utxo.amount;
         });

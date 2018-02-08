@@ -117,8 +117,8 @@ export const requestQtumHistoryTransactions = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     const totalItems = getState().amountState.QTUM.totalItems;
     if (totalItems > QTUM_PAGE_COUNT) {
-      const address = getState().loginState.address.toString();
-      const requestCount = Math.floor((totalItems - 1) / QTUM_PAGE_COUNT);
+      const address: string = getState().loginState.address.toString();
+      const requestCount: number = Math.floor((totalItems - 1) / QTUM_PAGE_COUNT);
       for (let i = 1; i <= requestCount; i++) {
         axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=${QTUM_PAGE_COUNT * i }&to=${QTUM_PAGE_COUNT * (i + 1)}`)
           .then((response: $AxiosXHR<Object>) => {
@@ -136,8 +136,8 @@ export const requestInkHistoryTransactions = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     const totalItems = getState().amountState.INK.totalItems;
     if (totalItems > INK_PAGE_COUNT) {
-      const address = getState().loginState.address.toString();
-      const requestCount = Math.floor((totalItems - 1) / INK_PAGE_COUNT);
+      const address: string = getState().loginState.address.toString();
+      const requestCount: number = Math.floor((totalItems - 1) / INK_PAGE_COUNT);
       const tokenAddress: string = getState().config.INKcontractAddress;
       const path: string = getState().config.qtumExplorerPath;
       axios.get(`${path}/tokens/${tokenAddress}/transactions?addresses[]=${address}`);
@@ -224,7 +224,7 @@ const requestQtumFetchingSuccess = (balance: number): RequestQtumBalanceSuccessA
 export const requestQtumBalance = (): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumBalanceFetching());
-    const address = getState().loginState.address.toString();
+    const address: string = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addr/${address}/balance`)
       .then((response: $AxiosXHR<number>) => {
         const amount: number = response.data;
@@ -271,7 +271,6 @@ const requestTokensDescSuccess = (token: string, txId: string, desc: string): Re
 export const requestTokensDesc = (txId: string, tokenName: string): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumTransactionsFetching());
-    const address = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/tx/${txId}`)
       .then((response: $AxiosXHR<Object>) => {
         const descr: string = findDescriptionInTx(response.data);
@@ -285,7 +284,7 @@ export const requestTokensDesc = (txId: string, tokenName: string): ThunkAction 
 export const requestQtumTransactions = (isFirstRequest: ?boolean): ThunkAction => {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumTransactionsFetching());
-    const address = getState().loginState.address.toString();
+    const address: string = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/txs?from=0&to=${QTUM_PAGE_COUNT}`)
       .then((response: $AxiosXHR<Object>) => {
         const txs: Array<Object> = response.data.items;

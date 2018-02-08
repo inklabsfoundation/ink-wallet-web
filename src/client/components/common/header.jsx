@@ -102,10 +102,7 @@ class Header extends React.Component<Props, HeaderState> {
     const langHeader: React.Node = (
       <div>
         <span className="lang-label">{Internalizator.getLangLabel(this.props.i18n.locale)}</span>
-        {(this.state.isLangDropdownOpen)
-          ? <img height={5} width={10} src={openCarretIcon}/>
-          : <img height={5} width={10} src={closeCarretIcon}/>
-        }
+          <img height={5} width={10} src={this.state.isLangDropdownOpen ? openCarretIcon : closeCarretIcon}/>
       </div>
     );
     return (
