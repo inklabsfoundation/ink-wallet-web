@@ -24,6 +24,10 @@ export type LoginState = {
   blockHeight: number
 };
 
+export type NewsState = {
+  news: Array<Object>
+};
+
 export type ConfigState = {
   defaultLocale: string,
   derivePath: string,
@@ -31,7 +35,8 @@ export type ConfigState = {
   encryptSalt: string,
   INKcontractAddress: string,
   refreshTime: number,
-  playMarketDownloadLink: string
+  playMarketDownloadLink: string,
+  newsUrl: string
 };
 
 export type ReceiveState = {
@@ -117,6 +122,7 @@ export type State = {
   +loginState: LoginState,
   +creationState: CreationState,
   i18n: I18n,
+  +newsState: NewsState,
   +amountState: AmountState,
   +config: ConfigState,
   +sendTransactionState: SendTransactionState,
@@ -145,6 +151,9 @@ export const initialState: State = {
     isNewTransactionsModalOpen: false,
     blockHeight: 0,
     unconfirmedTransactionsIds: []
+  },
+  newsState: {
+    news: []
   },
   creationState: {
     step: 1,
@@ -223,6 +232,7 @@ export const initialState: State = {
     encryptSalt: "",
     INKcontractAddress: "",
     refreshTime: 0,
-    playMarketDownloadLink: ""
+    playMarketDownloadLink: "",
+    newsUrl: ""
   }
 };

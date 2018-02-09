@@ -12,6 +12,7 @@ import {initialState} from "../initial-state";
 import {browserHistory} from "react-router";
 import {securityCenterState} from "./security-center/security-center-reducer";
 import {isClientSide} from "../services/is-client-side-helper";
+import {newsState} from "./news/news-reducer";
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
@@ -22,7 +23,8 @@ const appReducer = combineReducers({
   form: formReducer,
   sendTransactionState,
   receiveState,
-  securityCenterState
+  securityCenterState,
+  newsState
 });
 
 export default (store, action) => {
@@ -38,7 +40,8 @@ export default (store, action) => {
         amountState: initialState.amountState,
         sendTransactionState: initialState.sendTransactionState,
         receiveState: initialState.receiveState,
-        securityCenterState: initialState.securityCenterState
+        securityCenterState: initialState.securityCenterState,
+        newsState: initialState.newsState
       };
   }
   return appReducer(store, action);

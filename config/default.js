@@ -13,6 +13,9 @@ module.exports = {
     "inert": {
       "enable": true
     },
+    "news": {
+      "module": "./src/server/plugins/news"
+    },
     "electrodeStaticPaths": {
       "enable": true,
       "options": {

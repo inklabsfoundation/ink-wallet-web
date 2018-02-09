@@ -10,6 +10,9 @@
     "encryptSalt": "qtum-wallet",
     "INKcontractAddress": "QjnsK9sSa8QhJbvTRYEHXapT8M9JHhSLqY",
     "refreshTime": 30000,
-    "playMarketDownloadLink": "http://play.google.com/store/apps/details?id=ink.qtum.org.inkqtum"
+    "playMarketDownloadLink": "http://play.google.com/store/apps/details?id=ink.qtum.org.inkqtum",
+    "sourceNewsUrl": "https://ink.one/api/v1/get-news",
+    "newsCacheTimeoutMilliseconds": 4.32E7,
+    "newsUrl": "/api/news"
   }
 }
