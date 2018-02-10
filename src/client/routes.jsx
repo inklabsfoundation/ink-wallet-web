@@ -25,7 +25,7 @@ export const ROUTE_URLS = {
   ABOUT: "about",
   POLICY: "policy",
   TERMS: "terms",
-  FAQ: "FAQ"
+  FAQ: "faq"
 };
 
 export const routes = (
