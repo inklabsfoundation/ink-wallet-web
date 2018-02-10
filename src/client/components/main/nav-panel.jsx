@@ -9,6 +9,7 @@ import walletIconDisable from "../../images/wallet-icon-dis.png";
 import secureIconActive from "../../images/secure-center-logo-active.png";
 import secureIconDisable from "../../images/secure-center-logo.png";
 import faqIconDisable from "../../images/faq-logo.png";
+import faqIconActive from "../../images/faq-logo-active.png";
 import assetsIconDisable from "../../images/asserts-logo.png";
 import assetsIconActive from "../../images/asserts-logo-active.png";
 import openCarretIcon from "../../images/open-carret.png";
@@ -94,9 +95,16 @@ class NavPanel extends React.Component<Props, State> {
       </div>
     );
     const faqPanel: React.Node = (
-      <div className="nav-elem">
-        <div><img className="nav-icon" src={faqIconDisable}/></div>
-        <div className="panel-item-title"><Translate value="navPanel.faq"/></div>
+      <div onClick={(): void => this.onClickLink(`${ROUTE_URLS.WALLET_PAGE}/${ROUTE_URLS.FAQ}`)}
+           className={`${this.isActive(ROUTE_URLS.FAQ, true)} nav-elem`}>
+        <div><img className="nav-icon" src={
+          this.isActive(ROUTE_URLS.FAQ)
+            ? faqIconActive
+            : faqIconDisable
+        }/></div>
+        <div className="panel-item-title">
+          <Translate value="navPanel.faq"/>
+        </div>
       </div>
     );
     const assetsPanel: React.Node = (

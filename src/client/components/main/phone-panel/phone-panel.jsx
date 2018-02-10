@@ -27,9 +27,8 @@ class PhonePanel extends React.Component<Props> {
           <div className="phone-img">
             <img className="phone-icon" src={phoneImg}/>
             <img className="ink-logo-img" src={mainLogo}/>
-            <div className="qr-code">
-            <QRCode
-              size={100} value={this.props.playMarketDownloadLink}/>
+            <div className="qr-code" style={{textAlign: "center"}}>
+            Coming soon...
             </div>
           </div>
         </div>
