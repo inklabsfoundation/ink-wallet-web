@@ -27,7 +27,7 @@ exports.register = (server, options, next) => {
       CacheStorage.put(NEWS_KEY, news);
       reply(news);
     } catch (e) {
-      reply(Boom.badImplementation(e));
+      reply().code(500);
     }
   };
 
