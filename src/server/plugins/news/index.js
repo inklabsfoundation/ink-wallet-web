@@ -1,7 +1,6 @@
 "use strict";
 const axios = require("axios");
 const _ = require("lodash");
-const Boom = require("Boom");
 const config = require("electrode-confippet").config;
 const CacheStorage = require("./cache-storage");
 const moment = require("moment");
