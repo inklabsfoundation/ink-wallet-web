@@ -12,6 +12,7 @@ import AssetsDetails from "./components/assets-details/assets-details";
 import About from "./components/about/about";
 import Policy from "./components/privacy-policy/policy";
 import Terms from "./components/terms-of-usage/terms";
+import FAQ from "./components/faq/faq";
 
 export const ROUTE_URLS = {
   HOME_PAGE: "/",
@@ -23,7 +24,8 @@ export const ROUTE_URLS = {
   ASSETS_DETAILS: "details",
   ABOUT: "about",
   POLICY: "policy",
-  TERMS: "terms"
+  TERMS: "terms",
+  FAQ: "faq"
 };
 
 export const routes = (
@@ -39,6 +41,7 @@ export const routes = (
       <Route path={ROUTE_URLS.ABOUT} component={About}/>
       <Route path={ROUTE_URLS.POLICY} component={Policy}/>
       <Route path={ROUTE_URLS.TERMS} component={Terms}/>
+      <Route path={ROUTE_URLS.FAQ} component={FAQ}/>
     </Route>
   </Route>
 );

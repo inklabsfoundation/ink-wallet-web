@@ -12,6 +12,7 @@ const encryptSalt = config.$("settings.encryptSalt");
 const INKcontractAddress = config.$("settings.INKcontractAddress");
 const refreshTime = config.$("settings.refreshTime");
 const playMarketDownloadLink = config.$("settings.playMarketDownloadLink");
+const newsUrl = config.$("settings.newsUrl");
 
 const Promise = require("bluebird");
 
@@ -23,7 +24,8 @@ function createReduxStore(req, match) { // eslint-disable-line
     encryptSalt,
     INKcontractAddress,
     refreshTime,
-    playMarketDownloadLink
+    playMarketDownloadLink,
+    newsUrl
   };
   const store = Internalizator.configureIn18n(
     configureStore(initialState),

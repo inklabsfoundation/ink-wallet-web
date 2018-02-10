@@ -8,15 +8,38 @@ import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
+import {requestNews} from "../../../actions/news-actions";
+import moment from "moment";
 
-type Props = {};
+type Props = {
+  dispatch: Dispatch,
+  news: Array<Object>
+};
 
 class NewsPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.dispatch(requestNews());
+  }
+
   render(): React.Node {
+    const news: Array<React.Node> = this.props.news.map((newsItem: Object, idx: number) => {
+      return (
+        <div className="news-item" key={idx}>
+          <div className="time">
+            {moment.unix(newsItem.date).format("YYYY-MM-DD")}
+          </div>
+          <div className="desc">
+            <a target="_blank"
+               href={newsItem.link}>
+              {newsItem.title}
+            </a>
+          </div>
+        </div>);
+    });
     return (
       <div className="news-panel">
         <div className="news-inner">
@@ -28,39 +51,7 @@ class NewsPanel extends React.Component<Props> {
           </div>
         </div>
         <div className="news-list-block">
-          <div className="news-item">
-            <div className="time">
-              2018-01-31
-            </div>
-            <div className="desc">
-              <a target="_blank"
-                 href="https://finance.yahoo.com/news/inks-blockchain-based-ip-solutions-233000774.html">
-                Ink's Blockchain-Based IP Solutions to Revolutionize Creative Industry
-              </a>
-            </div>
-          </div>
-          <div className="news-item">
-            <div className="time">
-              2018-01-26
-            </div>
-            <div className="desc">
-              <a target="_blank"
-                 href="https://megapowertech-malaysia.blogspot.my/p/pr-newswire.html?rkey=20180126AE96353&filter=7658">
-                Ink Launches INKstone, A Platform For Blockchain App Developers
-              </a>
-            </div>
-          </div>
-          <div className="news-item">
-            <div className="time">
-              2017-12-15
-            </div>
-            <div className="desc">
-              <a target="_blank"
-                 href="https://xueqiu.com/8215700657/97563658?from=groupmessage&isappinstalled=0">
-                我们想改变整个区块链世界
-              </a>
-            </div>
-          </div>
+          {news}
         </div>
       </div>
     );
@@ -68,7 +59,9 @@ class NewsPanel extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State): Object => {
-  return {};
+  return {
+    news: state.newsState.news
+  };
 };
 
 // eslint-disable-next-line max-len

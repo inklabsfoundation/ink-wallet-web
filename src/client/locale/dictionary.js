@@ -87,6 +87,43 @@ export const dictionary = {
       title13: "13. Entire Agreement",
       desc13: "This is the entire agreement between the parties and supersedes any other agreement."
     },
+    policy: {
+      title1: "1. Principles:",
+      desc1_ul_1: {
+        li1: "a) Privacy is a human right and software should help protect your rights.",
+        li2: "b) We don’t require you to register.",
+        li3: "c) We don’t have access to your funds (wallet files and mnemonics)."
+      },
+      title2: "2. Registration Not Required",
+      desc2: "INK Wallet does not require you to register.",
+      title3: "3. Account Info ",
+      desc3: "Your wallet files and mnemonics will stay on your device. Ink Labs Foundation have not access to them.",
+      title4: "4. Camera Data Stays on Device",
+      desc4: "Your camera will only be used for reading QR codes.Camera images will never leave your device.",
+      title5: "5. Physical Location",
+      desc5: "Your physical location will never be communicated to us, unless you provide prior specific consent.",
+      title6: "6. Blockchain Transactions",
+      desc6: "Your blockchain transactions may be relayed through servers (“nodes”) and will be publicly visible due to the public nature of distributed ledger systems.",
+      title7: "7. Secure Communication with Our Servers",
+      desc7: "All of our servers support HTTPS.",
+      title8: "8. Aggregate Usage Statistics",
+      desc8: "We may collect INK Wallet usage information in order to improve function or UI, but will only use this information in an aggregated, anonymized fashion, and never in association with your name, email, or other personally identifying information.",
+      desc9: "Ink Labs Foundation reserves the right to change or amend any part of its Privacy Policy at any time in the future."
+    },
+    FAQ: {
+      q_1: "Q: What is INK Wallet? Is it a kind of Payment Software?",
+      a_1: "A:  Not really. INK Wallet is a kind of blockchain tool, which allows you to access and transfer ownership crypto asset of Qtum blockchain, including INK and something else. Different with Payment Software, your asset is not stored by any organization but over the blockchain network. See this in What is blockchain and Qtum blockchain.",
+      q_2: "Q: What is blockchain and Qtum blockchian?",
+      a_2: "A：Blockchain is a kind of decentralized network, which allows users store their datas and cypto assets in it. There are many blockchain networks, such as Bitcoin and Ethereum, and Qtum is one of them. INK Wallet is based on Qtum and could only use to inter with other addresses in Qtum blockchain. ",
+      q_3: "Q: What is INK address? How could I get my INK address?",
+      a_3: "A: INK address is an address in Qtum blockchain, and it is a serie of random characters which are exclusive  could not be changed. You can send and receive Qtum blockchain asset by it. When you create new wallet, you will get an address. And you could click the Receive button in Main Page to see you address.",
+      q_4: "Q: What is INK? What could I do with INK?",
+      a_4: "A: INK is a kind of Qtum blockchain asset. You could exchange it with others. And Ink Labs Foundation would provide more applications for it soon. ",
+      q_5: "Q: There are some other asset in INK wallet, what are they?",
+      a_5: "A: There are Qtum and something else. Qtum is for transcation fees in Qtum blockchain. You should have some Qtum in your address if you want to send INK or other assets. And others are similar with INK, but not related with Ink Labs Foundation. INK Wallet just provide a way to store them. ",
+      q_6: "Q: What Must I do if I use INK Wallet?",
+      a_6: "A: You should understand Ink Labs Foundation DON NOT control your address due to the  nature of blockchain and you must keep your wallet files and mnemonics safely. If they are lost or stolen, it is impossible to re-get or restore your address and assets. Check Term of Usage for more information."
+    },
     assetsDetails: {
       amountLabel: "Amount:",
       pendingLabel: "Pending:",
@@ -288,7 +325,7 @@ export const dictionary = {
       faq: "常见问题",
       search: "搜索...",
       about: "About",
-      policy: "Privacy Policy",
+      policy: "隐私政策",
       terms: "Terms of Usage"
     },
     about: {
@@ -349,6 +386,43 @@ export const dictionary = {
       desc12: "与本协议有关的法律事项适用新加坡法律，相关争议由新加坡法院管辖。",
       title13: "13、完整性声明",
       desc13: "上述内容是双方之间的完整协议，具有高于其他任何协议的效力。"
+    },
+    policy: {
+      title1: "1. 基本政策",
+      desc1_ul_1: {
+        li1: "a. 隐私权是一种基本人权，INK尊重并保护用户的隐私。",
+        li2: "b. 我们不要求注册。",
+        li3: "c. 我们不保存您的私钥和钱包文件，无法控制您的账户。 "
+      },
+      title2: "2. 注册信息",
+      desc2: "INK钱包不要求您注册。",
+      title3: "3. 账户信息",
+      desc3: "您的钱包文件和助记词将储存于您的设备里。Ink基金会不能获取它们。",
+      title4: "4. 照片信息",
+      desc4: "您的摄像头将只会用于扫描二维码，我们不会搜集您的个人图像。",
+      title5: "5. 位置信息",
+      desc5: "我们不会收集您的位置信息，除非事先得到您的同意。",
+      title6: "6. 区块链交易",
+      desc6: "基于分布式系统的公开属性，您的区块链交易信息将会在节点网络中广播。",
+      title7: "7. 网络安全",
+      desc7: "我们的所有服务器都支持HTTPS协议。",
+      title8: "8. 使用信息统计",
+      desc8: "为了提升INK钱包的服务体验，我们可能会收集您的使用信息来完善INK钱包的功能和设计，但这些信息都是匿名的、无法指向您个人。我们不会收集您的姓名、电子邮件或其他和个人身份有关的信息。",
+      desc9: "Ink基金会保留修改上述隐私政策的权利。"
+    },
+    FAQ: {
+      q_1: "Q: 什么是INK钱包？INK钱包是以一种支付软件吗？",
+      a_1: "A: 不是的。INK钱包是一种区块链工具，它允许您使用Qtum区块链上的加密资产，其中包括INK。和支付软件不同，您储存在INK钱包中的加密资产并非托管于某一组织，而是被存储在整个区块链网络中。您可以在“什么是区块链和Qtum区块链”这一问题中获得更多的相关信息。",
+      q_2: "Q: 什么是区块链和Qtum区块链？",
+      a_2: "A: 区块链是一种去中心化的网络，用户可以基于这种网络储存数据和加密资产。区块链网络不是唯一的，比特币、以太坊都是互不相同的区块链网络，Qtum网络也是其中之一。INK钱包是基于Qtum网络的区块链工具，只能用来和其他Qtum网络中的地址进行交互。",
+      q_3: "Q: INK地址是什么？我怎样获取INK地址？",
+      a_3: "A: INK地址是Qtum区块链上的地址，它由一组随机字符组成，具有唯一性且不可修改。您可以使用INK地址发送和接收Qtum区块链上的资产。当您创建新钱包时，您会得到一个INK地址。您也可以在钱包主页上点击“接收”按钮来查看您的地址。",
+      q_4: "Q: 什么是INK？我能用INK做什么？",
+      a_4: "A: INK是Qtum区块链上的一种资产。您可以将它用于和其他人的交换。Ink基金会也会持续提供更多相关应用。",
+      q_5: "Q: INK钱包里还有一些其他资产，它们是什么？",
+      a_5: "A: 除了INK，INK钱包里的资产还包括Qtum和其他资产。Qtum用于支付Qtum网络的手续费。如果您想给其他地址发送INK或其他资产，您需要保证您的地址中拥有足够数量的Qtum。其他资产和INK类似，但和Ink基金会无关。INK钱包只是提供了一种存储它们的方式。",
+      q_6: "Q: 使用INK钱包有哪些注意事项？",
+      a_6: "A: 您需要理解，由于区块链的性质，Ink基金会无法控制您的地址。因此您必须妥善地保管自己的钱包文件和助记词。如果它们遗失或被盗，Ink基金会无法为您找回或恢复钱包内的资产。更多信息请参考使用协议。"
     },
     assetsDetails: {
       amountLabel: "可用余额：",
@@ -613,6 +687,43 @@ export const dictionary = {
       title13: "13. Entire Agreement",
       desc13: "This is the entire agreement between the parties and supersedes any other agreement."
     },
+    policy: {
+      title1: "1. Principles:",
+      desc1_ul_1: {
+        li1: "a) Privacy is a human right and software should help protect your rights.",
+        li2: "b) We don’t require you to register.",
+        li3: "c) We don’t have access to your funds (wallet files and mnemonics)."
+      },
+      title2: "2. Registration Not Required",
+      desc2: "INK Wallet does not require you to register.",
+      title3: "3. Account Info ",
+      desc3: "Your wallet files and mnemonics will stay on your device. Ink Labs Foundation have not access to them.",
+      title4: "4. Camera Data Stays on Device",
+      desc4: "Your camera will only be used for reading QR codes.Camera images will never leave your device.",
+      title5: "5. Physical Location",
+      desc5: "Your physical location will never be communicated to us, unless you provide prior specific consent.",
+      title6: "6. Blockchain Transactions",
+      desc6: "Your blockchain transactions may be relayed through servers (“nodes”) and will be publicly visible due to the public nature of distributed ledger systems.",
+      title7: "7. Secure Communication with Our Servers",
+      desc7: "All of our servers support HTTPS.",
+      title8: "8. Aggregate Usage Statistics",
+      desc8: "We may collect INK Wallet usage information in order to improve function or UI, but will only use this information in an aggregated, anonymized fashion, and never in association with your name, email, or other personally identifying information.",
+      desc9: "Ink Labs Foundation reserves the right to change or amend any part of its Privacy Policy at any time in the future."
+    },
+    FAQ: {
+      q_1: "Q: What is INK Wallet? Is it a kind of Payment Software?",
+      a_1: "A:  Not really. INK Wallet is a kind of blockchain tool, which allows you to access and transfer ownership crypto asset of Qtum blockchain, including INK and something else. Different with Payment Software, your asset is not stored by any organization but over the blockchain network. See this in What is blockchain and Qtum blockchain.",
+      q_2: "Q: What is blockchain and Qtum blockchian?",
+      a_2: "A：Blockchain is a kind of decentralized network, which allows users store their datas and cypto assets in it. There are many blockchain networks, such as Bitcoin and Ethereum, and Qtum is one of them. INK Wallet is based on Qtum and could only use to inter with other addresses in Qtum blockchain. ",
+      q_3: "Q: What is INK address? How could I get my INK address?",
+      a_3: "A: INK address is an address in Qtum blockchain, and it is a serie of random characters which are exclusive  could not be changed. You can send and receive Qtum blockchain asset by it. When you create new wallet, you will get an address. And you could click the Receive button in Main Page to see you address.",
+      q_4: "Q: What is INK? What could I do with INK?",
+      a_4: "A: INK is a kind of Qtum blockchain asset. You could exchange it with others. And Ink Labs Foundation would provide more applications for it soon. ",
+      q_5: "Q: There are some other asset in INK wallet, what are they?",
+      a_5: "A: There are Qtum and something else. Qtum is for transcation fees in Qtum blockchain. You should have some Qtum in your address if you want to send INK or other assets. And others are similar with INK, but not related with Ink Labs Foundation. INK Wallet just provide a way to store them. ",
+      q_6: "Q: What Must I do if I use INK Wallet?",
+      a_6: "A: You should understand Ink Labs Foundation DON NOT control your address due to the  nature of blockchain and you must keep your wallet files and mnemonics safely. If they are lost or stolen, it is impossible to re-get or restore your address and assets. Check Term of Usage for more information."
+    },
     assetsDetails: {
       amountLabel: "잔액:",
       pendingLabel: "대기:",
@@ -773,9 +884,7 @@ export const dictionary = {
         invalid: "니모닉 잘못 된 경우",
         notEntered: "입력 한 니모닉 없음"
       },
-      passwordInfo: "This password is for your NEW wallet file only." +
-      " You can just use it once or download it for later." +
-      "You old wallet file is still valid and its password is NOT be changed.",
+      passwordInfo: "This password is for your NEW wallet file only. You can just use it once or download it for later. You old wallet file is still valid and its password is NOT be changed.",
       resetPassword: "비밀번호 재설정:",
       resetPassword2: "비밀번호 확인:",
       restoreSuccessTitle: "복원이 완료되었습니다!",
@@ -875,6 +984,43 @@ export const dictionary = {
       desc12: "This agreement shall be governed by the laws of Singapore.",
       title13: "13. Entire Agreement",
       desc13: "This is the entire agreement between the parties and supersedes any other agreement."
+    },
+    policy: {
+      title1: "1. Principles:",
+      desc1_ul_1: {
+        li1: "a) Privacy is a human right and software should help protect your rights.",
+        li2: "b) We don’t require you to register.",
+        li3: "c) We don’t have access to your funds (wallet files and mnemonics)."
+      },
+      title2: "2. Registration Not Required",
+      desc2: "INK Wallet does not require you to register.",
+      title3: "3. Account Info ",
+      desc3: "Your wallet files and mnemonics will stay on your device. Ink Labs Foundation have not access to them.",
+      title4: "4. Camera Data Stays on Device",
+      desc4: "Your camera will only be used for reading QR codes.Camera images will never leave your device.",
+      title5: "5. Physical Location",
+      desc5: "Your physical location will never be communicated to us, unless you provide prior specific consent.",
+      title6: "6. Blockchain Transactions",
+      desc6: "Your blockchain transactions may be relayed through servers (“nodes”) and will be publicly visible due to the public nature of distributed ledger systems.",
+      title7: "7. Secure Communication with Our Servers",
+      desc7: "All of our servers support HTTPS.",
+      title8: "8. Aggregate Usage Statistics",
+      desc8: "We may collect INK Wallet usage information in order to improve function or UI, but will only use this information in an aggregated, anonymized fashion, and never in association with your name, email, or other personally identifying information.",
+      desc9: "Ink Labs Foundation reserves the right to change or amend any part of its Privacy Policy at any time in the future."
+    },
+    FAQ: {
+      q_1: "Q: What is INK Wallet? Is it a kind of Payment Software?",
+      a_1: "A:  Not really. INK Wallet is a kind of blockchain tool, which allows you to access and transfer ownership crypto asset of Qtum blockchain, including INK and something else. Different with Payment Software, your asset is not stored by any organization but over the blockchain network. See this in What is blockchain and Qtum blockchain.",
+      q_2: "Q: What is blockchain and Qtum blockchian?",
+      a_2: "A：Blockchain is a kind of decentralized network, which allows users store their datas and cypto assets in it. There are many blockchain networks, such as Bitcoin and Ethereum, and Qtum is one of them. INK Wallet is based on Qtum and could only use to inter with other addresses in Qtum blockchain. ",
+      q_3: "Q: What is INK address? How could I get my INK address?",
+      a_3: "A: INK address is an address in Qtum blockchain, and it is a serie of random characters which are exclusive  could not be changed. You can send and receive Qtum blockchain asset by it. When you create new wallet, you will get an address. And you could click the Receive button in Main Page to see you address.",
+      q_4: "Q: What is INK? What could I do with INK?",
+      a_4: "A: INK is a kind of Qtum blockchain asset. You could exchange it with others. And Ink Labs Foundation would provide more applications for it soon. ",
+      q_5: "Q: There are some other asset in INK wallet, what are they?",
+      a_5: "A: There are Qtum and something else. Qtum is for transcation fees in Qtum blockchain. You should have some Qtum in your address if you want to send INK or other assets. And others are similar with INK, but not related with Ink Labs Foundation. INK Wallet just provide a way to store them. ",
+      q_6: "Q: What Must I do if I use INK Wallet?",
+      a_6: "A: You should understand Ink Labs Foundation DON NOT control your address due to the  nature of blockchain and you must keep your wallet files and mnemonics safely. If they are lost or stolen, it is impossible to re-get or restore your address and assets. Check Term of Usage for more information."
     },
     assetsDetails: {
       amountLabel: "余力:",

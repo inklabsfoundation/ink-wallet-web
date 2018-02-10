@@ -57,6 +57,7 @@
     "electrode-static-paths": "^1.0.0",
     "lodash": "^4.10.1",
     "mathjs": "^3.18.0",
+    "memory-cache": "^0.2.0",
     "moment": "^2.20.1",
     "qrcode.react": "^0.7.2",
     "qtumjs": "^1.4.1",

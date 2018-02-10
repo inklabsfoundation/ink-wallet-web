@@ -89,21 +89,35 @@
   font-size: 16px;
 }
 
-.page-text-block {
+.page-text-title,
+.page-text-block,
+.page-text-block-q,
+.page-text-block-a,
+.page-text-block-li {
   width: 100%;
+}
+
+.page-text-block {
   padding-bottom: 20px;
 }
 
 .page-text-title {
-  width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: bold;
   font-size: 18px;
 }
 
+.page-text-block-q {
+  padding-top: 20px;
+}
+
+.page-text-block-a {
+  padding-top: 10px;
+  padding-bottom: 7px;
+}
+
 .page-text-block-li {
-  width: 100%;
   padding-left: 20px;
 }
 
