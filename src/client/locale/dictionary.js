@@ -324,9 +324,9 @@ export const dictionary = {
       securityCenter: "安全中心",
       faq: "常见问题",
       search: "搜索...",
-      about: "About",
+      about: "关于",
       policy: "隐私政策",
-      terms: "Terms of Usage"
+      terms: "用户协议"
     },
     about: {
       desc1: "INK钱包是Ink lab foundation基于开发者社区，为用户提供的轻量级区块链资产管理工具。该钱包搭建于Qtum区块链的核心代码之上，允许用户在Qtum区块链网络中管理自己的账户、发起及接收交易。目前，INK钱包支持Qtum及INK两种区块链资产，后续将支持INK泛IP生态体系中发行的其他通证（token）类资产",
@@ -436,22 +436,22 @@ export const dictionary = {
       toLabel: "到:",
       descLabel: "交易描述:",
       myWalletLabel: "我的钱包",
-      startDatePlaceholderText: "入住日期",
-      endDatePlaceholderText: "退房日期"
+      startDatePlaceholderText: "开始日期",
+      endDatePlaceholderText: "结束日期"
     },
     mainPage: {
       sendBtn: "发送",
       importMoreBtn: "导入更多",
       receiveBtn: "接收",
       recentTitle: "最近交易",
-      newsTitle: "INK News"
+      newsTitle: "INK新闻"
     },
     confirmCloseModal: {
       mainTitle: "您应该合理地保存了钱包文件和记忆词，否则您将永远丢失您的钱包。",
       secureCenterBtn1: "",
       secureCenterBtn2: "去备份",
       logoutBtn: "确认退出",
-      exitBtn: "OK, Close",
+      exitBtn: "好的，关闭",
       dontShowBox: "以后不再提示"
     },
     securityCenter: {
@@ -485,7 +485,7 @@ export const dictionary = {
     loginPage: {
       title: "登录",
       uploadFileBtn: "加载钱包文件",
-      uploadFileBtnUploaded: "Upload success",
+      uploadFileBtnUploaded: "加载成功",
       inputPasswordLabel: "请输入密码",
       confirmBtn: "确认",
       restoreLink: "用记忆词恢复钱包",
@@ -549,7 +549,7 @@ export const dictionary = {
           emptyAmount: "金额不能为空",
           invalidAmount: "请输入合法的金额",
           invalidAddress: "请输入合法的地址",
-          dustAmount: "The amount is too small",
+          dustAmount: "金额过小",
           amountLow: "超过资产余额"
         }
       },
