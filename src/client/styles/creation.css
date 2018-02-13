@@ -252,7 +252,8 @@
   border-color: #7b7b7b;
 }
 
-.primary-red-btn.btn-flex {
+.primary-red-btn.btn-flex,
+.primary-white-btn.btn-flex{
   height: inherit;
   padding-bottom: 5px;
 }

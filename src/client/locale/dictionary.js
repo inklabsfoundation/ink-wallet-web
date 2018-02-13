@@ -250,6 +250,7 @@ export const dictionary = {
           invalidAmount: "Amount is invalid",
           invalidAddress: "Address is invalid",
           dustAmount: "The amount is too small",
+          dustPrecision: "Decimal is too long",
           amountLow: "Amount to send more than your balance"
         }
       },
@@ -550,6 +551,7 @@ export const dictionary = {
           invalidAmount: "请输入合法的金额",
           invalidAddress: "请输入合法的地址",
           dustAmount: "金额过小",
+          dustPrecision: "Decimal is too long",
           amountLow: "超过资产余额"
         }
       },
@@ -625,8 +627,8 @@ export const dictionary = {
       faq: "FAQ",
       search: "검색...",
       about: "About",
-      policy: "Privacy Policy",
-      terms: "Terms of Usage"
+      policy: "개인정보보호정책",
+      terms: "이용 약관"
     },
     about: {
       desc1: "INK Wallet is a SPV blockchain tool developed by Ink community and provided by Ink Labs Foundation. Built on the Qtum core, INK Wallet allows its users to manage their accounts, make transactions and receive deposits within Qtum network. INK Wallet currently supports Qtum and INK, and will accept the generic tokens issued in the INK ecosystem.",
@@ -711,18 +713,18 @@ export const dictionary = {
       desc9: "Ink Labs Foundation reserves the right to change or amend any part of its Privacy Policy at any time in the future."
     },
     FAQ: {
-      q_1: "Q: What is INK Wallet? Is it a kind of Payment Software?",
-      a_1: "A:  Not really. INK Wallet is a kind of blockchain tool, which allows you to access and transfer ownership crypto asset of Qtum blockchain, including INK and something else. Different with Payment Software, your asset is not stored by any organization but over the blockchain network. See this in What is blockchain and Qtum blockchain.",
-      q_2: "Q: What is blockchain and Qtum blockchian?",
-      a_2: "A：Blockchain is a kind of decentralized network, which allows users store their datas and cypto assets in it. There are many blockchain networks, such as Bitcoin and Ethereum, and Qtum is one of them. INK Wallet is based on Qtum and could only use to inter with other addresses in Qtum blockchain. ",
-      q_3: "Q: What is INK address? How could I get my INK address?",
-      a_3: "A: INK address is an address in Qtum blockchain, and it is a serie of random characters which are exclusive  could not be changed. You can send and receive Qtum blockchain asset by it. When you create new wallet, you will get an address. And you could click the Receive button in Main Page to see you address.",
-      q_4: "Q: What is INK? What could I do with INK?",
-      a_4: "A: INK is a kind of Qtum blockchain asset. You could exchange it with others. And Ink Labs Foundation would provide more applications for it soon. ",
-      q_5: "Q: There are some other asset in INK wallet, what are they?",
-      a_5: "A: There are Qtum and something else. Qtum is for transcation fees in Qtum blockchain. You should have some Qtum in your address if you want to send INK or other assets. And others are similar with INK, but not related with Ink Labs Foundation. INK Wallet just provide a way to store them. ",
-      q_6: "Q: What Must I do if I use INK Wallet?",
-      a_6: "A: You should understand Ink Labs Foundation DON NOT control your address due to the  nature of blockchain and you must keep your wallet files and mnemonics safely. If they are lost or stolen, it is impossible to re-get or restore your address and assets. Check Term of Usage for more information."
+      q_1: "Q: INK 지갑이 뭔가요? INK 지갑은 일종의 지불 소프트웨어 인가요?",
+      a_1: "A: NK 지갑은 지불 소프트웨어가 아닙니다. INK 지갑은 일종의 블록체인 툴로 Qtum 블록체인 상의 암호화 화폐(디지털 자산)을 사용 가능하게 도와주는 기능을 합니다. 지불 소프트웨어와 다른 점은, 고객님의 암호화 화폐를INK 지갑에 보관한다는 것이 어떤 조직이나 기관에 위탁관리를 맡기는 것이 아닌 블록체인 네트워크에 기입이 됨을 뜻합니다. “블록체인 기술 및 Qtum 블록체인이 뭔가요?” 문제의 답변을 확인 하시면 더 많은 관련 정보를 열람하실 수 있습니다.",
+      q_2: "Q: 블록체인 기술 및 Qtum 블록체인이 뭔가요?",
+      a_2: "A：블록체인은 일종의 탈중앙화 네트워크입니다. 유저는 블록체인 네트워크를 이용해 데이터 및 암호화 화폐를 보관할 수 있습니다. 블록체인 네트워크는 어떤 한 가지 암호화 화폐를 지칭하는 것이 아닙니다. 비트코인, 이더리움 등 서로 다른 성격의 블록체인 네트워크를 지칭하는 통칭이며, Qtum 네트워크 역시 블록체인 네트워크의 일종입니다. INK 지갑은 Qtum 기반의 툴이며, Qtum 블록체인 상의 주소끼리만 상호거래가 가능합니다.",
+      q_3: "Q: INK 주소가 뭔가요? INK 주소는 어디서 어떻게 얻죠?",
+      a_3: "A: INK 주소는 Qtum 블록체인 상의 주소와 같은 의미입니다. INK 주소는 랜덤으로 배열된 문자열의 조합이며, 유일성을 보장하지만 수정할 수는 없습니다. 고객님은 INK 주소를 사용해 Qtum 블록체인 상의 자산을 보내거나 받을 수 있습니다. 고객님이 새로운 지갑을 만들 경우 새로운 INK 주소를 받을 수 있으며, 지갑 페이지의 “받기”를 클릭하여 고객님의 지갑 주소를 확인하실 수 있습니다.",
+      q_4: "Q: INK가 뭐죠? INK로 뭘 할 수 있나요?",
+      a_4: "A: INK는 Qtum 블록체인 상의 암호화 화폐입니다. 고객님은 INK를 이용해 다른 유저와 거래를 하실 수 있으며, Ink 재단 역시 더 많고 새로운 응용 루트를 제공하기 위해 노력 중입니다.",
+      q_5: "Q: INK 지갑 안에 다른 암호화 화폐가 들어있습니다.",
+      a_5: "A: INK지갑은 INK를 포함한 Qtum 및 다른 암호화 화폐도 취급하고 있습니다. Qtum 을 사용해 Qtum 네트워크 상의 수수료를 지불하실 수 있으며, 만약 고객님이 다른 주소로 INK 나 다른 자산을 보내고 싶으신 경우 먼저 지갑 안의 Qtum이 충분한지 확인하셔야 합니다. 기타 자산들은 INK와 유사하지만 Ink 재단과는 무관합니다. INK 지갑은 이러한 암호화 화폐들을 보관하는 방법 중 하나일 뿐입니다.",
+      q_6: "Q: INK 지갑 사용 시 주의사항은?",
+      a_6: "A: INK 지갑 사용에 앞서 블록체인의 성격이나 Ink 재단은 고객님의 지갑 주소에 어떠한 간섭도 할 수 없음을 이해하고 계셔야 합니다. 이러한 이유로 고객님은 반드시 본인의 지갑 파일 및 니모닉의 관리에 특별히 유의하셔야 하며, 만약 지갑을 분실하시거나 도난 당하셨을 경우 Ink 재단 측은 고객님의 지갑 및 자산을 찾아드릴 수 있는 방법이 없습니다. 더 많은 정보를 원하시면 이용약관을 참고해주시기 바랍니다."
     },
     assetsDetails: {
       amountLabel: "잔액:",
@@ -736,15 +738,15 @@ export const dictionary = {
       toLabel: "까지:",
       descLabel: "거래 내용:",
       myWalletLabel: "내 지갑t",
-      startDatePlaceholderText: "Start Date",
-      endDatePlaceholderText: "End Date"
+      startDatePlaceholderText: "시작일",
+      endDatePlaceholderText: "종료일"
     },
     mainPage: {
       sendBtn: "보내기",
       importMoreBtn: "더 가져오기",
       receiveBtn: "받기",
       recentTitle: "최근 거래",
-      newsTitle: "INK News"
+      newsTitle: "INK 뉴스"
     },
     confirmCloseModal: {
       mainTitle: "지갑 파일 저장과 니모닉을 확인하세요. 최악의 경우 당신의 지갑을 영영 찾지 못할 수도 있습니다.",
@@ -849,7 +851,8 @@ export const dictionary = {
           emptyAmount: "금액은 비워둘 수 없습니다.",
           invalidAmount: "존재하지 않는 금액",
           invalidAddress: "존재하지 않는 주소",
-          dustAmount: "The amount is too small",
+          dustAmount: "금액이 너무 작습니다.",
+          dustPrecision: "Decimal is too long",
           amountLow: "잔액을 초과하였습니다."
         }
       },
@@ -1147,6 +1150,7 @@ export const dictionary = {
           invalidAmount: "金額無効です。",
           invalidAddress: "アドレスが無効です。",
           dustAmount: "The amount is too small",
+          dustPrecision: "Decimal is too long",
           amountLow: "資産を超過しています"
         }
       },

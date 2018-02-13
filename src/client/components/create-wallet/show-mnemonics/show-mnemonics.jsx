@@ -63,11 +63,11 @@ class ShowMnemonics extends React.Component<Props> {
           </div>
         </div>
         <div className="show-mnemonics-btn-panel">
-          <a className="primary-red-btn" href={backupDataStr} download="inkwallet.backup">
+          <a className="primary-red-btn btn-flex" href={backupDataStr} download="inkwallet.backup">
             <Translate value="createWallet.showMnemonicDownloadBtn"/>
           </a>
           <Link to={ROUTE_URLS.WALLET_PAGE}
-                onClick={this.handleClickNext} className="primary-white-btn bordered">
+                onClick={this.handleClickNext} className="primary-white-btn btn-flex bordered">
             <Translate value="createWallet.showMnemonicNextBtn"/>
           </Link>
         </div>

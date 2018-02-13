@@ -109,7 +109,7 @@ class SetPassword extends React.Component<Props> {
         </div>
         <div className="agree-panel">
           <label className="control control-checkbox">
-            <Translate value="createWallet.agree"/>
+            <Link to={ROUTE_URLS.TERMS}><Translate value="createWallet.agree"/></Link>
             <input type="checkbox"
                    defaultChecked={this.props.isAgreed}
                    onChange={this.handleAgreedClick}/>

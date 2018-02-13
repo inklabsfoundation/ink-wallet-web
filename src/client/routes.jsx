@@ -13,6 +13,8 @@ import About from "./components/about/about";
 import Policy from "./components/privacy-policy/policy";
 import Terms from "./components/terms-of-usage/terms";
 import FAQ from "./components/faq/faq";
+import {homePageWrapper} from "./components/common/home-page-wrapper";
+import {MobilePage} from "./components/common/mobile-page";
 
 export const ROUTE_URLS = {
   HOME_PAGE: "/",
@@ -25,7 +27,8 @@ export const ROUTE_URLS = {
   ABOUT: "about",
   POLICY: "policy",
   TERMS: "terms",
-  FAQ: "faq"
+  FAQ: "faq",
+  MOBILE: "/mobile"
 };
 
 export const routes = (
@@ -43,5 +46,7 @@ export const routes = (
       <Route path={ROUTE_URLS.TERMS} component={Terms}/>
       <Route path={ROUTE_URLS.FAQ} component={FAQ}/>
     </Route>
+    <Route path={ROUTE_URLS.TERMS} component={homePageWrapper(Terms)}/>
+    <Route path={ROUTE_URLS.MOBILE} component={MobilePage}/>
   </Route>
 );

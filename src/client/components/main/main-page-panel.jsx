@@ -18,9 +18,13 @@ export default class MainPagePanel extends React.Component<{}> {
         </Col>
         <Col className="recent-transactions-wrapper" xs={7}>
           <NewsPanel/>
-          <PhonePanel/>
+          <PhonePanel isMobile={false} description={DesktopDescription()}/>
         </Col>
       </div>
     );
   }
 }
+
+const DesktopDescription = (): React.Node => (
+  <span>Scan the QR code <br/>to download mobile wallet</span>
+);
