@@ -12,7 +12,9 @@ import type {Dispatch} from "../../../types/redux";
 import {connect} from "react-redux";
 
 type Props = {
-  playMarketDownloadLink: string
+  playMarketDownloadLink: string,
+  description: React.Node,
+  isMobile: boolean
 };
 
 class PhonePanel extends React.Component<Props> {
@@ -22,7 +24,7 @@ class PhonePanel extends React.Component<Props> {
 
   render(): React.Node {
     return (
-      <div className="phone-panel">
+      <div className={this.props.isMobile ? "phone-panel-mobile" : "phone-panel-desktop"}>
         <div className="phone-img-container">
           <div className="phone-img">
             <img className="phone-icon" src={phoneImg}/>
@@ -33,8 +35,7 @@ class PhonePanel extends React.Component<Props> {
           </div>
         </div>
         <div className="phone-desc">
-            Scan the QR code <br/>
-          to download mobile wallet
+          {this.props.description}
         </div>
       </div>
     );

@@ -1,9 +1,16 @@
-.phone-panel {
+.phone-panel-desktop {
   height: 400px;
   border: 1px solid #DFDFDF;
   border-radius: 4px;
   margin-bottom: 40px;
   width: calc(50% - 20px);
+  float: left;
+}
+
+.phone-panel-mobile {
+  margin-top: 30%;
+  margin-bottom: 40px;
+  width: 100%;
   float: left;
 }
 

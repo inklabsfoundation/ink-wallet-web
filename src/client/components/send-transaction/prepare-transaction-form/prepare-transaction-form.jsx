@@ -34,6 +34,7 @@ type Props = {
 
 const FEE_ORDER_OFFSET = 6;
 const DUST_AMOUNT =  1E-9;
+const DUST_PRECISION =  9;
 
 export const selectFeeValue = (feeConst: number, feeCoef: number): number => {
   // eslint-disable-next-line no-magic-numbers
@@ -81,12 +82,15 @@ const validate = (values: Object, props: Object): Object => {
   } else if (!Address.isValid(values.to)) {
     errors.to = "sendTransaction.prepareForm.errors.invalidAddress";
   }
+  const precisionStr: string = (values.amount + "").split(".")[1];
   if (!values.amount) {
     errors.amount = "sendTransaction.prepareForm.errors.emptyAmount";
   } else if (isNaN(+values.amount)) {
     errors.amount = "sendTransaction.prepareForm.errors.invalidAmount";
   } else if (+values.amount < DUST_AMOUNT) {
     errors.amount = "sendTransaction.prepareForm.errors.dustAmount";
+  } else if (precisionStr && precisionStr.length > DUST_PRECISION) {
+    errors.amount = "sendTransaction.prepareForm.errors.dustPrecision";
   } else {
     const fee: number = values.isStandart === "1"
       ? (isQtumSelected ? STANDART_FEE : STANDART_TOKEN_FEE)

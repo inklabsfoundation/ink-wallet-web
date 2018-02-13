@@ -14,7 +14,7 @@ module.exports = {
       "enable": true
     },
     "news": {
-      "module": "./src/server/plugins/news"
+      "module": "./{{env.APP_SRC_DIR}}/server/plugins/news"
     },
     "electrodeStaticPaths": {
       "enable": true,
