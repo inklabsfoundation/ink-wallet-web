@@ -1,5 +1,5 @@
 import ReduxRouterEngine from "electrode-redux-router-engine";
-`import {ROUTE_URLS, routes} from "../../client/routes";
+import {ROUTE_URLS, routes} from "../../client/routes";
 import {initialState} from "../../client/initial-state";
 import configureStore from "../../client/configureStore";
 import Internalizator from "../../client/services/internalizator";
