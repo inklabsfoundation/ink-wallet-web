@@ -308,7 +308,7 @@ export const dictionary = {
     main: {
       createWalletBtnLabel: "创建新钱包",
       restoreWalletBtnLabel: "载入钱包",
-      backToWalletBtn: "Back To My Wallet"
+      backToWalletBtn: "回到我的钱包"
     },
     requestErrorModal: {
       title: "浏览器无法正确返回交易数据。请重设浏览器或重试。",
@@ -887,7 +887,9 @@ export const dictionary = {
         invalid: "니모닉 잘못 된 경우",
         notEntered: "입력 한 니모닉 없음"
       },
-      passwordInfo: "This password is for your NEW wallet file only. You can just use it once or download it for later. You old wallet file is still valid and its password is NOT be changed.",
+      passwordInfo: "해당 비밀번호는 신 지갑 파일에만 사용됩니다." +
+      "일회성으로만 사용하거나 추후 지갑 파일 다운로드용으로 사용할 수 있습니다." +
+      "기존 지갑 파일과 비밀번호 역시 변화없이 유효합니다.",
       resetPassword: "비밀번호 재설정:",
       resetPassword2: "비밀번호 확인:",
       restoreSuccessTitle: "복원이 완료되었습니다!",
@@ -1185,9 +1187,9 @@ export const dictionary = {
         invalid: "二モニック無効です",
         notEntered: "二モニック部分が入力されていません"
       },
-      passwordInfo: "This password is for your NEW wallet file only." +
-      " You can just use it once or download it for later." +
-      "You old wallet file is still valid and its password is NOT be changed.",
+      passwordInfo: "このパスワードは新しいウォレットファイルにのみ適応されます。" +
+      "一度のみ使用できます。ウォレットファイルダウンロード後も使えます" +
+      "なお、過去のウォレットファイルも使用可能です。パスワードも変わりません。",
       resetPassword: "パスワードのリセット:",
       resetPassword2: "パスワードの確認:",
       restoreSuccessTitle: "成功しました！",
