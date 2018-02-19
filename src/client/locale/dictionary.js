@@ -551,7 +551,7 @@ export const dictionary = {
           invalidAmount: "请输入合法的金额",
           invalidAddress: "请输入合法的地址",
           dustAmount: "金额过小",
-          dustPrecision: "Decimal is too long",
+          dustPrecision: "小数位数过多",
           amountLow: "超过资产余额"
         }
       },
