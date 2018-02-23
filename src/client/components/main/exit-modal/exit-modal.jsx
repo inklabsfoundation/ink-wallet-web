@@ -94,8 +94,7 @@ class ExitModal extends React.Component<Props> {
               </div>
               <div className="confirm-exit-btn-container">
                 <button onClick={this.handleGoToSecureCenter} className="btn-flex primary-red-btn large">
-                  <div><Translate value="confirmCloseModal.secureCenterBtn1"/></div>
-                  <div><Translate value="confirmCloseModal.secureCenterBtn2"/></div>
+                  <div><Translate value="confirmCloseModal.secureCenterBtn"/></div>
                 </button>
                 <button onClick={this.handleLogOut} className="btn-flex primary-white-btn bordered large">
                   {this.props.isExit

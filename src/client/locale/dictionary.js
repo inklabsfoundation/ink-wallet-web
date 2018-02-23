@@ -148,8 +148,7 @@ export const dictionary = {
     },
     confirmCloseModal: {
       mainTitle: "Make sure you have saved your wallet file and mnemonics properly, or you will lose this wallet FOREVER.",
-      secureCenterBtn1: "Go to security center",
-      secureCenterBtn2: "to BACKUP",
+      secureCenterBtn: "Go to security center to BACKUP",
       logoutBtn: "OK, Log out",
       exitBtn: "OK, Close",
       dontShowBox: "Don’t show this again"
@@ -330,7 +329,7 @@ export const dictionary = {
       terms: "用户协议"
     },
     about: {
-      desc1: "INK钱包是Ink lab foundation基于开发者社区，为用户提供的轻量级区块链资产管理工具。该钱包搭建于Qtum区块链的核心代码之上，允许用户在Qtum区块链网络中管理自己的账户、发起及接收交易。目前，INK钱包支持Qtum及INK两种区块链资产，后续将支持INK泛IP生态体系中发行的其他通证（token）类资产",
+      desc1: "INK钱包是Ink lab foundation基于开发者社区，为用户提供的轻量级区块链资产管理工具。该钱包搭建于Qtum区块链的核心代码之上，允许用户在Qtum区块链网络中管理自己的账户、发起及接收交易。目前，INK钱包支持Qtum及INK两种区块链资产，后续将支持INK泛IP生态体系中发行的其他通证（token）类资产。",
       desc2: "Ink Labs Foundation 是总部位于新加坡的非盈利组织，由著名连续创业者Francis Tang发起，致力于把区块链技术推向全世界创意文化产业，以保护各国艺术家的知识产权和其艺术作品的版权、支持鼓励优秀艺术家创作、传承人类文明硕果。"
     },
     terms: {
@@ -449,8 +448,7 @@ export const dictionary = {
     },
     confirmCloseModal: {
       mainTitle: "您应该合理地保存了钱包文件和记忆词，否则您将永远丢失您的钱包。",
-      secureCenterBtn1: "",
-      secureCenterBtn2: "去备份",
+      secureCenterBtn: "前往安全中心",
       logoutBtn: "确认退出",
       exitBtn: "好的，关闭",
       dontShowBox: "以后不再提示"
@@ -750,8 +748,7 @@ export const dictionary = {
     },
     confirmCloseModal: {
       mainTitle: "지갑 파일 저장과 니모닉을 확인하세요. 최악의 경우 당신의 지갑을 영영 찾지 못할 수도 있습니다.",
-      secureCenterBtn1: "로그아웃 전 백업을",
-      secureCenterBtn2: "해주세요.",
+      secureCenterBtn: "로그아웃 전 백업을 해주세요.",
       logoutBtn: "로그아웃 되셨습니다.",
       exitBtn: "OK, Close",
       dontShowBox: "더 이상 이 창을 띄우지 않음."
@@ -1051,8 +1048,7 @@ export const dictionary = {
     },
     confirmCloseModal: {
       mainTitle: "ウォレット・ファイルと二モニックを適切に保存したことを確認して下さい。そうしなければ、このウォレットを永久に失うことになります。",
-      secureCenterBtn1: "バックアップのためセキュリティ",
-      secureCenterBtn2: "・センターに行く",
+      secureCenterBtn: "バックアップのためセキュリティ・センターに行く",
       logoutBtn: "了解の上、ログアウトする",
       exitBtn: "OK, Close",
       dontShowBox: "今後このメッセージを表示させない"
