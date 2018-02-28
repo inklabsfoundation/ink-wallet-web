@@ -153,12 +153,12 @@ const renderTokenDropdown = (props: Object): React.Node => (
     <MenuItem
       eventKey="1"
       onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.QTUM)}>
-      Qtum
+      {SUPPORTED_CURRENCIES.QTUM}
     </MenuItem>
     <MenuItem
       eventKey="2"
       onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.INK)}>
-      Ink
+      {SUPPORTED_CURRENCIES.INK}
     </MenuItem>
   </DropdownButton>
 );
@@ -225,7 +225,7 @@ let PrepareTransactionForm = (props: Props): React.Node => {
                 <div className="radio-label">
                   <Translate value="sendTransaction.prepareForm.fee.standart"/>
                 </div>
-                <div className="fee-value">{STANDART_FEE} Qtum</div>
+                <div className="fee-value">{STANDART_FEE} {SUPPORTED_CURRENCIES.QTUM}</div>
               </label>
             </Col>
             <Col xs={12} className="column-wrapper">
@@ -242,7 +242,7 @@ let PrepareTransactionForm = (props: Props): React.Node => {
                   <Translate value="sendTransaction.prepareForm.fee.custom"/>
                 </div>
                 <div className="fee-value">
-                  {selectFeeValue(recommendedFee, props.feeCoef)} Qtum
+                  {selectFeeValue(recommendedFee, props.feeCoef)} {SUPPORTED_CURRENCIES.QTUM}
                 </div>
               </label>
             </Col>
@@ -266,7 +266,9 @@ let PrepareTransactionForm = (props: Props): React.Node => {
       </Modal.Body>
       <Modal.Footer>
         <Button disabled={props.submitting}
-                className="confirm-button primary-red-btn" type="submit">Confirm</Button>
+                className="confirm-button primary-red-btn" type="submit">
+          <Translate value="sendTransaction.prepareForm.confirmBtn"/>
+        </Button>
       </Modal.Footer>
     </form>
   );

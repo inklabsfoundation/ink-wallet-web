@@ -1,9 +1,7 @@
 // @flow
 import * as React from "react";
-import qtumIcon from "../../images/qtum-icon-32.png";
-import inkIcon from "../../images/ink-icon-32.png";
-import qtumIconSm from "../../images/qtum-icon-21.png";
-import inkIconSm from "../../images/ink-icon-21.png";
+import qtumIcon from "../../images/qtum-icon.svg";
+import inkIcon from "../../images/ink-icon.svg";
 import {SUPPORTED_CURRENCIES} from "../../initial-state";
 
 type Props = {
@@ -17,16 +15,17 @@ export default class CurrencyIcon extends React.Component<Props> {
     const isSmall: ?boolean = this.props.small;
     switch (this.props.currencyName) {
       case SUPPORTED_CURRENCIES.QTUM:
-        icon = isSmall ? qtumIconSm : qtumIcon;
+        icon = qtumIcon;
         break;
       case SUPPORTED_CURRENCIES.INK:
-        icon = isSmall ? inkIconSm : inkIcon;
+        icon = inkIcon;
         break;
       default:
         icon = qtumIcon;
     }
+    const width: string = isSmall ? "22px" : "32px";
     return (
-      <img src={icon}/>
+      <img style={{width}} src={icon}/>
     );
   }
 }
