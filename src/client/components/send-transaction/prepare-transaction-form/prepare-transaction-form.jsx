@@ -153,12 +153,12 @@ const renderTokenDropdown = (props: Object): React.Node => (
     <MenuItem
       eventKey="1"
       onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.QTUM)}>
-      QTUM
+      {SUPPORTED_CURRENCIES.QTUM}
     </MenuItem>
     <MenuItem
       eventKey="2"
       onClick={(): void => props.input.onChange(SUPPORTED_CURRENCIES.INK)}>
-      INK
+      {SUPPORTED_CURRENCIES.INK}
     </MenuItem>
   </DropdownButton>
 );
@@ -225,7 +225,7 @@ let PrepareTransactionForm = (props: Props): React.Node => {
                 <div className="radio-label">
                   <Translate value="sendTransaction.prepareForm.fee.standart"/>
                 </div>
-                <div className="fee-value">{STANDART_FEE} QTUM</div>
+                <div className="fee-value">{STANDART_FEE} {SUPPORTED_CURRENCIES.QTUM}</div>
               </label>
             </Col>
             <Col xs={12} className="column-wrapper">
@@ -242,7 +242,7 @@ let PrepareTransactionForm = (props: Props): React.Node => {
                   <Translate value="sendTransaction.prepareForm.fee.custom"/>
                 </div>
                 <div className="fee-value">
-                  {selectFeeValue(recommendedFee, props.feeCoef)} QTUM
+                  {selectFeeValue(recommendedFee, props.feeCoef)} {SUPPORTED_CURRENCIES.QTUM}
                 </div>
               </label>
             </Col>
