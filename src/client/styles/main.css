@@ -164,21 +164,6 @@ body {
   top: calc(50% - 300px);
 }
 
-.send-transition-modal .modal-footer {
-  border-top: 0;
-  display: flex;
-  justify-content: center;
-  padding-top: 0;
-  padding-bottom: 5px;
-}
-
-.send-transition-modal.modal {
-  position: absolute;
-  display: table-cell;
-  left: calc(50% - 334px);
-  margin-top: 20px;
-}
-
 .open-carret {
   position: absolute;
   right: -5px;

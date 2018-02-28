@@ -15,7 +15,7 @@
   position: absolute;
   display: table-cell;
   left: calc(50% - 334px);
-  margin-top: 20px;
+  top: calc(50% - 350px);
 }
 
 .send-transition-modal .input-section {

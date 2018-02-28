@@ -306,7 +306,7 @@ export const dictionary = {
     },
     main: {
       createWalletBtnLabel: "创建新钱包",
-      restoreWalletBtnLabel: "载入钱包",
+      restoreWalletBtnLabel: "恢复钱包",
       backToWalletBtn: "回到我的钱包"
     },
     requestErrorModal: {
@@ -459,9 +459,9 @@ export const dictionary = {
       panelSubHeading: "请输入钱包密码",
       displayBtn: "查看助记词",
       downloadBackupBtn: "下载钱包文件",
-      firstDescription: "你可以备份你的记忆词或钱包文件，这与复制钱包文件，或重抄助记词的效果完全相同。",
+      firstDescription: "您可以备份您的记忆词或钱包文件，这与复制钱包文件，或重抄助记词的效果完全相同。",
       secondDescription: "备份的钱包文件与您现在使用的完全相同，它们都可以被独立地使用，以访问您的钱包。",
-      thirdDescription: "他人共享备份文件会导致资金危险。您应该只在可信设备上和安全环境中备份钱包。",
+      thirdDescription: "与他人共享备份文件会导致资金危险。您应该只在可信设备上和安全环境中备份钱包。",
       forthDescription: "确认您理解备份操作的意义，否则请停止备份。",
       errorModal: {
         title: "密码错误！",
@@ -510,13 +510,13 @@ export const dictionary = {
       showAddressTitle: "您的钱包地址",
       showAddressDescr: "钱包地址用于接受转账，您可以将它告诉其他人。" +
       "记忆词和钱包文件则是您拥有钱包的凭证。" +
-      "其中钱包文件用于载入web钱包，而记忆词用于在其他设备上恢复您的钱包。" +
-      "您应该妥善保管它们，且不应分享给任何人。" +
-      "INK也不会保存您的钱包文件或记忆词。。" +
-      "如果它们丢失或被盗，您将无法找回您的钱包及其中的资产。",
+      "其中钱包文件用于登录时载入web钱包，而记忆词用于在其他设备上恢复您的钱包。" +
+      "INK不会保存您的钱包文件或记忆词。" +
+      "如果它们丢失或被盗，您将无法找回您的钱包及其中的资产。" +
+	  "请妥善保管钱包文件和助记词，且不要与任何人分享 。",
       showAddressNextBtn: "我已理解地址、记忆词和钱包文件，继续创建钱包",
       showMnemonicTitle: "您的记忆词",
-      showMnemonicDescr: "务必记住，钱包文件用于载入web钱包，" +
+      showMnemonicDescr: "务必谨记，钱包文件用于登录时载入web钱包，" +
       "而记忆词用于在其他设备上恢复您的钱包。" +
       "如果您同时丢失了二者，您将无法找回您的钱包。" +
       "只要拥有钱包文件或记忆词，任何人都可以控制您的钱包。" +
@@ -572,10 +572,10 @@ export const dictionary = {
       }
     },
     receive: {
-      modalTitle: "收款",
-      qrDescription: "扫描二维码收款，或者把您的钱包地址发给付款方",
+      modalTitle: "接收",
+      qrDescription: "您可以让发送方扫描您的接收二维码，或向发送方提供您的钱包地址",
       addressLabel: "您的钱包地址",
-      copyBtn: "复制钱包地址"
+      copyBtn: "复制我的钱包地址"
     },
     restoreWallet: {
       title: "恢复钱包",

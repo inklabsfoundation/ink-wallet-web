@@ -6,7 +6,7 @@ import type {Dispatch} from "../../../../types/redux";
 import {connect} from "react-redux";
 import {Col} from "react-bootstrap";
 import {Address} from "@evercode-lab/qtumcore-lib";
-import inkIcon28 from "../../../../images/ink-icon-28.png";
+import inkIcon from "../../../../images/ink-icon.svg";
 import copyIcon from "../../../../images/copy-icon.png";
 import CopyToClipboard from "react-copy-to-clipboard";
 import {Translate} from "react-redux-i18n";
@@ -41,7 +41,7 @@ class AmountPanel extends React.Component<Props> {
         <div className="amount-title-block">
           <div className="currency-name">INK</div>
           <div className="currency-icon">
-            <img src={inkIcon28}/>
+            <img style={{width: "28px"}} src={inkIcon}/>
           </div>
         </div>
         <div className="amount-value">
