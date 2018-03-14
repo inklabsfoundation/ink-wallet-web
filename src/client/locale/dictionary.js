@@ -306,12 +306,12 @@ export const dictionary = {
     },
     main: {
       createWalletBtnLabel: "创建新钱包",
-      restoreWalletBtnLabel: "恢复钱包",
+      restoreWalletBtnLabel: "载入钱包",
       backToWalletBtn: "回到我的钱包"
     },
     requestErrorModal: {
-      title: "浏览器无法正确返回交易数据。请重设浏览器或重试。",
-      resetBtn: "重设浏览器",
+      title: "区块浏览器无法正确返回交易数据。请前往安全中心重设区块浏览器或重试。",
+      resetBtn: "重设区块浏览器",
       retryBtn: "重试"
     },
     newTransactionsModal: {
@@ -468,10 +468,10 @@ export const dictionary = {
         doneBtn: "完成"
       },
       explorerContainer: {
-        title: "浏览器设置",
-        desc: "您可以选择从Qtum浏览器或INK浏览器获取交易信息。您也可以设置您自己偏好的浏览器。",
+        title: "区块浏览器",
+        desc: "您可以选择从Qtum浏览器或INK浏览器获取交易信息。您也可以设置您自己偏好的区块浏览器。",
         customRadioLabel: "自定义",
-        customPathInputPlaceholder: "请输入一个有效的浏览器地址",
+        customPathInputPlaceholder: "请输入一个有效的区块浏览器地址",
         submitBtn: "提交"
       },
       mnemonicsModal: {
