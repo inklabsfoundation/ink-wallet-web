@@ -9,6 +9,7 @@ import type {SendTransactionState} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 import CryptoHandler from "../services/crypto-handler";
 import * as _ from "lodash";
+import {openRequestFailModalForce} from "./login-actions";
 
 export const STEPS = {
   FIRST: 0,
@@ -19,6 +20,8 @@ export const STEPS = {
 const UTXO_STAKING_CONFIRMATIONS_LOCK = 501;
 
 const REFRESH_OFFSET = 3000;
+
+const FEE_INCREASE_COEF = 0.3;
 
 type OpenModalAction = {
   type: "OPEN_MODAL"
@@ -141,9 +144,10 @@ const sentTransactionSuccess = (): ThunkAction => {
 };
 
 
-const sentTransactionFail = (): SentTransactionFailAction => {
-  return {
-    type: "SENT_TRANSACTION_FAIL"
+const sentTransactionFail = (): ThunkAction => {
+  return (dispatch: Dispatch) => {
+    dispatch(confirmConfirmModal());
+    dispatch({type: "SENT_TRANSACTION_FAIL"});
   };
 };
 
@@ -261,7 +265,10 @@ export const requestUtxos = (): ThunkAction => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));
-      }, (): void => dispatch(requestUTXOFail()));
+      }, () => {
+        dispatch(openRequestFailModalForce());
+        dispatch(requestUTXOFail());
+      });
   };
 };
 
@@ -291,8 +298,12 @@ export const requestRecomendedFee = (): ThunkAction => {
     axios.get(`${getState().config.qtumExplorerPath}/utils/estimatefee`)
       .then((response: $AxiosXHR<Object>) => {
         // eslint-disable-next-line no-magic-numbers
-        dispatch(requestRecommendedFeeSuccess(response.data[2]));
-      }, (): void => dispatch(requestRecommendedFeeFail()));
+        const recommendedFee: number = response.data[2];
+        dispatch(requestRecommendedFeeSuccess(recommendedFee + (recommendedFee * FEE_INCREASE_COEF)));
+      }, () => {
+        dispatch(openRequestFailModalForce());
+        dispatch(requestRecommendedFeeFail());
+      });
   };
 };
 

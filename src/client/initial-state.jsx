@@ -20,6 +20,7 @@ export type LoginState = {
   lastTransactionTimeStamp: number,
   unconfirmedTransactionsIds: Array<string>,
   isRequestFailModalOpen: boolean,
+  requestErrorsCount: number,
   isNewTransactionsModalOpen: boolean,
   blockHeight: number
 };
@@ -58,6 +59,7 @@ export type SendTransactionState = {
   rawUtxos: ?Array<Transaction.UnspentOutput>,
   areRawUtxosFetching: boolean,
   isSucceed: boolean,
+  transactionSendFail: boolean,
   isTransactionIsSending: boolean,
   step: number
 };
@@ -148,6 +150,7 @@ export const initialState: State = {
     isExit: false,
     lastTransactionTimeStamp: 0,
     isRequestFailModalOpen: false,
+    requestErrorsCount: 0,
     isNewTransactionsModalOpen: false,
     blockHeight: 0,
     unconfirmedTransactionsIds: []
@@ -215,6 +218,7 @@ export const initialState: State = {
     areRawUtxosFetching: false,
     isSucceed: false,
     isTransactionIsSending: false,
+    transactionSendFail: false,
     step: 0
   },
   securityCenterState: {

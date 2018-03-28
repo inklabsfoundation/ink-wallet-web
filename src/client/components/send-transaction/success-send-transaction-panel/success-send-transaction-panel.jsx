@@ -9,7 +9,9 @@ import {Button, Modal} from "react-bootstrap";
 type Props = {
   dispatch: Dispatch,
   onClose: Function,
-  successImage: HTMLImageElement
+  successImage: HTMLImageElement,
+  failImage: HTMLImageElement,
+  transactionSendFail: boolean
 };
 
 class SuccessSendTransactionPanel extends React.Component<Props> {
@@ -23,10 +25,11 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
         <Modal.Body>
           <div className="create-title-panel reset">
             <div className="success-logo">
-              <img src={this.props.successImage.src}/>
+              <img src={this.props.transactionSendFail ? this.props.failImage.src : this.props.successImage.src}/>
             </div>
             <div className="create-title">
-              <Translate value="sendTransaction.successForm.succeed"/>
+              <Translate
+                value={this.props.transactionSendFail ? "sendTransaction.successForm.fail" : "sendTransaction.successForm.succeed"}/>
             </div>
           </div>
         </Modal.Body>

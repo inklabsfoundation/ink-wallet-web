@@ -4,6 +4,8 @@ import type {LoginState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {AuthAction} from "../../actions/login-actions";
 
+const COUNT_OF_ERROR_SHOW: number = 3;
+
 export const loginState = (store: LoginState = initialState.loginState, action: AuthAction): LoginState => {
   switch (action.type) {
     case "LOGIN_ACTION":
@@ -30,6 +32,14 @@ export const loginState = (store: LoginState = initialState.loginState, action: 
       };
     }
     case "OPEN_REQUEST_FAIL_MODAL_ACTION": {
+      const errorsCount: number = ++store.requestErrorsCount;
+      return {
+        ...store,
+        requestErrorsCount: errorsCount,
+        isRequestFailModalOpen: errorsCount % COUNT_OF_ERROR_SHOW === 0
+      };
+    }
+    case "OPEN_REQUEST_FAIL_MODAL_FORCE_ACTION": {
       return {
         ...store,
         isRequestFailModalOpen: true
