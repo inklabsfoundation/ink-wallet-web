@@ -20,6 +20,8 @@ const UTXO_STAKING_CONFIRMATIONS_LOCK = 501;
 
 const REFRESH_OFFSET = 3000;
 
+const FEE_INCREASE_COEF = 0.3;
+
 type OpenModalAction = {
   type: "OPEN_MODAL"
 };
@@ -291,7 +293,8 @@ export const requestRecomendedFee = (): ThunkAction => {
     axios.get(`${getState().config.qtumExplorerPath}/utils/estimatefee`)
       .then((response: $AxiosXHR<Object>) => {
         // eslint-disable-next-line no-magic-numbers
-        dispatch(requestRecommendedFeeSuccess(response.data[2]));
+        const recommendedFee: number = response.data[2];
+        dispatch(requestRecommendedFeeSuccess(recommendedFee + (recommendedFee * FEE_INCREASE_COEF)));
       }, (): void => dispatch(requestRecommendedFeeFail()));
   };
 };
