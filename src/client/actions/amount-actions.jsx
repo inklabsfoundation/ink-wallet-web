@@ -10,6 +10,7 @@ import * as _ from "lodash";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 import {findDescriptionInTx} from "../services/transaction-mapper";
 import type {TokenDesc} from "../initial-state";
+import {requestRecomendedFee, requestUtxos} from "./sent-transaction-action";
 
 const QTUM_PAGE_COUNT = 50;
 const INK_PAGE_COUNT = 100;
@@ -351,12 +352,16 @@ export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction =>
 };
 
 export const requestWalletData = (isFirstRequest: ?boolean): ThunkAction => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch, getState: GetState) => {
     dispatch(requestQtumBalance());
     dispatch(requestQtumTransactions(isFirstRequest));
     dispatch(requestInkBalance());
     dispatch(requestBlockHeight());
     dispatch(requestInkTransactions(isFirstRequest));
+    if (getState().loginState.isRequestFailModalOpen) {
+      dispatch(requestRecomendedFee());
+      dispatch(requestUtxos());
+    }
   };
 };
 

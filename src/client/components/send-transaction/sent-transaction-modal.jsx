@@ -25,6 +25,7 @@ import SuccessSendTransactionPanel from "./success-send-transaction-panel/succes
 import {requestWalletData} from "../../actions/amount-actions";
 import {preloadImage} from "../../services/image-preloader";
 import successLogo from "../../images/success.png";
+import failLogo from "../../images/error-image.png";
 import {SUPPORTED_CURRENCIES} from "../../initial-state";
 
 type Props = {
@@ -41,11 +42,13 @@ type Props = {
   description: string,
   passwordHash: string,
   salt: string,
-  inkAmount: number
+  inkAmount: number,
+  transactionSendFail: number
 };
 
 class SendTransactionModal extends React.Component<Props> {
   successImage: ?HTMLImageElement;
+  failImage: ?HTMLImageElement;
 
   constructor(props: Props) {
     super(props);
@@ -55,6 +58,7 @@ class SendTransactionModal extends React.Component<Props> {
     (this: any).handleSubmitPrepareSendTransaction = this.handleSubmitPrepareSendTransaction.bind(this);
     (this: any).handleSubmitConfirmSendTransaction = this.handleSubmitConfirmSendTransaction.bind(this);
     this.successImage = preloadImage(successLogo);
+    this.failImage = preloadImage(failLogo);
   }
 
   handleClose() {
@@ -122,6 +126,8 @@ class SendTransactionModal extends React.Component<Props> {
       case STEPS.THIRD:
         stepPanel = (<SuccessSendTransactionPanel
           successImage={this.successImage}
+          failImage={this.failImage}
+          transactionSendFail={this.props.transactionSendFail}
           onClose={this.handleDone}/>);
         break;
     }
@@ -154,7 +160,8 @@ const mapStateToProps = (state: State): Object => {
     description: state.sendTransactionState.description,
     passwordHash: state.loginState.passwordHash,
     salt: state.config.encryptSalt,
-    inkAmount: state.amountState.INK.balance
+    inkAmount: state.amountState.INK.balance,
+    transactionSendFail: state.sendTransactionState.transactionSendFail
   };
 };
 

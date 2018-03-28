@@ -69,6 +69,10 @@ type OpenRequestFailModalAction = {
   type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
 };
 
+type OpenRequestFailModalForceAction = {
+  type: "OPEN_REQUEST_FAIL_MODAL_FORCE_ACTION"
+};
+
 type CloseRequestFailModalAction = {
   type: "CLOSE_REQUEST_FAIL_MODAL_ACTION"
 };
@@ -97,7 +101,7 @@ type RequestBlockHeightSuccessAction = {
 export type AuthAction = LoginAction | LogoutAction | InputPasswordAction | FileUploadAction
   | DataErrorAction | AttemptLoginAction | DontShowExitModalAction | OpenExitModalAction | CloseExitModalAction
   | SetExitAction | ShowExitModalAction | SetLastTransactionTimeStampAction | OpenRequestFailModalAction
-  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction
+  | CloseRequestFailModalAction | OpenNewTransactionsModalAction | CloseNewTransactionsModalAction | OpenRequestFailModalForceAction
   | RequestBlockHeightSuccessAction | SetUnconfirmedTransactionsIdsAction;
 
 const executeLogin = (seed: Uint8Array,
@@ -138,6 +142,12 @@ export const openExitModal = (): OpenExitModalAction => {
 export const openRequestFailModal = (): OpenRequestFailModalAction => {
   return {
     type: "OPEN_REQUEST_FAIL_MODAL_ACTION"
+  };
+};
+
+export const openRequestFailModalForce = (): OpenRequestFailModalForceAction => {
+  return {
+    type: "OPEN_REQUEST_FAIL_MODAL_FORCE_ACTION"
   };
 };
 

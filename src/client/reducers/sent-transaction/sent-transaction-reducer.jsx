@@ -4,6 +4,10 @@ import type {SendTransactionState} from "../../initial-state";
 import {initialState} from "../../initial-state";
 import type {SendTransactionAction} from "../../actions/sent-transaction-action";
 
+const PREPARE_STEP: number = 0;
+const CONFIRM_STEP: number = 1;
+const RESULT_STEP: number = 2;
+
 export const sendTransactionState = (store: SendTransactionState = initialState.sendTransactionState,
                                      action: SendTransactionAction): SendTransactionState => {
   switch (action.type) {
@@ -31,18 +35,19 @@ export const sendTransactionState = (store: SendTransactionState = initialState.
         areRawUtxosFetching: false,
         isSucceed: false,
         isTransactionIsSending: false,
-        step: 0
+        step: PREPARE_STEP,
+        transactionSendFail: false
       };
     case "CONFIRM_CONFIRM_MODAL": {
       return {
         ...store,
-        step: 2
+        step: RESULT_STEP
       };
     }
     case "CONFIRM_PREPARE_MODAL": {
       return {
         ...store,
-        step: 1,
+        step: CONFIRM_STEP,
         tokenType: action.tokenType,
         toAddress: action.toAddress,
         amount: action.amount,
@@ -78,7 +83,7 @@ export const sendTransactionState = (store: SendTransactionState = initialState.
     case "SENT_TRANSACTION_FAIL": {
       return {
         ...store,
-        isTransactionIsSending: true
+        transactionSendFail: true
       };
     }
     case "SENT_TRANSACTION_SUCCESS": {

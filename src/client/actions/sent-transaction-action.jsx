@@ -9,6 +9,7 @@ import type {SendTransactionState} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 import CryptoHandler from "../services/crypto-handler";
 import * as _ from "lodash";
+import {openRequestFailModalForce} from "./login-actions";
 
 export const STEPS = {
   FIRST: 0,
@@ -143,9 +144,10 @@ const sentTransactionSuccess = (): ThunkAction => {
 };
 
 
-const sentTransactionFail = (): SentTransactionFailAction => {
-  return {
-    type: "SENT_TRANSACTION_FAIL"
+const sentTransactionFail = (): ThunkAction => {
+  return (dispatch: Dispatch) => {
+    dispatch(confirmConfirmModal());
+    dispatch({type: "SENT_TRANSACTION_FAIL"});
   };
 };
 
@@ -263,7 +265,10 @@ export const requestUtxos = (): ThunkAction => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));
-      }, (): void => dispatch(requestUTXOFail()));
+      }, () => {
+        dispatch(openRequestFailModalForce());
+        dispatch(requestUTXOFail());
+      });
   };
 };
 
@@ -295,7 +300,10 @@ export const requestRecomendedFee = (): ThunkAction => {
         // eslint-disable-next-line no-magic-numbers
         const recommendedFee: number = response.data[2];
         dispatch(requestRecommendedFeeSuccess(recommendedFee + (recommendedFee * FEE_INCREASE_COEF)));
-      }, (): void => dispatch(requestRecommendedFeeFail()));
+      }, () => {
+        dispatch(openRequestFailModalForce());
+        dispatch(requestRecommendedFeeFail());
+      });
   };
 };
 
