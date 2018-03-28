@@ -24,19 +24,14 @@ class SuccessSendTransactionPanel extends React.Component<Props> {
       <div>
         <Modal.Body>
           <div className="create-title-panel reset">
-                <div className="success-logo">
-                  {this.props.transactionSendFail
-                    ? <img src={this.props.failImage.src}/>
-                    : <img src={this.props.successImage.src}/>
-                  }
-                </div>
-                <div className="create-title">
-                  {this.props.transactionSendFail
-                    ? <Translate value="sendTransaction.successForm.fail"/>
-                    : <Translate value="sendTransaction.successForm.succeed"/>
-                  }
-                </div>
+            <div className="success-logo">
+              <img src={this.props.transactionSendFail ? this.props.failImage.src : this.props.successImage.src}/>
             </div>
+            <div className="create-title">
+              <Translate
+                value={this.props.transactionSendFail ? "sendTransaction.successForm.fail" : "sendTransaction.successForm.succeed"}/>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button className="confirm-button primary-red-btn"
