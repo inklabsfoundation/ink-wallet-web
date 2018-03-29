@@ -40,6 +40,7 @@ module.exports = {
       user: "deployer",
       host: "192.168.53.211",
       ref: "origin/develop",
+      "ssh_options": "ForwardAgent=yes",
       repo: "git@github.com:inklabsfoundation/ink-wallet-web.git",
       path: "/var/www/wallet.ink.one",
       "post-deploy": "yarn install --production=false && ENABLE_NODESOURCE_PLUGIN=true clap build && pm2 startOrRestart ecosystem.config.js --env production && pm2 save",
