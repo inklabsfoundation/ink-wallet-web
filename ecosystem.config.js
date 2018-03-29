@@ -25,7 +25,7 @@ module.exports = {
     },
     prod1: {
       user: "deployer",
-      host: "47.75.42.201",
+      host: "192.168.53.210",
       ref: "origin/develop",
       repo: "git@github.com:inklabsfoundation/ink-wallet-web.git",
       path: "/var/www/wallet.ink.one",
@@ -36,7 +36,7 @@ module.exports = {
     },
     prod2: {
       user: "deployer",
-      host: "47.75.42.76",
+      host: "192.168.53.211",
       ref: "origin/develop",
       repo: "git@github.com:inklabsfoundation/ink-wallet-web.git",
       path: "/var/www/wallet.ink.one",
