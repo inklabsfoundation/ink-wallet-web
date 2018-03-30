@@ -6,12 +6,30 @@ import type {TokenDesc} from "../../initial-state";
 import type {AmountAction} from "../../actions/amount-actions";
 import * as _ from "lodash";
 
+export const txComparator = (left: Object, right: Object): number => {
+  if (left.time < right.time) {
+    return -1;
+  } else if (left.time > right.time) {
+    return 1;
+  } else if (left.txid < right.txid) {
+    return -1;
+  } else if (left.txid > right.txid) {
+    return 1;
+  } else {
+    return 0;
+  }
+};
+
 // eslint-disable-next-line max-params
 const mergeAndSortTxs = (oldTxs: Array<Object>, newTxs: Array<Object>, unionField: string, sortField: string): Array<Object> => {
   let txs: Array<Object> = (_.cloneDeep(oldTxs)).concat(newTxs);
-  txs = _.sortBy((_.unionBy(txs, unionField)), (tx: Object): number => {
-    return tx[sortField];
+  txs.forEach((tx: Object, inx: number) => {
+    const updatedOneTx: ?Object = newTxs.find((newOneTx: Object): boolean => tx[unionField] === newOneTx[unionField]);
+    if (updatedOneTx) {
+      txs[inx] = updatedOneTx;
+    }
   });
+  txs = (_.unionBy(txs, unionField)).sort(txComparator);
 
   return txs.reverse();
 };
