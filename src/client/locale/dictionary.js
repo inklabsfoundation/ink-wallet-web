@@ -269,7 +269,7 @@ export const dictionary = {
       successForm: {
         succeed: "Succeed",
         doneBtn: "Done",
-        fail: "Sending a transaction failed. Try to increase your fee or try again later."
+        fail: "You have not enough funds or UTXO for this transaction. Please try later"
       }
     },
     receive: {
@@ -570,7 +570,7 @@ export const dictionary = {
       successForm: {
         succeed: "转账成功！",
         doneBtn: "完成",
-        fail: "Sending a transaction failed. Try to increase your fee or try again later."
+        fail: "You have not enough funds or UTXO for this transaction. Please try later"
       }
     },
     receive: {
@@ -871,7 +871,7 @@ export const dictionary = {
       successForm: {
         succeed: "송금 완료!",
         doneBtn: "완료",
-        fail: "Sending a transaction failed. Try to increase your fee or try again later."
+        fail: "You have not enough funds or UTXO for this transaction. Please try later"
       }
     },
     receive: {
@@ -1171,7 +1171,7 @@ export const dictionary = {
       successForm: {
         succeed: "成功しました！",
         doneBtn: "完成",
-        fail: "Sending a transaction failed. Try to increase your fee or try again later."
+        fail: "You have not enough funds or UTXO for this transaction. Please try later"
       }
     },
     receive: {

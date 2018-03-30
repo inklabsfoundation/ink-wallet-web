@@ -10,13 +10,15 @@ import {openModal} from "../../actions/sent-transaction-action";
 import {openReceiveModal} from "../../actions/receive-actions";
 import CurrencyIcon from "../common/currency-icon";
 import {calculatePendingAmount} from "../../services/amount-helper";
+import type {Amount} from "../../services/amount-helper";
 import {Address} from "@evercode-lab/qtumcore-lib/index";
+import type {AmountState} from "../../initial-state";
 
 type Props = {
   dispatch: Dispatch,
   routeParams: Object,
   blockHeight: number,
-  amountState: WalletAmount,
+  amountState: AmountState,
   height: number,
   address: Address
 };
@@ -41,17 +43,31 @@ class AssetsDetailsHeader extends React.Component<Props> {
   render(): React.Node {
     let currencyKey: string = "";
     let currencyState: ?WalletAmount;
-    let pendingAmount: number = 0;
+    let pendingAmount: Amount = {
+      inValue: 0,
+      outValue: 0
+    };
     let availableAmount: number = 0;
     if (this.props.amountState.hasOwnProperty(this.props.routeParams.currency)) {
       currencyKey = this.props.routeParams.currency;
-      currencyState = this.props.amountState[this.props.routeParams.currency];
+      currencyState = this.props.amountState.QTUM;
       pendingAmount = calculatePendingAmount(currencyKey, currencyState, this.props.height, this.props.address.toString());
-      availableAmount = currencyState.balance - pendingAmount;
+      availableAmount = currencyState.balance - pendingAmount.outValue;
     }
+    const inPendingValue: string = (pendingAmount.inValue > 0) ? `+${pendingAmount.inValue.toFixed(BALANCE_FRACTION_DIGITS)  } QTUM` : "";
+    const outPendingValue: string = (pendingAmount.outValue > 0) ? `-${pendingAmount.outValue.toFixed(BALANCE_FRACTION_DIGITS)  } QTUM` : "";
+    const pendingDevider: string  = (outPendingValue && inPendingValue) ? "/ " : "";
+    const pendingLabel: React.Node = (
+      <div>
+      <Translate value="assetsDetails.pendingLabel"/>
+      {(pendingAmount.inValue === 0 && pendingAmount.outValue === 0) ? " 0" :
+        ` ${inPendingValue}${pendingDevider}${outPendingValue}`
+      }
+      </div>
+    );
     return (
       <div>
-        <Col className="summary-info-panel" xs={6}>
+        <Col className="summary-info-panel" xs={9}>
           <div className="currecy-name-container">
             <div className="currency-logo">
               <CurrencyIcon small={false} currencyName={currencyKey}/>
@@ -68,11 +84,11 @@ class AssetsDetailsHeader extends React.Component<Props> {
               <Translate value="assetsDetails.amountLabel"/> {availableAmount.toFixed(BALANCE_FRACTION_DIGITS)}
             </div>
             <div className="currency-pending-amount">
-              <Translate value="assetsDetails.pendingLabel"/> {pendingAmount.toFixed(BALANCE_FRACTION_DIGITS)}
+              {pendingLabel}
             </div>
           </div>
         </Col>
-        <Col className="btn-panel" xs={6}>
+        <Col className="btn-panel" xs={3}>
           <div className="btn-container">
             <a onClick={this.handleClickSendTransaction} className="primary-red-btn amount-btn">
               <Translate value="mainPage.sendBtn"/>
