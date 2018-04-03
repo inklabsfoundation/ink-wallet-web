@@ -29,7 +29,8 @@ type Props = {
   recommendedFee: number,
   tokenRecommendedFee: number,
   inkAmount: number,
-  token: string
+  token: string,
+  stakingBalance: number
 };
 
 const FEE_ORDER_OFFSET = 6;
@@ -95,7 +96,7 @@ const validate = (values: Object, props: Object): Object => {
     const fee: number = values.isStandart === "1"
       ? (isQtumSelected ? STANDART_FEE : STANDART_TOKEN_FEE)
       : selectFeeValue(recommendedFee, +values.feeCoef);
-    if (amount < ((+values.amount) + (+fee))) {
+    if (amount < ((+values.amount + props.stakingBalance) + (+fee))) {
       errors.amount = "sendTransaction.prepareForm.errors.amountLow";
     }
   }
@@ -163,12 +164,16 @@ const renderTokenDropdown = (props: Object): React.Node => (
   </DropdownButton>
 );
 
+const MAX_LENGTH: number = 9;
+const FRACTION_DIGITS = 7;
+
 let PrepareTransactionForm = (props: Props): React.Node => {
   const isQtumSelected : boolean = props.token === SUPPORTED_CURRENCIES.QTUM;
   const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
   const amount: number = isQtumSelected ?
-    props.qtumAmount : props.inkAmount;
+    (props.qtumAmount - props.stakingBalance) : props.inkAmount;
+  const stakingBalance: number = props.stakingBalance;
   return (
     <form onSubmit={props.handleSubmit}>
       <Modal.Body>
@@ -184,7 +189,12 @@ let PrepareTransactionForm = (props: Props): React.Node => {
           <Col xs={9} className="available-amount-block">
             <div className="available-amount-wrapper">
               <div className="available-amount-element">
-                <Translate value="sendTransaction.prepareForm.availableAmount"/> {amount}
+                <Translate value="sendTransaction.prepareForm.availableAmount"/> {(amount.toString().length >= MAX_LENGTH)
+                ?  amount.toFixed(FRACTION_DIGITS)
+                : amount} {isQtumSelected ? SUPPORTED_CURRENCIES.QTUM : SUPPORTED_CURRENCIES.INK}
+              </div>
+              <div className="available-amount-element">
+                Staking amount: {(stakingBalance.toString().length > MAX_LENGTH) ? stakingBalance.toFixed(FRACTION_DIGITS) : stakingBalance} QTUM
               </div>
             </div>
           </Col>

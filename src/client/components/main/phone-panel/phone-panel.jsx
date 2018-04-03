@@ -5,14 +5,14 @@ import {Col} from "react-bootstrap";
 import {Translate} from "react-redux-i18n";
 import phoneImg from "../../../images/phone_img.png";
 import mainLogo from "../../../images/logo-md.png";
-import QRCode from "qrcode.react";
+import qrCode from "../../../images/qr-code.png";
+// $FlowFixMe
 import type {State} from "../../../initial-state";
 import type {Dispatch} from "../../../types/redux";
 // $FlowFixMe
 import {connect} from "react-redux";
 
 type Props = {
-  playMarketDownloadLink: string,
   description: React.Node,
   isMobile: boolean
 };
@@ -30,7 +30,7 @@ class PhonePanel extends React.Component<Props> {
             <img className="phone-icon" src={phoneImg}/>
             <img className="ink-logo-img" src={mainLogo}/>
             <div className="qr-code" style={{textAlign: "center"}}>
-            Coming soon...
+              <img width={100} src={qrCode}/>
             </div>
           </div>
         </div>
@@ -43,9 +43,7 @@ class PhonePanel extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State): Object => {
-  return {
-    playMarketDownloadLink: state.config.playMarketDownloadLink
-  };
+  return {};
 };
 
 // eslint-disable-next-line max-len

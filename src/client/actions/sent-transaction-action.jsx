@@ -4,7 +4,7 @@ import qtumcore, {Transaction, Address} from "@evercode-lab/qtumcore-lib";
 import type {$AxiosXHR} from "axios";
 import {SATOSHI_COUNT} from "../types/consts";
 import axios from "axios";
-import {requestWalletData} from "./amount-actions";
+import {requestWalletData, setInkTokenPendingDataAction} from "./amount-actions";
 import type {SendTransactionState} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
 import CryptoHandler from "../services/crypto-handler";
@@ -166,7 +166,7 @@ const sentQtumTransaction = (): ThunkAction => {
       .from(transactionState.rawUtxos)
       .to(
         transactionState.toAddress,
-        transactionState.amount * SATOSHI_COUNT)
+        Math.round(transactionState.amount * SATOSHI_COUNT))
       .change(address)
       .addData(transactionState.description)
       .fee(transactionState.fee * SATOSHI_COUNT)
@@ -195,12 +195,15 @@ const sentInkTransaction = (): ThunkAction => {
       .change(address)
       .addData(transactionState.description);
     transaction.outputs[0].setScript(qtumcore.Script.fromASM(asm));
-    transaction.fee(transactionState.fee * SATOSHI_COUNT);
+    transaction.fee(Math.round(transactionState.fee * SATOSHI_COUNT));
     transaction.sign(getState().loginState.prKey);
     const rawTransaction: string = transaction.serialize(true);
     axios.post(`${getState().config.qtumExplorerPath}/tx/send`, {
       rawtx: rawTransaction
-    }).then(() => {
+    }).then((resp: $AxiosXHR<Object>) => {
+      const pendingTokenTxsIds: Array<string> = getState().amountState.INK.pendigTxs;
+      pendingTokenTxsIds.push(resp.data.txid);
+      dispatch(setInkTokenPendingDataAction(pendingTokenTxsIds, true));
       dispatch(sentTransactionSuccess());
     }, (): void => dispatch(sentTransactionFail()));
   };

@@ -82,7 +82,9 @@ export type WalletAmount = {
   txs: Array<Object>,
   isFirstFetchComplete: boolean,
   tokenDescs: Array<TokenDesc>,
-  totalItems: number
+  totalItems: number,
+  isTokenTxPending: boolean,
+  pendigTxs: Array<string>
 };
 
 export type AmountState = {
@@ -153,7 +155,7 @@ export const initialState: State = {
     requestErrorsCount: 0,
     isNewTransactionsModalOpen: false,
     blockHeight: 0,
-    unconfirmedTransactionsIds: []
+    unconfirmedTransactionsIds: [],
   },
   newsState: {
     news: []
@@ -189,7 +191,9 @@ export const initialState: State = {
       txs: [],
       isFirstFetchComplete: false,
       tokenDescs: [],
-      totalItems: 0
+      totalItems: 0,
+      isTokenTxPending: false,
+      pendigTxs: []
     },
     INK: {
       balance: 0,
@@ -199,7 +203,9 @@ export const initialState: State = {
       txs: [],
       isFirstFetchComplete: false,
       tokenDescs: [],
-      totalItems: 0
+      totalItems: 0,
+      isTokenTxPending: false,
+      pendigTxs: []
     }
   },
   sendTransactionState: {

@@ -16,12 +16,17 @@
 }
 
 .amount-panel .amount-value {
+  display: flex;
   min-height: 70px;
   font-size: 48px;
   font-weight: bold;
   padding-left: 26px;
   color: #666666;
   background-color: #F6F5F5;
+}
+
+.amount-panel .amount-value .pending {
+  padding-left: 10px;
 }
 
 .amount-panel .amount-address {
