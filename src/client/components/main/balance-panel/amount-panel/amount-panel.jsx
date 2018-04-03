@@ -9,6 +9,7 @@ import {Address} from "@evercode-lab/qtumcore-lib";
 import inkIcon from "../../../../images/ink-icon.svg";
 import copyIcon from "../../../../images/copy-icon.png";
 import CopyToClipboard from "react-copy-to-clipboard";
+import sendingIcon from "../../../../images/pendingicon.svg";
 import {Translate} from "react-redux-i18n";
 import {openModal} from "../../../../actions/sent-transaction-action";
 import {openReceiveModal} from "../../../../actions/receive-actions";
@@ -45,7 +46,8 @@ class AmountPanel extends React.Component<Props> {
           </div>
         </div>
         <div className="amount-value">
-          {this.props.inkAmount.balance}
+          <div>{this.props.inkAmount.balance}</div>
+          {this.props.inkAmount.isTokenTxPending && <div className="pending"><img src={sendingIcon}/></div>}
         </div>
         <div className="amount-address">
           <div className="amount-address-icon">

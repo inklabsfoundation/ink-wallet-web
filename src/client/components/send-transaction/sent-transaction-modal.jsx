@@ -42,6 +42,7 @@ type Props = {
   description: string,
   passwordHash: string,
   salt: string,
+  stakingBalance: number,
   inkAmount: number,
   transactionSendFail: number
 };
@@ -105,6 +106,7 @@ class SendTransactionModal extends React.Component<Props> {
         stepPanel = (
           <PrepareTransactionForm qtumAmount={this.props.qtumAmount}
                                   inkAmount={this.props.inkAmount}
+                                  stakingBalance={this.props.stakingBalance}
                                   recommendedFee={this.props.recommendedFee}
                                   tokenRecommendedFee={this.props.tokenRecommendedFee}
                                   onSubmit={this.handleSubmitPrepareSendTransaction}/>
@@ -161,6 +163,7 @@ const mapStateToProps = (state: State): Object => {
     passwordHash: state.loginState.passwordHash,
     salt: state.config.encryptSalt,
     inkAmount: state.amountState.INK.balance,
+    stakingBalance: state.sendTransactionState.stakingBalance,
     transactionSendFail: state.sendTransactionState.transactionSendFail
   };
 };
