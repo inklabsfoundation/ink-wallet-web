@@ -30,7 +30,7 @@ import favicon from "../../images/favicon.png";
 // $FlowFixMe
 import {BrowserView, MobileView, isBrowser, isMobile} from "react-device-detect";
 import PhonePanel from "../main/phone-panel/phone-panel";
-import {MobileDescription} from "./mobile-page";
+import {mobileDescription} from "./mobile-page";
 
 type Props = {
   children: React.Node,
@@ -47,7 +47,7 @@ export default class Page extends React.Component<Props> {
         </BrowserView>
         <MobileView device={isMobile}>
           <PhonePanel isMobile={true}
-                      description={MobileDescription()}/>
+                      description={mobileDescription()}/>
         </MobileView>
         <Helmet>
           <link rel="icon" href={favicon} sizes="32x32"/>
