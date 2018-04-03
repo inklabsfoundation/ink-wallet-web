@@ -8,13 +8,14 @@ import "../../styles/main.css";
 import "../../styles/common.css";
 import PhonePanel from "../main/phone-panel/phone-panel";
 
-export const MobilePage = (): React.Node => (
-  <PhonePanel isMobile={true}
-              description={MobileDescription()}/>
-);
-
-export const MobileDescription = (): React.Node => (
-    <span>Mobile wallet app is coming soon.<br/>Now you can use web wallet on desktop <a
-      href="https://wallet.ink.one">https://wallet.ink.one</a>
+export const mobileDescription = (): React.Node => (
+  <span>Scan the QR code or follow<br/>the <a
+    href="https://ink.one/ink-wallet-android">link</a> to download mobile wallet
                 </span>
 );
+
+export const MobilePage = (): React.Node => (
+  <PhonePanel isMobile={true}
+              description={mobileDescription()}/>
+);
+

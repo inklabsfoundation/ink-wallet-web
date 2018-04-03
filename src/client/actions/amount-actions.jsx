@@ -349,28 +349,29 @@ const processInkTransactionsPendingness = (dispatch: Dispatch, getState: GetStat
   const blockHeight: number = getState().loginState.blockHeight;
   const address: string = getState().loginState.address.toString();
   let pendingTxsIds: Array<string> = [];
-  if (blockHeight !== 0) {
-    if (savedPendingTxsId.length > 0) {
-      let filteredSavedPendingTxs: Array<Object> = txs.filter((tx: Object): boolean => {
-        return !!savedPendingTxsId.find((txId: string): boolean => txId === tx.tx_hash);
-      });
-      if (filteredSavedPendingTxs.length === 0) {
-        return;
-      }
-      filteredSavedPendingTxs = filteredSavedPendingTxs.filter((tx: Object): boolean => {
-        return tx.from === address && tx.block_height + INK_CONFIRMATION_HEIGHT > blockHeight;
-      });
-      pendingTxsIds = filteredSavedPendingTxs.map((tx: Object): string => tx.tx_hash);
-    }
-
-    const newPendingTxs: Array<Object> = txs.filter((tx: Object): boolean => {
-      return tx.block_height + INK_CONFIRMATION_HEIGHT > blockHeight &&
-        tx.from === address;
-    });
-    const newPendingTxsIds: Array<string> = newPendingTxs.map((tx: Object): string => tx.tx_hash);
-    pendingTxsIds = _.uniq(pendingTxsIds.concat(newPendingTxsIds));
-    dispatch(setInkTokenPendingDataAction(pendingTxsIds, pendingTxsIds.length > 0));
+  if (blockHeight === 0) {
+    return;
   }
+  if (savedPendingTxsId.length > 0) {
+    let filteredSavedPendingTxs: Array<Object> = txs.filter((tx: Object): boolean => {
+      return !!savedPendingTxsId.find((txId: string): boolean => txId === tx.tx_hash);
+    });
+    if (filteredSavedPendingTxs.length === 0) {
+      return;
+    }
+    filteredSavedPendingTxs = filteredSavedPendingTxs.filter((tx: Object): boolean => {
+      return tx.from === address && tx.block_height + INK_CONFIRMATION_HEIGHT > blockHeight;
+    });
+    pendingTxsIds = filteredSavedPendingTxs.map((tx: Object): string => tx.tx_hash);
+  }
+
+  const newPendingTxs: Array<Object> = txs.filter((tx: Object): boolean => {
+    return tx.block_height + INK_CONFIRMATION_HEIGHT > blockHeight &&
+      tx.from === address;
+  });
+  const newPendingTxsIds: Array<string> = newPendingTxs.map((tx: Object): string => tx.tx_hash);
+  pendingTxsIds = _.uniq(pendingTxsIds.concat(newPendingTxsIds));
+  dispatch(setInkTokenPendingDataAction(pendingTxsIds, pendingTxsIds.length > 0));
 };
 
 export const requestInkTransactions = (isFirstRequest: ?boolean): ThunkAction => {
