@@ -570,7 +570,7 @@ export const dictionary = {
       successForm: {
         succeed: "转账成功！",
         doneBtn: "完成",
-        fail: "You have not enough funds or UTXO for this transaction. Please try later"
+        fail: "Qtum的可用余额不足以支付交易手续费用，请充值或稍后再试"
       }
     },
     receive: {

@@ -50,7 +50,7 @@ class AssetsDetailsHeader extends React.Component<Props> {
     let availableAmount: number = 0;
     if (this.props.amountState.hasOwnProperty(this.props.routeParams.currency)) {
       currencyKey = this.props.routeParams.currency;
-      currencyState = this.props.amountState.QTUM;
+      currencyState = this.props.amountState[currencyKey];
       pendingAmount = calculatePendingAmount(currencyKey, currencyState, this.props.height, this.props.address.toString());
       availableAmount = currencyState.balance - pendingAmount.outValue;
     }
