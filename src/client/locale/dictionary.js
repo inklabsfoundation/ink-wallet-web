@@ -70,7 +70,7 @@ export const dictionary = {
         li4: "malware, viruses or other malicious software on Your device that is able to take control of or interfere with INK Wallet; and,",
         li5: "communication delays between Your INK Wallet and a node or relay service for a crypto asset."
       },
-      title6: "6. No Warranty",
+      title6: "nt6. No Warranty",
       desc6: "INK Wallet is provided to You at no cost, \"as-is \" and without any warranty whatsoever, to the maximum extent permissible by law. Without limiting the generality of the foregoing,  does not warrant that INK Wallet is fit for Your purpose, even if You have previously provided notice of Your intended purpose, and does not warrant that INK Wallet will operate in a bug-free manner.",
       title7: "7. Limitation of Liability",
       desc7: "Ink's liability to You shall not, under any circumstances, exceed the greater of USD 50.",
@@ -127,6 +127,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "Amount:",
       pendingLabel: "Pending:",
+      stakingLabel: "Staking:",
       allTabLabel: "All",
       sendTabLabel: "Send",
       receivedTabLabel: "Received",
@@ -427,6 +428,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "可用余额：",
       pendingLabel: "发送等待中：",
+      stakingLabel: "挖矿等待中",
       allTabLabel: "全部",
       sendTabLabel: "已发送",
       receivedTabLabel: "已接收",
