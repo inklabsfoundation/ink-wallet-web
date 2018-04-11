@@ -13,9 +13,9 @@ import sendingIcon from "../../../../images/pendingicon.svg";
 import {Translate} from "react-redux-i18n";
 import {openModal} from "../../../../actions/sent-transaction-action";
 import {openReceiveModal} from "../../../../actions/receive-actions";
+import {valueFilter} from "../../../../services/amount-helper";
 
 type Props = {
-  qtumAmount: WalletAmount,
   inkAmount: WalletAmount,
   address: Address,
   dispatch: Dispatch
@@ -46,7 +46,7 @@ class AmountPanel extends React.Component<Props> {
           </div>
         </div>
         <div className="amount-value">
-          <div>{this.props.inkAmount.balance}</div>
+          <div>{valueFilter(this.props.inkAmount.balance)}</div>
           {this.props.inkAmount.isTokenTxPending && <div className="pending"><img src={sendingIcon}/></div>}
         </div>
         <div className="amount-address">
@@ -72,7 +72,6 @@ class AmountPanel extends React.Component<Props> {
 
 const mapStateToProps = (state: State): Object => {
   return {
-    qtumAmount: state.amountState.QTUM,
     inkAmount: state.amountState.INK,
     address: state.loginState.address
   };

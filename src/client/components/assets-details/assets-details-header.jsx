@@ -9,10 +9,11 @@ import {connect} from "react-redux";
 import {openModal} from "../../actions/sent-transaction-action";
 import {openReceiveModal} from "../../actions/receive-actions";
 import CurrencyIcon from "../common/currency-icon";
-import {calculatePendingAmount} from "../../services/amount-helper";
+import {calculatePendingAmount, valueFilter} from "../../services/amount-helper";
 import type {Amount} from "../../services/amount-helper";
 import {Address} from "@evercode-lab/qtumcore-lib/index";
 import type {AmountState} from "../../initial-state";
+import {SUPPORTED_CURRENCIES} from "../../initial-state";
 
 type Props = {
   dispatch: Dispatch,
@@ -20,10 +21,9 @@ type Props = {
   blockHeight: number,
   amountState: AmountState,
   height: number,
-  address: Address
+  address: Address,
+  stakingBalance: number
 };
-
-const BALANCE_FRACTION_DIGITS: number = 6;
 
 class AssetsDetailsHeader extends React.Component<Props> {
   constructor(props: Props) {
@@ -54,8 +54,9 @@ class AssetsDetailsHeader extends React.Component<Props> {
       pendingAmount = calculatePendingAmount(currencyKey, currencyState, this.props.height, this.props.address.toString());
       availableAmount = currencyState.balance - pendingAmount.outValue;
     }
-    const inPendingValue: string = (pendingAmount.inValue > 0) ? `+${pendingAmount.inValue.toFixed(BALANCE_FRACTION_DIGITS)  } QTUM` : "";
-    const outPendingValue: string = (pendingAmount.outValue > 0) ? `-${pendingAmount.outValue.toFixed(BALANCE_FRACTION_DIGITS)  } QTUM` : "";
+    availableAmount -= this.props.stakingBalance;
+    const inPendingValue: string = (pendingAmount.inValue > 0) ? `+${valueFilter(pendingAmount.inValue)} QTUM` : "";
+    const outPendingValue: string = (pendingAmount.outValue > 0) ? `-${valueFilter(pendingAmount.outValue)} QTUM` : "";
     const pendingDevider: string  = (outPendingValue && inPendingValue) ? "/ " : "";
     const pendingLabel: React.Node = (
       <div>
@@ -64,6 +65,14 @@ class AssetsDetailsHeader extends React.Component<Props> {
         ` ${inPendingValue}${pendingDevider}${outPendingValue}`
       }
       </div>
+    );
+    const stakingLabel: React.Node = (
+        <div>
+        <Translate value="assetsDetails.stakingLabel"/>
+          {(this.props.stakingBalance === 0) ? " 0" :
+            ` ${valueFilter(this.props.stakingBalance)}`
+          }
+        </div>
     );
     return (
       <div>
@@ -78,13 +87,16 @@ class AssetsDetailsHeader extends React.Component<Props> {
           </div>
           <div className="currecy-data-container">
             <div className="currency-full-amount">
-              {currencyState && currencyState.balance}
+              {currencyState && valueFilter(currencyState.balance)}
             </div>
             <div className="currency-available-amount">
-              <Translate value="assetsDetails.amountLabel"/> {availableAmount.toFixed(BALANCE_FRACTION_DIGITS)}
+              <Translate value="assetsDetails.amountLabel"/> {valueFilter(availableAmount)}
             </div>
             <div className="currency-pending-amount">
               {pendingLabel}
+            </div>
+            <div className="currency-pending-amount">
+              {this.props.routeParams.currency === SUPPORTED_CURRENCIES.QTUM && stakingLabel}
             </div>
           </div>
         </Col>
@@ -110,7 +122,8 @@ const mapStateToProps = (state: State): Object => {
     blockHeight: state.loginState.blockHeight,
     amountState: state.amountState,
     height: state.loginState.blockHeight,
-    address: state.loginState.address
+    address: state.loginState.address,
+    stakingBalance: state.sendTransactionState.stakingBalance
   };
 };
 

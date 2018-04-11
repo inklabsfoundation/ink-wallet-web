@@ -86,6 +86,12 @@ export const sendTransactionState = (store: SendTransactionState = initialState.
         transactionSendFail: true
       };
     }
+    case "SET_AVAILABLE_AMOUNT": {
+      return {
+        ...store,
+        availableAmount: action.amount
+      };
+    }
     case "SENT_TRANSACTION_SUCCESS": {
       return {
         ...store,

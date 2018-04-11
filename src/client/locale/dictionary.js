@@ -428,8 +428,8 @@ export const dictionary = {
     },
     assetsDetails: {
       amountLabel: "可用余额：",
-      pendingLabel: "发送等待中：",
-      stakingLabel: "挖矿等待中",
+      pendingLabel: "发送等待中: ",
+      stakingLabel: "挖矿等待中: ",
       allTabLabel: "全部",
       sendTabLabel: "已发送",
       receivedTabLabel: "已接收",

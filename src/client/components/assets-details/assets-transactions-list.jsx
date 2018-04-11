@@ -15,6 +15,7 @@ import moment from "moment";
 import {SUPPORTED_CURRENCIES} from "../../initial-state";
 import {requestTokensDesc} from "../../actions/amount-actions";
 import {MILLISECONDS_OFFSET} from "../../types/consts";
+import {valueFilter} from "../../services/amount-helper";
 
 type Props = {
   dispatch: Dispatch,
@@ -113,7 +114,7 @@ class AssetsTransactionsList extends React.Component<Props> {
           <div className="assets-details-tx-data">
             <div className="amount-container">
               <div className={`amount-inner ${tx.premappedTx.isIn ? "in-tx" : "out-tx"}`}>
-                {+tx.premappedTx.value}
+                {valueFilter(+tx.premappedTx.value)}
               </div>
             </div>
           </div>

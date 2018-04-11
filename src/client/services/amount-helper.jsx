@@ -2,7 +2,6 @@
 
 import type {WalletAmount} from "../initial-state";
 import {SUPPORTED_CURRENCIES} from "../initial-state";
-import {TOKENS_COUNT} from "../types/consts";
 import type {LastTransaction} from "./transaction-mapper";
 import {mapQtumTransaction} from "./transaction-mapper";
 
@@ -10,6 +9,9 @@ export type Amount = {
   inValue: number,
   outValue: number
 };
+
+const MAX_AMOUNT_LENGTH = 9;
+const AMOUNT_OFFSET = 7;
 
 // eslint-disable-next-line max-params
 export const calculatePendingAmount = (currencyName: string,
@@ -34,4 +36,8 @@ export const calculatePendingAmount = (currencyName: string,
   });
 
   return pendingAmount;
+};
+
+export const valueFilter = (amount: string | number): string => {
+  return (amount.toString().length >= MAX_AMOUNT_LENGTH) ? (+amount).toFixed(AMOUNT_OFFSET) : amount.toString();
 };

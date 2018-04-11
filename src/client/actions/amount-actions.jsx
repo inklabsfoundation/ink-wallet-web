@@ -407,9 +407,9 @@ export const requestWalletData = (isFirstRequest: ?boolean): ThunkAction => {
     dispatch(requestInkBalance());
     dispatch(requestBlockHeight());
     dispatch(requestInkTransactions(isFirstRequest));
+    dispatch(requestUtxos());
     if (getState().loginState.isRequestFailModalOpen) {
       dispatch(requestRecomendedFee());
-      dispatch(requestUtxos());
     }
   };
 };
