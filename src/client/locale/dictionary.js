@@ -127,6 +127,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "Amount:",
       pendingLabel: "Pending:",
+      stakingLabel: "Staking:",
       allTabLabel: "All",
       sendTabLabel: "Send",
       receivedTabLabel: "Received",
@@ -428,6 +429,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "可用余额：",
       pendingLabel: "发送等待中：",
+      stakingLabel: "挖矿等待中",
       allTabLabel: "全部",
       sendTabLabel: "已发送",
       receivedTabLabel: "已接收",
@@ -729,6 +731,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "잔액:",
       pendingLabel: "대기:",
+      stakingLabel: "Staking",
       allTabLabel: "전부",
       sendTabLabel: "보낸",
       receivedTabLabel: "받은",
@@ -1030,6 +1033,7 @@ export const dictionary = {
     assetsDetails: {
       amountLabel: "余力:",
       pendingLabel: "待機中:",
+      stakingLabel: "Staking",
       allTabLabel: "全て",
       sendTabLabel: "送付済み",
       receivedTabLabel: "受信済み",
