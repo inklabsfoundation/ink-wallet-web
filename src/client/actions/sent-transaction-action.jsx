@@ -65,6 +65,11 @@ type SentTransactionFetchingAction = {
   type: "SENT_TRANSACTION_FETCHING"
 };
 
+type SetAvailableAmountAction = {
+  type: "SET_AVAILABLE_AMOUNT",
+  amount: number
+};
+
 type ConfirmPrepareModalAction = {
   type: "CONFIRM_PREPARE_MODAL",
   tokenType: string,
@@ -96,7 +101,7 @@ export type SendTransactionAction = OpenModalAction | CloseModalAction
   | ResetModalAction | ConfirmPrepareModalAction | ConfirmConfirmModalAction
   | SentTransactionSuccessAction | SentTransactionFailAction | SentTransactionFetchingAction
   | RequestRecommendedFeeFetchingAction | RequestRecommendedFeeSuccessAction
-  | RequestRecommendedFeeFailAction | SetStakingBalanceAction;
+  | RequestRecommendedFeeFailAction | SetStakingBalanceAction | SetAvailableAmountAction;
 
 export const closeModal = (): CloseModalAction => {
   return {
@@ -107,6 +112,13 @@ export const closeModal = (): CloseModalAction => {
 export const resetModal = (): ResetModalAction => {
   return {
     type: "RESET_MODAL"
+  };
+};
+
+const setAvailableAmount = (amount: number): SetAvailableAmountAction => {
+  return {
+    type: "SET_AVAILABLE_AMOUNT",
+    amount
   };
 };
 
@@ -264,10 +276,13 @@ export const requestUtxos = (): ThunkAction => {
         const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
           return !utxo.isStake || utxo.confirmations > UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
+        // eslint-disable-next-line no-return-assign
+        const availableAmount: number = response.data.reduce(((value: number, utxo: Object) => value += utxo.amount), 0);
         const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object): Transaction.UnspentOutput => {
           return new Transaction.UnspentOutput(utxo);
         });
         dispatch(requestUTXOSuccess(utxos));
+        dispatch(setAvailableAmount(availableAmount));
       }, () => {
         dispatch(openRequestFailModalForce());
         dispatch(requestUTXOFail());

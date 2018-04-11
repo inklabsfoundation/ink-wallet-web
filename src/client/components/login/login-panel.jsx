@@ -10,6 +10,8 @@ import LoginForm from "./login-form";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
+import {resetCreation} from "../../actions/creation-actions";
+import {openExitModal} from "../../actions/login-actions";
 
 type Props = {
   dispatch: Dispatch,
@@ -24,6 +26,13 @@ class LoginPanel extends React.Component<Props> {
   componentDidUpdate() {
     if (this.props.isLoggedIn) {
       browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+      this.props.dispatch(openExitModal());
     }
   }
 

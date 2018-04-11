@@ -13,6 +13,7 @@ import ShowMnemonics from "./show-mnemonics/show-mnemonics";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
+import {openExitModal} from "../../actions/login-actions";
 
 type Props = {
   dispatch: Dispatch,
@@ -29,14 +30,15 @@ class CreateWalletPanel extends React.Component<Props> {
     this.props.dispatch(resetCreation());
   }
 
-  componentDidUpdate() {
-    if (this.props.isLoggedIn) {
-      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
-    }
-  }
-
   componentWillUnmount() {
     this.props.dispatch(resetCreation());
+  }
+
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+      this.props.dispatch(openExitModal());
+    }
   }
 
   render(): React.Node {
@@ -53,7 +55,6 @@ class CreateWalletPanel extends React.Component<Props> {
         break;
       default:
     }
-
     return (
       <div className="main-page-form creation-form">
         <div className="creation-heading">

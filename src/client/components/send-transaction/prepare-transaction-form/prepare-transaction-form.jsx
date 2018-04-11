@@ -16,6 +16,7 @@ import "rc-slider/assets/index.css";
 import {Address} from "@evercode-lab/qtumcore-lib";
 import {SUPPORTED_CURRENCIES} from "../../../initial-state";
 import type {State} from "../../../initial-state";
+import {valueFilter} from "../../../services/amount-helper";
 
 type Props = {
   dispatch: Dispatch,
@@ -171,8 +172,9 @@ let PrepareTransactionForm = (props: Props): React.Node => {
   const isQtumSelected : boolean = props.token === SUPPORTED_CURRENCIES.QTUM;
   const recommendedFee: number = isQtumSelected ?
     props.recommendedFee : props.tokenRecommendedFee;
+  const qtumAmount = (props.qtumAmount - props.stakingBalance);
   const amount: number = isQtumSelected ?
-    (props.qtumAmount - props.stakingBalance) : props.inkAmount;
+    qtumAmount : props.inkAmount;
   const stakingBalance: number = props.stakingBalance;
   return (
     <form onSubmit={props.handleSubmit}>
@@ -186,18 +188,7 @@ let PrepareTransactionForm = (props: Props): React.Node => {
               <Field name="token" component={renderTokenDropdown}/>
             </ButtonToolbar>
           </Col>
-          <Col xs={9} className="available-amount-block">
-            <div className="available-amount-wrapper">
-              <div className="available-amount-element">
-                <Translate value="sendTransaction.prepareForm.availableAmount"/> {(amount.toString().length >= MAX_LENGTH)
-                ?  amount.toFixed(FRACTION_DIGITS)
-                : amount} {isQtumSelected ? SUPPORTED_CURRENCIES.QTUM : SUPPORTED_CURRENCIES.INK}
-              </div>
-              <div className="available-amount-element">
-                Staking amount: {(stakingBalance.toString().length > MAX_LENGTH) ? stakingBalance.toFixed(FRACTION_DIGITS) : stakingBalance} QTUM
-              </div>
-            </div>
-          </Col>
+          <Col xs={9} className="available-amount-block"/>
         </Row>
         <Row>
           <Col className="input-section" xs={12}>
@@ -205,8 +196,16 @@ let PrepareTransactionForm = (props: Props): React.Node => {
           </Col>
         </Row>
         <Row>
-          <Col className="input-section" xs={12}>
+          <Col className="input-section bottom-padingless" xs={12}>
             <Field name="amount" component={renderAmount}/>
+          </Col>
+          <Col xs={12} className="amount-data">
+            <span><Translate value="sendTransaction.prepareForm.availableAmount"/>
+              <span className="amount-value">{valueFilter(amount)}</span>
+              <span className="amount-sign">{props.token}</span>
+              {props.token !== SUPPORTED_CURRENCIES.QTUM &&
+              <span>/<span className="amount-value">{valueFilter(qtumAmount)}</span><span className="amount-sign">{SUPPORTED_CURRENCIES.QTUM}</span></span>}
+            </span>
           </Col>
         </Row>
         <Row>

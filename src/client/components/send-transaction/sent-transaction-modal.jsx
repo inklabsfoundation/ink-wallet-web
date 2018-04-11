@@ -44,7 +44,8 @@ type Props = {
   salt: string,
   stakingBalance: number,
   inkAmount: number,
-  transactionSendFail: number
+  transactionSendFail: number,
+  qtumAvailableAmount: number
 };
 
 class SendTransactionModal extends React.Component<Props> {
@@ -104,7 +105,7 @@ class SendTransactionModal extends React.Component<Props> {
       case STEPS.FIRST:
         // eslint-disable-next-line react/jsx-handler-names
         stepPanel = (
-          <PrepareTransactionForm qtumAmount={this.props.qtumAmount}
+          <PrepareTransactionForm qtumAmount={this.props.qtumAvailableAmount}
                                   inkAmount={this.props.inkAmount}
                                   stakingBalance={this.props.stakingBalance}
                                   recommendedFee={this.props.recommendedFee}
@@ -164,6 +165,7 @@ const mapStateToProps = (state: State): Object => {
     salt: state.config.encryptSalt,
     inkAmount: state.amountState.INK.balance,
     stakingBalance: state.sendTransactionState.stakingBalance,
+    qtumAvailableAmount: state.sendTransactionState.availableAmount,
     transactionSendFail: state.sendTransactionState.transactionSendFail
   };
 };

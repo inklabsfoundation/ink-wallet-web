@@ -6,6 +6,7 @@ import type {Dispatch} from "../../../../types/redux";
 import {connect} from "react-redux";
 import {Col} from "react-bootstrap";
 import CurrencyIcon from "../../../common/currency-icon";
+import {valueFilter} from "../../../../services/amount-helper";
 
 type Props = {
   amountState: AmountState
@@ -24,7 +25,7 @@ class CurrenciesListPanel extends React.Component<Props> {
               {this.props.amountState.QTUM.label}
             </div>
             <div className="currency-balance">
-              {this.props.amountState.QTUM.balance}
+              {valueFilter(this.props.amountState.QTUM.balance)}
             </div>
           </div>
         </div>

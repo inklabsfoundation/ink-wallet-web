@@ -12,6 +12,7 @@ import type {AmountState, State} from "../../../initial-state";
 import {Address} from "@evercode-lab/qtumcore-lib";
 import CurrencyIcon from "../../common/currency-icon";
 import moment from "moment";
+import {valueFilter} from "../../../services/amount-helper";
 
 type Props = {
   amountState: AmountState,
@@ -40,7 +41,7 @@ class RecentTransactionsPanel extends React.Component<Props> {
               {moment.unix(transaction.timestamp).format("YYYY.MM.DD HH:mm:ss")}
             </div>
             <div className={`amount-label ${transaction.isIn ? "in" : "out"}`}>
-              {`${transaction.value}
+              {`${valueFilter(transaction.value)}
                 ${transaction.currencyName}`}
             </div>
           </div>

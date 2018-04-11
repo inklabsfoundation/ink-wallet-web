@@ -59,6 +59,7 @@ export type SendTransactionState = {
   rawUtxos: ?Array<Transaction.UnspentOutput>,
   areRawUtxosFetching: boolean,
   isSucceed: boolean,
+  availableAmount: number,
   transactionSendFail: boolean,
   isTransactionIsSending: boolean,
   step: number
@@ -220,6 +221,7 @@ export const initialState: State = {
     isModalOpen: false,
     conformationalPassword: "",
     rawUtxos: [],
+    availableAmount: 0,
     stakingBalance: 0,
     areRawUtxosFetching: false,
     isSucceed: false,

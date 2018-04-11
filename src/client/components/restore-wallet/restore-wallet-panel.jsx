@@ -15,6 +15,7 @@ import successLogo from "../../images/success.png";
 import {ROUTE_URLS} from "../../routes";
 // $FlowFixMe
 import {browserHistory} from "react-router";
+import {openExitModal} from "../../actions/login-actions";
 
 
 type Props = {
@@ -32,18 +33,19 @@ class RestoreWalletPanel extends React.Component<Props> {
     this.successImage = preloadImage(successLogo);
   }
 
-  componentDidUpdate() {
-    if (this.props.isLoggedIn) {
-      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
-    }
-  }
-
   componentDidMount() {
     this.props.dispatch(resetCreation());
   }
 
   componentWillUnmount() {
     this.props.dispatch(resetCreation());
+  }
+
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
+      browserHistory.push(ROUTE_URLS.WALLET_PAGE);
+      this.props.dispatch(openExitModal());
+    }
   }
 
   render(): React.Node {
