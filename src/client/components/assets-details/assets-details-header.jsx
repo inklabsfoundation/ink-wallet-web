@@ -54,7 +54,9 @@ class AssetsDetailsHeader extends React.Component<Props> {
       pendingAmount = calculatePendingAmount(currencyKey, currencyState, this.props.height, this.props.address.toString());
       availableAmount = currencyState.balance - pendingAmount.outValue;
     }
-    availableAmount -= this.props.stakingBalance;
+    if (this.props.routeParams.currency === SUPPORTED_CURRENCIES.QTUM) {
+      availableAmount -= this.props.stakingBalance;
+    }
     const inPendingValue: string = (pendingAmount.inValue > 0) ? `+${valueFilter(pendingAmount.inValue)} QTUM` : "";
     const outPendingValue: string = (pendingAmount.outValue > 0) ? `-${valueFilter(pendingAmount.outValue)} QTUM` : "";
     const pendingDevider: string  = (outPendingValue && inPendingValue) ? "/ " : "";
