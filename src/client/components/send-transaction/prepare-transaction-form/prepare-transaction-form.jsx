@@ -165,9 +165,6 @@ const renderTokenDropdown = (props: Object): React.Node => (
   </DropdownButton>
 );
 
-const MAX_LENGTH: number = 9;
-const FRACTION_DIGITS = 7;
-
 let PrepareTransactionForm = (props: Props): React.Node => {
   const isQtumSelected : boolean = props.token === SUPPORTED_CURRENCIES.QTUM;
   const recommendedFee: number = isQtumSelected ?
@@ -175,7 +172,6 @@ let PrepareTransactionForm = (props: Props): React.Node => {
   const qtumAmount = (props.qtumAmount - props.stakingBalance);
   const amount: number = isQtumSelected ?
     qtumAmount : props.inkAmount;
-  const stakingBalance: number = props.stakingBalance;
   return (
     <form onSubmit={props.handleSubmit}>
       <Modal.Body>

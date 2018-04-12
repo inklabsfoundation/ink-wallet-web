@@ -264,7 +264,10 @@ export const requestUtxos = (): ThunkAction => {
     const address: string = getState().loginState.address.toString();
     axios.get(`${getState().config.qtumExplorerPath}/addrs/${address}/utxo`)
       .then((response: $AxiosXHR<Array<Object>>) => {
-        const stakingUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
+        const rawUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
+          return utxo.confirmations !== 0;
+        });
+        const stakingUtxos: Array<Object> = _.filter(rawUtxos, (utxo: Object): boolean => {
           return utxo.isStake && utxo.confirmations <= UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
         let stakingAmount: number = 0;
@@ -273,11 +276,11 @@ export const requestUtxos = (): ThunkAction => {
         });
         dispatch(setStakingBalance(stakingAmount));
         // eslint-disable-next-line max-len
-        const unstakenUtxos: Array<Object> = _.filter(response.data, (utxo: Object): boolean => {
+        const unstakenUtxos: Array<Object> = _.filter(rawUtxos, (utxo: Object): boolean => {
           return !utxo.isStake || utxo.confirmations > UTXO_STAKING_CONFIRMATIONS_LOCK;
         });
         // eslint-disable-next-line no-return-assign
-        const availableAmount: number = response.data.reduce(((value: number, utxo: Object) => value += utxo.amount), 0);
+        const availableAmount: number = rawUtxos.reduce(((value: number, utxo: Object) => value += utxo.amount), 0);
         const utxos: Array<Transaction.UnspentOutput> = unstakenUtxos.map((utxo: Object): Transaction.UnspentOutput => {
           return new Transaction.UnspentOutput(utxo);
         });
