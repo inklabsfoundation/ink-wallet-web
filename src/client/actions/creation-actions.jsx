@@ -117,7 +117,7 @@ const setMnemonicRestoreError = (isInputMnemonicEmpty: boolean,
 const commitCreation = (derivePath: string, inputMnemonic: ?string): CommitCreationAction => {
   const mnemonic: Mnemonic = (inputMnemonic) ? new Mnemonic(inputMnemonic) : new Mnemonic();
   const hdPrivateKey: HDPrivateKey = HDPrivateKey.fromSeed(mnemonic.toSeed(), Networks.livenet);
-  const privateKey: PrivateKey = hdPrivateKey.derive(derivePath).privateKey;
+  const privateKey: PrivateKey = hdPrivateKey.deriveChild(derivePath).privateKey;
   const address: Address = privateKey.toAddress(Networks.livenet);
   return {
     type: "COMMIT_CREATION_ACTION",

@@ -250,7 +250,7 @@ export const tryToLogin = (seed: Uint8Array, password: string, mnemonic: Mnemoni
   return (dispatch: Dispatch, getState: GetState) => {
     const passwordHash = (SHA256(password + getState().config.encryptSalt).toString());
     const privateKey = (HDPrivateKey.fromSeed(seed, Networks.livenet))
-      .derive(getState().config.derivePath).privateKey;
+      .deriveChild(getState().config.derivePath).privateKey;
     const publicKey = privateKey.toPublicKey();
     const address = privateKey.toAddress();
     dispatch(executeLogin(seed, passwordHash, publicKey, privateKey, address, mnemonic));
